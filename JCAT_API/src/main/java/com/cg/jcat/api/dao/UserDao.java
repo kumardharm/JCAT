@@ -50,6 +50,7 @@ public class UserDao{
 	}
 	
 	public void saveUser(UserModel userModel) {
+		System.out.println("%%%%%%%%%%%%%%%");
 		userRepository.save(toUsers(userModel));
 	}
 
@@ -63,9 +64,13 @@ public class UserDao{
 	}
 
 	public void deleteById(int userId) {
-		User user = userRepository.findByUserId(userId);
+		User user = findByUserId(userId);
 		user.setDeleted(true);
 		userRepository.save(user);
+	}
+	
+	public User findByUserId(int userId) {
+		return userRepository.findByUserId(userId);
 	}
 	
 	public User toUsers(UserModel usersDao)

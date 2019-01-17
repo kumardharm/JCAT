@@ -7,5 +7,7 @@ import com.cg.jcat.api.entity.User;
 public interface IUserRepository extends JpaRepository<User, Integer>{
 
 	User findByUserId(int userId);
+
+	Object findByUsername(String username);
 	
 }
