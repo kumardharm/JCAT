@@ -10,11 +10,11 @@ import com.cg.jcat.api.entity.AssessmentQuestion;
 public interface IAssessmentQuestionRepository extends JpaRepository<AssessmentQuestion, Integer>{
 
 
-	AssessmentQuestion findByQuestionId(int questionId);
-
-	List<AssessmentQuestion> findByIsDelete(boolean isDeleteValue);
-
-	AssessmentQuestionModel findByQuestionTextEN(String questionDescriptionEN);
+//	AssessmentQuestion findByQuestionId(int questionId);
+//
+//	List<AssessmentQuestion> findByIsDelete(boolean isDeleteValue);
+//
+//	AssessmentQuestionModel findByQuestionTextEN(String questionDescriptionEN);
 
 
 }

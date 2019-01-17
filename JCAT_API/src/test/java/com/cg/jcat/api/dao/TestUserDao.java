@@ -91,7 +91,7 @@ public class TestUserDao {
 		userModel.setUserId(1);
 		userModel.setFirstName("Hari");
 		userModel.setLastName("ram");
-		userModel.setUsername("sam3");
+		userModel.setUsername("sam4");
 		userModel.setUserEmail("abcdef@gmail.com");
 		userModel.setCreatedBy("raghu");
 		userModel.setCompany("byarclay");
