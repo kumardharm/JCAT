@@ -20,18 +20,21 @@ public class UserService implements IUserService{
 	}
 
 	@Override
-	public void saveUser(UserModel user, String createdBy) {
+	public UserModel saveUser(UserModel user, String createdBy) {
 		userDao.saveUser(user, createdBy);
+		return user;
 	}
 
 	@Override
-	public void updateUsers(UserModel user, String modifiedBy) {
+	public UserModel updateUsers(UserModel user, String modifiedBy) {
 		userDao.updateUsers(user, modifiedBy);
+		return user;
 	}
 
 	@Override
-	public void deleteById(int userId) {
+	public boolean deleteById(int userId) {
 		userDao.deleteById(userId);
+		return true;
 	}
 
 }

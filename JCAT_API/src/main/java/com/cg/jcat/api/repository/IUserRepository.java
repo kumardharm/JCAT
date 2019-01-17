@@ -7,5 +7,9 @@ import com.cg.jcat.api.entity.User;
 public interface IUserRepository extends JpaRepository<User, Integer>{
 
 	User findByUserId(int userId);
+
+	User findByIsDeleted(boolean b);
+
+	User findByUsername(String string);
 	
 }
