@@ -1,7 +1,6 @@
 package com.cg.jcat.api.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 //import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -15,12 +14,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
-import com.cg.jcat.api.repository.IUserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,11 +26,11 @@ public class TestUserService {
 	@Autowired
 	private UserService userService;
 	
-	@MockBean
-	private UserDao userDao;
+//	@MockBean
+//	private UserDao userDao;
 	
 	@Autowired
-	private IUserRepository userRepository;
+	private UserDao userDao;
 	
 	@Test
 	@Ignore
@@ -55,9 +52,31 @@ public class TestUserService {
 	{
 		UserModel userModel = getModel();
 		Mockito.when(userDao.saveUser(userModel,"admin")).thenReturn(userModel);
-		
 		assertThat(userService.saveUser(userModel,"admin")).isEqualTo(userModel);
 		
+	}
+	
+	@Test
+	public void testsaveUser()
+	{
+		UserModel userModel = new UserModel();
+		userModel.setFirstName("Hari");
+		userModel.setLastName("ram");
+		userModel.setUsername("sam2");
+		userModel.setUserEmail("abc@gmail.com");
+		userModel.setCreatedBy("raghu");
+		userModel.setCompany("goldman");
+		userModel.setAdmin(true);
+		userModel.setPassword("asd@123");
+		userModel.setModifiedBy("raj");
+		
+		userService.saveUser(userModel,"ramesh");
+		
+		UserModel found = userDao.findByUsername(userModel.getUsername());
+		assertNotNull(found);
+		
+		assertThat(found.getFirstName()).isEqualTo(userModel.getFirstName());
+		assertThat(found.getUserEmail()).isEqualTo(userModel.getUserEmail());
 	}
 	
 	@Test
@@ -71,6 +90,7 @@ public class TestUserService {
 		assertThat(userService.updateUsers(userModel, "admin")).isEqualTo(userModel);
 	}
 	
+	@Ignore
 	@Test
 	public void testDeleteUser()
 	{
@@ -88,6 +108,7 @@ public class TestUserService {
 		UserModel userModel = new UserModel();
 		userModel.setUserId(1);
 		userModel.setFirstName("Hari");
+		userModel.setModifiedBy("admin");
 		userModel.setLastName("ram");
 		userModel.setUsername("sam");
 		userModel.setUserEmail("abcdef@gmail.com");

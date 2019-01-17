@@ -47,29 +47,36 @@ public class UserDao{
 		userModel.setCreatedBy(createdBy);
 		userModel.setPassword("Cg@123");
 		saveUser(userModel);
-		return userModel;
+		return findByUsername(userModel.getUsername());
 	}
 	
 	public void saveUser(UserModel userModel) {
-		System.out.println("%%%%%%%%%%%%%%%");
 		userRepository.save(toUsers(userModel));
 	}
 
-	public void updateUsers(UserModel user, String modifiedBy) {
-			setUpdatedUser(user, modifiedBy);
+	public UserModel updateUsers(UserModel user, String modifiedBy) {
+		return setUpdatedUser(user, modifiedBy);
 	}
 	
-	public void setUpdatedUser(UserModel user,String modifiedBy) {
+	public UserModel setUpdatedUser(UserModel user,String modifiedBy) {
 		user.setModifiedBy(modifiedBy);
 		saveUser(user);
+		return toUserDao(findByUserId(user.getUserId()));
 	}
 
 
 	public boolean deleteById(int userId) {
-		User user = userRepository.findByUserId(userId);
+		User user = findByUserId(userId);
 		user.setDeleted(true);
 		userRepository.save(user);
-		return true;
+		if(findByUserId(userId).isDeleted())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public UserModel findByUsername(String username)
@@ -81,17 +88,18 @@ public class UserDao{
 		return userRepository.findByUserId(userId);
 	}
 	
-	public User toUsers(UserModel usersDao)
+	private User toUsers(UserModel userModel)
 	{
 		User users=new User();
-		users.setUsername(usersDao.getUsername());
-		users.setUserId(usersDao.getUserId());
-		users.setCompany(usersDao.getCompany());
-		users.setCreatedBy(usersDao.getCreatedBy());
-		users.setFirstName(usersDao.getFirstName());
-		users.setLastName(usersDao.getLastName());
-		users.setModifiedBy(usersDao.getModifiedBy());
-		users.setPassword(usersDao.getPassword());
+		users.setUsername(userModel.getUsername());
+		users.setUserId(userModel.getUserId());
+		users.setCompany(userModel.getCompany());
+		users.setCreatedBy(userModel.getCreatedBy());
+		users.setFirstName(userModel.getFirstName());
+		users.setLastName(userModel.getLastName());
+		users.setModifiedBy(userModel.getModifiedBy());
+		users.setPassword(userModel.getPassword());
+		users.setUserEmail(userModel.getUserEmail());
 		return users;
 	}
 	

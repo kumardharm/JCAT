@@ -1,4 +1,4 @@
-package com.cg.jcat.JCAT_API;
+package com.cg.jcat.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

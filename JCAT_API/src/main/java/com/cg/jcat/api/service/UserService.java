@@ -21,8 +21,7 @@ public class UserService implements IUserService{
 
 	@Override
 	public UserModel saveUser(UserModel user, String createdBy) {
-		userDao.saveUser(user, createdBy);
-		return user;
+		return userDao.saveUser(user, createdBy);
 	}
 
 	@Override
@@ -33,8 +32,7 @@ public class UserService implements IUserService{
 
 	@Override
 	public boolean deleteById(int userId) {
-		userDao.deleteById(userId);
-		return true;
+		return userDao.deleteById(userId);
 	}
 
 }
