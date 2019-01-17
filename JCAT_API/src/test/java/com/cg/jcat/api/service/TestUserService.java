@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.dao.UserDao;
@@ -21,6 +22,8 @@ import com.cg.jcat.api.dao.UserModel;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@TestPropertySource(
+		  locations = "classpath:application-integrationtest.properties")
 public class TestUserService {
 	
 	@Autowired
