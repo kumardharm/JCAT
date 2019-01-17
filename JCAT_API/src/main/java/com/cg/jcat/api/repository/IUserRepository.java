@@ -8,6 +8,8 @@ public interface IUserRepository extends JpaRepository<User, Integer>{
 
 	User findByUserId(int userId);
 
-	Object findByUsername(String username);
-	
+	User findByIsDeleted(boolean b);
+
+	User findByUsername(String string);
+
 }

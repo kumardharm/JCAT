@@ -43,10 +43,11 @@ public class UserDao{
 		return userDao;
 	}
 
-	public void saveUser(UserModel userModel, String createdBy) {
+	public UserModel saveUser(UserModel userModel, String createdBy) {
 		userModel.setCreatedBy(createdBy);
 		userModel.setPassword("Cg@123");
 		saveUser(userModel);
+		return userModel;
 	}
 	
 	public void saveUser(UserModel userModel) {
@@ -63,10 +64,17 @@ public class UserDao{
 		saveUser(user);
 	}
 
-	public void deleteById(int userId) {
-		User user = findByUserId(userId);
+
+	public boolean deleteById(int userId) {
+		User user = userRepository.findByUserId(userId);
 		user.setDeleted(true);
 		userRepository.save(user);
+		return true;
+	}
+	
+	public UserModel findByUsername(String username)
+	{
+		return toUserDao(userRepository.findByUsername(username));
 	}
 	
 	public User findByUserId(int userId) {

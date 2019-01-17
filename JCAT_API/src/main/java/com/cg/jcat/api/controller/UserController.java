@@ -23,6 +23,7 @@ public class UserController implements IUserController{
 	public void saveUser(String createdBy, UserModel user) 
 	{
 		userService.saveUser(user,createdBy);
+		
 	}
 
 

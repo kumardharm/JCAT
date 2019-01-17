@@ -10,10 +10,10 @@ public interface IUserService {
 
 	public List<UserModel> getUsers();
 
-	public void saveUser(UserModel user, String createdBy);
+	public UserModel saveUser(UserModel user, String createdBy);
 
-	public void updateUsers(UserModel user, String modifiedBy);
+	public UserModel updateUsers(UserModel user, String modifiedBy);
 
-	public void deleteById(int userId);
+	public boolean deleteById(int userId);
 
 }
