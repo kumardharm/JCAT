@@ -6,6 +6,8 @@ package com.cg.jcat.api.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +25,10 @@ public class AssessmentQuestion {
 	private boolean assessmentTypeForCloudable;
 	private boolean assessmentTypeForCloudProvider;
 	private boolean assessmentTypeForMigration;
-	private String questionType;
+	
+	@Enumerated(EnumType.STRING)
+	private QuestionTypeEnum questionType;
+	
 	private String questionTextEN;
 	private String questionTextLang2;
 	private String questionDescriptionEN;
@@ -59,10 +64,10 @@ public class AssessmentQuestion {
 	public void setAssessmentTypeForMigration(boolean assessmentTypeForMigration) {
 		this.assessmentTypeForMigration = assessmentTypeForMigration;
 	}
-	public String getQuestionType() {
+	public QuestionTypeEnum getQuestionType() {
 		return questionType;
 	}
-	public void setQuestionType(String questionType) {
+	public void setQuestionType(QuestionTypeEnum questionType) {
 		this.questionType = questionType;
 	}
 	public String getQuestionTextEN() {
@@ -142,8 +147,4 @@ public class AssessmentQuestion {
 				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", createdTime=" + createdTime
 				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + "]";
 	}
-	
 }
-//{
-//	Multiple_Choice_Single_Answer,Multiple_Choice_MultipleAnswer,ShortAnswer,LongAnswer
-//}

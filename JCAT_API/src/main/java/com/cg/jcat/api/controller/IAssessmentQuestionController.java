@@ -21,13 +21,13 @@ public interface IAssessmentQuestionController {
 	@GetMapping("/getAll")
 	public List<AssessmentQuestionModel> getQuestions();
 	
-	@PostMapping("/createQuestion/{createdBy}")
-	public void saveQuestions(@PathVariable String createdBy, @RequestBody AssessmentQuestionModel question);
+	@PostMapping("/createQuestion")
+	public void saveQuestions(@RequestBody AssessmentQuestionModel question);
 	
-	@PutMapping("/updateQuestion/{modifiedBy}")
-	public void updateQuestion(@PathVariable String modifiedBy, @RequestBody AssessmentQuestionModel question);
+	@PutMapping("/updateQuestion")
+	public void updateQuestion(@RequestBody AssessmentQuestionModel question);
 	
-	@DeleteMapping("/deleteQuestion/{userId}")
-	public void deleteQuestion(@PathVariable int userId);
+	@DeleteMapping("/deleteQuestion/{questionId}")
+	public void deleteQuestion(@PathVariable int questionId);
 
 }
