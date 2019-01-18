@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cg.jcat.api.entity.User;
+import com.cg.jcat.api.exception.ExceptionMessages;
+import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.repository.IUserRepository;
 
 @Component
@@ -13,12 +15,14 @@ public class UserDao {
 	@Autowired
 	private IUserRepository userRepository;
 
-	public List<UserModel> getUsers() {
+	public List<UserModel> getUsers() throws JcatExceptions {
 		List<User> userList = new ArrayList<>();
 		try {
 			userList = userRepository.findAll();
 		} catch (Exception e) {
-			System.out.print("Error while getting users from database" + e);
+			
+			System.out.print(ExceptionMessages.GetUserDetails + e);
+			throw new JcatExceptions(ExceptionMessages.GetUserDetails);
 		}
 		List<UserModel> userDaoList = new ArrayList<UserModel>();
 		return togetUsers(userList, userDaoList);
@@ -51,20 +55,16 @@ public class UserDao {
 		userModel.setPassword("Cg@123");
 		try {
 		saveUser(userModel);
-		return findByUsername(userModel.getUsername());
+		
 		}catch (Exception e) {
-			System.out.print("Error while saving user" + e);
+			System.out.print(ExceptionMessages.SaveUsersToDB + e);
 			return null;
 		}
-		
+		return findByUsername(userModel.getUsername());
 	}
 
 	public void saveUser(UserModel userModel) {
-		try {
 		userRepository.save(toUsers(userModel));
-		}catch (Exception e) {
-			System.out.print("Error while saving user" + e);
-		}
 	}
 
 	public UserModel updateUsers(UserModel user, String modifiedBy) {
@@ -78,7 +78,7 @@ public class UserDao {
 		saveUser(user);
 		return toUserDao(findByUserId(user.getUserId()));
 		}catch (Exception e) {
-			System.out.print("Error while saving user" + e);
+			System.out.print(ExceptionMessages.UpdateUser + e);
 			return null;
 		}
 		
@@ -90,7 +90,7 @@ public class UserDao {
 		user.setDeleted(true);
 		userRepository.save(user);
 		}catch (Exception e) {
-			System.out.print("Error while deleting user" + e);
+			System.out.print( ExceptionMessages.DeleteUser + e);
 		}
 		if (findByUserId(userId).isDeleted()) {
 			return true;
@@ -103,7 +103,7 @@ public class UserDao {
 		try {
 		return toUserDao(userRepository.findByUsername(username));
 		}catch (Exception e) {
-			System.out.print("Error while finding user by user name" + e);
+			System.out.print(ExceptionMessages.GetUserByName + e);
 			return null;
 		}
 	}
@@ -112,7 +112,7 @@ public class UserDao {
 		try {
 		return userRepository.findByUserId(userId);
 		}catch (Exception e) {
-			System.out.print("Error while finding user by user id" + e);
+			System.out.print( ExceptionMessages.GetUserById + e);
 			return null;
 		}
 		
@@ -130,6 +130,17 @@ public class UserDao {
 		users.setPassword(userModel.getPassword());
 		users.setUserEmail(userModel.getUserEmail());
 		return users;
+	}
+
+	public boolean isExist(String userName) {
+		try {
+			 if(findByUsername(userName)!=null)
+				 return false;
+		}catch (Exception e) {
+			System.out.print(ExceptionMessages.CheckUserExists + e);
+			return false;
+		}
+		return true;
 	}
 
 }

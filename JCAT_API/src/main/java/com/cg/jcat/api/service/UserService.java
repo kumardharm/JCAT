@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
+import com.cg.jcat.api.exception.JcatExceptions;
 
 @Component
 public class UserService implements IUserService{
@@ -15,7 +16,7 @@ public class UserService implements IUserService{
 	private UserDao userDao;
 
 	@Override
-	public List<UserModel> getUsers() {
+	public List<UserModel> getUsers() throws JcatExceptions {
 		return userDao.getUsers();
 	}
 
@@ -33,6 +34,12 @@ public class UserService implements IUserService{
 	@Override
 	public boolean deleteById(int userId) {
 		return userDao.deleteById(userId);
+	}
+
+	@Override
+	public boolean isExist(String userName) {
+		
+		return userDao.isExist(userName);
 	}
 
 }
