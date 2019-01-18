@@ -22,6 +22,7 @@ public class AssessmentQuestionModel {
 	private boolean isDeleted;
 	private String createdBy;
 	private String modifiedBy;
+	
 	public int getQuestionId() {
 		return questionId;
 	}

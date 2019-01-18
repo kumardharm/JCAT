@@ -12,12 +12,10 @@ public interface IAssessmentQuestionService {
 
 	public List<AssessmentQuestionModel> getQuestions();
 
-	public AssessmentQuestionModel saveQuestions(AssessmentQuestionModel assessmentQuestionModel);
+	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionModel);
 
 	public AssessmentQuestionModel updateQuestion(AssessmentQuestionModel question);
 
 	public boolean deleteQuestion(int questionId);
-
-	
 
 }

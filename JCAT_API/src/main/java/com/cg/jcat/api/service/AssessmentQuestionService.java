@@ -20,8 +20,8 @@ public class AssessmentQuestionService implements IAssessmentQuestionService{
 	}
 
 	@Override
-	public AssessmentQuestionModel saveQuestions(AssessmentQuestionModel assessmentQuestionsModel) {
-		 return assessmentQuestionDao.saveQuestions(assessmentQuestionsModel);
+	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionsModel) {
+		return assessmentQuestionDao.saveQuestions(assessmentQuestionsModel);
 	}	
 
 	@Override
