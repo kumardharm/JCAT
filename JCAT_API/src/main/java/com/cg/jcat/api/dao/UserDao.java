@@ -20,7 +20,7 @@ public class UserDao {
 		try {
 			userList = userRepository.findAll();
 		} catch (Exception e) {
-			
+
 			System.out.print(ExceptionMessages.GetUserDetails + e);
 			throw new JcatExceptions(ExceptionMessages.GetUserDetails);
 		}
@@ -50,21 +50,30 @@ public class UserDao {
 		return userDao;
 	}
 
-	public UserModel saveUser(UserModel userModel, String createdBy) {
+	public boolean saveUser(UserModel userModel, String createdBy) {
 		userModel.setCreatedBy(createdBy);
 		userModel.setPassword("Cg@123");
+		boolean value = false;
 		try {
-		saveUser(userModel);
-		
-		}catch (Exception e) {
+			if (saveUser(userModel)) {
+				value = true;
+			}
+			return true;
+		} catch (Exception e) {
 			System.out.print(ExceptionMessages.SaveUsersToDB + e);
-			return null;
+			return false;
 		}
-		return findByUsername(userModel.getUsername());
+		// return findByUsername(userModel.getUsername());
 	}
 
-	public void saveUser(UserModel userModel) {
-		userRepository.save(toUsers(userModel));
+	public boolean saveUser(UserModel userModel) {
+		try {
+			if (userRepository.save(toUsers(userModel)) != null)
+				return true;
+		} catch (Exception e) {
+
+		}
+		return false;
 	}
 
 	public UserModel updateUsers(UserModel user, String modifiedBy) {
@@ -72,25 +81,25 @@ public class UserDao {
 	}
 
 	public UserModel setUpdatedUser(UserModel user, String modifiedBy) {
-		
+
 		user.setModifiedBy(modifiedBy);
 		try {
-		saveUser(user);
-		return toUserDao(findByUserId(user.getUserId()));
-		}catch (Exception e) {
+			saveUser(user);
+			return toUserDao(findByUserId(user.getUserId()));
+		} catch (Exception e) {
 			System.out.print(ExceptionMessages.UpdateUser + e);
 			return null;
 		}
-		
+
 	}
 
 	public boolean deleteById(int userId) {
 		try {
-		User user = findByUserId(userId);
-		user.setDeleted(true);
-		userRepository.save(user);
-		}catch (Exception e) {
-			System.out.print( ExceptionMessages.DeleteUser + e);
+			User user = findByUserId(userId);
+			user.setDeleted(true);
+			userRepository.save(user);
+		} catch (Exception e) {
+			System.out.print(ExceptionMessages.DeleteUser + e);
 		}
 		if (findByUserId(userId).isDeleted()) {
 			return true;
@@ -101,8 +110,8 @@ public class UserDao {
 
 	public UserModel findByUsername(String username) {
 		try {
-		return toUserDao(userRepository.findByUsername(username));
-		}catch (Exception e) {
+			return toUserDao(userRepository.findByUsername(username));
+		} catch (Exception e) {
 			System.out.print(ExceptionMessages.GetUserByName + e);
 			return null;
 		}
@@ -110,12 +119,12 @@ public class UserDao {
 
 	public User findByUserId(int userId) {
 		try {
-		return userRepository.findByUserId(userId);
-		}catch (Exception e) {
-			System.out.print( ExceptionMessages.GetUserById + e);
+			return userRepository.findByUserId(userId);
+		} catch (Exception e) {
+			System.out.print(ExceptionMessages.GetUserById + e);
 			return null;
 		}
-		
+
 	}
 
 	private User toUsers(UserModel userModel) {
@@ -134,9 +143,9 @@ public class UserDao {
 
 	public boolean isExist(String userName) {
 		try {
-			 if(findByUsername(userName)!=null)
-				 return false;
-		}catch (Exception e) {
+			if (findByUsername(userName) != null)
+				return false;
+		} catch (Exception e) {
 			System.out.print(ExceptionMessages.CheckUserExists + e);
 			return false;
 		}

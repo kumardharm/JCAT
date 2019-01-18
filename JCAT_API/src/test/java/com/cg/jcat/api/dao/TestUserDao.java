@@ -14,6 +14,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.User;
+import com.cg.jcat.api.exception.JcatExceptions;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -57,7 +58,7 @@ public class TestUserDao {
 	
 	@Test
 //	@Ignore
-	public void testgetUsers()
+	public void testgetUsers() throws JcatExceptions
 	{
 		UserModel userModel = new UserModel();
 		userModel.setFirstName("ABC");

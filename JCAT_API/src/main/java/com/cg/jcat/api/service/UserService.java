@@ -21,7 +21,7 @@ public class UserService implements IUserService{
 	}
 
 	@Override
-	public UserModel saveUser(UserModel user, String createdBy) {
+	public boolean saveUser(UserModel user, String createdBy) {
 		return userDao.saveUser(user, createdBy);
 	}
 

@@ -1,6 +1,7 @@
 package com.cg.jcat.api.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 //import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -19,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
+import com.cg.jcat.api.exception.JcatExceptions;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,7 +39,7 @@ public class TestUserService {
 	
 	@Test
 	@Ignore
-	public void testGetUsers()
+	public void testGetUsers() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
 		List<UserModel> userModelList = new ArrayList<UserModel>();
@@ -54,8 +56,9 @@ public class TestUserService {
 	public void testSaveUser()
 	{
 		UserModel userModel = getModel();
-		Mockito.when(userDao.saveUser(userModel,"admin")).thenReturn(userModel);
-		assertThat(userService.saveUser(userModel,"admin")).isEqualTo(userModel);
+		Mockito.when(userDao.saveUser(userModel,"admin")).thenReturn(true);
+		assertEquals(true, userService.saveUser(userModel,"admin"));
+//		assertThat(userService.saveUser(userModel,"admin")).isEqualTo(userModel);
 		
 	}
 	
@@ -89,7 +92,7 @@ public class TestUserService {
 		UserModel userModel = getModel();
 		Mockito.when(userDao.findByUsername(userModel.getUsername())).thenReturn(userModel);
 		userModel.setCompany("cg");
-		Mockito.when(userDao.saveUser(userModel,"admin")).thenReturn(userModel);
+		Mockito.when(userDao.saveUser(userModel,"admin")).thenReturn(true);
 		assertThat(userService.updateUsers(userModel, "admin")).isEqualTo(userModel);
 	}
 	

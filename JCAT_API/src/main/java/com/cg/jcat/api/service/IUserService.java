@@ -11,7 +11,7 @@ public interface IUserService {
 
 	public List<UserModel> getUsers() throws JcatExceptions;
 
-	public UserModel saveUser(UserModel user, String createdBy);
+	public boolean saveUser(UserModel user, String createdBy);
 
 	public UserModel updateUsers(UserModel user, String modifiedBy);
 

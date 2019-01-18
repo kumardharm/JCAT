@@ -26,14 +26,18 @@ public class UserController implements IUserController {
 	}
 
 	@Override
-	public void saveUser(String createdBy, UserModel user) {
+	public boolean saveUser(String createdBy, UserModel user) {
+		boolean value = false;
 		try {
 			if (createdBy != null && user != null) {
-				userService.saveUser(user, createdBy);
+				value = userService.saveUser(user, createdBy);
 			}
+			return value;
 		} catch (Exception e) {
 			System.out.print("Error while saving user" + e);
+			return false;
 		}
+		
 	}
 
 	@Override
@@ -58,15 +62,5 @@ public class UserController implements IUserController {
 		}
 	}
 
-	@Override
-	public boolean isExist(String userName) {
-        try
-        {
-        	return userService.isExist(userName);
-        }catch (Exception e) {
-        	System.out.print("Error user is already present" + e);
-        	return false;
-        }
-        
-	}
+	
 }

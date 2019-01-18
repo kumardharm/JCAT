@@ -21,7 +21,7 @@ public interface IUserController {
 	public List<UserModel> getUsers();
 	
 	@PostMapping("/create/{createdBy}")
-	public void saveUser(@PathVariable String createdBy, @RequestBody UserModel user);
+	public boolean saveUser(@PathVariable String createdBy, @RequestBody UserModel user);
 	
 	@PutMapping("/update/{modifiedBy}")
 	public void updateUserId(@PathVariable String modifiedBy, @RequestBody UserModel user);
@@ -29,6 +29,5 @@ public interface IUserController {
 	@DeleteMapping("/delete/{userId}")
 	public void deleteById(@PathVariable int userId);
 
-	@GetMapping("userExistCheck/{userName}")
-	public boolean isExist(@PathVariable String userName);
+	
 }
