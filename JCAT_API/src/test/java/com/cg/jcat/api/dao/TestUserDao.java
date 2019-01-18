@@ -23,14 +23,10 @@ import com.cg.jcat.api.exception.JcatExceptions;
 		  locations = "classpath:application-integrationtest.properties")
 public class TestUserDao {
 	
-//	@Autowired
-//	private TestEntityManager entityManager;
 	
 	@Autowired
 	private UserDao userDao; 
 	
-//	@Autowired
-//	private IUserRepository userRepository;
 	
 	@Test
 //	@Ignore

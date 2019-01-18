@@ -5,6 +5,7 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,24 +23,39 @@ public class AssessmentQuestion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int questionId;
+	
 	private boolean assessmentTypeForCloudable;
+	
 	private boolean assessmentTypeForCloudProvider;
+	
 	private boolean assessmentTypeForMigration;
 	
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum questionType;
 	
+	@Column(unique = true)
 	private String questionTextEN;
+	
 	private String questionTextLang2;
+	
 	private String questionDescriptionEN;
+	
 	private String questionDescriptionLang2;
+	
 	private int numberOfOptions;
+	
 	private int displayOrder;
+	
 	private boolean isDeleted;
+	
 	private String createdBy;
+	
 	private Date createdTime;
+	
 	private String modifiedBy;
+	
 	private Date modifiedTime;
+	
 	public int getQuestionId() {
 		return questionId;
 	}

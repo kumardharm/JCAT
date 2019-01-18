@@ -32,20 +32,21 @@ public class AssessmentQuestionDao {
 	}
 
 	
-	public AssessmentQuestionModel saveQuestions(AssessmentQuestionModel assessmentQuestionsModel)
+	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionsModel)
 	{
-		if(assessmentQuestionsModel!=null)
+		try {
+			if(assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel)) != null)
+			{
+				System.out.println("saved");
+				return true;
+			}
+		}catch(Exception e)
 		{
-			assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel));
-			return assessmentQuestionRepository.findByQuestionTextEN(assessmentQuestionsModel.getQuestionDescriptionEN());
+			System.out.println("Assessment questions not saved");
 		}
-		else
-		{
-			System.out.println("Not saved");
-			return null;
-		}
+		return false;
 	}
-	
+
 	public boolean deleteAssessmentQuestionById(int questionId)
 	{
 		AssessmentQuestion assessmentQuestion = new AssessmentQuestion();
@@ -103,9 +104,13 @@ public class AssessmentQuestionDao {
 		return assessmentQuestionModel;
 	}
 	
-	private AssessmentQuestion findByQuestionId(int questionId)
+	public AssessmentQuestion findByQuestionId(int questionId)
 	{
 		return assessmentQuestionRepository.findByQuestionId(questionId);
+	}
+	
+	public AssessmentQuestionModel findByQuestionTextEn(String questionTextEN) {
+		return assessmentQuestionRepository.findByQuestionTextEN(questionTextEN);
 	}
 	
 }
