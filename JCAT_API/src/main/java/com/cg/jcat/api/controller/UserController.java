@@ -2,6 +2,8 @@ package com.cg.jcat.api.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,8 @@ import com.cg.jcat.api.service.IUserService;
 @Component
 public class UserController implements IUserController {
 
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private IUserService userService;
 
@@ -19,48 +23,51 @@ public class UserController implements IUserController {
 	public List<UserModel> getUsers() {
 		try {
 			return userService.getUsers();
-		} catch (JcatExceptions e) {
-			System.out.println("Error in getting users" + e);
-			return null;
+		} catch (Exception e) {
+			LOGGER.error("Error in getting all users: getUsers()", e);
+			throw e;
 		}
 	}
 
 	@Override
-	public boolean saveUser(String createdBy, UserModel user) {
+	public boolean saveUser(String createdBy, UserModel user) throws JcatExceptions {
 		boolean value = false;
 		try {
 			if (createdBy != null && user != null) {
 				value = userService.saveUser(user, createdBy);
 			}
 			return value;
-		} catch (Exception e) {
-			System.out.print("Error while saving user" + e);
-			return false;
+		} catch (JcatExceptions e) {
+			LOGGER.error("Error while saving user " + user.getUsername(), e);
+			throw e;
 		}
-		
+
 	}
 
 	@Override
-	public void updateUserId(String modifiedBy, UserModel user) {
+	public boolean updateUserId(String modifiedBy, UserModel user) throws JcatExceptions {
+		boolean value = false;
 		try {
-			if(modifiedBy != null && user != null) {
-				userService.updateUsers(user, modifiedBy);
+			if (modifiedBy != null && user != null) {
+				value = userService.updateUsers(user, modifiedBy);
 			}
-		} catch (Exception e) {
-			System.out.print("Error while updating user" + e);
+			return value;
+		} catch (JcatExceptions e) {
+			LOGGER.error("Error while updating user " + user.getUsername(), e);
+			throw e;
 		}
 	}
 
 	@Override
-	public void deleteById(int userId) {
+	public void deleteById(int userId) throws JcatExceptions {
 		try {
 			if (userId != 0) {
 				userService.deleteById(userId);
 			}
-		} catch (Exception e) {
-			System.out.print("Error while deleting user" + e);
+		} catch (JcatExceptions e) {
+			LOGGER.error("Error while deleting user " + userId+ " ErrorMessage :"+e.getMessage(), e);
+			throw e;
 		}
 	}
 
-	
 }

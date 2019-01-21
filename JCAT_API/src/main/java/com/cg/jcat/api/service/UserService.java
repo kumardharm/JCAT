@@ -2,6 +2,8 @@ package com.cg.jcat.api.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,36 +12,40 @@ import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.exception.JcatExceptions;
 
 @Component
-public class UserService implements IUserService{
-	
+public class UserService implements IUserService {
+
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private UserDao userDao;
 
 	@Override
-	public List<UserModel> getUsers() throws JcatExceptions {
-		return userDao.getUsers();
+	public List<UserModel> getUsers() {
+		List<UserModel> users = userDao.getUsers();
+		LOGGER.info("Retrieved " + users.size() + " users from DB!");
+		return users;
 	}
 
 	@Override
-	public boolean saveUser(UserModel user, String createdBy) {
-		return userDao.saveUser(user, createdBy);
+	public boolean saveUser(UserModel user, String createdBy) throws JcatExceptions {
+		boolean isSaved = userDao.createUser(user, createdBy);
+		LOGGER.info("User " + user.getUsername() + " successfully saved in DB!" + isSaved);
+		return isSaved;
 	}
 
 	@Override
-	public UserModel updateUsers(UserModel user, String modifiedBy) {
-		userDao.updateUsers(user, modifiedBy);
-		return user;
+	public boolean updateUsers(UserModel user, String modifiedBy) throws JcatExceptions {
+
+		boolean isUpdated = userDao.updateUsers(user, modifiedBy);
+		LOGGER.info("User " + user.getUsername() + " successfully updated in DB!" + isUpdated);
+		return isUpdated;
 	}
 
 	@Override
-	public boolean deleteById(int userId) {
-		return userDao.deleteById(userId);
-	}
-
-	@Override
-	public boolean isExist(String userName) {
-		
-		return userDao.isExist(userName);
+	public boolean deleteById(int userId) throws JcatExceptions {
+		boolean isDeleted = userDao.deleteById(userId);
+		LOGGER.info("User " + userId + " successfully deleted from DB!" + isDeleted);
+		return isDeleted;
 	}
 
 }

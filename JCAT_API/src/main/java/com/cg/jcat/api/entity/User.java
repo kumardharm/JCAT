@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 @Table(name="user_table",uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
 public class User {
@@ -20,11 +22,14 @@ public class User {
 	private String lastName;
 	@Column(unique = true)
 	private String username;
-	@Column(columnDefinition = "String NOT NULL default Cg@123")
+	@ColumnDefault("'Cg@123'")
+//	@Column(columnDefinition = "String NOT NULL default Cg@123")
 	private String password;
 	private String company;
 	private String userEmail;
+//	@Column(columnDefinition = "String default false")
 	private boolean isAdmin;
+//	@Column(columnDefinition = " default false")
 	private boolean isDeleted;
 	private Date lastLoginTime;
 	private String createdBy;
