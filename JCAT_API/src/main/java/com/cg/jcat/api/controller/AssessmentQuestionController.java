@@ -20,21 +20,20 @@ public class AssessmentQuestionController implements IAssessmentQuestionControll
 	}
 
 	@Override
-	public void saveQuestions(String createdBy, AssessmentQuestionModel question) {
-		
-		assessmentQuestionService.saveQuestions(createdBy,question);
+	public void saveQuestions(AssessmentQuestionModel question) {
+		assessmentQuestionService.saveQuestions(question);
 	}
 
 	@Override
-	public void updateQuestion(String modifiedBy, AssessmentQuestionModel question) {
+	public void updateQuestion(AssessmentQuestionModel question) {
 
-		assessmentQuestionService.updateQuestion(modifiedBy,question);
+		assessmentQuestionService.updateQuestion(question);
 		
 	}
 
 	@Override
-	public void deleteQuestion(int userId) {
-		assessmentQuestionService.deleteQuestion(userId);
+	public void deleteQuestion(int questionId) {
+		assessmentQuestionService.deleteQuestion(questionId);
 	}
 
 }

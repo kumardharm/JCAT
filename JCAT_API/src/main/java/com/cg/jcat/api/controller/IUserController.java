@@ -29,4 +29,6 @@ public interface IUserController {
 	@DeleteMapping("/delete/{userId}")
 	public void deleteById(@PathVariable int userId);
 
+	@GetMapping("userExistCheck/{userName}")
+	public boolean isExist(@PathVariable String userName);
 }

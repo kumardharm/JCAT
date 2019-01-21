@@ -1,6 +1,9 @@
 package com.cg.jcat.api.dao;
 
-import java.util.Date;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import com.cg.jcat.api.entity.QuestionTypeEnum;
 
 public class AssessmentQuestionModel {
 	
@@ -8,7 +11,8 @@ public class AssessmentQuestionModel {
 	private boolean assessmentTypeForCloudable;
 	private boolean assessmentTypeForCloudProvider;
 	private boolean assessmentTypeForMigration;
-	private String questionType;
+	@Enumerated(EnumType.STRING)
+	private QuestionTypeEnum questionType;
 	private String questionTextEN;
 	private String questionTextLang2;
 	private String questionDescriptionEN;
@@ -18,6 +22,7 @@ public class AssessmentQuestionModel {
 	private boolean isDeleted;
 	private String createdBy;
 	private String modifiedBy;
+	
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -42,10 +47,10 @@ public class AssessmentQuestionModel {
 	public void setAssessmentTypeForMigration(boolean assessmentTypeForMigration) {
 		this.assessmentTypeForMigration = assessmentTypeForMigration;
 	}
-	public String getQuestionType() {
+	public QuestionTypeEnum getQuestionType() {
 		return questionType;
 	}
-	public void setQuestionType(String questionType) {
+	public void setQuestionType(QuestionTypeEnum questionType) {
 		this.questionType = questionType;
 	}
 	public String getQuestionTextEN() {

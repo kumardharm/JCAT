@@ -12,12 +12,10 @@ public interface IAssessmentQuestionService {
 
 	public List<AssessmentQuestionModel> getQuestions();
 
-	public void saveQuestions(String createdBy, AssessmentQuestionModel question);
+	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionModel);
 
-	public void updateQuestion(String modifiedBy, AssessmentQuestionModel question);
+	public AssessmentQuestionModel updateQuestion(AssessmentQuestionModel question);
 
-	public void deleteQuestion(int userId);
-
-	
+	public boolean deleteQuestion(int questionId);
 
 }

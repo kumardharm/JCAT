@@ -5,7 +5,10 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,21 +23,39 @@ public class AssessmentQuestion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int questionId;
+	
 	private boolean assessmentTypeForCloudable;
+	
 	private boolean assessmentTypeForCloudProvider;
+	
 	private boolean assessmentTypeForMigration;
-	private String questionType;
+	
+	@Enumerated(EnumType.STRING)
+	private QuestionTypeEnum questionType;
+	
+	@Column(unique = true)
 	private String questionTextEN;
+	
 	private String questionTextLang2;
+	
 	private String questionDescriptionEN;
+	
 	private String questionDescriptionLang2;
+	
 	private int numberOfOptions;
+	
 	private int displayOrder;
+	
 	private boolean isDeleted;
+	
 	private String createdBy;
+	
 	private Date createdTime;
+	
 	private String modifiedBy;
+	
 	private Date modifiedTime;
+	
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -59,10 +80,10 @@ public class AssessmentQuestion {
 	public void setAssessmentTypeForMigration(boolean assessmentTypeForMigration) {
 		this.assessmentTypeForMigration = assessmentTypeForMigration;
 	}
-	public String getQuestionType() {
+	public QuestionTypeEnum getQuestionType() {
 		return questionType;
 	}
-	public void setQuestionType(String questionType) {
+	public void setQuestionType(QuestionTypeEnum questionType) {
 		this.questionType = questionType;
 	}
 	public String getQuestionTextEN() {
@@ -142,8 +163,4 @@ public class AssessmentQuestion {
 				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", createdTime=" + createdTime
 				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + "]";
 	}
-	
 }
-//{
-//	Multiple_Choice_Single_Answer,Multiple_Choice_MultipleAnswer,ShortAnswer,LongAnswer
-//}

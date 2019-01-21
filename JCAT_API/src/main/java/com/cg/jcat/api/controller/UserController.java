@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.dao.UserModel;
+import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.service.IUserService;
 
 @Component
@@ -18,9 +19,8 @@ public class UserController implements IUserController {
 	public List<UserModel> getUsers() {
 		try {
 			return userService.getUsers();
-		} catch (Exception e) {
-
-			System.out.println("Error in getting users " + e);
+		} catch (JcatExceptions e) {
+			System.out.println("Error in getting users" + e);
 			return null;
 		}
 	}
@@ -56,5 +56,17 @@ public class UserController implements IUserController {
 		} catch (Exception e) {
 			System.out.print("Error while deleting user" + e);
 		}
+	}
+
+	@Override
+	public boolean isExist(String userName) {
+        try
+        {
+        	return userService.isExist(userName);
+        }catch (Exception e) {
+        	System.out.print("Error user is already present" + e);
+        	return false;
+        }
+        
 	}
 }

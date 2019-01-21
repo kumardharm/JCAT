@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
+import com.cg.jcat.api.exception.JcatExceptions;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,7 +38,7 @@ public class TestUserService {
 	
 	@Test
 	@Ignore
-	public void testGetUsers()
+	public void testGetUsers() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
 		List<UserModel> userModelList = new ArrayList<UserModel>();

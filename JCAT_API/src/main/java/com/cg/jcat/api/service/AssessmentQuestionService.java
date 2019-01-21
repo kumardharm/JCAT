@@ -2,31 +2,36 @@ package com.cg.jcat.api.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.dao.AssessmentQuestionDao;
 import com.cg.jcat.api.dao.AssessmentQuestionModel;
 
 @Component
 public class AssessmentQuestionService implements IAssessmentQuestionService{
+	
+	@Autowired
+	AssessmentQuestionDao assessmentQuestionDao;
 
 	@Override
 	public List<AssessmentQuestionModel> getQuestions() {
-		return null;
+		return assessmentQuestionDao.getQuestions();
 	}
 
 	@Override
-	public void saveQuestions(String createdBy, AssessmentQuestionModel question) {
-		
+	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionsModel) {
+		return assessmentQuestionDao.saveQuestions(assessmentQuestionsModel);
+	}	
+
+	@Override
+	public boolean deleteQuestion(int questionId) {
+		return assessmentQuestionDao.deleteAssessmentQuestionById(questionId);
 	}
 
 	@Override
-	public void updateQuestion(String modifiedBy, AssessmentQuestionModel question) {
-		
-	}
-
-	@Override
-	public void deleteQuestion(int userId) {
-		
+	public AssessmentQuestionModel updateQuestion(AssessmentQuestionModel assessmentQuestionModel) {
+		return assessmentQuestionDao.updateQuestions(assessmentQuestionModel);
 	}
 
 }
