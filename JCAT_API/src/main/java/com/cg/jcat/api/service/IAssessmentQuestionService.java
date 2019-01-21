@@ -14,7 +14,7 @@ public interface IAssessmentQuestionService {
 
 	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionModel);
 
-	public AssessmentQuestionModel updateQuestion(AssessmentQuestionModel question);
+	public boolean updateQuestion(AssessmentQuestionModel question);
 
 	public boolean deleteQuestion(int questionId);
 

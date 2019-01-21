@@ -1,28 +1,67 @@
 package com.cg.jcat.api.dao;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
+import com.cg.jcat.api.entity.QuestionOption;
 import com.cg.jcat.api.entity.QuestionTypeEnum;
 
 public class AssessmentQuestionModel {
 	
-	private int questionId;
+private int questionId;
+	
 	private boolean assessmentTypeForCloudable;
+	
 	private boolean assessmentTypeForCloudProvider;
+	
 	private boolean assessmentTypeForMigration;
+	
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum questionType;
+	
+	@Column(name="question_text_en", unique = true)
 	private String questionTextEN;
+	
 	private String questionTextLang2;
+	
+	@Column(name="question_description_en")
 	private String questionDescriptionEN;
+	
 	private String questionDescriptionLang2;
+	
 	private int numberOfOptions;
+	
 	private int displayOrder;
+	
 	private boolean isDeleted;
+	
 	private String createdBy;
+	
+	private Date createdTime;
+	
 	private String modifiedBy;
 	
+	private Date modifiedTime;
+	
+	@OneToMany(mappedBy = "assessmentQuestion", cascade = CascadeType.ALL)
+    private List<QuestionOptionModel> questionOption;
+	
+	public List<QuestionOptionModel> getQuestionOption() {
+		return questionOption;
+	}
+	public void setQuestionOption(List<QuestionOptionModel> questionOption) {
+		this.questionOption = questionOption;
+	}
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -101,21 +140,46 @@ public class AssessmentQuestionModel {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
 	public String getModifiedBy() {
 		return modifiedBy;
 	}
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
+	public Date getModifiedTime() {
+		return modifiedTime;
+	}
+	public void setModifiedTime(Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+//	@Override
+//	public String toString() {
+//		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="
+//				+ assessmentTypeForCloudable + ", assessmentTypeForCloudProvider=" + assessmentTypeForCloudProvider
+//				+ ", assessmentTypeForMigration=" + assessmentTypeForMigration + ", questionType=" + questionType
+//				+ ", questionTextEN=" + questionTextEN + ", questionTextLang2=" + questionTextLang2
+//				+ ", questionDescriptionEN=" + questionDescriptionEN + ", questionDescriptionLang2="
+//				+ questionDescriptionLang2 + ", numberOfOptions=" + numberOfOptions + ", displayOrder=" + displayOrder
+//				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", createdTime=" + createdTime
+//				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + "]";
+//	}
 	@Override
 	public String toString() {
-		return "AssessmentQuestionModel [questionId=" + questionId + ", assessmentTypeForCloudable="
+		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="
 				+ assessmentTypeForCloudable + ", assessmentTypeForCloudProvider=" + assessmentTypeForCloudProvider
 				+ ", assessmentTypeForMigration=" + assessmentTypeForMigration + ", questionType=" + questionType
 				+ ", questionTextEN=" + questionTextEN + ", questionTextLang2=" + questionTextLang2
 				+ ", questionDescriptionEN=" + questionDescriptionEN + ", questionDescriptionLang2="
 				+ questionDescriptionLang2 + ", numberOfOptions=" + numberOfOptions + ", displayOrder=" + displayOrder
-				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", modifiedBy=" + modifiedBy + "]";
+				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", createdTime=" + createdTime
+				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + ", questionOption=" + questionOption
+				+ "]";
 	}
 	
 }

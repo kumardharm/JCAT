@@ -11,7 +11,7 @@ public interface IAssessmentQuestionRepository extends JpaRepository<AssessmentQ
 
 	AssessmentQuestion findByQuestionId(int questionId);
 
-	AssessmentQuestionModel findByQuestionTextEN(String questionDescriptionEN);
+	AssessmentQuestion findByQuestionTextEN(String questionDescriptionEN);
 
 	List<AssessmentQuestion> findByIsDeleted(boolean isDeleteValue);
 

@@ -30,7 +30,7 @@ public class AssessmentQuestionService implements IAssessmentQuestionService{
 	}
 
 	@Override
-	public AssessmentQuestionModel updateQuestion(AssessmentQuestionModel assessmentQuestionModel) {
+	public boolean updateQuestion(AssessmentQuestionModel assessmentQuestionModel) {
 		return assessmentQuestionDao.updateQuestions(assessmentQuestionModel);
 	}
 
