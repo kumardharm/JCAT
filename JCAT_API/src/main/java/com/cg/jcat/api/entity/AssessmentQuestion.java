@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.cg.jcat.api.entity;
 
 import java.util.Date;
@@ -14,16 +11,18 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import com.cg.jcat.api.dao.QuestionOptionModel;
+import com.cg.jcat.api.utility.QuestionTypeEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author priyanj
  *
  */
 @Entity
+@Table(name="assessment_question")
 public class AssessmentQuestion {
 	
 	@Id
@@ -63,15 +62,16 @@ public class AssessmentQuestion {
 	
 	private Date modifiedTime;
 	
+	
 	@OneToMany(mappedBy = "assessmentQuestion", cascade = CascadeType.ALL)
     private List<QuestionOption> questionOption;
 	
 	public List<QuestionOption> getQuestionOption() {
 		return questionOption;
 	}
-	public void setQuestionOption(List<QuestionOption> questionOption) {
-		this.questionOption = questionOption;
-	}
+//	public void setQuestionOption(List<QuestionOption> questionOption) {
+//		this.questionOption = questionOption;
+//	}
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -193,3 +193,4 @@ public class AssessmentQuestion {
 	}
 	
 }
+

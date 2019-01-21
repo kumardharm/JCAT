@@ -22,6 +22,7 @@ public class DTMigration {
 	private Date createdTtime;
 	private String modifiedBy;
 	private Date modifiedTime;
+	
 	public int getMigrationId() {
 		return migrationId;
 	}

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jcat.api.dao.AssessmentQuestionModel;
+import com.cg.jcat.api.entity.AssessmentQuestion;
 
 
 @RestController

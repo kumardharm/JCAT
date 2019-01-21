@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name="dt_migration_rule")
 public class DTMigrationRule {
@@ -31,7 +33,7 @@ public class DTMigrationRule {
 	private String questiontextEN;
 	
 	@Column(name="rule_option_ids")
-	private int ruleOptionIds;
+	private String ruleOptionIds;
 	
 	@Column(name="rule_option_text_EN")
 	private String ruleOptionTextEN;
@@ -78,10 +80,10 @@ public class DTMigrationRule {
 	public void setQuestiontextEN(String questiontextEN) {
 		this.questiontextEN = questiontextEN;
 	}
-	public int getRuleOptionIds() {
+	public String getRuleOptionIds() {
 		return ruleOptionIds;
 	}
-	public void setRuleOptionIds(int ruleOptionIds) {
+	public void setRuleOptionIds(String ruleOptionIds) {
 		this.ruleOptionIds = ruleOptionIds;
 	}
 	public String getRuleOptionTextEN() {
