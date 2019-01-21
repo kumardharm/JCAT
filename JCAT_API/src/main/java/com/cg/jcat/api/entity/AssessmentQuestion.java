@@ -4,7 +4,9 @@
 package com.cg.jcat.api.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +14,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import com.cg.jcat.api.dao.QuestionOptionModel;
 
 /**
  * @author priyanj
@@ -33,11 +39,12 @@ public class AssessmentQuestion {
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum questionType;
 	
-	@Column(unique = true)
+	@Column(name="question_text_en", unique = true)
 	private String questionTextEN;
 	
 	private String questionTextLang2;
 	
+	@Column(name="question_description_en")
 	private String questionDescriptionEN;
 	
 	private String questionDescriptionLang2;
@@ -56,6 +63,15 @@ public class AssessmentQuestion {
 	
 	private Date modifiedTime;
 	
+	@OneToMany(mappedBy = "assessmentQuestion", cascade = CascadeType.ALL)
+    private List<QuestionOption> questionOption;
+	
+	public List<QuestionOption> getQuestionOption() {
+		return questionOption;
+	}
+	public void setQuestionOption(List<QuestionOption> questionOption) {
+		this.questionOption = questionOption;
+	}
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -152,6 +168,17 @@ public class AssessmentQuestion {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
+//	@Override
+//	public String toString() {
+//		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="
+//				+ assessmentTypeForCloudable + ", assessmentTypeForCloudProvider=" + assessmentTypeForCloudProvider
+//				+ ", assessmentTypeForMigration=" + assessmentTypeForMigration + ", questionType=" + questionType
+//				+ ", questionTextEN=" + questionTextEN + ", questionTextLang2=" + questionTextLang2
+//				+ ", questionDescriptionEN=" + questionDescriptionEN + ", questionDescriptionLang2="
+//				+ questionDescriptionLang2 + ", numberOfOptions=" + numberOfOptions + ", displayOrder=" + displayOrder
+//				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", createdTime=" + createdTime
+//				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + "]";
+//	}
 	@Override
 	public String toString() {
 		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="
@@ -161,6 +188,8 @@ public class AssessmentQuestion {
 				+ ", questionDescriptionEN=" + questionDescriptionEN + ", questionDescriptionLang2="
 				+ questionDescriptionLang2 + ", numberOfOptions=" + numberOfOptions + ", displayOrder=" + displayOrder
 				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", createdTime=" + createdTime
-				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + "]";
+				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + ", questionOption=" + questionOption
+				+ "]";
 	}
+	
 }

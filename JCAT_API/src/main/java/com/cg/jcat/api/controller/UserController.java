@@ -27,6 +27,7 @@ public class UserController implements IUserController {
 
 	@Override
 	public void saveUser(String createdBy, UserModel user) {
+		System.out.println(user);
 		try {
 			if (createdBy != null && user != null) {
 				userService.saveUser(user, createdBy);
