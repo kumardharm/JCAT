@@ -9,14 +9,13 @@ import com.cg.jcat.api.exception.JcatExceptions;
 @Service
 public interface IUserService {
 
-	public List<UserModel> getUsers() throws JcatExceptions;
+	public List<UserModel> getUsers();
 
-	public UserModel saveUser(UserModel user, String createdBy);
+	public boolean saveUser(UserModel user, String createdBy) throws JcatExceptions;
 
-	public UserModel updateUsers(UserModel user, String modifiedBy);
+	public boolean updateUsers(UserModel user, String modifiedBy) throws JcatExceptions;
 
-	public boolean deleteById(int userId);
+	public boolean deleteById(int userId) throws JcatExceptions;
 
-	public boolean isExist(String userName);
 
 }

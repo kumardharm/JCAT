@@ -1,6 +1,7 @@
 package com.cg.jcat.api.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 //import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -52,16 +53,17 @@ public class TestUserService {
 	
 	@Ignore
 	@Test
-	public void testSaveUser()
+	public void testSaveUser() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
-		Mockito.when(userDao.saveUser(userModel,"admin")).thenReturn(userModel);
-		assertThat(userService.saveUser(userModel,"admin")).isEqualTo(userModel);
+		Mockito.when(userDao.createUser(userModel,"admin")).thenReturn(true);
+		assertEquals(true, userService.saveUser(userModel,"admin"));
+//		assertThat(userService.saveUser(userModel,"admin")).isEqualTo(userModel);
 		
 	}
 	
 	@Test
-	public void testsaveUser()
+	public void testsaveUser() throws JcatExceptions
 	{
 		UserModel userModel = new UserModel();
 		userModel.setFirstName("Hari");
@@ -85,18 +87,18 @@ public class TestUserService {
 	
 	@Test
 	@Ignore
-	public void testUpdateUsers()
+	public void testUpdateUsers() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
 		Mockito.when(userDao.findByUsername(userModel.getUsername())).thenReturn(userModel);
 		userModel.setCompany("cg");
-		Mockito.when(userDao.saveUser(userModel,"admin")).thenReturn(userModel);
+		Mockito.when(userDao.createUser(userModel,"admin")).thenReturn(true);
 		assertThat(userService.updateUsers(userModel, "admin")).isEqualTo(userModel);
 	}
 	
 	@Ignore
 	@Test
-	public void testDeleteUser()
+	public void testDeleteUser() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
 		Mockito.when(userDao.findByUsername(userModel.getUsername())).thenReturn(userModel);
