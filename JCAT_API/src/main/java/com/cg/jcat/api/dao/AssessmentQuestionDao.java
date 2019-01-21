@@ -6,13 +6,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cg.jcat.api.entity.AssessmentQuestion;
+import com.cg.jcat.api.entity.QuestionOption;
 import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
+import com.cg.jcat.api.service.IQuestionOptionService;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Component
 public class AssessmentQuestionDao {
 	
 	@Autowired
 	IAssessmentQuestionRepository assessmentQuestionRepository;
+	
+	@Autowired
+	IQuestionOptionService questionOptionService;
 	
 	private static boolean isDeleteValue=false;
 	
@@ -34,17 +41,9 @@ public class AssessmentQuestionDao {
 	
 	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionsModel)
 	{
-		try {
-			if(assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel)) != null)
-			{
-				System.out.println("saved");
-				return true;
-			}
-		}catch(Exception e)
-		{
-			System.out.println("Assessment questions not saved");
-		}
-		return false;
+		boolean result = false;
+		result=assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel)) != null;
+		return result;
 	}
 
 	public boolean deleteAssessmentQuestionById(int questionId)
@@ -63,9 +62,10 @@ public class AssessmentQuestionDao {
 		}
 	}
 	
-	public AssessmentQuestionModel updateQuestions(AssessmentQuestionModel assessmentQuestionModel) {
-		assessmentQuestionRepository.saveAndFlush(toAssessmentQuestionService(assessmentQuestionModel));
-		return assessmentQuestionModel;
+	public boolean updateQuestions(AssessmentQuestionModel assessmentQuestionModel) {
+		boolean result = false;
+		result = assessmentQuestionRepository.saveAndFlush(toAssessmentQuestionService(assessmentQuestionModel))!=null;
+		return result;
 	}
 
 	private AssessmentQuestion toAssessmentQuestionService(AssessmentQuestionModel assessmentQuestionsModel) {
@@ -85,6 +85,16 @@ public class AssessmentQuestionDao {
 		assessmentQuestion.setQuestionType(assessmentQuestionsModel.getQuestionType());
 		return assessmentQuestion;
 	}
+	
+//	public QuestionOption toQuestionOption(QuestionOptionModel questionOptionModel)
+//	{
+//		QuestionOption questionOption=new QuestionOption();
+//		questionOption.setAssessmentQuestion(questionOptionModel.getAssessmentQuestion());
+//		questionOption.setOption_text_EN(questionOptionModel.getOption_text_EN());
+//		questionOption.setOptionId(questionOptionModel.getOptionId());
+//		questionOption.setOptionTextLang2(questionOptionModel.getOptionTextLang2());
+//		return questionOption;
+//	}
 	
 	private AssessmentQuestionModel toAssessmentQuestionDao(AssessmentQuestion assessmentQuestion) {
 		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
@@ -109,7 +119,7 @@ public class AssessmentQuestionDao {
 		return assessmentQuestionRepository.findByQuestionId(questionId);
 	}
 	
-	public AssessmentQuestionModel findByQuestionTextEn(String questionTextEN) {
+	public AssessmentQuestion findByQuestionTextEn(String questionTextEN) {
 		return assessmentQuestionRepository.findByQuestionTextEN(questionTextEN);
 	}
 	
