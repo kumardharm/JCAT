@@ -51,7 +51,7 @@ public class TestMigrationRuleDao {
 		dtMigrationRuleModel.setMigrationRuleId(1);
 		dtMigrationRuleModel.setQuestionId(1);
 		dtMigrationRuleModel.setQuestiontextEN("Eng");
-		dtMigrationRuleModel.setRuleOptionIds(1);
+		dtMigrationRuleModel.setRuleOptionIds("");
 		dtMigrationRuleModel.setRuleOptionTextEN("op text");
 		return dtMigrationRuleModel;
 	}

@@ -36,27 +36,27 @@ public class TestQuestionOptionDao {
 		
 		QuestionOptionModel questionOption = toGetQuestionOption();
 		questionOptionDao.saveQuestionOption(questionOption);
-		QuestionOption found = questionOptionDao.findByOptionTextEN(questionOption.getOption_text_EN());
-		assertEquals(found.getOption_text_EN(), questionOption.getOption_text_EN());
+		QuestionOption found = questionOptionDao.findByOptionTextEN(questionOption.getOptionTextEN());
+		assertEquals(found.getOptionTextEN(), questionOption.getOptionTextEN());
 	}
 	
 	@Test
 	public void getUpdateQuestionOption()
 	{
 		QuestionOptionModel questionOption = toGetQuestionOption();
-		questionOption.setOption_text_EN("updated text");
+		questionOption.setOptionTextEN("updated text");
 		questionOptionDao.updateQuestionOption(questionOption);
-		QuestionOption found = questionOptionDao.findByOptionTextEN(questionOption.getOption_text_EN());
-		found.setOption_text_EN("updated text");
+		QuestionOption found = questionOptionDao.findByOptionTextEN(questionOption.getOptionTextEN());
+		found.setOptionTextEN("updated text");
 		
-		assertEquals("updated text",found.getOption_text_EN());
+		assertEquals("updated text",found.getOptionTextEN());
 	}
 	
 	private QuestionOptionModel toGetQuestionOption() {
 
 		QuestionOptionModel questionOption = new QuestionOptionModel();
 		questionOption.setOptionId(3);
-		questionOption.setOption_text_EN("text1");
+		questionOption.setOptionTextEN("text1");
 		questionOption.setOptionTextLang2("lang1");
 		//questionOption.setQuestionId(questionOptionModel.getQuestionId());
 		return questionOption;
