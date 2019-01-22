@@ -1,6 +1,6 @@
 package com.cg.jcat.api.dao;
 
-public class DTCloudProviderRuleModel {
+public class DTProviderRuleModel {
 	
 	private int providerRuleId;
 	private int providerId;

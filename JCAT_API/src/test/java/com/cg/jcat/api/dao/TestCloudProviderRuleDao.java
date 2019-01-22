@@ -42,23 +42,23 @@ public class TestCloudProviderRuleDao {
 	@Ignore
 	public void testSaveCloudProviderRule()
 	{
-		DTCloudProviderRuleModel cloudProviderRuleModel = getcloudProviderRuleModel();
+		DTProviderRuleModel cloudProviderRuleModel = getcloudProviderRuleModel();
 		assertEquals(true,cloudProviderRuleDao.saveCloudProviderRule(cloudProviderRuleModel));
 	}
 	
 	@Test
 	public void updateCloudProviderRules() throws JcatExceptions
 	{
-		DTCloudProviderRuleModel cloudProviderRuleModel = getcloudProviderRuleModel();
+		DTProviderRuleModel cloudProviderRuleModel = getcloudProviderRuleModel();
 		cloudProviderRuleModel.setProviderRuleId(1);
 		cloudProviderRuleModel.setQuestiontextEN("Question Test");
 		assertEquals(true,cloudProviderRuleDao.updateCloudProviderRules(cloudProviderRuleModel));
 	}
 	
 
-	private DTCloudProviderRuleModel getcloudProviderRuleModel() {
+	private DTProviderRuleModel getcloudProviderRuleModel() {
 		
-		DTCloudProviderRuleModel cloudProviderRuleModel = new DTCloudProviderRuleModel();
+		DTProviderRuleModel cloudProviderRuleModel = new DTProviderRuleModel();
 		cloudProviderRuleModel.setEvaluationOrder(1);
 		cloudProviderRuleModel.setProviderId(1);
 		cloudProviderRuleModel.setQuestionId(1);

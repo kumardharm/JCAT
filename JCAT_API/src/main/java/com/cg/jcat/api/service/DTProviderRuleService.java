@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.dao.DTCloudProviderRuleDao;
-import com.cg.jcat.api.dao.DTCloudProviderRuleModel;
-import com.cg.jcat.api.dao.DTCloudProvidersModel;
-import com.cg.jcat.api.entity.DTCloudProviderRule;
+import com.cg.jcat.api.dao.DTProviderRuleModel;
+import com.cg.jcat.api.dao.DTCProvidersModel;
+import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
 @Component
@@ -17,19 +17,19 @@ public class DTCloudProviderRuleService implements IDTCloudProviderRuleService{
 	@Autowired
 	private DTCloudProviderRuleDao dtCloudProviderDao;
 	@Override
-	public List<DTCloudProvidersModel> getCloudProvider() {
+	public List<DTCProvidersModel> getCloudProvider() {
 		
 		return dtCloudProviderDao.getCloudProvider();
 	}
 	@Override
-	public boolean updateCloudProviderRules(DTCloudProviderRuleModel cloudProviderRuleModel) throws JcatExceptions {
+	public boolean updateCloudProviderRules(DTProviderRuleModel cloudProviderRuleModel) throws JcatExceptions {
 		
 		return dtCloudProviderDao.updateCloudProviderRules(cloudProviderRuleModel);
 	}
 	@Override
-	public boolean saveCloudProviderRule(List<DTCloudProviderRuleModel> cloudProviderRuleModelList) {
+	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) {
 		boolean afterSavedValue = false; 
-		for(DTCloudProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList)
+		for(DTProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList)
 		{
 			afterSavedValue= dtCloudProviderDao.saveCloudProviderRule(cloudProviderRuleModel);
 		}
@@ -37,7 +37,7 @@ public class DTCloudProviderRuleService implements IDTCloudProviderRuleService{
 	}
 	@Override
 	///
-	public List<DTCloudProviderRuleModel> getCloudProviderRules() {
+	public List<DTProviderRuleModel> getCloudProviderRules() {
 		return dtCloudProviderDao.getCloudProviderRules();
 	}
 

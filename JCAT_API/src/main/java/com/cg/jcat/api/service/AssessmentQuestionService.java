@@ -34,4 +34,9 @@ public class AssessmentQuestionService implements IAssessmentQuestionService{
 		return assessmentQuestionDao.updateQuestions(assessmentQuestionModel);
 	}
 
+	@Override
+	public AssessmentQuestionModel getQuestionById(int questionId) {
+		return assessmentQuestionDao.getQuestionById(questionId);
+	}
+
 }

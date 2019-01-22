@@ -40,7 +40,7 @@ public class QuestionOptionDao {
 
 		QuestionOptionModel questionOptionModel = new QuestionOptionModel();
 		questionOptionModel.setOptionId(questionOption.getOptionId());
-		questionOptionModel.setOption_text_EN(questionOption.getOption_text_EN());
+		questionOptionModel.setOptionTextEN(questionOption.getOptionTextEN());
 		questionOptionModel.setOptionTextLang2(questionOption.getOptionTextLang2());
 		//questionOptionModel.setQuestionId(questionOption.getQuestionId());
 		return questionOptionModel;
@@ -50,7 +50,7 @@ public class QuestionOptionDao {
 
 		QuestionOption questionOption = new QuestionOption();
 		questionOption.setOptionId(questionOptionModel.getOptionId());
-		questionOption.setOption_text_EN(questionOptionModel.getOption_text_EN());
+		questionOption.setOptionTextEN(questionOptionModel.getOptionTextEN());
 		questionOption.setOptionTextLang2(questionOptionModel.getOptionTextLang2());
 		//questionOption.setQuestionId(questionOptionModel.getQuestionId());
 		return questionOption;

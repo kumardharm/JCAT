@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jcat.api.dao.AssessmentQuestionModel;
+import com.cg.jcat.api.entity.AssessmentQuestion;
 
 
 @RestController
@@ -19,7 +20,10 @@ import com.cg.jcat.api.dao.AssessmentQuestionModel;
 public interface IAssessmentQuestionController {
 	
 	@GetMapping("/getAll")
-	public List<AssessmentQuestionModel> getQuestions();
+	public List<AssessmentQuestion> getQuestions();
+	
+	@GetMapping("/get/question/{questionId}")
+	public AssessmentQuestionModel getQuestionById(@PathVariable int questionId);
 	
 	@PostMapping("/createQuestion")
 	public void saveQuestions(@RequestBody AssessmentQuestionModel question);

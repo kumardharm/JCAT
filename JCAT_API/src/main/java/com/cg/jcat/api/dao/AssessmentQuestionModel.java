@@ -1,20 +1,9 @@
 package com.cg.jcat.api.dao;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
-import com.cg.jcat.api.entity.QuestionOption;
-import com.cg.jcat.api.entity.QuestionTypeEnum;
+import com.cg.jcat.api.utility.QuestionTypeEnum;
 
 public class AssessmentQuestionModel {
 	
@@ -26,15 +15,12 @@ private int questionId;
 	
 	private boolean assessmentTypeForMigration;
 	
-	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum questionType;
 	
-	@Column(name="question_text_en", unique = true)
 	private String questionTextEN;
 	
 	private String questionTextLang2;
 	
-	@Column(name="question_description_en")
 	private String questionDescriptionEN;
 	
 	private String questionDescriptionLang2;
@@ -53,14 +39,13 @@ private int questionId;
 	
 	private Date modifiedTime;
 	
-	@OneToMany(mappedBy = "assessmentQuestion", cascade = CascadeType.ALL)
-    private List<QuestionOptionModel> questionOption;
+    private List<QuestionOptionModel> questionOptionModel;
 	
-	public List<QuestionOptionModel> getQuestionOption() {
-		return questionOption;
+	public List<QuestionOptionModel> getQuestionOptionModel() {
+		return questionOptionModel;
 	}
-	public void setQuestionOption(List<QuestionOptionModel> questionOption) {
-		this.questionOption = questionOption;
+	public void setQuestionOptionModel(List<QuestionOptionModel> questionOptionModel) {
+		this.questionOptionModel = questionOptionModel;
 	}
 	public int getQuestionId() {
 		return questionId;
@@ -171,15 +156,15 @@ private int questionId;
 //	}
 	@Override
 	public String toString() {
-		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="
+		return "AssessmentQuestionModel [questionId=" + questionId + ", assessmentTypeForCloudable="
 				+ assessmentTypeForCloudable + ", assessmentTypeForCloudProvider=" + assessmentTypeForCloudProvider
 				+ ", assessmentTypeForMigration=" + assessmentTypeForMigration + ", questionType=" + questionType
 				+ ", questionTextEN=" + questionTextEN + ", questionTextLang2=" + questionTextLang2
 				+ ", questionDescriptionEN=" + questionDescriptionEN + ", questionDescriptionLang2="
 				+ questionDescriptionLang2 + ", numberOfOptions=" + numberOfOptions + ", displayOrder=" + displayOrder
 				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", createdTime=" + createdTime
-				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + ", questionOption=" + questionOption
-				+ "]";
+				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + ", questionOptionModel="
+				+ questionOptionModel + "]";
 	}
 	
 }

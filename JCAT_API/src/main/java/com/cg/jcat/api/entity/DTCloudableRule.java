@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="dt_cloudable_rule")
 public class DTCloudableRule {
@@ -14,12 +16,22 @@ public class DTCloudableRule {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int cloudableRuleId;
 	private int executionOrder;
+	@NotNull
 	private int questionId;
+	@Lob
 	private String questionTextEN;
+	
+	@Lob
+	@NotNull
 	private String optionIds;
+	
+	@Lob
+	@NotNull
 	private String optionTextsEN;
 	private boolean isDelete;
+	@NotNull
 	private String createdBy;
+	@NotNull
 	private Date createdTime;
 	private String modifiedBy;
 	private Date modifiedTime;

@@ -7,7 +7,7 @@ public class DTMigrationRuleModel {
 	private int evaluationOrder;
 	private int questionId;
 	private String questiontextEN;
-	private int ruleOptionIds;
+	private String ruleOptionIds;
 	private String ruleOptionTextEN;
 	
 	public int getMigrationRuleId() {
@@ -40,10 +40,10 @@ public class DTMigrationRuleModel {
 	public void setQuestiontextEN(String questiontextEN) {
 		this.questiontextEN = questiontextEN;
 	}
-	public int getRuleOptionIds() {
+	public String getRuleOptionIds() {
 		return ruleOptionIds;
 	}
-	public void setRuleOptionIds(int ruleOptionIds) {
+	public void setRuleOptionIds(String ruleOptionIds) {
 		this.ruleOptionIds = ruleOptionIds;
 	}
 	public String getRuleOptionTextEN() {

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,32 +19,132 @@ public class DTProviderRuleHistory {
 	@NotNull
 	@Column(name="id")
     private int	id;
-    @NotNull
+    
+	@NotNull
     @Column(name="provider_rule_id")
 	private int providerRuleId;
-    @NotNull
+    
+	@NotNull
     @Column(name="provider_id")
 	private int providerId;
-    @Column(name="evaluation_order")
+    
+	@Column(name="evaluation_order")
 	private int evaluationOrder;
+	
 	@NotNull
 	@Column(name="question_id")
 	private int questionId;
+	
+	@Lob
 	@NotNull
 	@Column(name="question_text_EN")
 	private String questionTextEN;
+	
+	@Lob
 	@NotNull
 	@Column(name="rule_option_ids")
 	private String ruleOptionIds;
+	
+	@Lob
 	@NotNull
 	@Column(name="rule_option_text_EN")
 	private String ruleOptionTextEN;
+	
 	@NotNull
 	@Column(name="created_by")
 	private String createdBy;
+	
 	@NotNull
 	@Column(name="created_time")
-	private Date cteatedTime;
+	private Date createdTime;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getProviderRuleId() {
+		return providerRuleId;
+	}
+
+	public void setProviderRuleId(int providerRuleId) {
+		this.providerRuleId = providerRuleId;
+	}
+
+	public int getProviderId() {
+		return providerId;
+	}
+
+	public void setProviderId(int providerId) {
+		this.providerId = providerId;
+	}
+
+	public int getEvaluationOrder() {
+		return evaluationOrder;
+	}
+
+	public void setEvaluationOrder(int evaluationOrder) {
+		this.evaluationOrder = evaluationOrder;
+	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+	public String getQuestionTextEN() {
+		return questionTextEN;
+	}
+
+	public void setQuestionTextEN(String questionTextEN) {
+		this.questionTextEN = questionTextEN;
+	}
+
+	public String getRuleOptionIds() {
+		return ruleOptionIds;
+	}
+
+	public void setRuleOptionIds(String ruleOptionIds) {
+		this.ruleOptionIds = ruleOptionIds;
+	}
+
+	public String getRuleOptionTextEN() {
+		return ruleOptionTextEN;
+	}
+
+	public void setRuleOptionTextEN(String ruleOptionTextEN) {
+		this.ruleOptionTextEN = ruleOptionTextEN;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+
+	@Override
+	public String toString() {
+		return "DTProviderRuleHistory [id=" + id + ", providerRuleId=" + providerRuleId + ", providerId=" + providerId
+				+ ", evaluationOrder=" + evaluationOrder + ", questionId=" + questionId + ", questionTextEN="
+				+ questionTextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN
+				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + "]";
+	}
+	
 
 }
