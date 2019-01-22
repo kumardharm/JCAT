@@ -56,6 +56,7 @@ public class DTCloudProviderRuleDao {
 			DTCloudProviderRule cloudProviderRule = new DTCloudProviderRule();
 			cloudProviderRule.setModifiedBy("Admin");
 			cloudProviderRule.setModifiedTime(new Date());
+			cloudProviderRule.setProviderRuleId(cloudProviderRuleModel.getProviderRuleId());
 		DTCloudProviderRule modifiedCloudProviderRule =  cloudProviderRuleRepository.saveAndFlush(toCloudProviderRuleModel(cloudProviderRuleModel,cloudProviderRule));
 		if(modifiedCloudProviderRule != null)
 		{
@@ -91,6 +92,11 @@ public class DTCloudProviderRuleDao {
 		try
 		{
 			DTCloudProviderRule cloudProviderRule = new DTCloudProviderRule();
+			List<DTCloudProviderRule> cloudProviderRuleList = cloudProviderRuleRepository.findAll();
+			if(cloudProviderRuleList != null)
+			{
+				
+			}
 			DTCloudProviderRule	cloudProvidersaved = cloudProviderRuleRepository.save(toCloudProviderRuleModel(cloudProviderRuleModel,cloudProviderRule));
 			if(cloudProvidersaved!=null)
 			{

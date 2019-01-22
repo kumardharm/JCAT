@@ -27,13 +27,17 @@ public class DTCloudProviderRuleService implements IDTCloudProviderRuleService{
 		return dtCloudProviderDao.updateCloudProviderRules(cloudProviderRuleModel);
 	}
 	@Override
-	public boolean saveCloudProviderRule(DTCloudProviderRuleModel cloudProviderRuleModel) {
-		
-		return dtCloudProviderDao.saveCloudProviderRule(cloudProviderRuleModel);
+	public boolean saveCloudProviderRule(List<DTCloudProviderRuleModel> cloudProviderRuleModelList) {
+		boolean afterSavedValue = false; 
+		for(DTCloudProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList)
+		{
+			afterSavedValue= dtCloudProviderDao.saveCloudProviderRule(cloudProviderRuleModel);
+		}
+		return afterSavedValue;
 	}
 	@Override
+	///
 	public List<DTCloudProviderRuleModel> getCloudProviderRules() {
-		// TODO Auto-generated method stub
 		return dtCloudProviderDao.getCloudProviderRules();
 	}
 

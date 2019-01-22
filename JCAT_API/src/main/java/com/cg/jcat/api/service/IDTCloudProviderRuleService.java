@@ -16,7 +16,7 @@ public interface IDTCloudProviderRuleService {
 
 	boolean updateCloudProviderRules(DTCloudProviderRuleModel cloudProviderRuleModel) throws JcatExceptions;
 
-	boolean saveCloudProviderRule(DTCloudProviderRuleModel cloudProviderRuleModel);
+	boolean saveCloudProviderRule(List<DTCloudProviderRuleModel> cloudProviderRuleModelList);
 
 	List<DTCloudProviderRuleModel> getCloudProviderRules();
 

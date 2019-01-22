@@ -9,23 +9,26 @@ import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IUserService;
+import com.cg.jcat.api.service.UserService;
 
 @Component
 public class UserController implements IUserController {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private IUserService userService;
 
 	@Override
-	public List<UserModel> getUsers() {
+	public List<UserModel> getUsers() throws SystemExceptions {
 		try {
 			return userService.getUsers();
 		} catch (Exception e) {
-			LOGGER.error("Error in getting all users: getUsers()", e);
-			throw e;
+			logger.error("Error in getting all users: getUsers()", e);
+			throw new SystemExceptions("getUsers()");
+//			throw e;
 		}
 	}
 
@@ -38,7 +41,7 @@ public class UserController implements IUserController {
 			}
 			return value;
 		} catch (JcatExceptions e) {
-			LOGGER.error("Error while saving user " + user.getUsername(), e);
+			logger.error("Error while saving user " + user.getUsername(), e);
 			throw e;
 		}
 
@@ -54,7 +57,7 @@ public class UserController implements IUserController {
 			}
 			return value;
 		} catch (JcatExceptions e) {
-			LOGGER.error("Error while updating user " + user.getUsername(), e);
+			logger.error("Error while updating user " + user.getUsername(), e);
 			throw e;
 		}
 	}
@@ -66,7 +69,7 @@ public class UserController implements IUserController {
 				userService.deleteById(userId);
 			}
 		} catch (JcatExceptions e) {
-			LOGGER.error("Error while deleting user " + userId+ " ErrorMessage :"+e.getMessage(), e);
+			logger.error("Error while deleting user " + userId+ " ErrorMessage :"+e.getMessage(), e);
 			throw e;
 		}
 	}

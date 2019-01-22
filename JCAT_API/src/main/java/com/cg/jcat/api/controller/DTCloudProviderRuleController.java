@@ -12,6 +12,7 @@ import com.cg.jcat.api.dao.DTCloudProvidersModel;
 import com.cg.jcat.api.entity.DTCloudProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IDTCloudProviderRuleService;
 @Component
 public class DTCloudProviderRuleController implements IDTCloudProviderRuleController{
@@ -22,12 +23,12 @@ public class DTCloudProviderRuleController implements IDTCloudProviderRuleContro
 	private IDTCloudProviderRuleService dtCloudProviderService;
 
 	@Override
-	public List<DTCloudProvidersModel> getCloudProvider() {
+	public List<DTCloudProvidersModel> getCloudProvider() throws SystemExceptions {
 		try {
 		return dtCloudProviderService.getCloudProvider();
 		}catch (Exception e) {
 			LOGGER.error("Error in getting all cloud providers : getCloudProvider()", e);
-			throw e;
+			throw new SystemExceptions("getCloudProvider()");
 		}
 	}
 
@@ -45,9 +46,9 @@ public class DTCloudProviderRuleController implements IDTCloudProviderRuleContro
 	}
 
 	@Override
-	public boolean saveCloudProviderRule(DTCloudProviderRuleModel cloudProviderRuleModel) {
+	public boolean saveCloudProviderRule(List<DTCloudProviderRuleModel> cloudProviderRuleModelList) {
 		
-		return dtCloudProviderService.saveCloudProviderRule(cloudProviderRuleModel);
+		return dtCloudProviderService.saveCloudProviderRule(cloudProviderRuleModelList);
 	}
 
 	@Override
