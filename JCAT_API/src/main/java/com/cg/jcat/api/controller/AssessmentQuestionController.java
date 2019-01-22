@@ -20,47 +20,34 @@ public class AssessmentQuestionController implements IAssessmentQuestionControll
 	@Autowired
 	private IAssessmentQuestionService assessmentQuestionService;
 	
-//	@Override
-//	public List<AssessmentQuestion> getQuestions() {
-//		try {
-//			return repository.findAll();
-//		} catch (Exception e) {
-//			System.out.println("Error getting assessment questions");
-//		}
-//		return repository.findAll();
-//	}
-
 	@Override
-	public List<AssessmentQuestionModel> getQuestions() {
+	public List<AssessmentQuestion> getQuestions() {
 		try {
-			return assessmentQuestionService.getQuestions();
+			return repository.findAll();
 		} catch (Exception e) {
 			System.out.println("Error getting assessment questions");
 		}
-		return null;
+		return repository.findAll();
 	}
 
+//	@Override
+//	public List<AssessmentQuestionModel> getQuestions() {
+//		try {
+//			return assessmentQuestionService.getQuestions();
+//		} catch (Exception e) {
+//			System.out.println("Error getting assessment questions");
+//		}
+//		return null;
+//	}
+
 	@Override
-	public void saveQuestions(AssessmentQuestionModel question) {
-		System.out.println("********************"+question);
-		try {
-			assessmentQuestionService.saveQuestions(question);
-		} catch (Exception e) {
-			
-			System.out.println("Error saving assessment questions");
-		}
-		
+	public void saveQuestions(AssessmentQuestionModel assessmentQuestionModel) {
+		assessmentQuestionService.saveQuestions(assessmentQuestionModel);
 	}
 
 	@Override
 	public void updateQuestion(AssessmentQuestionModel question) {
-		try {
 			assessmentQuestionService.updateQuestion(question);
-			
-		} catch (Exception e) {
-			System.out.println("Error updating assessment questions");
-		}
-		
 		
 	}
 
@@ -73,6 +60,12 @@ public class AssessmentQuestionController implements IAssessmentQuestionControll
 			System.out.println("Error deleting assessment questions");
 		}
 		
+	}
+
+	@Override
+	public AssessmentQuestionModel getQuestionById(int questionId) {
+		// TODO Auto-generated method stub
+		return assessmentQuestionService.getQuestionById(questionId);
 	}
 
 }

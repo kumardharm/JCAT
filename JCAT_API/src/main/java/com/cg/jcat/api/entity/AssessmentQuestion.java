@@ -6,13 +6,24 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.cg.jcat.api.utility.QuestionTypeEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +33,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-@Table(name="assessment_question")
+@Table(name="assessment_question", uniqueConstraints = {@UniqueConstraint(columnNames = "question_text_en")})
+@EntityListeners(AuditingEntityListener.class)
 public class AssessmentQuestion {
 	
 	@Id
@@ -38,28 +50,43 @@ public class AssessmentQuestion {
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum questionType;
 	
-	@Column(name="question_text_en", unique = true)
+	@Lob
+	@NotNull
+	@Column(name="question_text_en")
 	private String questionTextEN;
 	
+	@Lob
 	private String questionTextLang2;
 	
+	@Lob
 	@Column(name="question_description_en")
 	private String questionDescriptionEN;
 	
+	@Lob
+	@NotNull
 	private String questionDescriptionLang2;
 	
 	private int numberOfOptions;
 	
+	@NotNull
 	private int displayOrder;
 	
+	@NotNull
+	@ColumnDefault("b'1'")
 	private boolean isDeleted;
 	
+	@CreatedBy
+	@NotNull
 	private String createdBy;
 	
+	@CreatedDate
+	@NotNull
 	private Date createdTime;
 	
+	@LastModifiedBy
 	private String modifiedBy;
 	
+	@LastModifiedDate
 	private Date modifiedTime;
 	
 	
@@ -69,9 +96,9 @@ public class AssessmentQuestion {
 	public List<QuestionOption> getQuestionOption() {
 		return questionOption;
 	}
-//	public void setQuestionOption(List<QuestionOption> questionOption) {
-//		this.questionOption = questionOption;
-//	}
+	public void setQuestionOption(List<QuestionOption> questionOption) {
+		this.questionOption = questionOption;
+	}
 	public int getQuestionId() {
 		return questionId;
 	}

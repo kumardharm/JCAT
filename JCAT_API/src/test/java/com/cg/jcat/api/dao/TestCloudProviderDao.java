@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TestCloudProviderDao {
 	
 	@Autowired
-	private CloudProviderDao cloudProviderDao;
+	private DTCloudProviderRuleDao cloudProviderDao;
 
 	@Test
 	 public void testGetCloudProvider()

@@ -42,6 +42,7 @@ public class AssessmentQuestionDao {
 	
 	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionsModel)
 	{
+		System.out.println(assessmentQuestionsModel);
 		assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel));
 //		//System.out.println(assessmentQuestionsModel);
 //		boolean result = false;
@@ -67,6 +68,7 @@ public class AssessmentQuestionDao {
 	}
 	
 	public boolean updateQuestions(AssessmentQuestionModel assessmentQuestionModel) {
+		System.out.println(assessmentQuestionModel);
 		boolean result = false;
 		result = assessmentQuestionRepository.saveAndFlush(toAssessmentQuestionService(assessmentQuestionModel))!=null;
 		return result;
@@ -88,12 +90,13 @@ public class AssessmentQuestionDao {
 		assessmentQuestion.setQuestionTextLang2(assessmentQuestionsModel.getQuestionTextLang2());
 		assessmentQuestion.setQuestionType(assessmentQuestionsModel.getQuestionType());
 		assessmentQuestion.setNumberOfOptions(assessmentQuestionsModel.getNumberOfOptions());
+		assessmentQuestion.setCreatedTime(assessmentQuestionsModel.getCreatedTime());
 		List<QuestionOption> questionOptionList = new ArrayList<>();
 		for(QuestionOptionModel questionOptionModel : assessmentQuestionsModel.getQuestionOptionModel())
 		{
 			questionOptionList.add(toQuestionOption(questionOptionModel, assessmentQuestion));
 		}
-		//assessmentQuestion.setQuestionOption(questionOptionList);
+		assessmentQuestion.setQuestionOption(questionOptionList);
 		System.out.println(assessmentQuestion);
 		return assessmentQuestion;
 	}
@@ -160,6 +163,11 @@ public class AssessmentQuestionDao {
 		assessmentQuestionModel.setQuestionType(assessmentQuestion.getQuestionType());
 		assessmentQuestionModel.setNumberOfOptions(assessmentQuestion.getNumberOfOptions());
 		return assessmentQuestionModel;
+	}
+	
+	public AssessmentQuestionModel getQuestionById(int questionId)
+	{
+		return toAssessmentQuestionModel(findByQuestionId(questionId));
 	}
 	
 	public AssessmentQuestion findByQuestionId(int questionId)

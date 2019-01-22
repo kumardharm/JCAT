@@ -9,30 +9,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name="dt_migration_rule")
-public class DTMigrationRule {
-	
+@Table(name="dt_provider_rule")
+public class DTProviderRule {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="migration_rule_id")
-	private int migrationRuleId;
+	@Column(name="provider_rule_id")
+	private int providerRuleId;
 	
-	@Column(name="migration_id")
-	@NotNull
-	private int migrationId;
+	@Column(name="provider_id")
+	private int providerId;
 	
+	@ColumnDefault("0")
 	@Column(name="evaluation_order")
 	private int evaluationOrder;
 	
 	@Column(name="question_id")
 	private int questionId;
 	
-	@Lob
 	@Column(name="question_text_EN")
 	private String questiontextEN;
 	
@@ -40,16 +37,13 @@ public class DTMigrationRule {
 	@Column(name="rule_option_ids")
 	private String ruleOptionIds;
 	
-	@Lob
 	@Column(name="rule_option_text_EN")
 	private String ruleOptionTextEN;
 	
 	@Column(name="created_by")
-	@NotNull
 	private String createdBy;
 	
 	@Column(name="created_time")
-	@NotNull
 	private Date createdTime;
 	
 	@Column(name="modified_by")
@@ -58,17 +52,17 @@ public class DTMigrationRule {
 	@Column(name="modified_time")
 	private Date modifiedTime;
 	
-	public int getMigrationRuleId() {
-		return migrationRuleId;
+	public int getProviderRuleId() {
+		return providerRuleId;
 	}
-	public void setMigrationRuleId(int migrationRuleId) {
-		this.migrationRuleId = migrationRuleId;
+	public void setProviderRuleId(int providerRuleId) {
+		this.providerRuleId = providerRuleId;
 	}
-	public int getMigrationId() {
-		return migrationId;
+	public int getProviderId() {
+		return providerId;
 	}
-	public void setMigrationId(int migrationId) {
-		this.migrationId = migrationId;
+	public void setProviderId(int providerId) {
+		this.providerId = providerId;
 	}
 	public int getEvaluationOrder() {
 		return evaluationOrder;
@@ -106,11 +100,11 @@ public class DTMigrationRule {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	public Date getCreatedTtime() {
+	public Date getCreatedTime() {
 		return createdTime;
 	}
-	public void setCreatedTtime(Date createdTtime) {
-		this.createdTime = createdTtime;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 	public String getModifiedBy() {
 		return modifiedBy;
@@ -124,14 +118,15 @@ public class DTMigrationRule {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
-	
 	@Override
 	public String toString() {
-		return "DTMigrationRule [migrationRuleId=" + migrationRuleId + ", migrationId=" + migrationId
+		return "CloudProviderRule [providerRuleId=" + providerRuleId + ", providerId=" + providerId
 				+ ", evaluationOrder=" + evaluationOrder + ", questionId=" + questionId + ", questiontextEN="
 				+ questiontextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN
-				+ ", createdBy=" + createdBy + ", createdTtime=" + createdTime + ", modifiedBy=" + modifiedBy
+				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy
 				+ ", modifiedTime=" + modifiedTime + "]";
 	}
+
+	
 	
 }

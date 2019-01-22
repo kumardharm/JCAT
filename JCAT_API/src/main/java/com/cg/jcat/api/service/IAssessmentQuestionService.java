@@ -18,4 +18,6 @@ public interface IAssessmentQuestionService {
 
 	public boolean deleteQuestion(int questionId);
 
+	public AssessmentQuestionModel getQuestionById(int questionId);
+
 }

@@ -1,20 +1,47 @@
 package com.cg.jcat.api.exception;
 
+import com.cg.jcat.api.exception.entity.ErrorDTO;
+
+
 public class JcatExceptions extends Exception {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8302425943271138598L;
+	private ErrorDTO errorDTO;
+//	private String error_value;
 
 	public JcatExceptions() {
 		super();
 
 	}
 
-	public JcatExceptions(String message) {
-
-		super(message);
+	public JcatExceptions(String error_value) {
+		super(error_value);
 	}
+	
+	//imp
+	public JcatExceptions(ErrorDTO errorDTO){
+		super(errorDTO.toString());
+		this.errorDTO = errorDTO;
+		
+		
+	}
+
+	public ErrorDTO getErrorDTO() {
+		return errorDTO;
+	}
+
+	public void setErrorDTO(ErrorDTO errorDTO) {
+		this.errorDTO = errorDTO;
+	}
+
+	@Override
+	public String toString() {
+		return "JcatExceptions [errorDTO=" + errorDTO + "]";
+	}
+
+
+
+	
+	
+	 
 
 }

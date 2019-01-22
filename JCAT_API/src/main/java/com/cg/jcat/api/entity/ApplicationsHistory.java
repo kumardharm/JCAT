@@ -14,16 +14,22 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.ColumnDefault;
 
+
 @Entity
-@Table(name="application_table",uniqueConstraints = {@UniqueConstraint(columnNames = "application_id")})
-public class Application {
+@Table(name="applications_history" , uniqueConstraints = {@UniqueConstraint(columnNames = "application_id")})
+public class ApplicationsHistory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
+	
+	@NotNull
+	@Column( name = "aid")
 	private int aid;
 	
 	@NotNull
 	@Column(name = "application_id")
-	private String applicationId;
+	private int applicationId;
 	
 	@Column(name = "application_name")
 	private String applicationName;
@@ -45,24 +51,24 @@ public class Application {
 	@Column(name = "is_deleted")
 	private boolean isDeleted;
 	
-	@ColumnDefault("1")
 	@Column(name = "is_activate")
 	private boolean isActivate;
 	
+	@NotNull
 	@ColumnDefault("0")
 	@Column(name = "assessment_stage")
-	@NotNull
 	private int assessmentStage;
 	
+	@ColumnDefault("b'0'")
 	@Column(name = "is_assessment_completed")
 	private boolean isAssessmentCompleted;
 	
-	@Column(name = "assessment_completion_time")
-	private Date assessmentCompletionTime;
+	@Column(name = "assessment_done_time")
+	private Date assessmentDoneTime;
 	
 	@ColumnDefault("b'0'")
 	@Column(name = "is_dt_cloudable")
-	private boolean isDTCloudable;
+	private boolean isDtCloudable;
 	
 	@ColumnDefault("b'0'")
 	@Column(name = "is_re_cloudable")
@@ -80,19 +86,27 @@ public class Application {
 	@Column(name = "re_cloud_provider")
 	private String reCloudProvider;
 	
-	@Column(name = "created_by")
 	@NotNull
+	@Column(name = "created_by")
 	private String createdBy;
 	
-	@Column(name = "cteated_time")
-	@NotNull	
-	private Date cteatedTime;
+	@NotNull
+	@Column(name = "created_time")
+	private Date createdTime;
 	
 	@Column(name = "modified_by")
-	private String modifiedBy;
+	private Date modifiedBy;
 	
 	@Column(name = "modified_time")
 	private Date modifiedTime;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getAid() {
 		return aid;
@@ -102,11 +116,11 @@ public class Application {
 		this.aid = aid;
 	}
 
-	public String getApplicationId() {
+	public int getApplicationId() {
 		return applicationId;
 	}
 
-	public void setApplicationId(String applicationId) {
+	public void setApplicationId(int applicationId) {
 		this.applicationId = applicationId;
 	}
 
@@ -182,20 +196,20 @@ public class Application {
 		this.isAssessmentCompleted = isAssessmentCompleted;
 	}
 
-	public Date getAssessmentCompletionTime() {
-		return assessmentCompletionTime;
+	public Date getAssessmentDoneTime() {
+		return assessmentDoneTime;
 	}
 
-	public void setAssessmentCompletionTime(Date assessmentCompletionTime) {
-		this.assessmentCompletionTime = assessmentCompletionTime;
+	public void setAssessmentDoneTime(Date assessmentDoneTime) {
+		this.assessmentDoneTime = assessmentDoneTime;
 	}
 
-	public boolean isDTCloudable() {
-		return isDTCloudable;
+	public boolean isDtCloudable() {
+		return isDtCloudable;
 	}
 
-	public void setDTCloudable(boolean isDTCloudable) {
-		this.isDTCloudable = isDTCloudable;
+	public void setDtCloudable(boolean isDtCloudable) {
+		this.isDtCloudable = isDtCloudable;
 	}
 
 	public boolean isReCloudable() {
@@ -246,19 +260,19 @@ public class Application {
 		this.createdBy = createdBy;
 	}
 
-	public Date getCteatedTime() {
-		return cteatedTime;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
 
-	public void setCteatedTime(Date cteatedTime) {
-		this.cteatedTime = cteatedTime;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 
-	public String getModifiedBy() {
+	public Date getModifiedBy() {
 		return modifiedBy;
 	}
 
-	public void setModifiedBy(String modifiedBy) {
+	public void setModifiedBy(Date modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
 
@@ -272,16 +286,18 @@ public class Application {
 
 	@Override
 	public String toString() {
-		return "Application [aid=" + aid + ", applicationId=" + applicationId + ", applicationName=" + applicationName
-				+ ", applicationDescription=" + applicationDescription + ", applicationDepartment="
-				+ applicationDepartment + ", priority=" + priority + ", applicationUser=" + applicationUser
-				+ ", isDeleted=" + isDeleted + ", isActivate=" + isActivate + ", assessmentStage=" + assessmentStage
-				+ ", isAssessmentCompleted=" + isAssessmentCompleted + ", assessmentCompletionTime="
-				+ assessmentCompletionTime + ", isDTCloudable=" + isDTCloudable + ", isReCloudable=" + isReCloudable
+		return "ApplicationsHistory [id=" + id + ", aid=" + aid + ", applicationId=" + applicationId
+				+ ", applicationName=" + applicationName + ", applicationDescription=" + applicationDescription
+				+ ", applicationDepartment=" + applicationDepartment + ", priority=" + priority + ", applicationUser="
+				+ applicationUser + ", isDeleted=" + isDeleted + ", isActivate=" + isActivate + ", assessmentStage="
+				+ assessmentStage + ", isAssessmentCompleted=" + isAssessmentCompleted + ", assessmentDoneTime="
+				+ assessmentDoneTime + ", isDtCloudable=" + isDtCloudable + ", isReCloudable=" + isReCloudable
 				+ ", dtMigrationPattern=" + dtMigrationPattern + ", reMigrationPattern=" + reMigrationPattern
 				+ ", dtCloudProvider=" + dtCloudProvider + ", reCloudProvider=" + reCloudProvider + ", createdBy="
-				+ createdBy + ", cteatedTime=" + cteatedTime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
+				+ createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
 				+ modifiedTime + "]";
 	}
+
 	
+
 }

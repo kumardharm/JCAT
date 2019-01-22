@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="dt_migration")
@@ -18,7 +19,9 @@ public class DTMigration {
 	private int evaluationOrder;
 	private String migration_pattern;
 	private String logicalOperator;
+	@NotNull
 	private String createdBy;
+	@NotNull
 	private Date createdTtime;
 	private String modifiedBy;
 	private Date modifiedTime;
