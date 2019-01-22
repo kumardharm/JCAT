@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="dt_provider_rule_history")
-public class DtProviderRuleHistory {
+public class DTProviderRuleHistory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull

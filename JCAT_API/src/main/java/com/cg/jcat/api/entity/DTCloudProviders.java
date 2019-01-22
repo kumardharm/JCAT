@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="dt_providers")
-public class CloudProviders {
+public class DTCloudProviders {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.repository.IUserRepository;
 
 @Component
@@ -53,7 +54,8 @@ public class UserDao {
 	public boolean createUser(UserModel userModel, String createdBy) throws JcatExceptions {
 		User existingUser = userRepository.findByUsername(userModel.getUsername());
 		if (existingUser != null) {
-			throw new JcatExceptions("User with " + userModel.getUsername() + " already exists in DB ");
+			throw new  UserAlreadyExistsException(userModel.getUsername());
+//			throw new JcatExceptions("User with " + userModel.getUsername() + " already exists in DB ");
 		}
 		userModel.setCreatedBy(createdBy);
 		userModel.setPassword("Cg@123");
