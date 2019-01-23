@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.dao.DTMigrationModel;
 import com.cg.jcat.api.dao.DTMigrationRuleDao;
 import com.cg.jcat.api.dao.DTMigrationRuleModel;
 import com.cg.jcat.api.exception.JcatExceptions;
@@ -21,7 +22,7 @@ public class DTMigrationRuleService implements IDTMigrationRuleService{
 	}
 
 	@Override
-	public boolean saveMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) throws JcatExceptions {
+	public boolean saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModel) throws JcatExceptions {
 		return dtMigrationRuleDao.saveDTMigrationRule(dtMigrationRuleModel);
 	}
 
@@ -29,6 +30,12 @@ public class DTMigrationRuleService implements IDTMigrationRuleService{
 	public boolean updateMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) throws JcatExceptions {
 		// TODO Auto-generated method stub
 		return dtMigrationRuleDao.updateMigrationRule(dtMigrationRuleModel);
+	}
+
+	@Override
+	public List<DTMigrationModel> getMigrationPattern() {
+		// TODO Auto-generated method stub
+		return dtMigrationRuleDao.getMigrationPattern();
 	}
 
 }

@@ -2,6 +2,10 @@ package com.cg.jcat.api.dao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +16,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.AssessmentQuestion;
+import com.cg.jcat.api.entity.QuestionOption;
 import com.cg.jcat.api.utility.QuestionTypeEnum;
 
 @RunWith(SpringRunner.class)
@@ -30,7 +35,7 @@ public class TestAssessmentQuestionDao {
 	{
 		boolean result = false;
 		AssessmentQuestionModel assessmentQuestionModel = getAssessmentQuestions();
-		
+		System.out.println(assessmentQuestionModel);
 		result = assessmentQuestionDao.saveQuestions(assessmentQuestionModel);
 		assertEquals(true, result);
 		
@@ -41,32 +46,36 @@ public class TestAssessmentQuestionDao {
 //		assertThat(found.getCreatedBy()).isEqualTo(assessmentQuestionModel.getCreatedBy());
 	}
 	
-	@Test
-	@Ignore
-	public void testGetQuestions()
-	{
-		//AssessmentQuestionModel assessmentQuestionModel = getAssessmentQuestions();
-		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
-		assessmentQuestionModel.setAssessmentTypeForCloudable(true);
-		assessmentQuestionModel.setAssessmentTypeForCloudProvider(false);
-		assessmentQuestionModel.setAssessmentTypeForMigration(false);
-		assessmentQuestionModel.setCreatedBy("Admin");
-		assessmentQuestionModel.setDeleted(false);
-		assessmentQuestionModel.setDisplayOrder(1);
-		assessmentQuestionModel.setModifiedBy("Admin");
-		assessmentQuestionModel.setQuestionDescriptionEN("English");
-		assessmentQuestionModel.setQuestionDescriptionLang2("German");
-		assessmentQuestionModel.setQuestionId(1);
-		assessmentQuestionModel.setQuestionTextEN("English");
-		assessmentQuestionModel.setQuestionTextLang2("German");
-		assessmentQuestionModel.setQuestionType(QuestionTypeEnum.MULTIPLE_CHOICE_MULTIPLE_ANSWER);
-		assessmentQuestionDao.saveQuestions(assessmentQuestionModel);
-		//AssessmentQuestionModel found = assessmentQuestionDao.findByQuestionTextEn(assessmentQuestionModel.getQuestionTextEN());
-		//assertNotNull(found);
-	}
+//	@Test
+//	@Ignore
+//	public void testGetQuestions()
+//	{
+//		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
+//		assessmentQuestionModel.setAssessmentTypeForCloudable(assessmentQuestion.isAssessmentTypeForCloudable());
+//		assessmentQuestionModel.setAssessmentTypeForCloudProvider(assessmentQuestion.isAssessmentTypeForCloudProvider());
+//		assessmentQuestionModel.setAssessmentTypeForMigration(assessmentQuestion.isAssessmentTypeForMigration());
+//		assessmentQuestionModel.setCreatedBy(assessmentQuestion.getCreatedBy());
+//		assessmentQuestionModel.setDeleted(assessmentQuestion.isDeleted());
+//		assessmentQuestionModel.setDisplayOrder(assessmentQuestion.getDisplayOrder());
+//		assessmentQuestionModel.setModifiedBy(assessmentQuestion.getModifiedBy());
+//		assessmentQuestionModel.setQuestionDescriptionEN(assessmentQuestion.getQuestionDescriptionEN());
+//		assessmentQuestionModel.setQuestionDescriptionLang2(assessmentQuestion.getQuestionDescriptionLang2());
+//		assessmentQuestionModel.setQuestionId(assessmentQuestion.getQuestionId());
+//		assessmentQuestionModel.setQuestionTextEN(assessmentQuestion.getQuestionTextEN());
+//		assessmentQuestionModel.setQuestionTextLang2(assessmentQuestion.getQuestionTextLang2());
+//		assessmentQuestionModel.setQuestionType(assessmentQuestion.getQuestionType());
+//		assessmentQuestionModel.setNumberOfOptions(assessmentQuestion.getNumberOfOptions());
+//		List<QuestionOptionModel> questionOptionModelList = new ArrayList<>();
+//		for(QuestionOption questionOption : assessmentQuestion.getQuestionOption())
+//		{
+//			questionOptionModelList.add(toQuestionOptionModel(questionOption, assessmentQuestionModel));
+//		}
+//		assessmentQuestionModel.setQuestionOptionModel(questionOptionModelList);
+//		return assessmentQuestionModel;
+//	}
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void testDeleteQuestionById()
 	{
 		assessmentQuestionDao.deleteAssessmentQuestionById(1);
@@ -75,7 +84,7 @@ public class TestAssessmentQuestionDao {
 	}
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void updateQuestions()
 	{
 		
@@ -93,16 +102,19 @@ public class TestAssessmentQuestionDao {
 	{
 		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
 		assessmentQuestionModel.setAssessmentTypeForCloudable(true);
-		assessmentQuestionModel.setAssessmentTypeForCloudProvider(false);
-		assessmentQuestionModel.setAssessmentTypeForMigration(false);
-		assessmentQuestionModel.setQuestionId(1);
+		assessmentQuestionModel.setAssessmentTypeForCloudProvider(true);
+		assessmentQuestionModel.setAssessmentTypeForMigration(true);
+		assessmentQuestionModel.setCreatedBy("Admin");
 		assessmentQuestionModel.setDeleted(false);
-		assessmentQuestionModel.setDisplayOrder(1);
-		assessmentQuestionModel.setQuestionDescriptionEN("*************");
-		assessmentQuestionModel.setQuestionDescriptionLang2("*************");
-		assessmentQuestionModel.setQuestionTextEN("*************");
-		assessmentQuestionModel.setQuestionTextLang2("*************");
-		assessmentQuestionModel.setQuestionType(QuestionTypeEnum.MULTIPLE_CHOICE_MULTIPLE_ANSWER);
+		assessmentQuestionModel.setDisplayOrder(2);
+		assessmentQuestionModel.setModifiedBy("Admin");
+		assessmentQuestionModel.setQuestionDescriptionEN("Engl");
+		assessmentQuestionModel.setQuestionDescriptionLang2("Germ");
+		assessmentQuestionModel.setQuestionId(1);
+		assessmentQuestionModel.setQuestionTextEN("Engl");
+		assessmentQuestionModel.setQuestionTextLang2("Germ");
+		assessmentQuestionModel.setQuestionType(QuestionTypeEnum.LONG_ANSWER);
+		assessmentQuestionModel.setNumberOfOptions(2);
 		return assessmentQuestionModel;
 	}
 

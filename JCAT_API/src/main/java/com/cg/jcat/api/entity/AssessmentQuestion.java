@@ -33,7 +33,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-@Table(name="assessment_question", uniqueConstraints = {@UniqueConstraint(columnNames = "question_text_en")})
+@Table(name="assessment_question", uniqueConstraints = {
+	       @UniqueConstraint(columnNames = {"question_text_en"}) })
 @EntityListeners(AuditingEntityListener.class)
 public class AssessmentQuestion {
 	
