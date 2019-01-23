@@ -33,7 +33,7 @@ public class DTProviderRuleController implements IDTProviderRuleController{
 	}
 
 	@Override
-	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) {
+	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions {
 		
 		return dtCloudProviderService.saveCloudProviderRule(cloudProviderRuleModelList);
 	}

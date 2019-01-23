@@ -11,6 +11,7 @@ import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
 @Component
 public class DTProviderRuleService implements IDTProviderRuleService{
 
@@ -23,13 +24,31 @@ public class DTProviderRuleService implements IDTProviderRuleService{
 	}
 	
 	@Override
-	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) {
+	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions {
 		boolean afterSavedValue = false; 
+		int count = 0;
 		
-//		for(DTProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList)
-//		{
+		for(DTProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList)
+		{
+			if(cloudProviderRuleModel.getRuleOptionTextEN() != null)
+			{
+				String optionText[] = cloudProviderRuleModel.getRuleOptionTextEN().split(",");
+				String optionIds[] = cloudProviderRuleModel.getRuleOptionIds().split(",");
+				if(optionText.length==optionIds.length)
+				{
+					count++;
+				}
+			}
+		}
+		try {
+		if(count==cloudProviderRuleModelList.size())
+		{
 			afterSavedValue= dtCloudProviderDao.saveProviderRule(cloudProviderRuleModelList);
-//		}
+		}
+		}catch (Exception e) {
+			
+		}
+
 		return afterSavedValue;
 	}
 	@Override

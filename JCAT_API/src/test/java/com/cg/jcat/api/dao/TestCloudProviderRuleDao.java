@@ -3,6 +3,9 @@ package com.cg.jcat.api.dao;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,13 +25,13 @@ import com.cg.jcat.api.exception.JcatExceptions;
 public class TestCloudProviderRuleDao {
 	
 	@Autowired
-	private DTProviderRuleDao cloudProviderRuleDao;
+	private DTProviderRuleDao ProviderRuleDao;
 
 	@Test
 	@Ignore
 	 public void testGetCloudProvider()
 	 {
-		assertNotNull(cloudProviderRuleDao.getCloudProvider());
+		assertNotNull(ProviderRuleDao.getCloudProvider());
 //		 assertEquals(0,cloudProviderRuleDao.getCloudProvider().size());
 	 }
 	
@@ -36,25 +39,22 @@ public class TestCloudProviderRuleDao {
 	@Ignore
 	public void testGetCloudProviderRules()
 	{
-		assertNotNull(cloudProviderRuleDao.getCloudProviderRules());
+		assertNotNull(ProviderRuleDao.getCloudProviderRules());
 	}
 	@Test
-	@Ignore
+//	@Ignore
 	public void testSaveCloudProviderRule()
 	{
-		DTProviderRuleModel cloudProviderRuleModel = getcloudProviderRuleModel();
-		assertEquals(true,cloudProviderRuleDao.saveCloudProviderRule(cloudProviderRuleModel));
+		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<DTProviderRuleModel>();
+		cloudProviderRuleModelList.add(getcloudProviderRuleModel());
+		assertEquals(true, ProviderRuleDao.saveProviderRule(cloudProviderRuleModelList));
+		assertEquals(1,ProviderRuleDao.getCountOfProviderRule());
+		assertEquals(0,ProviderRuleDao.getCountOfProviderRuleHistoryRule());
+		assertEquals(true, ProviderRuleDao.saveProviderRule(cloudProviderRuleModelList));
+		assertEquals(1,ProviderRuleDao.getCountOfProviderRule());
+		assertEquals(1,ProviderRuleDao.getCountOfProviderRuleHistoryRule());
+//		assertEquals(true,cloudProviderRuleDao.saveCloudProviderRule(cloudProviderRuleModel));
 	}
-	
-	@Test
-	public void updateCloudProviderRules() throws JcatExceptions
-	{
-		DTProviderRuleModel cloudProviderRuleModel = getcloudProviderRuleModel();
-		cloudProviderRuleModel.setProviderRuleId(1);
-		cloudProviderRuleModel.setQuestiontextEN("Question Test");
-		assertEquals(true,cloudProviderRuleDao.updateCloudProviderRules(cloudProviderRuleModel));
-	}
-	
 
 	private DTProviderRuleModel getcloudProviderRuleModel() {
 		
