@@ -10,30 +10,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.entity.DTProviderRule;
+import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.entity.DTProviders;
 import com.cg.jcat.api.exception.JcatExceptions;
-import com.cg.jcat.api.repository.CloudProviderRepository;
-import com.cg.jcat.api.repository.ICloudProviderRuleRepository;
+import com.cg.jcat.api.repository.IDTProviderRepository;
+import com.cg.jcat.api.repository.IDTProviderRuleHistory;
+import com.cg.jcat.api.repository.IDTProviderRuleRepository;
 
 @Component
-public class DTCloudProviderRuleDao {
+public class DTProviderRuleDao {
 
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	private ICloudProviderRuleRepository cloudProviderRuleRepository;
+	private IDTProviderRuleRepository cloudProviderRuleRepository;
 	
 	@Autowired
-	private CloudProviderRepository cloudProviderRepository;
+	private IDTProviderRepository cloudProviderRepository;
+	
+	@Autowired
+	private IDTProviderRuleHistory ProviderRuleHistory;
 
-	public List<DTCProvidersModel> getCloudProvider() {
+	public List<DTProvidersModel> getCloudProvider() {
 		List<DTProviders> CloudProviderList = cloudProviderRepository.findAll();
-		List<DTCProvidersModel> CloudProvidersModelList = new ArrayList<DTCProvidersModel>();
+		List<DTProvidersModel> CloudProvidersModelList = new ArrayList<DTProvidersModel>();
 		return toCloudProviderModelList(CloudProviderList,CloudProvidersModelList);
 	}
 
-	private List<DTCProvidersModel> toCloudProviderModelList(List<DTProviders> cloudProviderList,
-			List<DTCProvidersModel> cloudProvidersModelList) {
+	private List<DTProvidersModel> toCloudProviderModelList(List<DTProviders> cloudProviderList,
+			List<DTProvidersModel> cloudProvidersModelList) {
 			for(DTProviders cloudProviders:cloudProviderList)
 			{
 				cloudProvidersModelList.add(toCloudProviderMode(cloudProviders));
@@ -41,63 +46,16 @@ public class DTCloudProviderRuleDao {
 		return cloudProvidersModelList;
 	}
 
-	private DTCProvidersModel toCloudProviderMode(DTProviders cloudProviders) {
-		DTCProvidersModel cloudProvidersModel = new DTCProvidersModel();
+	private DTProvidersModel toCloudProviderMode(DTProviders cloudProviders) {
+		DTProvidersModel cloudProvidersModel = new DTProvidersModel();
 		cloudProvidersModel.setProviderId(cloudProviders.getProviderId());
 		cloudProvidersModel.setEvaluationOrder(cloudProviders.getEvaluationOrder());
 		cloudProvidersModel.setProviderName(cloudProviders.getProviderName());
 		return cloudProvidersModel;
 	}
-
-public boolean updateCloudProviderRules(DTProviderRuleModel cloudProviderRuleModel) throws JcatExceptions {
-		
-		boolean updatedResult = false;
-		try {
-			DTProviderRule cloudProviderRule = new DTProviderRule();
-			cloudProviderRule.setModifiedBy("Admin");
-			cloudProviderRule.setModifiedTime(new Date());
-			cloudProviderRule.setProviderRuleId(cloudProviderRuleModel.getProviderRuleId());
-			DTProviderRule modifiedCloudProviderRule =  cloudProviderRuleRepository.saveAndFlush(toCloudProviderRuleModel(cloudProviderRuleModel,cloudProviderRule));
-		if(modifiedCloudProviderRule != null)
-		{
-			updatedResult = true;
-		}
-		}catch (Exception e) {
-			LOGGER.error("Error while updating cloud provider rules " + cloudProviderRuleModel.getProviderId() + " ErrorMessage: " + e.getMessage(), e);
-			throw new JcatExceptions(
-					"Exception while saving user " + cloudProviderRuleModel.getProviderId() + " ErrorMessage: " + e.getMessage());
-		}
-		return updatedResult;
-		
-	}
 	
-//	public boolean updateCloudProviderRules(DTCloudProviderRuleModel cloudProviderRuleModel) throws JcatExceptions {
-//		
-//		boolean updatedResult = false;
-//		try {
-//			DTProviderRule cloudProviderRule = new DTProviderRule();
-//			cloudProviderRule.setModifiedBy("Admin");
-//			cloudProviderRule.setModifiedTime(new Date());
-//<<<<<<< HEAD
-//			cloudProviderRule.setProviderRuleId(cloudProviderRuleModel.getProviderRuleId());
-//		DTCloudProviderRule modifiedCloudProviderRule =  cloudProviderRuleRepository.saveAndFlush(toCloudProviderRuleModel(cloudProviderRuleModel,cloudProviderRule));
-//=======
-//		DTProviderRule modifiedCloudProviderRule =  cloudProviderRuleRepository.saveAndFlush(toCloudProviderRuleModel(cloudProviderRuleModel,cloudProviderRule));
-//>>>>>>> refs/remotes/origin/master
-//		if(modifiedCloudProviderRule != null)
-//		{
-//			updatedResult = true;
-//		}
-//		}catch (Exception e) {
-//			LOGGER.error("Error while updating cloud provider rules " + cloudProviderRuleModel.getProviderId() + " ErrorMessage: " + e.getMessage(), e);
-//			throw new JcatExceptions(
-//					"Exception while saving user " + cloudProviderRuleModel.getProviderId() + " ErrorMessage: " + e.getMessage());
-//		}
-//		return updatedResult;
-//		
-//	}
 
-	private DTProviderRule toCloudProviderRuleModel(DTProviderRuleModel cloudProviderRuleModel,DTProviderRule cloudProviderRule) {
+	private DTProviderRule toCloudProviderRule(DTProviderRuleModel cloudProviderRuleModel,DTProviderRule cloudProviderRule) {
 		
 		Date date=new Date();
 		cloudProviderRule.setProviderId(cloudProviderRuleModel.getProviderId());
@@ -113,17 +71,48 @@ public boolean updateCloudProviderRules(DTProviderRuleModel cloudProviderRuleMod
 		return cloudProviderRule;
 	}
 	
-	public boolean saveCloudProviderRule(DTProviderRuleModel cloudProviderRuleModel) {
+
+	public boolean saveProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel)
+	{
+		int countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
+		if(countOfHistoryRule != 0 || getCountOfMigrationRule()!=0)
+		{
+			saveProviderRuleHistory(cloudProviderRuleModel);
+		}
+		cloudProviderRuleRepository.deleteAll();
+		return saveCloudProviderRule(cloudProviderRuleModel);
+	}
+	
+	
+	private void saveProviderRuleHistory(List<DTProviderRuleModel> cloudProviderRuleModel) {
+		
+		cloudProviderRuleModel
+		
+	}
+
+	private int getCountOfMigrationRule() {
+		
+		return cloudProviderRuleRepository.findAll().size();
+	}
+
+	private int getCountOfMigrationRuleHistoryRule() {
+		
+		return ProviderRuleHistory.findAll().size();
+	}
+
+	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) {
 		boolean saveResult = false;
 		try
 		{
-			DTProviderRule cloudProviderRule = new DTProviderRule();
+			List<DTProviderRule> cloudProviderRule = new ArrayList<DTProviderRule>();
 			List<DTProviderRule> cloudProviderRuleList = cloudProviderRuleRepository.findAll();
 			if(cloudProviderRuleList != null)
 			{
-				
+				List<DTProviderRuleHistory> providerRuleHistoryList = new ArrayList<DTProviderRuleHistory>(); 
+				ProviderRuleHistory.saveAll(toProviderHistoryList(cloudProviderRuleList,providerRuleHistoryList));
 			}
-			DTProviderRule	cloudProvidersaved = cloudProviderRuleRepository.save(toCloudProviderRuleModel(cloudProviderRuleModel,cloudProviderRule));
+			cloudProviderRuleRepository.deleteAll();
+			List<DTProviderRule>	cloudProvidersaved = cloudProviderRuleRepository.saveAll(toCloudProviderRuleList(cloudProviderRuleModel,cloudProviderRule));
 			if(cloudProvidersaved!=null)
 			{
 				saveResult = true;
@@ -135,31 +124,43 @@ public boolean updateCloudProviderRules(DTProviderRuleModel cloudProviderRuleMod
 	}
 
 
-//	public boolean saveCloudProviderRule(DTCloudProviderRuleModel cloudProviderRuleModel) {
-//		boolean saveResult = false;
-//		try
-//		{
-//<<<<<<< HEAD
-//			DTCloudProviderRule cloudProviderRule = new DTCloudProviderRule();
-//			List<DTCloudProviderRule> cloudProviderRuleList = cloudProviderRuleRepository.findAll();
-//			if(cloudProviderRuleList != null)
-//			{
-//				
-//			}
-//			DTCloudProviderRule	cloudProvidersaved = cloudProviderRuleRepository.save(toCloudProviderRuleModel(cloudProviderRuleModel,cloudProviderRule));
-//=======
-//			DTProviderRule cloudProviderRule = new DTProviderRule();
-//			DTProviderRule	cloudProvidersaved = cloudProviderRuleRepository.save(toCloudProviderRuleModel(cloudProviderRuleModel,cloudProviderRule));
-//>>>>>>> refs/remotes/origin/master
-//			if(cloudProvidersaved!=null)
-//			{
-//				saveResult = true;
-//			}
-//		}catch (Exception e) {
-//			
-//		}
-//		return saveResult;
-//	}
+
+	
+	private List<DTProviderRule> toCloudProviderRuleList(List<DTProviderRuleModel> cloudProviderRuleModel,
+			List<DTProviderRule> cloudProviderRule) {
+    	for(DTProviderRuleModel providerRuleModel : cloudProviderRuleModel)
+    	{
+    		DTProviderRule providerRule = new DTProviderRule();
+    		cloudProviderRule.add(toCloudProviderRule(providerRuleModel,providerRule));
+    	}
+		
+		return cloudProviderRule;
+	}
+
+	private Iterable toProviderHistoryList(List<DTProviderRule> cloudProviderRuleList,
+			List<DTProviderRuleHistory> providerRuleHistoryList) {
+		
+		for(DTProviderRule providerRule:cloudProviderRuleList)
+		{
+			providerRuleHistoryList.add(toProviderHistory(providerRule));
+		}
+		
+		return providerRuleHistoryList;
+	}
+
+	private DTProviderRuleHistory toProviderHistory(DTProviderRule providerRule) {
+		DTProviderRuleHistory providerRuleHistory = new DTProviderRuleHistory();
+		providerRuleHistory.setProviderId(providerRule.getProviderId());
+		providerRuleHistory.setProviderRuleId(providerRule.getProviderRuleId());
+		providerRuleHistory.setEvaluationOrder(providerRule.getEvaluationOrder());
+		providerRuleHistory.setQuestionId(providerRule.getQuestionId());
+		providerRuleHistory.setQuestionTextEN(providerRule.getRuleOptionIds());
+		providerRuleHistory.setRuleOptionIds(providerRule.getRuleOptionTextEN());
+		providerRuleHistory.setRuleOptionTextEN(providerRule.getRuleOptionTextEN());
+		providerRuleHistory.setCreatedBy(providerRule.getCreatedBy());
+		providerRuleHistory.setCreatedTime(providerRule.getCreatedTime());
+		return providerRuleHistory;
+	}
 
 	public List<DTProviderRuleModel> getCloudProviderRules() {
 		List<DTProviderRule> cloudProviderRuleList = cloudProviderRuleRepository.findAll();

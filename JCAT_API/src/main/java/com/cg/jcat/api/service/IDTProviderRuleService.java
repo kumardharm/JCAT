@@ -5,16 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cg.jcat.api.dao.DTProviderRuleModel;
-import com.cg.jcat.api.dao.DTCProvidersModel;
+import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
 @Service
-public interface IDTCloudProviderRuleService {
+public interface IDTProviderRuleService {
 
-	List<DTCProvidersModel> getCloudProvider();
-
-	boolean updateCloudProviderRules(DTProviderRuleModel cloudProviderRuleModel) throws JcatExceptions;
+	List<DTProvidersModel> getCloudProvider();
 
 	boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList);
 

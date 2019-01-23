@@ -10,7 +10,7 @@ import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.exception.entity.ErrorDTO;
 
 @ControllerAdvice
-public class CloudProviderExceptionHandler {
+public class ProviderExceptionHandler {
 	
 	@ExceptionHandler(value = SystemExceptions.class)
 	public ResponseEntity<Object> SystemException(SystemExceptions exception,WebRequest request) {
