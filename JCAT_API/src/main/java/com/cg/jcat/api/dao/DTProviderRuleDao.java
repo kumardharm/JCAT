@@ -74,28 +74,44 @@ public class DTProviderRuleDao {
 
 	public boolean saveProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel)
 	{
-		int countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
-		if(countOfHistoryRule != 0 || getCountOfMigrationRule()!=0)
+		int countOfHistoryRule = getCountOfProviderRuleHistoryRule();
+		List<DTProviderRule> cloudProviderRuleList = getProviderRules();
+		if(countOfHistoryRule != 0 || getCountOfProviderRule()!=0)
 		{
-			saveProviderRuleHistory(cloudProviderRuleModel);
+			System.out.println("*********");
+			saveProviderRuleHistory(cloudProviderRuleList);
+			System.out.println("$$$$$$$$$$$$$");
 		}
+		System.out.println("@@@@@@@@@");
 		cloudProviderRuleRepository.deleteAll();
+		System.out.println("!!!!!!!!!!!!");
 		return saveCloudProviderRule(cloudProviderRuleModel);
 	}
 	
 	
-	private void saveProviderRuleHistory(List<DTProviderRuleModel> cloudProviderRuleModel) {
+	private List<DTProviderRule> getProviderRules() {
 		
-		cloudProviderRuleModel
+		return cloudProviderRuleRepository.findAll();
+	}
+
+	private void saveProviderRuleHistory(List<DTProviderRule> cloudProviderRule) {
+		System.out.println("&&&&&&&&&&");
+		List<DTProviderRuleHistory> providerRuleHistory = new ArrayList<DTProviderRuleHistory>(); 
+		for(DTProviderRule providerRule:cloudProviderRule)
+		{
+			System.out.println("^^^^^^^^");
+			providerRuleHistory.add(toProviderHistory(providerRule));
+//			ProviderRuleHistory.save(toProviderHistory(providerRule));
+		}
 		
 	}
 
-	private int getCountOfMigrationRule() {
+	private int getCountOfProviderRule() {
 		
 		return cloudProviderRuleRepository.findAll().size();
 	}
 
-	private int getCountOfMigrationRuleHistoryRule() {
+	private int getCountOfProviderRuleHistoryRule() {
 		
 		return ProviderRuleHistory.findAll().size();
 	}
@@ -105,13 +121,14 @@ public class DTProviderRuleDao {
 		try
 		{
 			List<DTProviderRule> cloudProviderRule = new ArrayList<DTProviderRule>();
-			List<DTProviderRule> cloudProviderRuleList = cloudProviderRuleRepository.findAll();
-			if(cloudProviderRuleList != null)
-			{
-				List<DTProviderRuleHistory> providerRuleHistoryList = new ArrayList<DTProviderRuleHistory>(); 
-				ProviderRuleHistory.saveAll(toProviderHistoryList(cloudProviderRuleList,providerRuleHistoryList));
-			}
-			cloudProviderRuleRepository.deleteAll();
+//			List<DTProviderRule> cloudProviderRuleList = cloudProviderRuleRepository.findAll();
+//			if(cloudProviderRuleList != null)
+//			{
+//				List<DTProviderRuleHistory> providerRuleHistoryList = new ArrayList<DTProviderRuleHistory>(); 
+//				ProviderRuleHistory.saveAll(toProviderHistoryList(cloudProviderRuleList,providerRuleHistoryList));
+//			}
+//			cloudProviderRuleRepository.deleteAll();
+			
 			List<DTProviderRule>	cloudProvidersaved = cloudProviderRuleRepository.saveAll(toCloudProviderRuleList(cloudProviderRuleModel,cloudProviderRule));
 			if(cloudProvidersaved!=null)
 			{
@@ -137,18 +154,20 @@ public class DTProviderRuleDao {
 		return cloudProviderRule;
 	}
 
-	private Iterable toProviderHistoryList(List<DTProviderRule> cloudProviderRuleList,
-			List<DTProviderRuleHistory> providerRuleHistoryList) {
-		
-		for(DTProviderRule providerRule:cloudProviderRuleList)
-		{
-			providerRuleHistoryList.add(toProviderHistory(providerRule));
-		}
-		
-		return providerRuleHistoryList;
-	}
+//	private Iterable toProviderHistoryList(List<DTProviderRule> cloudProviderRuleList,
+//			List<DTProviderRuleHistory> providerRuleHistoryList) {
+//		
+//		for(DTProviderRule providerRule:cloudProviderRuleList)
+//		{
+//			providerRuleHistoryList.add(toProviderHistory(providerRule));
+//		}
+//		
+//		return providerRuleHistoryList;
+//	}
 
 	private DTProviderRuleHistory toProviderHistory(DTProviderRule providerRule) {
+		System.out.println("%%%%%%%%%%");
+		Date date=new Date();
 		DTProviderRuleHistory providerRuleHistory = new DTProviderRuleHistory();
 		providerRuleHistory.setProviderId(providerRule.getProviderId());
 		providerRuleHistory.setProviderRuleId(providerRule.getProviderRuleId());
@@ -158,7 +177,9 @@ public class DTProviderRuleDao {
 		providerRuleHistory.setRuleOptionIds(providerRule.getRuleOptionTextEN());
 		providerRuleHistory.setRuleOptionTextEN(providerRule.getRuleOptionTextEN());
 		providerRuleHistory.setCreatedBy(providerRule.getCreatedBy());
-		providerRuleHistory.setCreatedTime(providerRule.getCreatedTime());
+		System.out.println(date);
+		providerRuleHistory.setCreatedTime(date);
+		System.out.println("############");
 		return providerRuleHistory;
 	}
 

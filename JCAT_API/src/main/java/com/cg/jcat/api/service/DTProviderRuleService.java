@@ -28,7 +28,7 @@ public class DTProviderRuleService implements IDTProviderRuleService{
 		
 //		for(DTProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList)
 //		{
-			afterSavedValue= dtCloudProviderDao.saveCloudProviderRule(cloudProviderRuleModelList);
+			afterSavedValue= dtCloudProviderDao.saveProviderRule(cloudProviderRuleModelList);
 //		}
 		return afterSavedValue;
 	}
