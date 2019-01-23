@@ -1,4 +1,4 @@
-package com.cg.jcat.api.entity;
+package com.cg.jcat.api.utility;
 
 public enum QuestionTypeEnum {
 

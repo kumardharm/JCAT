@@ -9,8 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="user_table",uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
@@ -21,18 +23,23 @@ public class User {
 	private String firstName;
 	private String lastName;
 	@Column(unique = true)
+	@NotNull
 	private String username;
+	
 	@ColumnDefault("'Cg@123'")
-//	@Column(columnDefinition = "String NOT NULL default Cg@123")
+	@Length(min = 1, max = 13)
+	@NotNull
 	private String password;
 	private String company;
 	private String userEmail;
-//	@Column(columnDefinition = "String default false")
+	@NotNull
 	private boolean isAdmin;
-//	@Column(columnDefinition = " default false")
+	@NotNull
 	private boolean isDeleted;
 	private Date lastLoginTime;
+	@NotNull
 	private String createdBy;
+	@NotNull
 	private Date createdTime;
 	private String modifiedBy;
 	private Date modifiedTime;

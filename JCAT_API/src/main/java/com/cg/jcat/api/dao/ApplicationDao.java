@@ -32,18 +32,18 @@ public class ApplicationDao {
 	{
 		ApplicationModel appLicationModel=new ApplicationModel();
 		appLicationModel.setAid(application.getAid());
-		appLicationModel.setApplication_id(application.getApplication_id());
-		appLicationModel.setApplication_name(application.getApplication_name());
-		appLicationModel.setApplication_description(application.getApplication_description());
-		appLicationModel.setApplication_department(application.getApplication_department());
-		appLicationModel.setApplication_user(application.getApplication_user());
-		appLicationModel.setDt_cloud_provider(application.getDt_cloud_provider());
-		appLicationModel.setDt_migration_pattern(application.getDt_migration_pattern());
+		appLicationModel.setApplication_id(application.getApplicationId());
+		appLicationModel.setApplication_name(application.getApplicationName());
+		appLicationModel.setApplication_description(application.getApplicationDescription());
+		appLicationModel.setApplication_department(application.getApplicationDepartment());
+		appLicationModel.setApplication_user(application.getApplicationUser());
+		appLicationModel.setDt_cloud_provider(application.getDtCloudProvider());
+		appLicationModel.setDt_migration_pattern(application.getDtMigrationPattern());
 		appLicationModel.setPriority(application.getPriority());
-		appLicationModel.setRe_cloud_provider(application.getRe_cloud_provider());
-		appLicationModel.setRe_migration_pattern(application.getRe_migration_pattern());
-		appLicationModel.setAssessment_stage(application.getAssessment_stage());
-		appLicationModel.setCreated_by(application.getCreated_by());
+		appLicationModel.setRe_cloud_provider(application.getReCloudProvider());
+		appLicationModel.setRe_migration_pattern(application.getReMigrationPattern());
+		appLicationModel.setAssessment_stage(application.getAssessmentStage());
+		appLicationModel.setCreated_by(application.getCreatedBy());
 		
 		return appLicationModel;
 	}
@@ -60,22 +60,22 @@ public class ApplicationDao {
     private Application toApplication(ApplicationModel applicationModel) {
     	Application application=new Application();
     	application.setAid(applicationModel.getAid());
-    	application.setApplication_id(applicationModel.getApplication_id());
-    	application.setApplication_name(applicationModel.getApplication_name());
-    	application.setApplication_description(applicationModel.getApplication_description());
-    	application.setApplication_department(applicationModel.getApplication_department());
-    	application.setApplication_user(applicationModel.getApplication_user());
-    	application.setAssessment_stage(applicationModel.getAssessment_stage());
-    	application.setCreated_by(applicationModel.getCreated_by());
-    	application.setDt_cloud_provider(applicationModel.getDt_cloud_provider());
-    	application.setDt_migration_pattern(applicationModel.getDt_migration_pattern());
-    	application.setIs_assessment_completed(applicationModel.isIs_assessment_completed());
+    	application.setApplicationId(applicationModel.getApplication_id());
+    	application.setApplicationName(applicationModel.getApplication_name());
+    	application.setApplicationDescription(applicationModel.getApplication_description());
+    	application.setApplicationDepartment(applicationModel.getApplication_department());
+    	application.setApplicationUser(applicationModel.getApplication_user());
+    	application.setAssessmentStage(applicationModel.getAssessment_stage());
+    	application.setCreatedBy(applicationModel.getCreated_by());
+    	application.setDtCloudProvider(applicationModel.getDt_cloud_provider());
+    	application.setDtMigrationPattern(applicationModel.getDt_migration_pattern());
+    	//application.setIsSssessmentCompleted(applicationModel.isIs_assessment_completed());
     	application.setPriority(applicationModel.getPriority());
-    	application.setIs_activate(applicationModel.isIs_activate());
-    	application.setIs_dt_cloudable(applicationModel.isIs_dt_cloudable());
-    	application.setIs_re_cloudable(applicationModel.isIs_re_cloudable());
-    	application.setRe_cloud_provider(applicationModel.getRe_cloud_provider());
-    	application.setRe_migration_pattern(applicationModel.getRe_migration_pattern());
+    	application.setActivate(applicationModel.isIs_activate());
+    	application.setDTCloudable(applicationModel.isIs_dt_cloudable());
+    	application.setReCloudable(applicationModel.isIs_re_cloudable());
+    	application.setReCloudProvider(applicationModel.getRe_cloud_provider());
+    	//application.setRe_migration_pattern(applicationModel.getRe_migration_pattern());
     	
     	
     	return application;

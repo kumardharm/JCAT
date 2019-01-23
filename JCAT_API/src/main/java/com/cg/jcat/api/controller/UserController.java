@@ -11,7 +11,9 @@ import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IUserService;
+import com.cg.jcat.api.service.UserService;
 
 @Component
 public class UserController implements IUserController {
@@ -22,12 +24,17 @@ public class UserController implements IUserController {
 	private IUserService userService;
 
 	@Override
-	public List<UserModel> getUsers() {
+	public List<UserModel> getUsers() throws SystemExceptions {
 		try {
 			return userService.getUsers();
 		} catch (Exception e) {
 			logger.error("Error in getting all users: getUsers()", e);
-			throw e;
+
+			//throw e;
+
+			throw new SystemExceptions("getUsers()");
+//			throw e;
+
 		}
 	}
 

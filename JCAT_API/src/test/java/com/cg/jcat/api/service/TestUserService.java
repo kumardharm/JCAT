@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -31,14 +32,12 @@ public class TestUserService {
 	@Autowired
 	private UserService userService;
 	
-//	@MockBean
-//	private UserDao userDao;
 	
-	@Autowired
+	@MockBean
 	private UserDao userDao;
 	
 	@Test
-	@Ignore
+//	@Ignore
 	public void testGetUsers() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
@@ -51,61 +50,36 @@ public class TestUserService {
 		assertThat(userService.getUsers()).isEqualTo(userModelList);
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testSaveUser() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
 		Mockito.when(userDao.createUser(userModel,"admin")).thenReturn(true);
 		assertEquals(true, userService.saveUser(userModel,"admin"));
-//		assertThat(userService.saveUser(userModel,"admin")).isEqualTo(userModel);
 		
 	}
 	
-	@Test
-	public void testsaveUser() throws JcatExceptions
-	{
-		UserModel userModel = new UserModel();
-		userModel.setFirstName("Hari");
-		userModel.setLastName("ram");
-		userModel.setUsername("sam2");
-		userModel.setUserEmail("abc@gmail.com");
-		userModel.setCreatedBy("raghu");
-		userModel.setCompany("goldman");
-		userModel.setAdmin(true);
-		userModel.setPassword("asd@123");
-		userModel.setModifiedBy("raj");
-		
-		userService.saveUser(userModel,"ramesh");
-		
-		UserModel found = userDao.findByUsername(userModel.getUsername());
-		assertNotNull(found);
-		
-		assertThat(found.getFirstName()).isEqualTo(userModel.getFirstName());
-		assertThat(found.getUserEmail()).isEqualTo(userModel.getUserEmail());
-	}
 	
 	@Test
-	@Ignore
+//	@Ignore
 	public void testUpdateUsers() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
-		Mockito.when(userDao.findByUsername(userModel.getUsername())).thenReturn(userModel);
+		
 		userModel.setCompany("cg");
-		Mockito.when(userDao.createUser(userModel,"admin")).thenReturn(true);
-		assertThat(userService.updateUsers(userModel, "admin")).isEqualTo(userModel);
+		Mockito.when(userDao.updateUsers(userModel,"admin")).thenReturn(true);
+		assertEquals(true, userService.updateUsers(userModel, "admin"));
 	}
 	
-	@Ignore
+//	@Ignore
 	@Test
 	public void testDeleteUser() throws JcatExceptions
 	{
 		UserModel userModel = getModel();
-		Mockito.when(userDao.findByUsername(userModel.getUsername())).thenReturn(userModel);
+		
 				
-		Mockito.when(userDao.deleteById(userModel.getUserId())).thenReturn(true);
-//		assertThat(userService.deleteById(userModel.getUserId()).isEqualTo(true);
-//		assertEquals(userService.deleteById(userModel.getUserId()),true);
+		Mockito.when(userDao.deleteById(1)).thenReturn(true);
 		 assertTrue(userService.deleteById(userModel.getUserId()));
 	}
 	

@@ -2,13 +2,16 @@ package com.cg.jcat.api.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="question_option")
@@ -19,12 +22,11 @@ public class QuestionOption {
 	@Column(name="option_id")
 	private int optionId;
 	
-//	@Column(name="question_id")
-//	private int questionId;
-	
 	@Column(name="option_text_EN")
+	@NotNull
 	private String optionTextEN;
 	
+	@Lob
 	@Column(name="option_text_lang2")
 	private String optionTextLang2;
 	
@@ -32,44 +34,12 @@ public class QuestionOption {
     @JoinColumn(name = "question_id")
 	private AssessmentQuestion assessmentQuestion;
 	
-	public AssessmentQuestion getAssessmentQuestion() {
-		return assessmentQuestion;
-	}
-
-	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
-		this.assessmentQuestion = assessmentQuestion;
-	}
-
 	public int getOptionId() {
 		return optionId;
 	}
 
 	public void setOptionId(int optionId) {
 		this.optionId = optionId;
-	}
-
-//	public int getQuestionId() {
-//		return questionId;
-//	}
-//
-//	public void setQuestionId(int questionId) {
-//		this.questionId = questionId;
-//	}
-
-	public String getOption_text_EN() {
-		return optionTextEN;
-	}
-
-	public void setOption_text_EN(String option_text_EN) {
-		this.optionTextEN = option_text_EN;
-	}
-
-	public String getOptionTextLang2() {
-		return optionTextLang2;
-	}
-
-	public void setOptionTextLang2(String optionTextLang2) {
-		this.optionTextLang2 = optionTextLang2;
 	}
 
 	public String getOptionTextEN() {
@@ -80,10 +50,27 @@ public class QuestionOption {
 		this.optionTextEN = optionTextEN;
 	}
 
+	public String getOptionTextLang2() {
+		return optionTextLang2;
+	}
+
+	public void setOptionTextLang2(String optionTextLang2) {
+		this.optionTextLang2 = optionTextLang2;
+	}
+
+	@JsonIgnore
+	public AssessmentQuestion getAssessmentQuestion() {
+		return assessmentQuestion;
+	}
+
+	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
+		this.assessmentQuestion = assessmentQuestion;
+	}
+
 	@Override
 	public String toString() {
 		return "QuestionOption [optionId=" + optionId + ", optionTextEN=" + optionTextEN + ", optionTextLang2="
-				+ optionTextLang2 + ", assessmentQuestion=" + assessmentQuestion + "]";
+				+ optionTextLang2 + "]";
 	}
 
 	

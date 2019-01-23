@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name="dt_provider_rule")
-public class DTCloudProviderRule {
+public class DTProviderRule {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="provider_rule_id")
@@ -23,7 +23,7 @@ public class DTCloudProviderRule {
 	@Column(name="provider_id")
 	private int providerId;
 	
-//	@ColumnDefault("0")
+	@ColumnDefault("0")
 	@Column(name="evaluation_order")
 	private int evaluationOrder;
 	
@@ -33,7 +33,7 @@ public class DTCloudProviderRule {
 	@Column(name="question_text_EN")
 	private String questiontextEN;
 	
-//	@ColumnDefault("0")
+	@Lob
 	@Column(name="rule_option_ids")
 	private String ruleOptionIds;
 	

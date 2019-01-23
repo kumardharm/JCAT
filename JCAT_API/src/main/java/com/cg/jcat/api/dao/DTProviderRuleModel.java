@@ -1,14 +1,14 @@
 package com.cg.jcat.api.dao;
 
-public class DTCloudProviderRuleModel {
+public class DTProviderRuleModel {
 	
 	private int providerRuleId;
 	private int providerId;
 	private int evaluationOrder;
 	private int questionId;
 	private String questiontextEN;
-	private String ruleOptionIds;
-	private String ruleOptionTextEN;
+	private String ruleOptionIds; // in case multiple options comma separated
+	private String ruleOptionTextEN; // in case multiple options comma separated
 	public int getProviderRuleId() {
 		return providerRuleId;
 	}

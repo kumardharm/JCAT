@@ -12,7 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.AssessmentQuestion;
-import com.cg.jcat.api.entity.QuestionTypeEnum;
+import com.cg.jcat.api.utility.QuestionTypeEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

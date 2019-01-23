@@ -12,30 +12,38 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="dt_providers")
-public class DTCloudProviders {
+public class DTProviders {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotNull
 	@Column(name="provider_id")
 	private int providerId;
+	
 	@NotNull
 	@Column(name="evaluation_order")
 	private int evaluationOrder;
+	
 	@Column(name="provider_name")
 	private String providerName;
+	
 	@Column(name="logical_operator")
 	private String logicalOperator;
+	
 	@NotNull
 	@Column(name="created_by")
 	private String createdBy;
+	
 	@NotNull
 	@Column(name="created_time")
 	private Date createdTime;
+	
 	@Column(name="modified_by")
 	private String modifiedBy;
+	
 	@Column(name="modified_time")
 	private Date modifiedTime;
+	
 	public int getProviderId() {
 		return providerId;
 	}

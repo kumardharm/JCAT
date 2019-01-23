@@ -8,9 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+<<<<<<< HEAD
 import com.cg.jcat.api.JcatApiApplication;
+=======
+import com.cg.jcat.api.controller.UserController;
+>>>>>>> 50524e4c6445a8c53005f1e6f422bd930cc2073a
 import com.cg.jcat.api.entity.User;
+import com.cg.jcat.api.exception.DeleteUserException;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SaveUserException;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.repository.IUserRepository;
 
@@ -72,8 +78,16 @@ public class UserDao {
 			}
 		} catch (Exception e) {
 			logger.error("Error while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage(), e);
-			throw new JcatExceptions(
-					"Exception while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage());
+
+			//throw new JcatExceptions(
+//					"Exception while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage());
+
+			
+			throw new SaveUserException(userModel.getUsername());
+			
+//			throw new JcatExceptions(
+//					"Exception while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage());
+
 		}
 		return value;
 	}
@@ -91,7 +105,9 @@ public class UserDao {
 	public boolean deleteById(int userId) throws JcatExceptions {
 		User user = findByUserId(userId);
 		if (user == null) {
-			throw new JcatExceptions("User with id " + userId + " does not exists in DB!");
+			
+			throw new DeleteUserException(Integer.toString(userId));
+//			throw new JcatExceptions("User with id " + userId + " does not exists in DB!");
 		}
 		user.setDeleted(true);
 		user = userRepository.save(user);

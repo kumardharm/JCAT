@@ -7,11 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.jcat.api.dao.DTCloudProviderRuleModel;
-import com.cg.jcat.api.dao.DTCloudProvidersModel;
-import com.cg.jcat.api.entity.DTCloudProviderRule;
+import com.cg.jcat.api.dao.DTProviderRuleModel;
+import com.cg.jcat.api.dao.DTCProvidersModel;
+import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IDTCloudProviderRuleService;
 @Component
 public class DTCloudProviderRuleController implements IDTCloudProviderRuleController{
@@ -22,17 +23,17 @@ public class DTCloudProviderRuleController implements IDTCloudProviderRuleContro
 	private IDTCloudProviderRuleService dtCloudProviderService;
 
 	@Override
-	public List<DTCloudProvidersModel> getCloudProvider() {
+	public List<DTCProvidersModel> getCloudProvider() throws SystemExceptions {
 		try {
 		return dtCloudProviderService.getCloudProvider();
 		}catch (Exception e) {
 			LOGGER.error("Error in getting all cloud providers : getCloudProvider()", e);
-			throw e;
+			throw new SystemExceptions("getCloudProvider()");
 		}
 	}
 
 	@Override
-	public boolean updateCloudProviderRules(DTCloudProviderRuleModel cloudProviderRuleModel) throws JcatExceptions {
+	public boolean updateCloudProviderRules(DTProviderRuleModel cloudProviderRuleModel) throws JcatExceptions {
 		boolean modifiedValue = false;
 		try {
 			modifiedValue = dtCloudProviderService.updateCloudProviderRules(cloudProviderRuleModel);
@@ -45,13 +46,13 @@ public class DTCloudProviderRuleController implements IDTCloudProviderRuleContro
 	}
 
 	@Override
-	public boolean saveCloudProviderRule(DTCloudProviderRuleModel cloudProviderRuleModel) {
+	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) {
 		
-		return dtCloudProviderService.saveCloudProviderRule(cloudProviderRuleModel);
+		return dtCloudProviderService.saveCloudProviderRule(cloudProviderRuleModelList);
 	}
 
 	@Override
-	public List<DTCloudProviderRuleModel> getCloudProviderRules() {
+	public List<DTProviderRuleModel> getCloudProviderRules() {
 		
 		return dtCloudProviderService.getCloudProviderRules();
 	}
