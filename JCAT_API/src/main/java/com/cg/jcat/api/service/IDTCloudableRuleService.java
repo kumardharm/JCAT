@@ -16,6 +16,8 @@ public interface IDTCloudableRuleService {
 
 	public boolean updateCloudablerule(DTCloudableRuleModel dTCloudableRuleModel);
 
-	public boolean deleteCloudableRule(int cloudabelRuleId);
+	public boolean deleteCloudableRule(int cloudableRuleId);
+
+	public DTCloudableRuleModel getCloudableRuleById(int cloudableRuleId);
 
 }

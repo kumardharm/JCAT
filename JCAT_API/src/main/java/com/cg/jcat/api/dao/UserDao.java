@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
@@ -16,7 +17,7 @@ import com.cg.jcat.api.repository.IUserRepository;
 @Component
 public class UserDao {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
 	@Autowired
 	private IUserRepository userRepository;
@@ -70,7 +71,7 @@ public class UserDao {
 				value = true;
 			}
 		} catch (Exception e) {
-			LOGGER.error("Error while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage(), e);
+			logger.error("Error while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage(), e);
 			throw new JcatExceptions(
 					"Exception while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage());
 		}

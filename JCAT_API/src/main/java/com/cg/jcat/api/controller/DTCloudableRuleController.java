@@ -31,9 +31,14 @@ public class DTCloudableRuleController implements IDTCloudableRuleController {
 	}
 
 	@Override
-	public boolean deleteCloudableRule(int cloudabelRuleId) {
-		System.out.println(cloudabelRuleId+"************************");
-		return iDTCloudableRuleService.deleteCloudableRule(cloudabelRuleId);
+	public boolean deleteCloudableRule(int cloudableRuleId) {
+				return iDTCloudableRuleService.deleteCloudableRule(cloudableRuleId);
+	}
+
+	@Override
+	public DTCloudableRuleModel getCloudableRuleById(int cloudableRuleId) {
+		
+		return iDTCloudableRuleService.getCloudableRuleById(cloudableRuleId);
 	}
 
 }

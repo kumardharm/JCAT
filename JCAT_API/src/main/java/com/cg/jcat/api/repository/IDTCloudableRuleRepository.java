@@ -8,6 +8,6 @@ import com.cg.jcat.api.entity.DTCloudableRule;
 @Repository
 public interface IDTCloudableRuleRepository extends JpaRepository<DTCloudableRule, Integer> {
 
-	public DTCloudableRule findByCloudableRuleId(int cloudabelRuleId);
+	public DTCloudableRule findByCloudableRuleId(int cloudableRuleId);
 
 }

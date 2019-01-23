@@ -75,15 +75,23 @@ public class DTCloudableRuleDAO {
 				return deleteCloudableRuleById(cloudabelRuleId);
 	}
 
-	private boolean deleteCloudableRuleById(int cloudabelRuleId) {
-		DTCloudableRule dTCloudableRule=findByCloudableRuleId(cloudabelRuleId);
+	private boolean deleteCloudableRuleById(int cloudableRuleId) {
+		DTCloudableRule dTCloudableRule=findByCloudableRuleId(cloudableRuleId);
 		dTCloudableRule.setDelete(true);
 		return iDTCloudableRuleRepository.save(dTCloudableRule) != null;
 	}
 
-	private DTCloudableRule findByCloudableRuleId(int cloudabelRuleId) {
-		// TODO Auto-generated method stub
-		return iDTCloudableRuleRepository.findByCloudableRuleId(cloudabelRuleId);
+	private DTCloudableRule findByCloudableRuleId(int cloudableRuleId) {
+			return iDTCloudableRuleRepository.findByCloudableRuleId(cloudableRuleId);
+	}
+
+	public DTCloudableRuleModel getCloudableRuleById(int cloudableRuleId) {
+				return getCloudableRuleModelbyId(cloudableRuleId);
+	}
+
+	private DTCloudableRuleModel getCloudableRuleModelbyId(int cloudableRuleId) {
+		
+		return toDTCloudableRuleModel(findByCloudableRuleId(cloudableRuleId));
 	}
 
 	}

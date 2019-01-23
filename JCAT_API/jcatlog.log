@@ -1,0 +1,775 @@
+[01:22 12:26:23.497] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 12:26:23.498] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:26:23.499] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-7 - Shutdown initiated...
+ [01:22 12:26:23.510] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-7 - Shutdown completed.
+ [01:22 12:26:23.739] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 13168 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:26:23.739] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:26:23.987] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:26:24.020] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 33ms. Found 9 repository interfaces.
+ [01:22 12:26:24.062] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$626de26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:26:24.251] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:26:24.252] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:26:24.252] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:26:24.342] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:26:24.342] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 602 ms
+ [01:22 12:26:24.386] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-8 - Starting...
+ [01:22 12:26:24.391] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-8 - Start completed.
+ [01:22 12:26:24.401] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:26:24.436] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:26:24.582] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:26:24.588] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:26:24.786] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:26:24.786] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:26:24.907] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:26:24.908] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.187 seconds (JVM running for 372.181)
+ [01:22 12:26:24.910] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 12:26:24.911] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:29:49.761] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 12:29:49.762] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:29:49.763] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-8 - Shutdown initiated...
+ [01:22 12:29:49.778] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-8 - Shutdown completed.
+ [01:22 12:29:50.060] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 13168 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:29:50.060] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:29:50.336] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:29:50.398] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 62ms. Found 9 repository interfaces.
+ [01:22 12:29:50.513] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$626de26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:29:50.859] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:29:50.860] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:29:50.860] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:29:50.967] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:29:50.967] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 904 ms
+ [01:22 12:29:50.998] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-9 - Starting...
+ [01:22 12:29:51.010] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-9 - Start completed.
+ [01:22 12:29:51.021] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:29:51.056] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:29:51.275] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:29:51.282] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:29:51.577] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:29:51.582] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:29:51.672] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:29:51.673] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.648 seconds (JVM running for 578.952)
+ [01:22 12:29:51.675] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 12:29:51.675] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:48:52.495] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 12:48:52.496] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 12:48:52.503] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 7 ms
+ [01:22 12:48:52.562] [WARN] [o.s.w.s.m.s.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'cloudabelRuleId' for method parameter of type int]
+ [01:22 12:53:42.653] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 12:53:42.657] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:53:42.669] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-9 - Shutdown initiated...
+ [01:22 12:53:42.697] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-9 - Shutdown completed.
+ [01:22 12:53:43.005] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 13168 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:53:43.005] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:53:43.274] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:53:43.322] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 48ms. Found 9 repository interfaces.
+ [01:22 12:53:43.366] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$626de26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:53:43.634] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:53:43.634] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:53:43.635] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:53:43.762] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:53:43.762] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 754 ms
+ [01:22 12:53:43.803] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-10 - Starting...
+ [01:22 12:53:43.818] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-10 - Start completed.
+ [01:22 12:53:43.831] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:53:43.876] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:53:44.288] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:53:44.294] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:53:44.512] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:53:44.518] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:53:44.658] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:53:44.659] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.681 seconds (JVM running for 2011.925)
+ [01:22 12:53:44.661] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 12:53:44.661] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:53:51.224] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 12:53:51.225] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 12:53:51.229] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 4 ms
+ [01:22 12:53:51.232] [WARN] [o.s.w.s.m.s.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'cloudabelRuleId' for method parameter of type int]
+ [01:22 12:54:16.142] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 12:54:16.142] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:54:16.143] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-10 - Shutdown initiated...
+ [01:22 12:54:16.147] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-10 - Shutdown completed.
+ [01:22 12:54:16.415] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 13168 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:54:16.415] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:54:16.633] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:54:16.708] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 74ms. Found 9 repository interfaces.
+ [01:22 12:54:16.770] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$626de26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:54:17.062] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:54:17.063] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:54:17.063] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:54:17.185] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:54:17.185] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 769 ms
+ [01:22 12:54:17.217] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-11 - Starting...
+ [01:22 12:54:17.222] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-11 - Start completed.
+ [01:22 12:54:17.233] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:54:17.273] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:54:17.466] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:54:17.471] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:54:17.658] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:54:17.662] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:54:17.747] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:54:17.748] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.35 seconds (JVM running for 2045.012)
+ [01:22 12:54:17.749] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 12:54:17.749] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:54:21.237] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 12:54:21.239] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:54:21.239] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-11 - Shutdown initiated...
+ [01:22 12:54:21.245] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-11 - Shutdown completed.
+ [01:22 12:54:21.428] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 13168 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:54:21.429] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:54:21.639] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:54:21.682] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 43ms. Found 9 repository interfaces.
+ [01:22 12:54:21.713] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$626de26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:54:21.934] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:54:21.935] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:54:21.935] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:54:22.036] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:54:22.036] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 605 ms
+ [01:22 12:54:22.069] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-12 - Starting...
+ [01:22 12:54:22.074] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-12 - Start completed.
+ [01:22 12:54:22.085] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:54:22.125] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:54:22.278] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:54:22.283] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:54:22.455] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:54:22.459] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:54:22.522] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:54:22.522] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.115 seconds (JVM running for 2049.787)
+ [01:22 12:54:22.524] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 12:54:22.524] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:54:49.560] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 12:54:49.561] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 12:54:49.563] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 2 ms
+ [01:22 12:54:49.567] [WARN] [o.s.w.s.m.s.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'cloudabelRuleId' for method parameter of type int]
+ [01:22 12:55:21.173] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 12:55:21.174] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:55:21.176] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-12 - Shutdown initiated...
+ [01:22 12:55:21.196] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-12 - Shutdown completed.
+ [01:22 12:55:21.440] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 13168 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:55:21.440] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:55:21.639] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:55:21.699] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 60ms. Found 9 repository interfaces.
+ [01:22 12:55:21.754] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$626de26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:55:21.937] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:55:21.937] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:55:21.938] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:55:22.034] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:55:22.034] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 592 ms
+ [01:22 12:55:22.062] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-13 - Starting...
+ [01:22 12:55:22.074] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-13 - Start completed.
+ [01:22 12:55:22.086] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:55:22.146] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:55:22.353] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:55:22.359] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:55:22.563] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:55:22.567] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:55:22.631] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:55:22.631] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.213 seconds (JVM running for 2109.894)
+ [01:22 12:55:22.632] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 12:55:22.632] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:55:46.409] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 12:55:46.410] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 12:55:46.413] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 3 ms
+ [01:22 12:55:46.416] [WARN] [o.s.w.s.m.s.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'cloudabelRuleId' for method parameter of type int]
+ [01:22 12:58:02.110] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 12:58:02.112] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:58:02.115] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-13 - Shutdown initiated...
+ [01:22 12:58:02.135] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-13 - Shutdown completed.
+ [01:22 12:58:02.416] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 13168 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:58:02.416] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:58:02.598] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:58:02.638] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 40ms. Found 9 repository interfaces.
+ [01:22 12:58:02.677] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$626de26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:58:02.900] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:58:02.901] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:58:02.901] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:58:03.020] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:58:03.020] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 603 ms
+ [01:22 12:58:03.049] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-14 - Starting...
+ [01:22 12:58:03.055] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-14 - Start completed.
+ [01:22 12:58:03.066] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:58:03.100] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:58:03.240] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:58:03.247] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:58:03.411] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:58:03.415] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:58:03.510] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:58:03.511] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.116 seconds (JVM running for 2270.769)
+ [01:22 12:58:03.514] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 12:58:03.514] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:58:17.061] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 12:58:17.062] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 12:58:17.067] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 5 ms
+ [01:22 12:58:17.078] [ERROR] [o.a.c.c.C.[.[.[.[dispatcherServlet]] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalArgumentException: Name for argument type [java.lang.Integer] not available, and parameter name information not found in class file either.] with root cause
+ java.lang.IllegalArgumentException: Name for argument type [java.lang.Integer] not available, and parameter name information not found in class file either.
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.updateNamedValueInfo(AbstractNamedValueMethodArgumentResolver.java:172) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.getNamedValueInfo(AbstractNamedValueMethodArgumentResolver.java:149) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:98) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:126) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:166) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:134) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:930) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1417) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0_152]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0_152]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0_152]
+[01:22 12:58:31.316] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 12:58:31.317] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:58:31.318] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-14 - Shutdown initiated...
+ [01:22 12:58:31.332] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-14 - Shutdown completed.
+ [01:22 12:58:31.611] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 13168 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:58:31.611] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:58:31.807] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:58:31.845] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 38ms. Found 9 repository interfaces.
+ [01:22 12:58:31.878] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$626de26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:58:32.099] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:58:32.099] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:58:32.100] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:58:32.203] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:58:32.203] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 591 ms
+ [01:22 12:58:32.232] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-15 - Starting...
+ [01:22 12:58:32.243] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-15 - Start completed.
+ [01:22 12:58:32.255] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:58:32.294] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:58:32.450] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:58:32.460] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:58:32.731] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:58:32.739] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:58:32.845] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:58:32.846] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.256 seconds (JVM running for 2300.103)
+ [01:22 12:58:32.847] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 12:58:32.847] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:59:16.746] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 12:59:16.750] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 12:59:16.817] [INFO] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+ [01:22 12:59:16.817] [INFO] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+ [01:22 12:59:18.297] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 12:59:18.506] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 194ms. Found 9 repository interfaces.
+ [01:22 12:59:19.098] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 12:59:19.907] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 12:59:19.952] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 12:59:19.953] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 12:59:19.975] [INFO] [o.a.c.core.AprLifecycleListener] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_152\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_152/bin/server;C:/Program Files/Java/jre1.8.0_152/bin;C:/Program Files/Java/jre1.8.0_152/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\CapgeminiScripts\Support Tools\;C:\Program Files\PuTTY\;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_172\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\TortoiseSVN\bin;C:\SW\mysql-8.0.11-winx64-debug-test\mysql-8.0.11-winx64\bin;C:\tools\mysql\current\bin,C:\Installers\java1.8_191\tools\bin;;C:\Installers\eclipse-jee-oxygen-3a-win32-x86_64\eclipse;;.]
+ [01:22 12:59:20.280] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 12:59:20.281] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 3464 ms
+ [01:22 12:59:20.543] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+ [01:22 12:59:20.741] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+ [01:22 12:59:20.825] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 12:59:20.966] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 12:59:20.967] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 12:59:21.200] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 12:59:21.462] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 12:59:22.615] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 12:59:22.641] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 12:59:23.928] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 12:59:24.200] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 12:59:24.567] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 12:59:24.570] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 8.355 seconds (JVM running for 9.224)
+ [01:22 12:59:24.574] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 12:59:29.375] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 12:59:29.375] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 12:59:29.384] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 9 ms
+ [01:22 12:59:29.451] [WARN] [o.s.w.s.m.s.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'cloudabelRuleId' for method parameter of type int]
+ [01:22 13:01:42.499] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 13:01:42.515] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:01:42.522] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+ [01:22 13:01:42.541] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+ [01:22 13:01:42.813] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 13:01:42.813] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 13:01:43.285] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 13:01:43.435] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 150ms. Found 9 repository interfaces.
+ [01:22 13:01:43.517] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 13:01:44.026] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 13:01:44.029] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 13:01:44.029] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 13:01:44.222] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 13:01:44.223] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 1406 ms
+ [01:22 13:01:44.293] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-2 - Starting...
+ [01:22 13:01:44.309] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-2 - Start completed.
+ [01:22 13:01:44.330] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 13:01:44.400] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 13:01:44.748] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:01:44.758] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 13:01:45.045] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 13:01:45.050] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 13:01:45.193] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 13:01:45.194] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 2.418 seconds (JVM running for 149.842)
+ [01:22 13:01:45.198] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 13:01:45.198] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 13:01:52.066] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 13:01:52.067] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 13:01:52.073] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 6 ms
+ [01:22 13:01:52.078] [WARN] [o.s.w.s.m.s.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'cloudabelRuleId' for method parameter of type int]
+ [01:22 13:04:48.569] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 13:04:48.572] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:04:48.573] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-2 - Shutdown initiated...
+ [01:22 13:04:48.584] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-2 - Shutdown completed.
+ [01:22 13:04:48.868] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 13:04:48.868] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 13:04:49.311] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 13:04:49.419] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 108ms. Found 9 repository interfaces.
+ [01:22 13:04:49.515] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 13:04:49.926] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 13:04:49.929] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 13:04:49.929] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 13:04:50.083] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 13:04:50.083] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 1213 ms
+ [01:22 13:04:50.151] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-3 - Starting...
+ [01:22 13:04:50.160] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-3 - Start completed.
+ [01:22 13:04:50.178] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 13:04:50.246] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 13:04:50.540] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:04:50.548] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 13:04:50.846] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 13:04:50.853] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 13:04:50.987] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 13:04:50.987] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 2.147 seconds (JVM running for 335.629)
+ [01:22 13:04:50.990] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 13:04:50.992] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 13:04:55.986] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 13:04:55.987] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 13:04:55.994] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 7 ms
+ [01:22 13:04:56.054] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 13:09:26.618] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 13:09:26.622] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:09:26.624] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-3 - Shutdown initiated...
+ [01:22 13:09:26.646] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-3 - Shutdown completed.
+ [01:22 13:09:27.000] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 13:09:27.000] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 13:09:27.398] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 13:09:27.458] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 59ms. Found 9 repository interfaces.
+ [01:22 13:09:27.540] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 13:09:27.855] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 13:09:27.856] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 13:09:27.856] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 13:09:27.988] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 13:09:27.988] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 985 ms
+ [01:22 13:09:28.065] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-4 - Starting...
+ [01:22 13:09:28.081] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-4 - Start completed.
+ [01:22 13:09:28.098] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 13:09:28.168] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 13:09:28.414] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:09:28.420] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 13:09:28.685] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 13:09:28.690] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 13:09:28.816] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 13:09:28.816] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.865 seconds (JVM running for 613.448)
+ [01:22 13:09:28.819] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 13:09:28.819] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 13:11:38.246] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 13:11:38.250] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:11:38.253] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-4 - Shutdown initiated...
+ [01:22 13:11:38.267] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-4 - Shutdown completed.
+ [01:22 13:11:38.573] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 13:11:38.574] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 13:11:39.032] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 13:11:39.088] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 55ms. Found 9 repository interfaces.
+ [01:22 13:11:39.164] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 13:11:40.207] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 13:11:40.208] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 13:11:40.231] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 13:11:40.516] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 13:11:40.516] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 1939 ms
+ [01:22 13:11:40.560] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-5 - Starting...
+ [01:22 13:11:40.570] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-5 - Start completed.
+ [01:22 13:11:40.592] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 13:11:40.658] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 13:11:40.893] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:11:40.899] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 13:11:41.161] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 13:11:41.166] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 13:11:41.277] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 13:11:41.278] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 2.741 seconds (JVM running for 745.905)
+ [01:22 13:11:41.280] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 13:11:41.281] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 13:11:51.436] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 13:11:51.437] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:11:51.438] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-5 - Shutdown initiated...
+ [01:22 13:11:51.442] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-5 - Shutdown completed.
+ [01:22 13:11:51.655] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 13:11:51.656] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 13:11:52.057] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 13:11:52.146] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 89ms. Found 9 repository interfaces.
+ [01:22 13:11:52.206] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 13:11:52.722] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 13:11:52.723] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 13:11:52.723] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 13:11:52.890] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 13:11:52.890] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 1231 ms
+ [01:22 13:11:52.943] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-6 - Starting...
+ [01:22 13:11:52.949] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-6 - Start completed.
+ [01:22 13:11:52.968] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 13:11:53.035] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 13:11:53.247] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:11:53.254] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 13:11:53.498] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 13:11:53.503] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 13:11:53.627] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 13:11:53.628] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 2.006 seconds (JVM running for 758.254)
+ [01:22 13:11:53.631] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 13:11:53.632] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 13:12:31.990] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 13:12:31.993] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:12:31.996] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-6 - Shutdown initiated...
+ [01:22 13:12:32.015] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-6 - Shutdown completed.
+ [01:22 13:12:32.307] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 13:12:32.308] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 13:12:32.686] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 13:12:32.740] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 54ms. Found 9 repository interfaces.
+ [01:22 13:12:32.792] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 13:12:33.071] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 13:12:33.072] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 13:12:33.072] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 13:12:33.181] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 13:12:33.181] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 871 ms
+ [01:22 13:12:33.230] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-7 - Starting...
+ [01:22 13:12:33.239] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-7 - Start completed.
+ [01:22 13:12:33.255] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 13:12:33.313] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 13:12:33.616] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:12:33.624] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 13:12:33.867] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 13:12:33.872] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 13:12:33.975] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 13:12:33.976] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.701 seconds (JVM running for 798.601)
+ [01:22 13:12:33.978] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 13:12:33.978] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 13:20:05.880] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 13:20:05.881] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:20:05.882] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-7 - Shutdown initiated...
+ [01:22 13:20:05.889] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-7 - Shutdown completed.
+ [01:22 13:20:06.145] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 13:20:06.146] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 13:20:06.447] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 13:20:06.514] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 67ms. Found 9 repository interfaces.
+ [01:22 13:20:06.635] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 13:20:06.995] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 13:20:06.996] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 13:20:06.996] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 13:20:07.108] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 13:20:07.108] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 960 ms
+ [01:22 13:20:07.151] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-8 - Starting...
+ [01:22 13:20:07.158] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-8 - Start completed.
+ [01:22 13:20:07.169] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 13:20:07.206] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 13:20:07.415] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:20:07.422] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 13:20:07.671] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 13:20:07.677] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 13:20:07.777] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 13:20:07.778] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.667 seconds (JVM running for 1252.388)
+ [01:22 13:20:07.781] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 13:20:07.781] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 13:20:50.745] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 13:20:50.749] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:20:50.751] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-8 - Shutdown initiated...
+ [01:22 13:20:50.772] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-8 - Shutdown completed.
+ [01:22 13:20:51.114] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 13:20:51.114] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 13:20:51.445] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 13:20:51.496] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 51ms. Found 9 repository interfaces.
+ [01:22 13:20:51.544] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 13:20:51.904] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 13:20:51.905] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 13:20:51.906] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 13:20:52.026] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 13:20:52.026] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 908 ms
+ [01:22 13:20:52.070] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-9 - Starting...
+ [01:22 13:20:52.077] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-9 - Start completed.
+ [01:22 13:20:52.094] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 13:20:52.173] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 13:20:52.442] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 13:20:52.451] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 13:20:52.723] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 13:20:52.727] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 13:20:52.812] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 13:20:52.812] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.724 seconds (JVM running for 1297.42)
+ [01:22 13:20:52.818] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 13:20:52.818] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 13:21:02.787] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ [01:22 13:21:02.788] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+ [01:22 13:21:02.790] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 2 ms
+ [01:22 13:21:02.794] [WARN] [o.s.w.s.m.s.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'DELETE' not supported]
+ [01:22 13:21:11.460] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 13:21:39.649] [WARN] [o.s.w.s.m.s.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'DELETE' not supported]
+ [01:22 14:56:37.538] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Starting TestDTCloudableRule on LIN16010862 with PID 14016 (started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 14:56:37.540] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - No active profile set, falling back to default profiles: default
+ [01:22 14:56:39.149] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 14:56:39.324] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 165ms. Found 9 repository interfaces.
+ [01:22 14:56:39.865] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2581bff4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 14:56:40.210] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+ [01:22 14:56:40.503] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+ [01:22 14:56:40.591] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 14:56:40.720] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 14:56:40.722] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 14:56:40.964] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 14:56:41.341] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 14:56:42.623] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 14:56:44.310] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 14:56:44.676] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 14:56:45.437] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Started TestDTCloudableRule in 8.469 seconds (JVM running for 10.142)
+ [01:22 14:56:45.797] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 14:56:46.082] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 14:56:46.085] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 14:56:46.093] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+ [01:22 14:56:46.127] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+ [01:22 14:58:23.599] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Starting TestDTCloudableRule on LIN16010862 with PID 16272 (started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 14:58:23.600] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - No active profile set, falling back to default profiles: default
+ [01:22 14:58:25.213] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 14:58:25.402] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 179ms. Found 9 repository interfaces.
+ [01:22 14:58:26.143] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e3a77b16] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 14:58:26.549] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+ [01:22 14:58:26.870] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+ [01:22 14:58:26.962] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 14:58:27.054] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 14:58:27.056] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 14:58:27.281] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 14:58:27.572] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 14:58:28.648] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 14:58:30.295] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 14:58:30.375] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 14:58:31.216] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Started TestDTCloudableRule in 8.37 seconds (JVM running for 9.855)
+ [01:22 14:58:31.619] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 14:58:31.946] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 14:58:31.955] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 14:58:31.962] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+ [01:22 14:58:32.044] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+ [01:22 15:03:37.582] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Starting TestDTCloudableRule on LIN16010862 with PID 12372 (started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 15:03:37.584] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - No active profile set, falling back to default profiles: default
+ [01:22 15:03:39.019] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 15:03:39.202] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 171ms. Found 9 repository interfaces.
+ [01:22 15:03:39.721] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b68eea5d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 15:03:40.059] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+ [01:22 15:03:40.343] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+ [01:22 15:03:40.413] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 15:03:40.504] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 15:03:40.506] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 15:03:40.668] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 15:03:40.957] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 15:03:41.968] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:03:43.551] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 15:03:43.664] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 15:03:44.711] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Started TestDTCloudableRule in 7.623 seconds (JVM running for 9.068)
+ [01:22 15:03:45.307] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 15:03:45.481] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 15:03:45.491] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:03:45.503] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+ [01:22 15:03:45.520] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+ [01:22 15:48:48.497] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Starting TestDTCloudableRule on LIN16010862 with PID 3100 (started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 15:48:48.500] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - No active profile set, falling back to default profiles: default
+ [01:22 15:48:59.902] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 15:49:00.060] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 149ms. Found 9 repository interfaces.
+ [01:22 15:49:00.549] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2ef2d56f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 15:49:00.821] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+ [01:22 15:49:01.062] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+ [01:22 15:49:01.138] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 15:49:01.226] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 15:49:01.227] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 15:49:01.394] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 15:49:01.680] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 15:49:02.702] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:49:04.196] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 15:49:04.308] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 15:49:04.972] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Started TestDTCloudableRule in 17.0 seconds (JVM running for 18.384)
+ [01:22 15:49:05.370] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 15:49:05.535] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 15:49:05.548] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:49:05.554] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+ [01:22 15:49:05.573] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+ [01:22 15:56:12.501] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 15:56:12.506] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:56:12.512] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-9 - Shutdown initiated...
+ [01:22 15:56:12.518] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-9 - Shutdown completed.
+ [01:22 15:56:13.107] [INFO] [com.cg.jcat.api.JcatApiApplication] - Starting JcatApiApplication on LIN16010862 with PID 17520 (C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API\target\classes started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 15:56:13.108] [INFO] [com.cg.jcat.api.JcatApiApplication] - No active profile set, falling back to default profiles: default
+ [01:22 15:56:13.815] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 15:56:13.920] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 104ms. Found 9 repository interfaces.
+ [01:22 15:56:14.314] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42ef8d30] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 15:56:15.324] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8099 (http)
+ [01:22 15:56:15.325] [INFO] [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+ [01:22 15:56:15.325] [INFO] [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.14]
+ [01:22 15:56:15.522] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Starting TestDTCloudableRule on LIN16010862 with PID 9988 (started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 15:56:15.524] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - No active profile set, falling back to default profiles: default
+ [01:22 15:56:15.545] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+ [01:22 15:56:15.545] [INFO] [o.s.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 2434 ms
+ [01:22 15:56:15.719] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-10 - Starting...
+ [01:22 15:56:15.739] [INFO] [com.zaxxer.hikari.HikariDataSource] - HikariPool-10 - Start completed.
+ [01:22 15:56:15.769] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 15:56:15.854] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:22 15:56:16.637] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:56:16.650] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:22 15:56:17.946] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 15:56:18.169] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 15:56:18.532] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:22 15:56:18.532] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 5.467 seconds (JVM running for 10623.211)
+ [01:22 15:56:18.534] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:22 15:56:18.534] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+ [01:22 15:56:19.160] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 15:56:19.403] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 231ms. Found 9 repository interfaces.
+ [01:22 15:56:19.596] [INFO] [o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor] - Replacing 'dataSource' DataSource bean with embedded version
+ [01:22 15:56:20.327] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$93bf0c40] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 15:56:20.489] [INFO] [o.s.j.d.e.EmbeddedDatabaseFactory] - Starting embedded database: url='jdbc:h2:mem:e71c7fde-a7d3-435f-acd5-3b68e2d6e9db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+ [01:22 15:56:20.966] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 15:56:21.032] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 15:56:21.034] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 15:56:21.203] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 15:56:21.407] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+ [01:22 15:56:22.438] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:56:23.863] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 15:56:24.187] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 15:56:24.691] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Started TestDTCloudableRule in 10.354 seconds (JVM running for 12.843)
+ [01:22 15:56:25.045] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 15:56:25.217] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 15:56:25.222] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:57:22.428] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Starting TestDTCloudableRule on LIN16010862 with PID 8928 (started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 15:57:22.431] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - No active profile set, falling back to default profiles: default
+ [01:22 15:57:24.015] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 15:57:24.173] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 148ms. Found 9 repository interfaces.
+ [01:22 15:57:24.327] [INFO] [o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor] - Replacing 'dataSource' DataSource bean with embedded version
+ [01:22 15:57:24.716] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7dfeb1e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 15:57:24.853] [INFO] [o.s.j.d.e.EmbeddedDatabaseFactory] - Starting embedded database: url='jdbc:h2:mem:de3e6cb1-4a79-419f-b461-a31dcd08b5c2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+ [01:22 15:57:25.320] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 15:57:25.381] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 15:57:25.382] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 15:57:25.571] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 15:57:25.755] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+ [01:22 15:57:26.742] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 15:57:28.174] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 15:57:28.456] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 15:57:29.055] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Started TestDTCloudableRule in 7.162 seconds (JVM running for 8.58)
+ [01:22 15:57:29.361] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 15:57:29.523] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 15:57:29.540] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 16:01:01.762] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Starting TestDTCloudableRule on LIN16010862 with PID 3864 (started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 16:01:01.772] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - No active profile set, falling back to default profiles: default
+ [01:22 16:01:03.210] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 16:01:03.379] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 159ms. Found 9 repository interfaces.
+ [01:22 16:01:03.546] [INFO] [o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor] - Replacing 'dataSource' DataSource bean with embedded version
+ [01:22 16:01:03.954] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ef5ffe79] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 16:01:04.133] [INFO] [o.s.j.d.e.EmbeddedDatabaseFactory] - Starting embedded database: url='jdbc:h2:mem:46f40b96-ca47-4552-89f2-47d4f42ceed7;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+ [01:22 16:01:04.618] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 16:01:04.678] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 16:01:04.680] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 16:01:04.837] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 16:01:05.029] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+ [01:22 16:01:06.026] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 16:01:07.496] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 16:01:07.856] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 16:01:08.354] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Started TestDTCloudableRule in 7.117 seconds (JVM running for 8.625)
+ [01:22 16:01:08.668] [INFO] [o.h.h.i.QueryTranslatorFactoryInitiator] - HHH000397: Using ASTQueryTranslatorFactory
+ [01:22 16:01:08.807] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 16:01:08.812] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 16:07:08.206] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Starting TestDTCloudableRule on LIN16010862 with PID 16544 (started by komjagta in C:\Users\komjagta\JCAT\Project\JCAT\JCAT_API)
+ [01:22 16:07:08.208] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - No active profile set, falling back to default profiles: default
+ [01:22 16:07:09.673] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+ [01:22 16:07:09.844] [INFO] [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 162ms. Found 9 repository interfaces.
+ [01:22 16:07:10.002] [INFO] [o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor] - Replacing 'dataSource' DataSource bean with embedded version
+ [01:22 16:07:10.384] [INFO] [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b085d2c5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ [01:22 16:07:10.566] [INFO] [o.s.j.d.e.EmbeddedDatabaseFactory] - Starting embedded database: url='jdbc:h2:mem:568ba2e6-6579-4632-9d2c-bc5fec43c425;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+ [01:22 16:07:11.082] [INFO] [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+ [01:22 16:07:11.146] [INFO] [org.hibernate.Version] - HHH000412: Hibernate Core {5.3.7.Final}
+ [01:22 16:07:11.148] [INFO] [org.hibernate.cfg.Environment] - HHH000206: hibernate.properties not found
+ [01:22 16:07:11.331] [INFO] [o.h.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+ [01:22 16:07:11.510] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+ [01:22 16:07:12.689] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 16:07:14.132] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:22 16:07:14.435] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:22 16:07:14.960] [INFO] [c.c.jcat.api.dao.TestDTCloudableRule] - Started TestDTCloudableRule in 7.343 seconds (JVM running for 8.843)
+ [01:22 16:07:15.139] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+ [01:22 16:07:15.145] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+ [01:22 21:20:02.566] [WARN] [com.zaxxer.hikari.pool.HikariPool] - HikariPool-10 - Thread starvation or clock leap detected (housekeeper delta=2h26m57s69ms898µs507ns).
+ 

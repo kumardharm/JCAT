@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.exception.JcatExceptions;
@@ -14,22 +15,21 @@ import com.cg.jcat.api.exception.JcatExceptions;
 @Component
 public class UserService implements IUserService {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
+	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 	@Autowired
 	private UserDao userDao;
 
 	@Override
 	public List<UserModel> getUsers() {
 		List<UserModel> users = userDao.getUsers();
-		LOGGER.info("Retrieved " + users.size() + " users from DB!");
+		logger.info("Retrieved " + users.size() + " users from DB!");
 		return users;
 	}
 
 	@Override
 	public boolean saveUser(UserModel user, String createdBy) throws JcatExceptions {
 		boolean isSaved = userDao.createUser(user, createdBy);
-		LOGGER.info("User " + user.getUsername() + " successfully saved in DB!" + isSaved);
+		logger.info("User " + user.getUsername() + " successfully saved in DB!" + isSaved);
 		return isSaved;
 	}
 
@@ -37,14 +37,14 @@ public class UserService implements IUserService {
 	public boolean updateUsers(UserModel user, String modifiedBy) throws JcatExceptions {
 
 		boolean isUpdated = userDao.updateUsers(user, modifiedBy);
-		LOGGER.info("User " + user.getUsername() + " successfully updated in DB!" + isUpdated);
+		logger.info("User " + user.getUsername() + " successfully updated in DB!" + isUpdated);
 		return isUpdated;
 	}
 
 	@Override
 	public boolean deleteById(int userId) throws JcatExceptions {
 		boolean isDeleted = userDao.deleteById(userId);
-		LOGGER.info("User " + userId + " successfully deleted from DB!" + isDeleted);
+		logger.info("User " + userId + " successfully deleted from DB!" + isDeleted);
 		return isDeleted;
 	}
 

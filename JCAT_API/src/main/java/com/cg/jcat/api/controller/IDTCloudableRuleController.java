@@ -28,7 +28,8 @@ public interface IDTCloudableRuleController {
 	public boolean updateCloudablerule(@RequestBody DTCloudableRuleModel dTCloudableRuleModel);
 	
 	@DeleteMapping("/delete/{cloudableRuleId}")
-	public  boolean deleteCloudableRule(@PathVariable int cloudabelRuleId);
+	public  boolean deleteCloudableRule(@PathVariable int cloudableRuleId);
 
-	
+	@GetMapping("/get/{cloudableRuleId}")
+	public DTCloudableRuleModel getCloudableRuleById(@PathVariable int cloudableRuleId);
 }

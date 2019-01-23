@@ -27,8 +27,12 @@ public class DTCloudableRuleService implements IDTCloudableRuleService {
 		return dTCloudableRuleDAO.updateCloudablerule(dTCloudableRuleModel);
 	}
 	@Override
-	public boolean deleteCloudableRule(int cloudabelRuleId) {
+	public boolean deleteCloudableRule(int cloudableRuleId) {
 		
-		return dTCloudableRuleDAO.deleteCloudableRule(cloudabelRuleId);
+		return dTCloudableRuleDAO.deleteCloudableRule(cloudableRuleId);
+	}
+	@Override
+	public DTCloudableRuleModel getCloudableRuleById(int cloudableRuleId) {
+			return dTCloudableRuleDAO.getCloudableRuleById(cloudableRuleId);
 	}
 }
