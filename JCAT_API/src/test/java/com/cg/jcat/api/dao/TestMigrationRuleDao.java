@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IDTMigrationRuleHistoryRepository;
 
 @RunWith(SpringRunner.class)
@@ -25,12 +26,9 @@ public class TestMigrationRuleDao {
 	@Autowired
 	DTMigrationRuleDao dtMigrationRuleDao;
 	
-	@Autowired
-	IDTMigrationRuleHistoryRepository dtMigrationRuleHistoryRepository;
-	
 	
 	@Test
-	public void testSaveQuestionOption() {
+	public void testSaveQuestionOption() throws SystemExceptions {
 		
 		List<DTMigrationRuleModel> migrationRuleList = new ArrayList<>();
 		migrationRuleList.add(toGetMigrationRule());

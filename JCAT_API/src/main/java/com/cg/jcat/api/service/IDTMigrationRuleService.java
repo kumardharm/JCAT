@@ -7,16 +7,15 @@ import org.springframework.stereotype.Service;
 import com.cg.jcat.api.dao.DTMigrationModel;
 import com.cg.jcat.api.dao.DTMigrationRuleModel;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
 
 @Service
 public interface IDTMigrationRuleService {
 	
 	public List<DTMigrationRuleModel> getMigrationRule() throws JcatExceptions;
 	
-	public boolean saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModel)  throws JcatExceptions;
+	public boolean saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModel)  throws SystemExceptions;
 	
-	public boolean updateMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) throws JcatExceptions;
-
 	public List<DTMigrationModel> getMigrationPattern();
 
 }
