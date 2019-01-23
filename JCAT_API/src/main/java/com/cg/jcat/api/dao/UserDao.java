@@ -8,11 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-<<<<<<< HEAD
+
 import com.cg.jcat.api.JcatApiApplication;
-=======
+
 import com.cg.jcat.api.controller.UserController;
->>>>>>> 50524e4c6445a8c53005f1e6f422bd930cc2073a
+
 import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.DeleteUserException;
 import com.cg.jcat.api.exception.JcatExceptions;
