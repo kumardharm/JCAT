@@ -5,34 +5,31 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.jcat.api.dao.DTCloudProviderRuleDao;
+import com.cg.jcat.api.dao.DTProviderRuleDao;
 import com.cg.jcat.api.dao.DTProviderRuleModel;
-import com.cg.jcat.api.dao.DTCProvidersModel;
+import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
 @Component
-public class DTCloudProviderRuleService implements IDTCloudProviderRuleService{
+public class DTProviderRuleService implements IDTProviderRuleService{
 
 	@Autowired
-	private DTCloudProviderRuleDao dtCloudProviderDao;
+	private DTProviderRuleDao dtCloudProviderDao;
 	@Override
-	public List<DTCProvidersModel> getCloudProvider() {
+	public List<DTProvidersModel> getCloudProvider() {
 		
 		return dtCloudProviderDao.getCloudProvider();
 	}
-	@Override
-	public boolean updateCloudProviderRules(DTProviderRuleModel cloudProviderRuleModel) throws JcatExceptions {
-		
-		return dtCloudProviderDao.updateCloudProviderRules(cloudProviderRuleModel);
-	}
+	
 	@Override
 	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) {
 		boolean afterSavedValue = false; 
-		for(DTProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList)
-		{
-			afterSavedValue= dtCloudProviderDao.saveCloudProviderRule(cloudProviderRuleModel);
-		}
+		
+//		for(DTProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList)
+//		{
+			afterSavedValue= dtCloudProviderDao.saveCloudProviderRule(cloudProviderRuleModelList);
+//		}
 		return afterSavedValue;
 	}
 	@Override

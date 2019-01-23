@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jcat.api.dao.DTProviderRuleModel;
-import com.cg.jcat.api.dao.DTCProvidersModel;
+import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
 
 @RestController
 @RequestMapping("/cloudProvider")
-public interface IDTCloudProviderRuleController {
+public interface IDTProviderRuleController {
 	
 	@GetMapping("/getAll")
-	public List<DTCProvidersModel> getCloudProvider() throws SystemExceptions;
+	public List<DTProvidersModel> getCloudProvider() throws SystemExceptions;
 	
 	@GetMapping("/getAllRules")
 	public List<DTProviderRuleModel> getCloudProviderRules();
@@ -27,7 +27,4 @@ public interface IDTCloudProviderRuleController {
 	@PostMapping("/create")
 	public boolean saveCloudProviderRule(@RequestBody List<DTProviderRuleModel> cloudProviderRuleModelList);
 	
-	@PutMapping("/update")
-	public boolean updateCloudProviderRules(@RequestBody DTProviderRuleModel cloudProviderRuleModel) throws JcatExceptions;
-
 }

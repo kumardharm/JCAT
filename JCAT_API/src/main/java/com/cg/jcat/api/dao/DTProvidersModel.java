@@ -2,7 +2,7 @@ package com.cg.jcat.api.dao;
 
 
 
-public class DTCProvidersModel {
+public class DTProvidersModel {
 	
 	private int providerId;
 	private int evaluationOrder;

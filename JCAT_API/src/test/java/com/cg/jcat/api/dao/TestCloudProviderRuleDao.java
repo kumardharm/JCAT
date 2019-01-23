@@ -22,7 +22,7 @@ import com.cg.jcat.api.exception.JcatExceptions;
 public class TestCloudProviderRuleDao {
 	
 	@Autowired
-	private DTCloudProviderRuleDao cloudProviderRuleDao;
+	private DTProviderRuleDao cloudProviderRuleDao;
 
 	@Test
 	@Ignore

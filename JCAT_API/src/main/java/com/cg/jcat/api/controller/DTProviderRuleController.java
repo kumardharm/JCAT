@@ -8,41 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.dao.DTProviderRuleModel;
-import com.cg.jcat.api.dao.DTCProvidersModel;
+import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
-import com.cg.jcat.api.service.IDTCloudProviderRuleService;
+import com.cg.jcat.api.service.IDTProviderRuleService;
 @Component
-public class DTCloudProviderRuleController implements IDTCloudProviderRuleController{
+public class DTProviderRuleController implements IDTProviderRuleController{
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	private IDTCloudProviderRuleService dtCloudProviderService;
+	private IDTProviderRuleService dtCloudProviderService;
 
 	@Override
-	public List<DTCProvidersModel> getCloudProvider() throws SystemExceptions {
+	public List<DTProvidersModel> getCloudProvider() throws SystemExceptions {
 		try {
 		return dtCloudProviderService.getCloudProvider();
 		}catch (Exception e) {
 			LOGGER.error("Error in getting all cloud providers : getCloudProvider()", e);
 			throw new SystemExceptions("getCloudProvider()");
 		}
-	}
-
-	@Override
-	public boolean updateCloudProviderRules(DTProviderRuleModel cloudProviderRuleModel) throws JcatExceptions {
-		boolean modifiedValue = false;
-		try {
-			modifiedValue = dtCloudProviderService.updateCloudProviderRules(cloudProviderRuleModel);
-		}catch (JcatExceptions e) {
-			LOGGER.error("Error while updating cloud provider rules " + cloudProviderRuleModel.getProviderId(), e);
-			throw e;
-		}
-		return modifiedValue;
-		
 	}
 
 	@Override
