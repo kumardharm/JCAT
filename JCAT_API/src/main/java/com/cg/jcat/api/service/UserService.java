@@ -36,7 +36,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean updateUsers(UserModel user, String modifiedBy)  throws SystemExceptions  {
+	public boolean updateUsers(UserModel user, String modifiedBy)  throws SystemExceptions, UserAlreadyExistsException  {
 
 		boolean isUpdated = userDao.updateUsers(user, modifiedBy);
 		logger.info("User " + user.getUsername() + " successfully updated in DB!" + isUpdated);

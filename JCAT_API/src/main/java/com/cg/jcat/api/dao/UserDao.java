@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import org.springframework.transaction.TransactionSystemException;
 
 import com.cg.jcat.api.JcatApiApplication;
 
@@ -60,28 +60,30 @@ public class UserDao {
 	}
 
 	public boolean createUser(UserModel userModel, String createdBy) throws UserAlreadyExistsException, SystemExceptions  {
-		User existingUser = userRepository.findByUsername(userModel.getUsername());
-		if (existingUser != null) {
-			throw new  UserAlreadyExistsException(userModel.getUsername());
+//		User existingUser = userRepository.findByUsername(userModel.getUsername());
+//		if (existingUser != null) {
+//			throw new  UserAlreadyExistsException(userModel.getUsername());
 //			throw new JcatExceptions("User with " + userModel.getUsername() + " already exists in DB ");
-		}
+//		}
 		userModel.setCreatedBy(createdBy);
 		userModel.setPassword("Cg@123");
 		return saveUser(userModel);
 	}
 
-	public boolean saveUser(UserModel userModel) throws SystemExceptions{
+	public boolean saveUser(UserModel userModel) throws SystemExceptions, UserAlreadyExistsException{
 		boolean value = false;
 		try {
 			User savedUser = userRepository.save(toUsers(userModel));
 			if (savedUser != null) {
 				value = true;
 			}
-		} catch (Exception e) {
-			logger.error("Error while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage(), e);
-
-					
-			throw new SystemExceptions("saveUser");
+		}catch (TransactionSystemException e) {
+			logger.error("User with " + userModel.getUsername() + " already exists in DB ");
+			throw new UserAlreadyExistsException(userModel.getUsername());
+		} 
+		catch (Exception e) {
+			logger.error("Error while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage(), e);				
+			throw new SystemExceptions("saveUser()");
 			
 //			throw new JcatExceptions(
 //					"Exception while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage());
@@ -90,11 +92,11 @@ public class UserDao {
 		return value;
 	}
 
-	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions   {
+	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException   {
 		return setUpdatedUser(user, modifiedBy);
 	}
 
-	public boolean setUpdatedUser(UserModel user, String modifiedBy) throws SystemExceptions  {
+	public boolean setUpdatedUser(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException  {
 
 		user.setModifiedBy(modifiedBy);
 		return saveUser(user);

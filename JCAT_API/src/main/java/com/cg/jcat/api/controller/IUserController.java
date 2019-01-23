@@ -27,7 +27,7 @@ public interface IUserController {
 	public boolean saveUser(@PathVariable String createdBy, @RequestBody UserModel user) throws UserAlreadyExistsException, SystemExceptions;
 	
 	@PutMapping("/update/{modifiedBy}")
-	public boolean updateUserId(@PathVariable String modifiedBy, @RequestBody UserModel user)  throws SystemExceptions ;
+	public boolean updateUserId(@PathVariable String modifiedBy, @RequestBody UserModel user) throws SystemExceptions, UserAlreadyExistsException ;
 	
 	@DeleteMapping("/delete/{userId}")
 	public void deleteById(@PathVariable int userId) throws JcatExceptions;
