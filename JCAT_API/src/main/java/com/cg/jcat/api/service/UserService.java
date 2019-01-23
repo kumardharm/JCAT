@@ -11,6 +11,8 @@ import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 
 @Component
 public class UserService implements IUserService {
@@ -27,14 +29,14 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean saveUser(UserModel user, String createdBy) throws JcatExceptions {
+	public boolean saveUser(UserModel user, String createdBy) throws UserAlreadyExistsException, SystemExceptions {
 		boolean isSaved = userDao.createUser(user, createdBy);
 		logger.info("User " + user.getUsername() + " successfully saved in DB!" + isSaved);
 		return isSaved;
 	}
 
 	@Override
-	public boolean updateUsers(UserModel user, String modifiedBy) throws JcatExceptions {
+	public boolean updateUsers(UserModel user, String modifiedBy)  throws SystemExceptions  {
 
 		boolean isUpdated = userDao.updateUsers(user, modifiedBy);
 		logger.info("User " + user.getUsername() + " successfully updated in DB!" + isUpdated);

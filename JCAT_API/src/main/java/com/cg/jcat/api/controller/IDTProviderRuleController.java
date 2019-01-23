@@ -25,6 +25,6 @@ public interface IDTProviderRuleController {
 	public List<DTProviderRuleModel> getCloudProviderRules();
 	
 	@PostMapping("/create")
-	public boolean saveCloudProviderRule(@RequestBody List<DTProviderRuleModel> cloudProviderRuleModelList);
+	public boolean saveCloudProviderRule(@RequestBody List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions;
 	
 }

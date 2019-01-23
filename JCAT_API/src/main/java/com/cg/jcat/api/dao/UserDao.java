@@ -17,6 +17,7 @@ import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.DeleteUserException;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SaveUserException;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.repository.IUserRepository;
 
@@ -58,7 +59,7 @@ public class UserDao {
 		return userDao;
 	}
 
-	public boolean createUser(UserModel userModel, String createdBy) throws JcatExceptions {
+	public boolean createUser(UserModel userModel, String createdBy) throws UserAlreadyExistsException, SystemExceptions  {
 		User existingUser = userRepository.findByUsername(userModel.getUsername());
 		if (existingUser != null) {
 			throw new  UserAlreadyExistsException(userModel.getUsername());
@@ -69,7 +70,7 @@ public class UserDao {
 		return saveUser(userModel);
 	}
 
-	public boolean saveUser(UserModel userModel) throws JcatExceptions {
+	public boolean saveUser(UserModel userModel) throws SystemExceptions{
 		boolean value = false;
 		try {
 			User savedUser = userRepository.save(toUsers(userModel));
@@ -79,11 +80,8 @@ public class UserDao {
 		} catch (Exception e) {
 			logger.error("Error while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage(), e);
 
-			//throw new JcatExceptions(
-//					"Exception while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage());
-
-			
-			throw new SaveUserException(userModel.getUsername());
+					
+			throw new SystemExceptions("saveUser");
 			
 //			throw new JcatExceptions(
 //					"Exception while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage());
@@ -92,11 +90,11 @@ public class UserDao {
 		return value;
 	}
 
-	public boolean updateUsers(UserModel user, String modifiedBy) throws JcatExceptions {
+	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions   {
 		return setUpdatedUser(user, modifiedBy);
 	}
 
-	public boolean setUpdatedUser(UserModel user, String modifiedBy) throws JcatExceptions {
+	public boolean setUpdatedUser(UserModel user, String modifiedBy) throws SystemExceptions  {
 
 		user.setModifiedBy(modifiedBy);
 		return saveUser(user);

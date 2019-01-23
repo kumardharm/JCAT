@@ -12,6 +12,7 @@ import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.service.IUserService;
 import com.cg.jcat.api.service.UserService;
 
@@ -39,7 +40,7 @@ public class UserController implements IUserController {
 	}
 
 	@Override
-	public boolean saveUser(String createdBy, UserModel user) throws JcatExceptions {
+	public boolean saveUser(String createdBy, UserModel user) throws UserAlreadyExistsException, SystemExceptions {
 		boolean value = false;
 		try {
 			if (createdBy != null && user != null) {
@@ -55,7 +56,7 @@ public class UserController implements IUserController {
 
 
 	@Override
-	public boolean updateUserId(String modifiedBy, UserModel user) throws JcatExceptions {
+	public boolean updateUserId(String modifiedBy, UserModel user)  throws SystemExceptions  {
 		boolean value = false;
 		try {
 			if (modifiedBy != null && user != null) {

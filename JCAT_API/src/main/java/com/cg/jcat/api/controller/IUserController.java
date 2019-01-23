@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 
 @RestController
 @RequestMapping("/user")
@@ -23,10 +24,10 @@ public interface IUserController {
 	public List<UserModel> getUsers() throws SystemExceptions;
 	
 	@PostMapping("/create/{createdBy}")
-	public boolean saveUser(@PathVariable String createdBy, @RequestBody UserModel user) throws JcatExceptions;
+	public boolean saveUser(@PathVariable String createdBy, @RequestBody UserModel user) throws UserAlreadyExistsException, SystemExceptions;
 	
 	@PutMapping("/update/{modifiedBy}")
-	public boolean updateUserId(@PathVariable String modifiedBy, @RequestBody UserModel user) throws JcatExceptions;
+	public boolean updateUserId(@PathVariable String modifiedBy, @RequestBody UserModel user)  throws SystemExceptions ;
 	
 	@DeleteMapping("/delete/{userId}")
 	public void deleteById(@PathVariable int userId) throws JcatExceptions;
