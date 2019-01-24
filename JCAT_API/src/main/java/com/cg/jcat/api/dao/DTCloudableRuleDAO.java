@@ -3,12 +3,15 @@ package com.cg.jcat.api.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.entity.AssessmentQuestion;
 import com.cg.jcat.api.entity.DTCloudableRule;
 import com.cg.jcat.api.entity.DTCloudableRuleHistory;
+import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.repository.IDTCloudableRuleHistoryRepository;
 import com.cg.jcat.api.repository.IDTCloudableRuleRepository;
 @Component
@@ -18,6 +21,8 @@ public class DTCloudableRuleDAO {
 	IDTCloudableRuleRepository dtCloudableRuleRepository;
 	@Autowired
 	IDTCloudableRuleHistoryRepository  cloudableRuleHistoryRepository;
+	@Autowired
+	IAssessmentQuestionRepository assessmentQuestionRepository;
 	
 	public List<DTCloudableRuleModel> getCloudableRule() {
 		List<DTCloudableRule> dTCloudableRuleList=new ArrayList<DTCloudableRule>();
@@ -38,19 +43,23 @@ public class DTCloudableRuleDAO {
 		DTCloudableRuleModel dTCloudableRuleModel=new DTCloudableRuleModel();
 		dTCloudableRuleModel.setCloudableRuleId(dTCloudableRule.getCloudableRuleId());
 		dTCloudableRuleModel.setOptionIds(dTCloudableRule.getOptionIds());
-		dTCloudableRuleModel.setQuestionId(dTCloudableRule.getQuestionId());
 		dTCloudableRuleModel.setExecutionOrder(dTCloudableRule.getExecutionOrder());
 		dTCloudableRuleModel.setOptionTextsEN(dTCloudableRule.getOptionTextsEN());
 		dTCloudableRuleModel.setQuestionTextEN(dTCloudableRule.getQuestionTextEN());
+		dTCloudableRuleModel.setQuestionId(dTCloudableRule.getAssessmentQuestion().getQuestionId());
 		return dTCloudableRuleModel;
 	}
 
 		private DTCloudableRule toCloudablerule(DTCloudableRuleModel dTCloudableRuleModel) {
+			Optional<AssessmentQuestion> assessmentQuestionOptional=assessmentQuestionRepository.findById(dTCloudableRuleModel.getQuestionId());
+			AssessmentQuestion assessmentQuestion=assessmentQuestionOptional.get();
 		DTCloudableRule dTCloudableRule=new DTCloudableRule();
 		dTCloudableRule.setCloudableRuleId(dTCloudableRuleModel.getCloudableRuleId());
 		dTCloudableRule.setOptionIds(dTCloudableRuleModel.getOptionIds());
 		dTCloudableRule.setOptionTextsEN(dTCloudableRuleModel.getOptionTextsEN());
-		dTCloudableRule.setQuestionId(dTCloudableRuleModel.getQuestionId());
+		//System.out.println(assessmentQuestionRepository.findById(1));
+	dTCloudableRule.setAssessmentQuestion(assessmentQuestion);
+		//dTCloudableRule.setQuestionId(dTCloudableRuleModel.getQuestionId());
 		dTCloudableRule.setQuestionTextEN(dTCloudableRuleModel.getQuestionTextEN());
 		dTCloudableRule.setExecutionOrder(dTCloudableRuleModel.getExecutionOrder());
 		dTCloudableRule.setCreatedBy("user1");
@@ -87,7 +96,6 @@ public class DTCloudableRuleDAO {
 			saveCloudableRuleList(dTCloudableRuleModelList);
 		}
 		return false;
->>>>>>> 0f81979a37296d2d8b8cd42ff18be39ecb3b877f
 	}
 
 	private void saveCloudableRuleList(List<DTCloudableRuleModel> dTCloudableRuleModelList) {
@@ -115,7 +123,7 @@ public class DTCloudableRuleDAO {
 		DTCloudableRuleHistory dtCloudableRuleHistory=new DTCloudableRuleHistory();
 		
 		dtCloudableRuleHistory.setCloudableRuleId(cloudableRule.getCloudableRuleId());
-		dtCloudableRuleHistory.setQuestionId(cloudableRule.getQuestionId());
+		dtCloudableRuleHistory.setAssessmentQuestion(cloudableRule.getAssessmentQuestion());
 		dtCloudableRuleHistory.setQuestiontTextEN(cloudableRule.getQuestionTextEN());
 		dtCloudableRuleHistory.setRuleOptionIds(cloudableRule.getOptionIds());
 		dtCloudableRuleHistory.setRuleOptionTextEN(cloudableRule.getOptionTextsEN());

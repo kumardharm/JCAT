@@ -172,7 +172,8 @@ public class AssessmentQuestionDao {
 	
 	public AssessmentQuestion findByQuestionId(int questionId)
 	{
-		return assessmentQuestionRepository.findByQuestionId(questionId);
+		//return assessmentQuestionRepository.findById(questionId);
+		return new AssessmentQuestion();
 	}
 	
 	public AssessmentQuestion findByQuestionTextEn(String questionTextEN) {

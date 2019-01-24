@@ -9,8 +9,8 @@ import com.cg.jcat.api.entity.AssessmentQuestion;
 
 public interface IAssessmentQuestionRepository extends JpaRepository<AssessmentQuestion, Integer>{
 
-	AssessmentQuestion findByQuestionId(int questionId);
-
+//	AssessmentQuestion findById(int questionId);
+	
 	AssessmentQuestion findByQuestionTextEN(String questionDescriptionEN);
 
 	List<AssessmentQuestion> findByIsDeleted(boolean isDeleteValue);
