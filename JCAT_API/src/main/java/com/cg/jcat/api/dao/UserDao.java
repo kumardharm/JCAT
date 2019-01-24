@@ -2,6 +2,7 @@ package com.cg.jcat.api.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -60,14 +61,7 @@ public class UserDao {
 		return userDao;
 	}
 
-	public boolean createUser(UserModel userModel, String createdBy)
-			throws UserAlreadyExistsException, SystemExceptions {
-		// User existingUser = findByUsername(userModel.getUsername());
-		// if (existingUser != null) {
-		// throw new UserAlreadyExistsException(userModel.getUsername());
-		// throw new JcatExceptions("User with " + userModel.getUsername() + " already
-		// exists in DB ");
-		// }
+	public boolean createUser(UserModel userModel, String createdBy) {
 		userModel.setCreatedBy(createdBy);
 		userModel.setPassword("Cg@123");
 		return saveUser(userModel);
@@ -99,8 +93,6 @@ public class UserDao {
 		if (user == null) {
 
 			throw new DeleteUserException(Integer.toString(userId));
-			// throw new JcatExceptions("User with id " + userId + " does not exists in
-			// DB!");
 		}
 		user.setDeleted(true);
 		user = userRepository.save(user);
@@ -124,6 +116,7 @@ public class UserDao {
 		User users = null;
 		if (userModel != null) {
 			users = new User();
+			Date date = new Date();
 			users.setUsername(userModel.getUsername());
 			users.setUserId(userModel.getUserId());
 			users.setCompany(userModel.getCompany());
@@ -133,6 +126,7 @@ public class UserDao {
 			users.setModifiedBy(userModel.getModifiedBy());
 			users.setPassword(userModel.getPassword());
 			users.setUserEmail(userModel.getUserEmail());
+			users.setCteatedTime(date);
 		}
 		return users;
 	}

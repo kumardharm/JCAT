@@ -7,15 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import com.cg.jcat.api.JcatApiApplication;
-import com.cg.jcat.api.dao.UserDao;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.entity.ValidationException;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.service.IUserService;
-import com.cg.jcat.api.service.UserService;
 
 @Component
 public class UserController implements IUserController {
@@ -31,26 +31,31 @@ public class UserController implements IUserController {
 			return userService.getUsers();
 		} catch (Exception e) {
 			logger.error("Error in getting all users: getUsers()", e);
-
-			//throw e;
-
 			throw new SystemExceptions("getUsers()");
-//			throw e;
 
 		}
 	}
 
 	@Override
-	public boolean saveUser(String createdBy, UserModel user,Errors error) throws UserAlreadyExistsException, SystemExceptions, ValidationException {
+	public boolean saveUser(String createdBy, UserModel user, Errors error)
+			throws UserAlreadyExistsException, SystemExceptions, ValidationException {
 		boolean value = false;
-		if(error.hasErrors())
-		{
-			throw new ValidationException("Valication Error");
-		}
-		try {
-			if (createdBy != null && user != null) {
-				value = userService.saveUser(user, createdBy);
+		if (error.hasErrors()) {
+			StringBuffer strErr = new StringBuffer();
+			for (ObjectError err : error.getAllErrors()) {
+				FieldError fieldErr = (FieldError) err;
+				strErr.append(" " + fieldErr.getObjectName() + "." + fieldErr.getField() + " " + err.getDefaultMessage()
+						+ ",");
 			}
+			if (strErr.length() > 0) {
+				strErr.setLength(strErr.length() - 1);
+			}
+			throw new ValidationException(
+					"There are " + error.getErrorCount() + " validation error/s:" + strErr.toString());
+		}
+
+		try {
+			value = userService.saveUser(user, createdBy);
 			return value;
 		} catch (JcatExceptions e) {
 			logger.error("Error while saving user " + user.getUsername(), e);
@@ -59,17 +64,13 @@ public class UserController implements IUserController {
 
 	}
 
-
 	@Override
-	public boolean updateUserId(String modifiedBy, UserModel user)  throws SystemExceptions, UserAlreadyExistsException  {
+	public boolean updateUserId(String modifiedBy, UserModel user) throws SystemExceptions, UserAlreadyExistsException {
 		boolean value = false;
 		try {
-			if (modifiedBy != null && user != null) {
-				value = userService.updateUsers(user, modifiedBy);
-			}
+			value = userService.updateUsers(user, modifiedBy);
 			return value;
-		}
-		catch (JcatExceptions e) {
+		} catch (JcatExceptions e) {
 			logger.error("Error while updating user " + user.getUsername(), e);
 			throw e;
 		}
@@ -82,7 +83,7 @@ public class UserController implements IUserController {
 				userService.deleteById(userId);
 			}
 		} catch (JcatExceptions e) {
-			logger.error("Error while deleting user " + userId+ " ErrorMessage :"+e.getMessage(), e);
+			logger.error("Error while deleting user " + userId + " ErrorMessage :" + e.getMessage(), e);
 			throw e;
 		}
 	}
