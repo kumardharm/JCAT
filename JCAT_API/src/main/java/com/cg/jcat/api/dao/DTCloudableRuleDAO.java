@@ -57,9 +57,7 @@ public class DTCloudableRuleDAO {
 		dTCloudableRule.setCloudableRuleId(dTCloudableRuleModel.getCloudableRuleId());
 		dTCloudableRule.setOptionIds(dTCloudableRuleModel.getOptionIds());
 		dTCloudableRule.setOptionTextsEN(dTCloudableRuleModel.getOptionTextsEN());
-		//System.out.println(assessmentQuestionRepository.findById(1));
-	dTCloudableRule.setAssessmentQuestion(assessmentQuestion);
-		//dTCloudableRule.setQuestionId(dTCloudableRuleModel.getQuestionId());
+    	dTCloudableRule.setAssessmentQuestion(assessmentQuestion);
 		dTCloudableRule.setQuestionTextEN(dTCloudableRuleModel.getQuestionTextEN());
 		dTCloudableRule.setExecutionOrder(dTCloudableRuleModel.getExecutionOrder());
 		dTCloudableRule.setCreatedBy("user1");
@@ -129,6 +127,7 @@ public class DTCloudableRuleDAO {
 		dtCloudableRuleHistory.setRuleOptionTextEN(cloudableRule.getOptionTextsEN());
 		dtCloudableRuleHistory.setExecutionOrder(cloudableRule.getExecutionOrder());
 		dtCloudableRuleHistory.setCreatedBy("Admin");
+		dtCloudableRuleHistory.setCreatedTime(new Date());
 		return dtCloudableRuleHistory;
 	}
 

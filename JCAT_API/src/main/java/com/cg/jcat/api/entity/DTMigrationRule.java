@@ -2,14 +2,17 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,15 +27,8 @@ public class DTMigrationRule {
 	@Column(name="migration_rule_id")
 	private int migrationRuleId;
 	
-	@Column(name="migration_id")
-	@NotNull
-	private int migrationId;
-	
 	@Column(name="execution_order")
 	private int executionOrder;
-	
-	@Column(name="question_id")
-	private int questionId;
 	
 	@Lob
 	@Column(name="question_text_EN")
@@ -60,30 +56,22 @@ public class DTMigrationRule {
 	@Column(name="modified_time")
 	private Date modifiedTime;
 	
-//	@ManyToOne
-//    @JoinColumn(name = "migration_id")
-//	private DTMigration migration;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="migrationId")
+	private DTMigration dtMigration;
 	
-//	@JsonIgnore
-//	public DTMigration getMigration() {
-//		return migration;
-//	}
-//	public void setMigration(DTMigration migration) {
-//		this.migration = migration;
-//	}
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="questionId")
+	private AssessmentQuestion assessmentQuestion;
+
+
 	public int getMigrationRuleId() {
 		return migrationRuleId;
 	}
 	public void setMigrationRuleId(int migrationRuleId) {
 		this.migrationRuleId = migrationRuleId;
 	}
-	public int getMigrationId() {
-		return migrationId;
-	}
-	public void setMigrationId(int migrationId) {
-		this.migrationId = migrationId;
-	}
-	
+
 	public int getExecutionOrder() {
 		return executionOrder;
 	}
@@ -102,12 +90,7 @@ public class DTMigrationRule {
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
-	public int getQuestionId() {
-		return questionId;
-	}
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
+	
 	public String getQuestiontextEN() {
 		return questionTextEN;
 	}
@@ -150,13 +133,25 @@ public class DTMigrationRule {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
+	public DTMigration getDtMigration() {
+		return dtMigration;
+	}
+	public void setDtMigration(DTMigration dtMigration) {
+		this.dtMigration = dtMigration;
+	}
+	public AssessmentQuestion getAssessmentQuestion() {
+		return assessmentQuestion;
+	}
+	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
+		this.assessmentQuestion = assessmentQuestion;
+	}
 	@Override
 	public String toString() {
-		return "DTMigrationRule [migrationRuleId=" + migrationRuleId + ", migrationId=" + migrationId
-				+ ", executionOrder=" + executionOrder + ", questionId=" + questionId + ", questionTextEN="
-				+ questionTextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN
-				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy
-				+ ", modifiedTime=" + modifiedTime + "]";
+		return "DTMigrationRule [migrationRuleId=" + migrationRuleId + ", executionOrder=" + executionOrder
+				+ ", questionTextEN=" + questionTextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN="
+				+ ruleOptionTextEN + ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy="
+				+ modifiedBy + ", modifiedTime=" + modifiedTime + "]";
 	}
+	
 	
 }
