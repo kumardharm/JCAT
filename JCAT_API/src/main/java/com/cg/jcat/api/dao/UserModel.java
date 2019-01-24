@@ -1,10 +1,13 @@
 package com.cg.jcat.api.dao;
 
+import javax.validation.constraints.NotNull;
+
 public class UserModel {
 	
 	private  int userId;
 	private String firstName;
 	private String lastName;
+//	@NotNull(message="User name can't be empty")
 	private String username;
 	private String password;
 	private String company;

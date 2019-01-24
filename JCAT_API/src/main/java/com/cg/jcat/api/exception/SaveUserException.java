@@ -7,7 +7,7 @@ import com.cg.jcat.api.exception.entity.ErrorDTO;
 public class SaveUserException extends JcatExceptions{
 	
 	private static String error_code = "UE101";
-	private static String error_message = "User with name already exists can't assign name to someone else";
+	private static String error_message = "error while saving user";
 	private static Date error_timestamp = new Date();
     private static String error_details ;
 	public SaveUserException() {
