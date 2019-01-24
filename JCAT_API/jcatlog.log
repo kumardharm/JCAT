@@ -131,4 +131,12 @@
 	name: default
 	...]
  [01:24 11:26:55.654] [INFO] [org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+ [01:24 11:26:56.098] [INFO] [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+ [01:24 11:26:56.105] [INFO] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+ [01:24 11:26:56.608] [INFO] [o.s.s.c.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+ [01:24 11:26:56.614] [WARN] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+ [01:24 11:26:56.735] [INFO] [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port(s): 8099 (http) with context path ''
+ [01:24 11:26:56.736] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 2.32 seconds (JVM running for 49113.874)
+ [01:24 11:26:56.739] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
+ [01:24 11:26:56.739] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
  
