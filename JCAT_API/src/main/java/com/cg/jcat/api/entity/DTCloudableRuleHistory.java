@@ -2,12 +2,16 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -25,10 +29,7 @@ public class DTCloudableRuleHistory {
 	
 	@Column(name = "execution_order")
 	private int executionOrder;
-	
-	@Column(name = "question_id")
-	private int questionId;
-	
+		
 	@Lob
 	@Column(name = "question_text_EN")
 	private String questiontTextEN;
@@ -49,6 +50,10 @@ public class DTCloudableRuleHistory {
 	@NotNull
 	private Date cteatedTime;
 	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="questionId")
+	private AssessmentQuestion assessmentQuestion;
+	
 	public int getId() {
 		return id;
 	}
@@ -67,12 +72,7 @@ public class DTCloudableRuleHistory {
 	public void setExecutionOrder(int executionOrder) {
 		this.executionOrder = executionOrder;
 	}
-	public int getQuestionId() {
-		return questionId;
-	}
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
+	
 	public String getQuestiontTextEN() {
 		return questiontTextEN;
 	}
@@ -103,12 +103,19 @@ public class DTCloudableRuleHistory {
 	public void setCteatedTime(Date cteatedTime) {
 		this.cteatedTime = cteatedTime;
 	}
+	public AssessmentQuestion getAssessmentQuestion() {
+		return assessmentQuestion;
+	}
+	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
+		this.assessmentQuestion = assessmentQuestion;
+	}
 	@Override
 	public String toString() {
 		return "DTCloudableRuleHistory [id=" + id + ", cloudableRuleId=" + cloudableRuleId + ", executionOrder="
-				+ executionOrder + ", questionId=" + questionId + ", questiontTextEN=" + questiontTextEN
-				+ ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN + ", createdBy="
-				+ createdBy + ", cteatedTime=" + cteatedTime + "]";
+				+ executionOrder + ", questiontTextEN=" + questiontTextEN + ", ruleOptionIds=" + ruleOptionIds
+				+ ", ruleOptionTextEN=" + ruleOptionTextEN + ", createdBy=" + createdBy + ", cteatedTime=" + cteatedTime
+				+ "]";
 	}
+	
 	
 }
