@@ -21,15 +21,10 @@ public interface IDTCloudableRuleController {
 	@GetMapping("/getAll")
 	public List<DTCloudableRuleModel> getCloudableRule();
 	
-	@PostMapping("/create")
-	public boolean saveCloudableRule(@RequestBody DTCloudableRuleModel dTCloudableRuleModel);
-	
-	@PutMapping("/update")
-	public boolean updateCloudablerule(@RequestBody DTCloudableRuleModel dTCloudableRuleModel);
-	
-	@DeleteMapping("/delete/{cloudableRuleId}")
-	public  boolean deleteCloudableRule(@PathVariable int cloudableRuleId);
-
 	@GetMapping("/get/{cloudableRuleId}")
 	public DTCloudableRuleModel getCloudableRuleById(@PathVariable int cloudableRuleId);
+	
+	@PostMapping("/create")
+	public boolean saveCloudableRule(@RequestBody List<DTCloudableRuleModel> dTCloudableRuleModelList);
+	
 }
