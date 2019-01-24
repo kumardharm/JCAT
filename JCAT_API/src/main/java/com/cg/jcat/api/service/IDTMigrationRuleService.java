@@ -12,7 +12,7 @@ import com.cg.jcat.api.exception.SystemExceptions;
 @Service
 public interface IDTMigrationRuleService {
 	
-	public List<DTMigrationRuleModel> getMigrationRule() throws JcatExceptions;
+	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) throws JcatExceptions;
 	
 	public boolean saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModel)  throws SystemExceptions;
 	

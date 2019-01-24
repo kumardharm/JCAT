@@ -52,8 +52,8 @@ public class AssessmentQuestion {
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum questionType;
 	
+	//@NotNull
 	@Lob
-	@NotNull
 	@Column(name="question_text_en")
 	private String questionTextEN;
 	

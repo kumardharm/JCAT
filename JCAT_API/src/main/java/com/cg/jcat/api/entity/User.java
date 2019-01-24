@@ -22,12 +22,12 @@ public class User {
 	private  int userId;
 	private String firstName;
 	private String lastName;
-	@Column(unique = true)
+	
+	@Length(min = 1, max = 13)
 	@NotNull
 	private String username;
 	
 	@ColumnDefault("'Cg@123'")
-	@Length(min = 1, max = 13)
 	@NotNull
 	private String password;
 	private String company;

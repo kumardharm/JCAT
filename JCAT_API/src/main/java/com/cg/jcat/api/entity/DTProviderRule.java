@@ -24,12 +24,13 @@ public class DTProviderRule {
 	private int providerId;
 	
 	@ColumnDefault("0")
-	@Column(name="evaluation_order")
-	private int evaluationOrder;
+	@Column(name="execution_order")
+	private int executionOrder;
 	
 	@Column(name="question_id")
 	private int questionId;
 	
+	@Lob
 	@Column(name="question_text_EN")
 	private String questiontextEN;
 	
@@ -37,6 +38,7 @@ public class DTProviderRule {
 	@Column(name="rule_option_ids")
 	private String ruleOptionIds;
 	
+	@Lob
 	@Column(name="rule_option_text_EN")
 	private String ruleOptionTextEN;
 	
@@ -64,11 +66,11 @@ public class DTProviderRule {
 	public void setProviderId(int providerId) {
 		this.providerId = providerId;
 	}
-	public int getEvaluationOrder() {
-		return evaluationOrder;
+	public int getExecutionOrder() {
+		return executionOrder;
 	}
-	public void setEvaluationOrder(int evaluationOrder) {
-		this.evaluationOrder = evaluationOrder;
+	public void setExecutionOrder(int executionOrder) {
+		this.executionOrder = executionOrder;
 	}
 	public int getQuestionId() {
 		return questionId;
@@ -120,13 +122,12 @@ public class DTProviderRule {
 	}
 	@Override
 	public String toString() {
-		return "CloudProviderRule [providerRuleId=" + providerRuleId + ", providerId=" + providerId
-				+ ", evaluationOrder=" + evaluationOrder + ", questionId=" + questionId + ", questiontextEN="
-				+ questiontextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN
-				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy
-				+ ", modifiedTime=" + modifiedTime + "]";
+		return "DTProviderRule [providerRuleId=" + providerRuleId + ", providerId=" + providerId + ", executionOrder="
+				+ executionOrder + ", questionId=" + questionId + ", questiontextEN=" + questiontextEN
+				+ ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN + ", createdBy="
+				+ createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
+				+ modifiedTime + "]";
 	}
-
 	
 	
 }

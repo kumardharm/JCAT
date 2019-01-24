@@ -18,9 +18,9 @@ public class DTMigrationRuleController implements IDTMigrationRuleController{
 	IDTMigrationRuleService dtMigrationRuleService;
 	
 	@Override
-	public List<DTMigrationRuleModel> getMigrationRule() {
+	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) {
 		try {
-			return dtMigrationRuleService.getMigrationRule();
+			return dtMigrationRuleService.getMigrationRule(migrationId);
 		} catch (JcatExceptions e) {
 			System.out.println("Error in getting rules" + e);
 			return null;

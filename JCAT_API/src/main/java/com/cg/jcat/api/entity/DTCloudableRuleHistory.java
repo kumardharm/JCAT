@@ -46,9 +46,9 @@ public class DTCloudableRuleHistory {
 	@NotNull
 	private String createdBy;
 	
-	@Column(name = "cteated_time")
+	@Column(name = "created_time")
 	@NotNull
-	private Date cteatedTime;
+	private Date createdTime;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="questionId")
@@ -97,11 +97,11 @@ public class DTCloudableRuleHistory {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	public Date getCteatedTime() {
-		return cteatedTime;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
-	public void setCteatedTime(Date cteatedTime) {
-		this.cteatedTime = cteatedTime;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 	public AssessmentQuestion getAssessmentQuestion() {
 		return assessmentQuestion;
@@ -109,13 +109,7 @@ public class DTCloudableRuleHistory {
 	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
 		this.assessmentQuestion = assessmentQuestion;
 	}
-	@Override
-	public String toString() {
-		return "DTCloudableRuleHistory [id=" + id + ", cloudableRuleId=" + cloudableRuleId + ", executionOrder="
-				+ executionOrder + ", questiontTextEN=" + questiontTextEN + ", ruleOptionIds=" + ruleOptionIds
-				+ ", ruleOptionTextEN=" + ruleOptionTextEN + ", createdBy=" + createdBy + ", cteatedTime=" + cteatedTime
-				+ "]";
-	}
-	
+
+
 	
 }
