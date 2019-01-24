@@ -22,7 +22,7 @@ public class DTMigration {
 	@NotNull
 	private String createdBy;
 	@NotNull
-	private Date createdTtime;
+	private Date createdTime;
 	private String modifiedBy;
 	private Date modifiedTime;
 	
@@ -57,10 +57,10 @@ public class DTMigration {
 		this.createdBy = createdBy;
 	}
 	public Date getCreatedTtime() {
-		return createdTtime;
+		return createdTime;
 	}
 	public void setCreatedTtime(Date createdTtime) {
-		this.createdTtime = createdTtime;
+		this.createdTime = createdTtime;
 	}
 	public String getModifiedBy() {
 		return modifiedBy;
@@ -78,7 +78,7 @@ public class DTMigration {
 	public String toString() {
 		return "DTMigration [migrationId=" + migrationId + ", evaluationOrder=" + evaluationOrder
 				+ ", migration_pattern=" + migration_pattern + ", logicalOperator=" + logicalOperator + ", createdBy="
-				+ createdBy + ", createdTtime=" + createdTtime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
+				+ createdBy + ", createdTtime=" + createdTime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
 				+ modifiedTime + "]";
 	}
 }

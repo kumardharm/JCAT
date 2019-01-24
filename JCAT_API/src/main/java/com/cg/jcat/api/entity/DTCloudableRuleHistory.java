@@ -42,9 +42,9 @@ public class DTCloudableRuleHistory {
 	@NotNull
 	private String createdBy;
 	
-	@Column(name = "cteated_time")
+	@Column(name = "created_time")
 	@NotNull
-	private Date cteatedTime;
+	private Date createdTime;
 	
 	public int getId() {
 		return id;
@@ -94,18 +94,19 @@ public class DTCloudableRuleHistory {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	public Date getCteatedTime() {
-		return cteatedTime;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
-	public void setCteatedTime(Date cteatedTime) {
-		this.cteatedTime = cteatedTime;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 	@Override
 	public String toString() {
 		return "DTCloudableRuleHistory [id=" + id + ", cloudableRuleId=" + cloudableRuleId + ", executionOrder="
 				+ executionOrder + ", questionId=" + questionId + ", questiontTextEN=" + questiontTextEN
 				+ ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN + ", createdBy="
-				+ createdBy + ", cteatedTime=" + cteatedTime + "]";
+				+ createdBy + ", createdTime=" + createdTime + "]";
 	}
+	
 	
 }

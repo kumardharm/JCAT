@@ -26,15 +26,15 @@ public class DTMigrationRule {
 	@NotNull
 	private int migrationId;
 	
-	@Column(name="evaluation_order")
-	private int evaluationOrder;
+	@Column(name="execution_order")
+	private int executionOrder;
 	
 	@Column(name="question_id")
 	private int questionId;
 	
 	@Lob
 	@Column(name="question_text_EN")
-	private String questiontextEN;
+	private String questionTextEN;
 	
 	@Lob
 	@Column(name="rule_option_ids")
@@ -70,11 +70,24 @@ public class DTMigrationRule {
 	public void setMigrationId(int migrationId) {
 		this.migrationId = migrationId;
 	}
-	public int getEvaluationOrder() {
-		return evaluationOrder;
+	
+	public int getExecutionOrder() {
+		return executionOrder;
 	}
-	public void setEvaluationOrder(int evaluationOrder) {
-		this.evaluationOrder = evaluationOrder;
+	public void setExecutionOrder(int executionOrder) {
+		this.executionOrder = executionOrder;
+	}
+	public String getQuestionTextEN() {
+		return questionTextEN;
+	}
+	public void setQuestionTextEN(String questionTextEN) {
+		this.questionTextEN = questionTextEN;
+	}
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 	public int getQuestionId() {
 		return questionId;
@@ -83,10 +96,10 @@ public class DTMigrationRule {
 		this.questionId = questionId;
 	}
 	public String getQuestiontextEN() {
-		return questiontextEN;
+		return questionTextEN;
 	}
 	public void setQuestiontextEN(String questiontextEN) {
-		this.questiontextEN = questiontextEN;
+		this.questionTextEN = questiontextEN;
 	}
 	public String getRuleOptionIds() {
 		return ruleOptionIds;
@@ -124,14 +137,14 @@ public class DTMigrationRule {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
-	
 	@Override
 	public String toString() {
 		return "DTMigrationRule [migrationRuleId=" + migrationRuleId + ", migrationId=" + migrationId
-				+ ", evaluationOrder=" + evaluationOrder + ", questionId=" + questionId + ", questiontextEN="
-				+ questiontextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN
-				+ ", createdBy=" + createdBy + ", createdTtime=" + createdTime + ", modifiedBy=" + modifiedBy
+				+ ", executionOrder=" + executionOrder + ", questionId=" + questionId + ", questionTextEN="
+				+ questionTextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN
+				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy
 				+ ", modifiedTime=" + modifiedTime + "]";
 	}
+	
 	
 }

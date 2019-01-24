@@ -134,7 +134,7 @@ public class DTMigrationRuleDao {
 		DTMigrationRuleHistory dtMigrationRuleHistory = new DTMigrationRuleHistory();
 		dtMigrationRuleHistory.setCreatedBy( "Admin" );
 		dtMigrationRuleHistory.setCreatedTime(date);
-		dtMigrationRuleHistory.setExecutionOrder( dtMigrationRule.getEvaluationOrder() );
+		dtMigrationRuleHistory.setExecutionOrder( dtMigrationRule.getExecutionOrder() );
 		dtMigrationRuleHistory.setMigrationId( dtMigrationRule.getMigrationId());
 		dtMigrationRuleHistory.setMigrationRuleId( dtMigrationRule.getMigrationRuleId() );
 		dtMigrationRuleHistory.setQuestionId( dtMigrationRule.getQuestionId() );
@@ -152,7 +152,7 @@ public class DTMigrationRuleDao {
 	public DTMigrationRuleModel toGetMigrationRuleModel(DTMigrationRule dtMigrationRule)
 	{
 		DTMigrationRuleModel dtMigrationRuleModel = new DTMigrationRuleModel();
-		dtMigrationRuleModel.setEvaluationOrder(dtMigrationRule.getEvaluationOrder());
+		dtMigrationRuleModel.setEvaluationOrder(dtMigrationRule.getExecutionOrder());
 		dtMigrationRuleModel.setMigrationId(dtMigrationRule.getMigrationId());
 		dtMigrationRuleModel.setMigrationRuleId(dtMigrationRule.getMigrationRuleId());
 		dtMigrationRuleModel.setQuestionId(dtMigrationRule.getQuestionId());
@@ -171,7 +171,7 @@ public class DTMigrationRuleDao {
 		Date date=new Date();
 		System.out.println(dtMigrationRuleModel);
 		DTMigrationRule dtMigrationRule = new DTMigrationRule();
-		dtMigrationRule.setEvaluationOrder(dtMigrationRuleModel.getEvaluationOrder());
+		dtMigrationRule.setExecutionOrder(dtMigrationRuleModel.getEvaluationOrder());
 		dtMigrationRule.setMigrationId(dtMigrationRuleModel.getMigrationId());
 		dtMigrationRule.setMigrationRuleId(dtMigrationRuleModel.getMigrationRuleId());
 		dtMigrationRule.setQuestionId(dtMigrationRuleModel.getQuestionId());

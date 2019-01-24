@@ -2,6 +2,7 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,9 +17,12 @@ public class DTCloudableRule {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int cloudableRuleId;
 	private int executionOrder;
+	
 	@NotNull
 	private int questionId;
+	
 	@Lob
+	@Column(name="question_text_EN")
 	private String questionTextEN;
 	
 	@Lob
@@ -27,14 +31,19 @@ public class DTCloudableRule {
 	
 	@Lob
 	@NotNull
+	@Column(name="option_texts_EN")
 	private String optionTextsEN;
-	private boolean isDelete;
+	
 	@NotNull
 	private String createdBy;
+	
 	@NotNull
 	private Date createdTime;
+	
 	private String modifiedBy;
+	
 	private Date modifiedTime;
+	
 	public int getCloudableRuleId() {
 		return cloudableRuleId;
 	}
@@ -96,17 +105,11 @@ public class DTCloudableRule {
 		this.modifiedTime = modifiedTime;
 	}
 	
-	public boolean isDelete() {
-		return isDelete;
-	}
-	public void setDelete(boolean isDelete) {
-		this.isDelete = isDelete;
-	}
 	@Override
 	public String toString() {
 		return "DTCloudableRule [cloudableRuleId=" + cloudableRuleId + ", executionOrder=" + executionOrder
 				+ ", questionId=" + questionId + ", questionTextEN=" + questionTextEN + ", optionIds=" + optionIds
-				+ ", optionTextsEN=" + optionTextsEN + ", isDelete=" + isDelete + ", createdBy=" + createdBy
+				+ ", optionTextsEN=" + optionTextsEN +  ", createdBy=" + createdBy
 				+ ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime
 				+ "]";
 	}

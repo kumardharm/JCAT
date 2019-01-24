@@ -77,7 +77,6 @@ public class DTCloudableRuleDAO {
 
 	private boolean deleteCloudableRuleById(int cloudableRuleId) {
 		DTCloudableRule dTCloudableRule=findByCloudableRuleId(cloudableRuleId);
-		dTCloudableRule.setDelete(true);
 		return iDTCloudableRuleRepository.save(dTCloudableRule) != null;
 	}
 
