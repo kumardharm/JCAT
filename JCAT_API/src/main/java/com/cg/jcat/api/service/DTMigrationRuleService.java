@@ -18,33 +18,35 @@ public class DTMigrationRuleService implements IDTMigrationRuleService{
 	DTMigrationRuleDao dtMigrationRuleDao;
 
 	@Override
-	public List<DTMigrationRuleModel> getMigrationRule() throws JcatExceptions {
-		return dtMigrationRuleDao.getMigrationRule();
+	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) throws JcatExceptions {
+		return dtMigrationRuleDao.getMigrationRule(migrationId);
 	}
 
 	@Override
 	public boolean saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModels) throws SystemExceptions {
-		int count = 0;
-		for(DTMigrationRuleModel cloudProviderRuleModel : dtMigrationRuleModels)
-		{
-			if(cloudProviderRuleModel.getRuleOptionTextEN() != null)
-			{
-				String optionText[] = cloudProviderRuleModel.getRuleOptionTextEN().split(",");
-				String optionIds[] = cloudProviderRuleModel.getRuleOptionIds().split(",");
-				if(optionText.length==optionIds.length)
-				{
-					count++;
-				}
-			}
-		}
-		if(count == dtMigrationRuleModels.size())
-		{
-			return dtMigrationRuleDao.saveDTMigrationRule(dtMigrationRuleModels);
-		}
-		else
-		{
-			return false;
-		}
+//		int count = 0;
+//		for(DTMigrationRuleModel cloudProviderRuleModel : dtMigrationRuleModels)
+//		{
+//			if(cloudProviderRuleModel.getRuleOptionTextEN() != null)
+//			{
+//				String optionText[] = cloudProviderRuleModel.getRuleOptionTextEN().split(",");
+//				String optionIds[] = cloudProviderRuleModel.getRuleOptionIds().split(",");
+//				if(optionText.length==optionIds.length)
+//				{
+//					count++;
+//				}
+//			}
+//		}
+//		if(count == dtMigrationRuleModels.size())
+//		{
+//			return dtMigrationRuleDao.saveDTMigrationRule(dtMigrationRuleModels);
+//		}
+//		else
+//		{
+//			return false;
+//		}
+		
+		return dtMigrationRuleDao.saveDTMigrationRule(dtMigrationRuleModels);
 		
 	}
 

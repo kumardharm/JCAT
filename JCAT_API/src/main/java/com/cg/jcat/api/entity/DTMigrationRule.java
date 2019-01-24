@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="dt_migration_rule")
@@ -58,6 +60,17 @@ public class DTMigrationRule {
 	@Column(name="modified_time")
 	private Date modifiedTime;
 	
+//	@ManyToOne
+//    @JoinColumn(name = "migration_id")
+//	private DTMigration migration;
+	
+//	@JsonIgnore
+//	public DTMigration getMigration() {
+//		return migration;
+//	}
+//	public void setMigration(DTMigration migration) {
+//		this.migration = migration;
+//	}
 	public int getMigrationRuleId() {
 		return migrationRuleId;
 	}
@@ -145,6 +158,5 @@ public class DTMigrationRule {
 				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy
 				+ ", modifiedTime=" + modifiedTime + "]";
 	}
-	
 	
 }

@@ -7,7 +7,7 @@ import com.cg.jcat.api.exception.entity.ErrorDTO;
 public class SystemExceptions extends JcatExceptions{
 	
 	private static String error_code = "SE200";
-	private static String error_message = "Something Went Wrong, It may Happen for system error";
+	private static String error_message = "System Error has occured, contact to support team";
 	private static Date error_timestamp = new Date();
     private static String error_details ;
 	public SystemExceptions() {

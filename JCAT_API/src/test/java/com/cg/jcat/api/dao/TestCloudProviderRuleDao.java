@@ -16,6 +16,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -43,7 +44,7 @@ public class TestCloudProviderRuleDao {
 	}
 	@Test
 //	@Ignore
-	public void testSaveCloudProviderRule()
+	public void testSaveCloudProviderRule() throws SystemExceptions
 	{
 		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<DTProviderRuleModel>();
 		cloudProviderRuleModelList.add(getcloudProviderRuleModel());

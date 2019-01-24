@@ -1,4 +1,4 @@
-	package com.cg.jcat.api.dao;
+package com.cg.jcat.api.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,142 +17,135 @@ import com.cg.jcat.api.repository.IDTMigrationRuleRepository;
 
 @Component
 public class DTMigrationRuleDao {
-	
+
 	@Autowired
 	IDTMigrationRuleRepository dtMigrationRuleRepository;
-	
+
 	@Autowired
 	IDTMigrationRepository dtMigrationRepository;
-	
+
 	@Autowired
 	IDTMigrationRuleHistoryRepository dtMigrationRuleHistoryRepository;
-	
-	public List<DTMigrationRuleModel> getMigrationRule(){
-		List<DTMigrationRuleModel> dtMigrationRuleModelIST=new ArrayList<DTMigrationRuleModel>();
-		List<DTMigrationRule> dtMigrationRuleLIST=toGetMigrationRule();
-		return toGetMigrationRule(dtMigrationRuleLIST,dtMigrationRuleModelIST);
+
+	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) {
+		List<DTMigrationRuleModel> dtMigrationRuleModelIST = new ArrayList<DTMigrationRuleModel>();
+		if (migrationId == 0) {
+			List<DTMigrationRule> dtMigrationRuleLIST = toGetMigrationRule();
+			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
+		} else {
+			List<DTMigrationRule> dtMigrationRuleLIST = dtMigrationRuleRepository.findByMigrationId(migrationId);
+			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
+		}
+
 	}
-	
-	public List<DTMigrationRuleModel> toGetMigrationRule(List<DTMigrationRule> dtMigrationRuleLIST,List<DTMigrationRuleModel> dtMigrationRuleModelIST){
-		
-		for(DTMigrationRule assessmentQuestion:dtMigrationRuleLIST)
-		{
+
+	public List<DTMigrationRuleModel> toGetMigrationRule(List<DTMigrationRule> dtMigrationRuleLIST,
+			List<DTMigrationRuleModel> dtMigrationRuleModelIST) {
+
+		for (DTMigrationRule assessmentQuestion : dtMigrationRuleLIST) {
 			dtMigrationRuleModelIST.add(toGetMigrationRuleModel(assessmentQuestion));
 		}
 		return dtMigrationRuleModelIST;
 	}
-	
-	public List<DTMigrationRule> toGetMigrationRule()
-	{
+
+	public List<DTMigrationRule> toGetMigrationRule() {
 		return dtMigrationRuleRepository.findAll();
 	}
-	
 
 	public boolean saveDTMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModelList) throws SystemExceptions {
-		int countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
-		System.out.println(countOfHistoryRule);
-		if(countOfHistoryRule != 0 || getCountOfMigrationRule()!=0)
-		{
-			saveMigrationRuleHistory(toGetMigrationRule());
-		}
-		dtMigrationRuleRepository.deleteAll();
-		saveAllMigrationRule(dtMigrationRuleModelList);
-		return true;
-	}
-	
-	public int getCountOfMigrationRuleHistoryRule() throws SystemExceptions
-	{
-		int count = 0;
+		boolean afterSaved = false;
 		try {
-			count = dtMigrationRuleHistoryRepository.findAll().size();
+
+			int countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
+			System.out.println(countOfHistoryRule);
+			if (countOfHistoryRule != 0 || getCountOfMigrationRule() != 0) {
+				saveMigrationRuleHistory(toGetMigrationRule());
+			}
+			dtMigrationRuleRepository.deleteAll();
+			afterSaved = saveAllMigrationRule(dtMigrationRuleModelList);
 		} catch (Exception e) {
-			throw new SystemExceptions("getCountOfMigrationRuleHistoryRule()");
+			throw new SystemExceptions("saveDTMigrationRule()");
 		}
-		
-		return count;
+		return afterSaved;
 	}
-	
-	public int getCountOfMigrationRule()
-	{
+
+	public int getCountOfMigrationRuleHistoryRule() {
+
+		return dtMigrationRuleHistoryRepository.findAll().size();
+	}
+
+	public int getCountOfMigrationRule() {
 		return dtMigrationRuleRepository.findAll().size();
 	}
-	
-	public void saveAllMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModelList)
-	{
-		for(DTMigrationRuleModel dtMigrationRuleModel : dtMigrationRuleModelList)
-		{
-			dtMigrationRuleRepository.save(toGetMigrationRule(dtMigrationRuleModel));
+
+	public boolean saveAllMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModelList) {
+		List<DTMigrationRule> dtMigrationRules = new ArrayList<>();
+		for (DTMigrationRuleModel dtMigrationRuleModel : dtMigrationRuleModelList) {
+			// dtMigrationRuleRepository.save(toGetMigrationRule(dtMigrationRuleModel));
+			dtMigrationRules.add(toGetMigrationRule(dtMigrationRuleModel));
 		}
-		
+		return dtMigrationRuleRepository.saveAll(dtMigrationRules) != null;
+
 	}
-	
+
 	public boolean updateMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) {
 		boolean updateResult = false;
 		updateResult = dtMigrationRuleRepository.saveAndFlush(toGetMigrationRule(dtMigrationRuleModel)) != null;
 		System.out.println(updateResult);
 		return updateResult;
 	}
-	
-	
-	
-	
+
 	/*
 	 * MIGRATION PATTERN
-	 * */
-	
-	public List<DTMigrationModel> getMigrationPattern(){
-		List<DTMigrationModel> dtMigrationModelIST=new ArrayList<DTMigrationModel>();
-		List<DTMigration> dtMigrationLIST=dtMigrationRepository.findAll();
-		return toGetMigration(dtMigrationLIST,dtMigrationModelIST);
+	 */
+
+	public List<DTMigrationModel> getMigrationPattern() {
+		List<DTMigrationModel> dtMigrationModelIST = new ArrayList<DTMigrationModel>();
+		List<DTMigration> dtMigrationLIST = dtMigrationRepository.findAll();
+		return toGetMigration(dtMigrationLIST, dtMigrationModelIST);
 	}
-	
-	public List<DTMigrationModel> toGetMigration(List<DTMigration> dtMigrationLIST,List<DTMigrationModel> dtMigrationModelIST){
-		
-		for(DTMigration assessmentQuestion:dtMigrationLIST)
-		{
+
+	public List<DTMigrationModel> toGetMigration(List<DTMigration> dtMigrationLIST,
+			List<DTMigrationModel> dtMigrationModelIST) {
+
+		for (DTMigration assessmentQuestion : dtMigrationLIST) {
 			dtMigrationModelIST.add(toGetDTMigration(assessmentQuestion));
 		}
 		return dtMigrationModelIST;
 	}
-	
-	
+
 	/*
 	 * Migration Rule History Getter
-	 * */
-	
-	public void saveMigrationRuleHistory(List<DTMigrationRule> dtMigrationRuleList)
-	{
-		for(DTMigrationRule dtMigrationRule : dtMigrationRuleList)
-		{
+	 */
+
+	public void saveMigrationRuleHistory(List<DTMigrationRule> dtMigrationRuleList) {
+		for (DTMigrationRule dtMigrationRule : dtMigrationRuleList) {
 			dtMigrationRuleHistoryRepository.save(toGetMigrationRuleHistory(dtMigrationRule));
 		}
 	}
-	
-	public DTMigrationRuleHistory toGetMigrationRuleHistory(DTMigrationRule dtMigrationRule)
-	{
+
+	public DTMigrationRuleHistory toGetMigrationRuleHistory(DTMigrationRule dtMigrationRule) {
 		Date date = new Date();
 		DTMigrationRuleHistory dtMigrationRuleHistory = new DTMigrationRuleHistory();
-		dtMigrationRuleHistory.setCreatedBy( "Admin" );
+		dtMigrationRuleHistory.setCreatedBy("Admin");
 		dtMigrationRuleHistory.setCreatedTime(date);
-		dtMigrationRuleHistory.setExecutionOrder( dtMigrationRule.getExecutionOrder() );
-		dtMigrationRuleHistory.setMigrationId( dtMigrationRule.getMigrationId());
-		dtMigrationRuleHistory.setMigrationRuleId( dtMigrationRule.getMigrationRuleId() );
-		dtMigrationRuleHistory.setQuestionId( dtMigrationRule.getQuestionId() );
-		dtMigrationRuleHistory.setQuestionTextEN( dtMigrationRule.getQuestiontextEN() );
-		dtMigrationRuleHistory.setRuleOptionIds( dtMigrationRule.getRuleOptionIds() );
-		dtMigrationRuleHistory.setRuleOptionTextEN( dtMigrationRule.getRuleOptionTextEN() );
+		dtMigrationRuleHistory.setExecutionOrder(dtMigrationRule.getExecutionOrder());
+		dtMigrationRuleHistory.setMigrationId(dtMigrationRule.getMigrationId());
+		dtMigrationRuleHistory.setMigrationRuleId(dtMigrationRule.getMigrationRuleId());
+		dtMigrationRuleHistory.setQuestionId(dtMigrationRule.getQuestionId());
+		dtMigrationRuleHistory.setQuestionTextEN(dtMigrationRule.getQuestiontextEN());
+		dtMigrationRuleHistory.setRuleOptionIds(dtMigrationRule.getRuleOptionIds());
+		dtMigrationRuleHistory.setRuleOptionTextEN(dtMigrationRule.getRuleOptionTextEN());
 		return dtMigrationRuleHistory;
 	}
-	
-	
+
 	/*
 	 * Migration Rule Model Getter
-	 * */
-	
-	public DTMigrationRuleModel toGetMigrationRuleModel(DTMigrationRule dtMigrationRule)
-	{
+	 */
+
+	public DTMigrationRuleModel toGetMigrationRuleModel(DTMigrationRule dtMigrationRule) {
 		DTMigrationRuleModel dtMigrationRuleModel = new DTMigrationRuleModel();
-		dtMigrationRuleModel.setEvaluationOrder(dtMigrationRule.getExecutionOrder());
+		dtMigrationRuleModel.setExecutionOrder(dtMigrationRule.getExecutionOrder());
 		dtMigrationRuleModel.setMigrationId(dtMigrationRule.getMigrationId());
 		dtMigrationRuleModel.setMigrationRuleId(dtMigrationRule.getMigrationRuleId());
 		dtMigrationRuleModel.setQuestionId(dtMigrationRule.getQuestionId());
@@ -164,14 +157,13 @@ public class DTMigrationRuleDao {
 
 	/*
 	 * Migration Rule Getter
-	 * */
-	
-	public DTMigrationRule toGetMigrationRule(DTMigrationRuleModel dtMigrationRuleModel)
-	{
-		Date date=new Date();
+	 */
+
+	public DTMigrationRule toGetMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) {
+		Date date = new Date();
 		System.out.println(dtMigrationRuleModel);
 		DTMigrationRule dtMigrationRule = new DTMigrationRule();
-		dtMigrationRule.setExecutionOrder(dtMigrationRuleModel.getEvaluationOrder());
+		dtMigrationRule.setExecutionOrder(dtMigrationRuleModel.getExecutionOrder());
 		dtMigrationRule.setMigrationId(dtMigrationRuleModel.getMigrationId());
 		dtMigrationRule.setMigrationRuleId(dtMigrationRuleModel.getMigrationRuleId());
 		dtMigrationRule.setQuestionId(dtMigrationRuleModel.getQuestionId());
@@ -182,13 +174,12 @@ public class DTMigrationRuleDao {
 		dtMigrationRule.setCreatedTtime(date);
 		return dtMigrationRule;
 	}
-	
+
 	/*
 	 * Migration Getter
-	 * */
-	
-	public DTMigrationModel toGetDTMigration(DTMigration dtMigration)
-	{
+	 */
+
+	public DTMigrationModel toGetDTMigration(DTMigration dtMigration) {
 		DTMigrationModel dtMigrationModel = new DTMigrationModel();
 		dtMigrationModel.setCreatedBy(dtMigration.getCreatedBy());
 		dtMigrationModel.setCreatedTtime(dtMigration.getCreatedTtime());
@@ -202,12 +193,8 @@ public class DTMigrationRuleDao {
 	}
 }
 
-
-/*public boolean saveMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) {
-	try {
-		return saveDTMigrationRule(dtMigrationRuleModel);
-	}catch (Exception e) {
-		System.out.print(ExceptionMessages.SaveUsersToDB + e);
-		return false;
-	}
-}*/
+/*
+ * public boolean saveMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) {
+ * try { return saveDTMigrationRule(dtMigrationRuleModel); }catch (Exception e)
+ * { System.out.print(ExceptionMessages.SaveUsersToDB + e); return false; } }
+ */

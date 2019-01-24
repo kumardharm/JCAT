@@ -15,7 +15,7 @@ public interface IUserService {
 
 	public boolean saveUser(UserModel user, String createdBy) throws UserAlreadyExistsException, SystemExceptions;
 
-	public boolean updateUsers(UserModel user, String modifiedBy)  throws SystemExceptions ;
+	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException ;
 
 	public boolean deleteById(int userId) throws JcatExceptions;
 
