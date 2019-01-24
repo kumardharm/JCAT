@@ -4,7 +4,7 @@ public class DTMigrationRuleModel {
 
 	private int migrationRuleId;
 	private int migrationId;
-	private int evaluationOrder;
+	private int executionOrder;
 	private int questionId;
 	private String questiontextEN;
 	private String ruleOptionIds;
@@ -22,11 +22,11 @@ public class DTMigrationRuleModel {
 	public void setMigrationId(int migrationId) {
 		this.migrationId = migrationId;
 	}
-	public int getEvaluationOrder() {
-		return evaluationOrder;
+	public int getExecutionOrder() {
+		return executionOrder;
 	}
-	public void setEvaluationOrder(int evaluationOrder) {
-		this.evaluationOrder = evaluationOrder;
+	public void setExecutionOrder(int executionOrder) {
+		this.executionOrder = executionOrder;
 	}
 	public int getQuestionId() {
 		return questionId;
@@ -55,7 +55,7 @@ public class DTMigrationRuleModel {
 	@Override
 	public String toString() {
 		return "DTMigrationRuleModel [migrationRuleId=" + migrationRuleId + ", migrationId=" + migrationId
-				+ ", evaluationOrder=" + evaluationOrder + ", questionId=" + questionId + ", questiontextEN="
+				+ ", executionOrder=" + executionOrder + ", questionId=" + questionId + ", questiontextEN="
 				+ questiontextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN + "]";
 	}
 	

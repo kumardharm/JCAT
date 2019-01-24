@@ -110,7 +110,7 @@ public class DTProviderRuleDao {
 		cloudProviderRuleModel.setProviderId(cloudProviderRule.getProviderId());
 		cloudProviderRuleModel.setProviderRuleId(cloudProviderRule.getProviderRuleId());
 		cloudProviderRuleModel.setQuestionId(cloudProviderRule.getQuestionId());
-		cloudProviderRuleModel.setEvaluationOrder(cloudProviderRule.getEvaluationOrder());
+		cloudProviderRuleModel.setEvaluationOrder(cloudProviderRule.getExecutionOrder());
 		cloudProviderRuleModel.setQuestiontextEN(cloudProviderRule.getQuestiontextEN());
 		cloudProviderRuleModel.setRuleOptionIds(cloudProviderRule.getRuleOptionIds());
 		cloudProviderRuleModel.setRuleOptionTextEN(cloudProviderRule.getRuleOptionTextEN());
@@ -180,7 +180,7 @@ public class DTProviderRuleDao {
 		DTProviderRuleHistory providerRuleHistory = new DTProviderRuleHistory();
 		providerRuleHistory.setProviderId(providerRule.getProviderId());
 		providerRuleHistory.setProviderRuleId(providerRule.getProviderRuleId());
-		providerRuleHistory.setEvaluationOrder(providerRule.getEvaluationOrder());
+		providerRuleHistory.setExecutionOrder(providerRule.getExecutionOrder());
 		providerRuleHistory.setQuestionId(providerRule.getQuestionId());
 		providerRuleHistory.setQuestionTextEN(providerRule.getRuleOptionIds());
 		providerRuleHistory.setRuleOptionIds(providerRule.getRuleOptionTextEN());
@@ -220,7 +220,7 @@ public class DTProviderRuleDao {
 
 		Date date = new Date();
 		cloudProviderRule.setProviderId(cloudProviderRuleModel.getProviderId());
-		cloudProviderRule.setEvaluationOrder(cloudProviderRuleModel.getEvaluationOrder());
+		cloudProviderRule.setExecutionOrder(cloudProviderRuleModel.getEvaluationOrder());
 		cloudProviderRule.setQuestionId(cloudProviderRuleModel.getQuestionId());
 		cloudProviderRule.setQuestiontextEN(cloudProviderRuleModel.getQuestiontextEN());
 		cloudProviderRule.setRuleOptionIds(cloudProviderRuleModel.getRuleOptionIds());

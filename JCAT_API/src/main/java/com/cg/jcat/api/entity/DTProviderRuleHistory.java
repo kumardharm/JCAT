@@ -16,37 +16,36 @@ import javax.validation.constraints.NotNull;
 public class DTProviderRuleHistory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@NotNull
 	@Column(name="id")
     private int	id;
     
-//	@NotNull
+	@NotNull
     @Column(name="provider_rule_id")
 	private int providerRuleId;
     
-//	@NotNull
+	@NotNull
     @Column(name="provider_id")
 	private int providerId;
     
-	@Column(name="evaluation_order")
-	private int evaluationOrder;
+	@Column(name="execution_order")
+	private int executionOrder;
 	
-//	@NotNull
+	@NotNull
 	@Column(name="question_id")
 	private int questionId;
 	
 	@Lob
-//	@NotNull
+	@NotNull
 	@Column(name="question_text_EN")
 	private String questionTextEN;
 	
 	@Lob
-//	@NotNull
+	@NotNull
 	@Column(name="rule_option_ids")
 	private String ruleOptionIds;
 	
 	@Lob
-//	@NotNull
+	@NotNull
 	@Column(name="rule_option_text_EN")
 	private String ruleOptionTextEN;
 	
@@ -82,12 +81,12 @@ public class DTProviderRuleHistory {
 		this.providerId = providerId;
 	}
 
-	public int getEvaluationOrder() {
-		return evaluationOrder;
+	public int getExecutionOrder() {
+		return executionOrder;
 	}
 
-	public void setEvaluationOrder(int evaluationOrder) {
-		this.evaluationOrder = evaluationOrder;
+	public void setExecutionOrder(int executionOrder) {
+		this.executionOrder = executionOrder;
 	}
 
 	public int getQuestionId() {
@@ -141,10 +140,9 @@ public class DTProviderRuleHistory {
 	@Override
 	public String toString() {
 		return "DTProviderRuleHistory [id=" + id + ", providerRuleId=" + providerRuleId + ", providerId=" + providerId
-				+ ", evaluationOrder=" + evaluationOrder + ", questionId=" + questionId + ", questionTextEN="
+				+ ", executionOrder=" + executionOrder + ", questionId=" + questionId + ", questionTextEN="
 				+ questionTextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN
 				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + "]";
 	}
-	
 
 }

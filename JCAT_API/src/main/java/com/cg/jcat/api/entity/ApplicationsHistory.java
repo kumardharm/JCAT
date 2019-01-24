@@ -29,7 +29,7 @@ public class ApplicationsHistory {
 	
 	@NotNull
 	@Column(name = "application_id")
-	private int applicationId;
+	private String applicationId;
 	
 	@Column(name = "application_name")
 	private String applicationName;
@@ -95,7 +95,7 @@ public class ApplicationsHistory {
 	private Date createdTime;
 	
 	@Column(name = "modified_by")
-	private Date modifiedBy;
+	private String modifiedBy;
 	
 	@Column(name = "modified_time")
 	private Date modifiedTime;
@@ -116,11 +116,11 @@ public class ApplicationsHistory {
 		this.aid = aid;
 	}
 
-	public int getApplicationId() {
+	public String getApplicationId() {
 		return applicationId;
 	}
 
-	public void setApplicationId(int applicationId) {
+	public void setApplicationId(String applicationId) {
 		this.applicationId = applicationId;
 	}
 
@@ -268,11 +268,11 @@ public class ApplicationsHistory {
 		this.createdTime = createdTime;
 	}
 
-	public Date getModifiedBy() {
+	public String getModifiedBy() {
 		return modifiedBy;
 	}
 
-	public void setModifiedBy(Date modifiedBy) {
+	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
 

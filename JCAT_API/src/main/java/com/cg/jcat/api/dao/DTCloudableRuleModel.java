@@ -4,10 +4,12 @@ public class DTCloudableRuleModel {
 
 	private int cloudableRuleId;
 	private int executionOrder;
-	private int questionId;
 	private String questionTextEN;
 	private String optionIds;
 	private String optionTextsEN;
+	
+	private int questionId;
+	
 	public int getCloudableRuleId() {
 		return cloudableRuleId;
 	}
@@ -19,12 +21,6 @@ public class DTCloudableRuleModel {
 	}
 	public void setExecutionOrder(int executionOrder) {
 		this.executionOrder = executionOrder;
-	}
-	public int getQuestionId() {
-		return questionId;
-	}
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
 	}
 	public String getQuestionTextEN() {
 		return questionTextEN;
@@ -44,12 +40,19 @@ public class DTCloudableRuleModel {
 	public void setOptionTextsEN(String optionTextsEN) {
 		this.optionTextsEN = optionTextsEN;
 	}
+	public int getQuestionId() {
+		return questionId;
+	}
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
 	@Override
 	public String toString() {
 		return "DTCloudableRuleModel [cloudableRuleId=" + cloudableRuleId + ", executionOrder=" + executionOrder
-				+ ", questionId=" + questionId + ", questionTextEN=" + questionTextEN + ", optionIds=" + optionIds
-				+ ", optionTextsEN=" + optionTextsEN + "]";
+				+ ", questionTextEN=" + questionTextEN + ", optionIds=" + optionIds + ", optionTextsEN=" + optionTextsEN
+				+ ", questionId=" + questionId + "]";
 	}
+	
 	
 	
 }

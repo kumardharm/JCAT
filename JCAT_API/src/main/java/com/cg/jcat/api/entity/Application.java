@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name="application_table",uniqueConstraints = {@UniqueConstraint(columnNames = "application_id")})
+@Table(name="application",uniqueConstraints = {@UniqueConstraint(columnNames = "application_id")})
 public class Application {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,9 +84,9 @@ public class Application {
 	@NotNull
 	private String createdBy;
 	
-	@Column(name = "cteated_time")
+	@Column(name = "created_time")
 	@NotNull	
-	private Date cteatedTime;
+	private Date createdTime;
 	
 	@Column(name = "modified_by")
 	private String modifiedBy;
@@ -246,12 +246,12 @@ public class Application {
 		this.createdBy = createdBy;
 	}
 
-	public Date getCteatedTime() {
-		return cteatedTime;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
 
-	public void setCteatedTime(Date cteatedTime) {
-		this.cteatedTime = cteatedTime;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 
 	public String getModifiedBy() {
@@ -280,7 +280,7 @@ public class Application {
 				+ assessmentCompletionTime + ", isDTCloudable=" + isDTCloudable + ", isReCloudable=" + isReCloudable
 				+ ", dtMigrationPattern=" + dtMigrationPattern + ", reMigrationPattern=" + reMigrationPattern
 				+ ", dtCloudProvider=" + dtCloudProvider + ", reCloudProvider=" + reCloudProvider + ", createdBy="
-				+ createdBy + ", cteatedTime=" + cteatedTime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
+				+ createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
 				+ modifiedTime + "]";
 	}
 	

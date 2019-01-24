@@ -2,11 +2,23 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
+
+
+import javax.persistence.CascadeType;
+
+import javax.persistence.Column;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 @Entity
@@ -16,9 +28,9 @@ public class DTCloudableRule {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int cloudableRuleId;
 	private int executionOrder;
-	@NotNull
-	private int questionId;
+
 	@Lob
+	@Column(name="question_text_EN")
 	private String questionTextEN;
 	
 	@Lob
@@ -27,14 +39,24 @@ public class DTCloudableRule {
 	
 	@Lob
 	@NotNull
+	@Column(name="option_texts_EN")
 	private String optionTextsEN;
-	private boolean isDelete;
+	
 	@NotNull
 	private String createdBy;
+	
 	@NotNull
 	private Date createdTime;
+	
 	private String modifiedBy;
+	
 	private Date modifiedTime;
+	
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="questionId")
+	private AssessmentQuestion assessmentQuestion;
+
 	public int getCloudableRuleId() {
 		return cloudableRuleId;
 	}
@@ -47,12 +69,7 @@ public class DTCloudableRule {
 	public void setExecutionOrder(int executionOrder) {
 		this.executionOrder = executionOrder;
 	}
-	public int getQuestionId() {
-		return questionId;
-	}
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
+	
 	public String getQuestionTextEN() {
 		return questionTextEN;
 	}
@@ -95,26 +112,20 @@ public class DTCloudableRule {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
-	
-	public boolean isDelete() {
-		return isDelete;
+
+	public AssessmentQuestion getAssessmentQuestion() {
+		return assessmentQuestion;
 	}
-	public void setDelete(boolean isDelete) {
-		this.isDelete = isDelete;
+	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
+		this.assessmentQuestion = assessmentQuestion;
 	}
 	@Override
 	public String toString() {
 		return "DTCloudableRule [cloudableRuleId=" + cloudableRuleId + ", executionOrder=" + executionOrder
-				+ ", questionId=" + questionId + ", questionTextEN=" + questionTextEN + ", optionIds=" + optionIds
-				+ ", optionTextsEN=" + optionTextsEN + ", isDelete=" + isDelete + ", createdBy=" + createdBy
-				+ ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime
-				+ "]";
+				+ ", questionTextEN=" + questionTextEN + ", optionIds=" + optionIds + ", optionTextsEN=" + optionTextsEN
+				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy
+				+ ", modifiedTime=" + modifiedTime + "]";
 	}
 	
 	
-	
-	
-	
-
-
 }

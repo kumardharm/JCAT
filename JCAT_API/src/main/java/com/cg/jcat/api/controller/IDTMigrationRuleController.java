@@ -3,6 +3,7 @@ package com.cg.jcat.api.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,8 +20,8 @@ import com.cg.jcat.api.exception.SystemExceptions;
 @RequestMapping("/migration")
 public interface IDTMigrationRuleController {
 	
-	@GetMapping("/get/rule")
-	public List<DTMigrationRuleModel> getMigrationRule();
+	@GetMapping("/get/rule/{migrationId}")
+	public List<DTMigrationRuleModel> getMigrationRule(@PathVariable int migrationId);
 	
 	@PostMapping("/create/rule")
 	public void saveMigrationRule(@RequestBody List<DTMigrationRuleModel> dtMigrationRuleModel) throws SystemExceptions;

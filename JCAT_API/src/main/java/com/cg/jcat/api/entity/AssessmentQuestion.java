@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -51,8 +52,8 @@ public class AssessmentQuestion {
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum questionType;
 	
+	//@NotNull
 	@Lob
-	@NotNull
 	@Column(name="question_text_en")
 	private String questionTextEN;
 	
@@ -93,6 +94,8 @@ public class AssessmentQuestion {
 	
 	@OneToMany(mappedBy = "assessmentQuestion", cascade = CascadeType.ALL)
     private List<QuestionOption> questionOption;
+	@OneToOne(mappedBy = "assessmentQuestion")
+	private DTCloudableRule dtCloudableRule;
 	
 	public List<QuestionOption> getQuestionOption() {
 		return questionOption;
@@ -196,7 +199,15 @@ public class AssessmentQuestion {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
-//	@Override
+	
+		
+	public DTCloudableRule getDtCloudableRule() {
+		return dtCloudableRule;
+	}
+	public void setDtCloudableRule(DTCloudableRule dtCloudableRule) {
+		this.dtCloudableRule = dtCloudableRule;
+	}
+	//	@Override
 //	public String toString() {
 //		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="
 //				+ assessmentTypeForCloudable + ", assessmentTypeForCloudProvider=" + assessmentTypeForCloudProvider

@@ -21,24 +21,17 @@ public class DTCloudableRuleController implements IDTCloudableRuleController {
 	}
 
 	@Override
-	public boolean saveCloudableRule(DTCloudableRuleModel dTCloudableRuleModel) {
-			return iDTCloudableRuleService.saveCloudableRule(dTCloudableRuleModel);
-	}
-
-	@Override
-	public boolean updateCloudablerule(DTCloudableRuleModel dTCloudableRuleModel) {
-		return iDTCloudableRuleService.updateCloudablerule(dTCloudableRuleModel);
-	}
-
-	@Override
-	public boolean deleteCloudableRule(int cloudableRuleId) {
-				return iDTCloudableRuleService.deleteCloudableRule(cloudableRuleId);
-	}
-
-	@Override
 	public DTCloudableRuleModel getCloudableRuleById(int cloudableRuleId) {
 		
 		return iDTCloudableRuleService.getCloudableRuleById(cloudableRuleId);
 	}
+
+	@Override
+	public boolean saveCloudableRule(List<DTCloudableRuleModel> dTCloudableRuleModelList) {
+		
+		return iDTCloudableRuleService.saveCloudableRule(dTCloudableRuleModelList);
+	}
+	
+	
 
 }

@@ -2,10 +2,16 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -14,6 +20,7 @@ import javax.validation.constraints.NotNull;
 public class DTCloudableRuleHistory {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@NotNull
@@ -22,10 +29,7 @@ public class DTCloudableRuleHistory {
 	
 	@Column(name = "execution_order")
 	private int executionOrder;
-	
-	@Column(name = "question_id")
-	private int questionId;
-	
+		
 	@Lob
 	@Column(name = "question_text_EN")
 	private String questiontTextEN;
@@ -42,9 +46,13 @@ public class DTCloudableRuleHistory {
 	@NotNull
 	private String createdBy;
 	
-	@Column(name = "cteated_time")
+	@Column(name = "created_time")
 	@NotNull
-	private Date cteatedTime;
+	private Date createdTime;
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="questionId")
+	private AssessmentQuestion assessmentQuestion;
 	
 	public int getId() {
 		return id;
@@ -64,12 +72,7 @@ public class DTCloudableRuleHistory {
 	public void setExecutionOrder(int executionOrder) {
 		this.executionOrder = executionOrder;
 	}
-	public int getQuestionId() {
-		return questionId;
-	}
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
+	
 	public String getQuestiontTextEN() {
 		return questiontTextEN;
 	}
@@ -94,18 +97,19 @@ public class DTCloudableRuleHistory {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	public Date getCteatedTime() {
-		return cteatedTime;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
-	public void setCteatedTime(Date cteatedTime) {
-		this.cteatedTime = cteatedTime;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
-	@Override
-	public String toString() {
-		return "DTCloudableRuleHistory [id=" + id + ", cloudableRuleId=" + cloudableRuleId + ", executionOrder="
-				+ executionOrder + ", questionId=" + questionId + ", questiontTextEN=" + questiontTextEN
-				+ ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN + ", createdBy="
-				+ createdBy + ", cteatedTime=" + cteatedTime + "]";
+	public AssessmentQuestion getAssessmentQuestion() {
+		return assessmentQuestion;
 	}
+	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
+		this.assessmentQuestion = assessmentQuestion;
+	}
+
+
 	
 }
