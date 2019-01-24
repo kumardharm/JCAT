@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
+import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
@@ -30,15 +31,44 @@ public class UserService implements IUserService {
 
 	@Override
 	public boolean saveUser(UserModel user, String createdBy) throws UserAlreadyExistsException, SystemExceptions {
-		boolean isSaved = userDao.createUser(user, createdBy);
+		boolean isSaved = false;
+		User existingUser = userDao.findByUsername(user.getUsername());
+		if (existingUser.getUsername() != null) {
+			logger.error("Error user already present in DB! with name " + user.getUsername() + " ErrorMessage: ");
+			throw new  UserAlreadyExistsException(user.getUsername());
+		}
+		try {
+		
+	    isSaved = userDao.createUser(user, createdBy);
+		}
+		catch (Exception e) {
+			logger.error("Error while saving user " + user.getUsername() + " ErrorMessage: " + e.getMessage(), e);
+			throw new SystemExceptions("saveUser()");
+		}
+		
+		
 		logger.info("User " + user.getUsername() + " successfully saved in DB!" + isSaved);
 		return isSaved;
 	}
 
 	@Override
 	public boolean updateUsers(UserModel user, String modifiedBy)  throws SystemExceptions, UserAlreadyExistsException  {
-
-		boolean isUpdated = userDao.updateUsers(user, modifiedBy);
+		User existingUser = userDao.findByUsername(user.getUsername());
+		boolean isUpdated = false;
+		if (existingUser != null) {
+			logger.error("Error user already present in DB! with name " + user.getUsername() + " ErrorMessage: ");
+			throw new  UserAlreadyExistsException(user.getUsername());
+			
+		}
+		try {
+			
+			 isUpdated = userDao.updateUsers(user, modifiedBy);
+		}
+		catch (Exception e) {
+			logger.error("Error while updating user " + user.getUsername() + " ErrorMessage: " + e.getMessage(), e);
+			throw new SystemExceptions("updateUsers()");
+		}
+		
 		logger.info("User " + user.getUsername() + " successfully updated in DB!" + isUpdated);
 		return isUpdated;
 	}

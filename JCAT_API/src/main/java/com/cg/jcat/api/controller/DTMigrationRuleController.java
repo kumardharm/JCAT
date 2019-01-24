@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.cg.jcat.api.dao.DTMigrationModel;
 import com.cg.jcat.api.dao.DTMigrationRuleModel;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IDTMigrationRuleService;
 
 @Component
@@ -25,23 +26,9 @@ public class DTMigrationRuleController implements IDTMigrationRuleController{
 			return null;
 		}
 	}
-
+	
 	@Override
-	public void updateMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) {
-		try {
-			dtMigrationRuleService.updateMigrationRule(dtMigrationRuleModel);
-		} catch (JcatExceptions e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public List<DTMigrationModel> getMigration() {
-		return dtMigrationRuleService.getMigrationPattern();
-	}
-
-	@Override
-	public void saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModel) {
+	public void saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModel) throws SystemExceptions{
 		try {
 			dtMigrationRuleService.saveMigrationRule(dtMigrationRuleModel);
 		} catch (JcatExceptions e) {
@@ -50,6 +37,12 @@ public class DTMigrationRuleController implements IDTMigrationRuleController{
 		}
 		
 	}
+	
+	@Override
+	public List<DTMigrationModel> getMigration() {
+		return dtMigrationRuleService.getMigrationPattern();
+	}
 
+	
 
 }

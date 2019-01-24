@@ -44,7 +44,7 @@ public class DTProviderRuleDao {
 	}
 	
 	/*
-	 * 
+	 * CONVERTING ALL PROVIDERS LIST TO PROVIDERMODEL LIST AND ADD PROVIDERMODE TO PROVIDERMODELIST
 	 * 
 	 */
 	private List<DTProvidersModel> toCloudProviderModelList(List<DTProviders> cloudProviderList,
@@ -55,6 +55,10 @@ public class DTProviderRuleDao {
 		return cloudProvidersModelList;
 	}
 
+	/*
+	 * CONVERTING ALL PROVIDERS TO PROVIDERMODEL 
+	 * 
+	 */
 	
 	private DTProvidersModel toCloudProviderMode(DTProviders cloudProviders) {
 		DTProvidersModel cloudProvidersModel = new DTProvidersModel();
@@ -76,6 +80,12 @@ public class DTProviderRuleDao {
 		return toCloudProviderRuleModelList(cloudProviderRuleList, cloudProviderRuleModelList);
 	}
 	
+
+	/*
+	 * CONVERTING ALL PROVIDERMODEL LIST TO PROVIDERS LIST AND ADD PROVIDER TO PROVIDERLIST
+	 * 
+	 */
+	
 	private List<DTProviderRuleModel> toCloudProviderRuleModelList(List<DTProviderRule> cloudProviderRuleList,
 			List<DTProviderRuleModel> cloudProviderRuleModelList) {
 		for (DTProviderRule cloudProviderRule : cloudProviderRuleList) {
@@ -83,6 +93,11 @@ public class DTProviderRuleDao {
 		}
 		return cloudProviderRuleModelList;
 	}
+	
+	/*
+	 * CONVERTING ALL PROVIDERMODEL TO PROVIDERS 
+	 * 
+	 */
 
 	private DTProviderRuleModel toCloudProviderRuleModel(DTProviderRule cloudProviderRule) {
 		DTProviderRuleModel cloudProviderRuleModel = new DTProviderRuleModel();
@@ -96,7 +111,13 @@ public class DTProviderRuleDao {
 		return cloudProviderRuleModel;
 	}
 	
-	
+	/*
+	 * SAVE PROVIDERS TO THE DATABASE WHICH ACCEPTS LIST OF PROVIDERMODEL AND CHECK 
+	 * IF PREVIOUSLY ANY RULE IS PRESENT IN THE RULE TABLE AND IF NOT PRESENT IT WILL SAVE 
+	 * THE LIST TO THE DATA BASE AND IF ALREADY SOME ARE PRESENT THEN 1ST MOVE THEM TO
+	 * THE HISTORY TABLE THEN SAVE THE RULES TO THE DATABASE
+	 * 
+	 */
 
 	public boolean saveProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) throws SystemExceptions {
 		int countOfHistoryRule = getCountOfProviderRuleHistoryRule();
@@ -108,6 +129,11 @@ public class DTProviderRuleDao {
 		return saveDTCloudProviderRule(cloudProviderRuleModel);
 	}
 	
+	/*
+	 * GET HOW MANY PROVIDERS ARE PRESENT IN THE HISTORY TABLE 
+	 * 
+	 */
+	
 	public int getCountOfProviderRuleHistoryRule() throws SystemExceptions {
 			int count = 0;
 			try {
@@ -117,16 +143,35 @@ public class DTProviderRuleDao {
 			}
 		return count;
 	}
+	
+	/*
+	 * GET ALL PROVIDERS PRESENT IN BATABSE IN PROVIDER RULE TABLE
+	 * 
+	 */
 
+	
 	private List<DTProviderRule> getProviderRules() {
 
 		return cloudProviderRuleRepository.findAll();
 	}
 	
+	/*
+	 * GET HOW MANY PROVIDERS ARE PRESENT IN BATABSE IN PROVIDER RULE TABLE
+	 * 
+	 */
+
+	
 	public int getCountOfProviderRule() {
 
 		return cloudProviderRuleRepository.findAll().size();
 	}
+	
+	/*
+	 * MOVE ALL THE PROVIDERS PRESENT IN THE PROVIDERS HISTORY TABLE 
+	 * ADD EACH PROVIDERS TO PROVIDERS HISTORY TABLE AND THEN ADD TO THE PROVIDER HISTORY
+	 * 
+	 */
+
 
 	private void saveProviderRuleHistory(List<DTProviderRule> cloudProviderRule) {
 		List<DTProviderRuleHistory> providerRuleHistory = new ArrayList<DTProviderRuleHistory>();

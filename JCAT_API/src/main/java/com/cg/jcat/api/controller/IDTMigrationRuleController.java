@@ -13,6 +13,7 @@ import com.cg.jcat.api.dao.DTMigrationModel;
 import com.cg.jcat.api.dao.DTMigrationRuleModel;
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.entity.DTMigration;
+import com.cg.jcat.api.exception.SystemExceptions;
 
 @RestController
 @RequestMapping("/migration")
@@ -22,10 +23,7 @@ public interface IDTMigrationRuleController {
 	public List<DTMigrationRuleModel> getMigrationRule();
 	
 	@PostMapping("/create/rule")
-	public void saveMigrationRule(@RequestBody List<DTMigrationRuleModel> dtMigrationRuleModel);
-	
-	@PutMapping("/update")
-	public void updateMigrationRule(DTMigrationRuleModel dtMigrationRuleModel);
+	public void saveMigrationRule(@RequestBody List<DTMigrationRuleModel> dtMigrationRuleModel) throws SystemExceptions;
 	
 	@GetMapping("/get/pattern")
 	public List<DTMigrationModel> getMigration();

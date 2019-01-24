@@ -6,10 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import org.springframework.validation.Errors;
 import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
+import com.cg.jcat.api.entity.ValidationException;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
@@ -40,8 +41,12 @@ public class UserController implements IUserController {
 	}
 
 	@Override
-	public boolean saveUser(String createdBy, UserModel user) throws UserAlreadyExistsException, SystemExceptions {
+	public boolean saveUser(String createdBy, UserModel user,Errors error) throws UserAlreadyExistsException, SystemExceptions, ValidationException {
 		boolean value = false;
+		if(error.hasErrors())
+		{
+			throw new ValidationException("Valication Error");
+		}
 		try {
 			if (createdBy != null && user != null) {
 				value = userService.saveUser(user, createdBy);
@@ -63,7 +68,8 @@ public class UserController implements IUserController {
 				value = userService.updateUsers(user, modifiedBy);
 			}
 			return value;
-		} catch (JcatExceptions e) {
+		}
+		catch (JcatExceptions e) {
 			logger.error("Error while updating user " + user.getUsername(), e);
 			throw e;
 		}

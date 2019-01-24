@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cg.jcat.api.entity.QuestionOption;
-import com.cg.jcat.api.exception.ExceptionMessages;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.repository.IQuestionOptionRepository;
 
@@ -21,8 +20,6 @@ public class QuestionOptionDao {
 			questionOptionList = questionRepository.findAll();
 		} catch (Exception e) {
 			
-			System.out.print(ExceptionMessages.GetUserDetails + e);
-			throw new JcatExceptions(ExceptionMessages.GetUserDetails);
 		}
 		List<QuestionOptionModel> questionOptionDaoList = new ArrayList<QuestionOptionModel>();
 		return togetQuestionOptions(questionOptionList, questionOptionDaoList);
@@ -60,7 +57,6 @@ public class QuestionOptionDao {
 		try {
 			saveQuestionOption(questionOptionModel);
 		}catch (Exception e) {
-			System.out.print(ExceptionMessages.SaveUsersToDB + e);
 			return null;
 		}
 		return null;

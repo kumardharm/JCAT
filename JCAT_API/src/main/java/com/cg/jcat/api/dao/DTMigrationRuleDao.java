@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.cg.jcat.api.entity.DTMigration;
 import com.cg.jcat.api.entity.DTMigrationRule;
 import com.cg.jcat.api.entity.DTMigrationRuleHistory;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IDTMigrationRepository;
 import com.cg.jcat.api.repository.IDTMigrationRuleHistoryRepository;
 import com.cg.jcat.api.repository.IDTMigrationRuleRepository;
@@ -47,7 +48,7 @@ public class DTMigrationRuleDao {
 	}
 	
 
-	public boolean saveDTMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModelList) {
+	public boolean saveDTMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModelList) throws SystemExceptions {
 		int countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
 		System.out.println(countOfHistoryRule);
 		if(countOfHistoryRule != 0 || getCountOfMigrationRule()!=0)
@@ -59,9 +60,16 @@ public class DTMigrationRuleDao {
 		return true;
 	}
 	
-	public int getCountOfMigrationRuleHistoryRule()
+	public int getCountOfMigrationRuleHistoryRule() throws SystemExceptions
 	{
-		return dtMigrationRuleHistoryRepository.findAll().size();
+		int count = 0;
+		try {
+			count = dtMigrationRuleHistoryRepository.findAll().size();
+		} catch (Exception e) {
+			throw new SystemExceptions("getCountOfMigrationRuleHistoryRule()");
+		}
+		
+		return count;
 	}
 	
 	public int getCountOfMigrationRule()

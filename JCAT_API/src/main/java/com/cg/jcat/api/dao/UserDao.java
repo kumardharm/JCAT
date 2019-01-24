@@ -1,5 +1,6 @@
 package com.cg.jcat.api.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,44 +60,35 @@ public class UserDao {
 		return userDao;
 	}
 
-	public boolean createUser(UserModel userModel, String createdBy) throws UserAlreadyExistsException, SystemExceptions  {
-//		User existingUser = userRepository.findByUsername(userModel.getUsername());
-//		if (existingUser != null) {
-//			throw new  UserAlreadyExistsException(userModel.getUsername());
-//			throw new JcatExceptions("User with " + userModel.getUsername() + " already exists in DB ");
-//		}
+	public boolean createUser(UserModel userModel, String createdBy)
+			throws UserAlreadyExistsException, SystemExceptions {
+		// User existingUser = findByUsername(userModel.getUsername());
+		// if (existingUser != null) {
+		// throw new UserAlreadyExistsException(userModel.getUsername());
+		// throw new JcatExceptions("User with " + userModel.getUsername() + " already
+		// exists in DB ");
+		// }
 		userModel.setCreatedBy(createdBy);
 		userModel.setPassword("Cg@123");
 		return saveUser(userModel);
 	}
 
-	public boolean saveUser(UserModel userModel) throws SystemExceptions, UserAlreadyExistsException{
+	public boolean saveUser(UserModel userModel) {
 		boolean value = false;
-		try {
-			User savedUser = userRepository.save(toUsers(userModel));
-			if (savedUser != null) {
-				value = true;
-			}
-		}catch (TransactionSystemException e) {
-			logger.error("User with " + userModel.getUsername() + " already exists in DB ");
-			throw new UserAlreadyExistsException(userModel.getUsername());
-		} 
-		catch (Exception e) {
-			logger.error("Error while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage(), e);				
-			throw new SystemExceptions("saveUser()");
-			
-//			throw new JcatExceptions(
-//					"Exception while saving user " + userModel.getUsername() + " ErrorMessage: " + e.getMessage());
-
+		User savedUser = userRepository.save(toUsers(userModel));
+		if (savedUser != null) {
+			value = true;
 		}
+
 		return value;
+
 	}
 
-	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException   {
+	public boolean updateUsers(UserModel user, String modifiedBy) {
 		return setUpdatedUser(user, modifiedBy);
 	}
 
-	public boolean setUpdatedUser(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException  {
+	public boolean setUpdatedUser(UserModel user, String modifiedBy) {
 
 		user.setModifiedBy(modifiedBy);
 		return saveUser(user);
@@ -105,9 +97,10 @@ public class UserDao {
 	public boolean deleteById(int userId) throws JcatExceptions {
 		User user = findByUserId(userId);
 		if (user == null) {
-			
+
 			throw new DeleteUserException(Integer.toString(userId));
-//			throw new JcatExceptions("User with id " + userId + " does not exists in DB!");
+			// throw new JcatExceptions("User with id " + userId + " does not exists in
+			// DB!");
 		}
 		user.setDeleted(true);
 		user = userRepository.save(user);
@@ -118,8 +111,8 @@ public class UserDao {
 		}
 	}
 
-	public UserModel findByUsername(String username) {
-		return toUserDao(userRepository.findByUsername(username));
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 	public User findByUserId(int userId) {
