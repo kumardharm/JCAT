@@ -7,13 +7,16 @@ public class UserModel {
 	private  int userId;
 	private String firstName;
 	private String lastName;
-//	@NotNull(message="User name can't be empty")
+	@NotNull
 	private String username;
+	@NotNull
 	private String password;
 	private String company;
 	private String userEmail;
+	@NotNull
 	private boolean isAdmin;
 	private String modifiedBy;
+	@NotNull
 	private String createdBy;
 	
 	public int getUserId() {

@@ -9,14 +9,15 @@ import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.OptionTextNotNullException;
 import com.cg.jcat.api.exception.SystemExceptions;
 @Service
 public interface IDTProviderRuleService {
 
 	List<DTProvidersModel> getCloudProvider();
 
-	boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions;
+	boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions,OptionTextNotNullException;
 
-	List<DTProviderRuleModel> getCloudProviderRules();
+	List<DTProviderRuleModel> getCloudProviderRules(int providerId);
 
 }

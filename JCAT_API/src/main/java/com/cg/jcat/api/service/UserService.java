@@ -33,17 +33,16 @@ public class UserService implements IUserService {
 	public boolean saveUser(UserModel user, String createdBy) throws UserAlreadyExistsException, SystemExceptions {
 		boolean isSaved = false;
 		User existingUser = userDao.findByUsername(user.getUsername());
-		if (existingUser.getUsername() != null) {
-			logger.error("Error user already present in DB! with name " + user.getUsername() + " ErrorMessage: ");
+		if (existingUser != null ) {
+			logger.error("Error user already present in DB! with name " + user.getUsername());
 			throw new  UserAlreadyExistsException(user.getUsername());
 		}
 		try {
 		
 	    isSaved = userDao.createUser(user, createdBy);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.error("Error while saving user " + user.getUsername() + " ErrorMessage: " + e.getMessage(), e);
-			throw new SystemExceptions("saveUser()");
+			throw new SystemExceptions("Error in service saveUser():"+e.getMessage());
 		}
 		
 		

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import com.cg.jcat.api.entity.AssessmentQuestion;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.entity.DTProviders;
-import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.repository.IDTProviderRepository;
@@ -24,7 +24,7 @@ import com.cg.jcat.api.repository.IDTProviderRuleRepository;
 @Component
 public class DTProviderRuleDao {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
 	@Autowired
 	private IDTProviderRuleRepository cloudProviderRuleRepository;
@@ -34,23 +34,26 @@ public class DTProviderRuleDao {
 
 	@Autowired
 	private IDTProviderRuleHistory providerRuleHistory;
+
 	
 	@Autowired
 	private IAssessmentQuestionRepository assessmentQuestionRepository;
+
 
 	/*
 	 * GET ALL PROVIDERS PRESENT IN DATABASE
 	 * 
 	 */
-	
+
 	public List<DTProvidersModel> getCloudProvider() {
 		List<DTProviders> CloudProviderList = cloudProviderRepository.findAll();
-		List<DTProvidersModel> CloudProvidersModelList = new ArrayList<DTProvidersModel>();
+		List<DTProvidersModel> CloudProvidersModelList = new ArrayList<>();
 		return toCloudProviderModelList(CloudProviderList, CloudProvidersModelList);
 	}
-	
+
 	/*
-	 * CONVERTING ALL PROVIDERS LIST TO PROVIDERMODEL LIST AND ADD PROVIDERMODE TO PROVIDERMODELIST
+	 * CONVERTING ALL PROVIDERS LIST TO PROVIDERMODEL LIST AND ADD PROVIDERMODE TO
+	 * PROVIDERMODELIST
 	 * 
 	 */
 	private List<DTProvidersModel> toCloudProviderModelList(List<DTProviders> cloudProviderList,
@@ -62,10 +65,10 @@ public class DTProviderRuleDao {
 	}
 
 	/*
-	 * CONVERTING ALL PROVIDERS TO PROVIDERMODEL 
+	 * CONVERTING ALL PROVIDERS TO PROVIDERMODEL
 	 * 
 	 */
-	
+
 	private DTProvidersModel toCloudProviderMode(DTProviders cloudProviders) {
 		DTProvidersModel cloudProvidersModel = new DTProvidersModel();
 		cloudProvidersModel.setProviderId(cloudProviders.getProviderId());
@@ -75,23 +78,28 @@ public class DTProviderRuleDao {
 	}
 
 	/*
-	 * GET ALL PROVIDERS RULES BASED ON THE ID PRESENT IN DATABASE
-	 * IN CASE NO ID IS PRESENT ALL RULES WILL BE SEND
+	 * GET ALL PROVIDERS RULES BASED ON THE ID PRESENT IN DATABASE IN CASE NO ID IS
+	 * PRESENT ALL RULES WILL BE SEND
 	 * 
 	 */
 
-	public List<DTProviderRuleModel> getCloudProviderRules() {
-		List<DTProviderRule> cloudProviderRuleList = cloudProviderRuleRepository.findAll();
-		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<DTProviderRuleModel>();
+	public List<DTProviderRuleModel> getCloudProviderRules(int providerId) {
+		List<DTProviderRule> cloudProviderRuleList = new ArrayList<>();
+		if (providerId == 0) {
+			cloudProviderRuleList = cloudProviderRuleRepository.findAll();
+		} else {
+			cloudProviderRuleList = cloudProviderRuleRepository.findByProviderId(providerId);
+		}
+		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<>();
 		return toCloudProviderRuleModelList(cloudProviderRuleList, cloudProviderRuleModelList);
 	}
-	
 
 	/*
-	 * CONVERTING ALL PROVIDERMODEL LIST TO PROVIDERS LIST AND ADD PROVIDER TO PROVIDERLIST
+	 * CONVERTING ALL PROVIDERMODEL LIST TO PROVIDERS LIST AND ADD PROVIDER TO
+	 * PROVIDERLIST
 	 * 
 	 */
-	
+
 	private List<DTProviderRuleModel> toCloudProviderRuleModelList(List<DTProviderRule> cloudProviderRuleList,
 			List<DTProviderRuleModel> cloudProviderRuleModelList) {
 		for (DTProviderRule cloudProviderRule : cloudProviderRuleList) {
@@ -99,9 +107,9 @@ public class DTProviderRuleDao {
 		}
 		return cloudProviderRuleModelList;
 	}
-	
+
 	/*
-	 * CONVERTING ALL PROVIDERMODEL TO PROVIDERS 
+	 * CONVERTING ALL PROVIDERMODEL TO PROVIDERS
 	 * 
 	 */
 
@@ -116,53 +124,68 @@ public class DTProviderRuleDao {
 		cloudProviderRuleModel.setRuleOptionTextEN(cloudProviderRule.getRuleOptionTextEN());
 		return cloudProviderRuleModel;
 	}
-	
+
 	/*
-	 * SAVE PROVIDERS TO THE DATABASE WHICH ACCEPTS LIST OF PROVIDERMODEL AND CHECK 
-	 * IF PREVIOUSLY ANY RULE IS PRESENT IN THE RULE TABLE AND IF NOT PRESENT IT WILL SAVE 
-	 * THE LIST TO THE DATA BASE AND IF ALREADY SOME ARE PRESENT THEN 1ST MOVE THEM TO
-	 * THE HISTORY TABLE THEN SAVE THE RULES TO THE DATABASE
+	 * SAVE PROVIDERS TO THE DATABASE WHICH ACCEPTS LIST OF PROVIDERMODEL AND CHECK
+	 * IF PREVIOUSLY ANY RULE IS PRESENT IN THE RULE TABLE AND IF NOT PRESENT IT
+	 * WILL SAVE THE LIST TO THE DATA BASE AND IF ALREADY SOME ARE PRESENT THEN 1ST
+	 * MOVE THEM TO THE HISTORY TABLE THEN SAVE THE RULES TO THE DATABASE
 	 * 
 	 */
 
 	public boolean saveProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) throws SystemExceptions {
-		
-		List<DTProviderRule> cloudProviderRuleList = getProviderRules();
-		if (getCountOfProviderRule() != 0) {
-			saveProviderRuleHistory(cloudProviderRuleList);
+//<<<<<<< HEAD
+//		
+//		List<DTProviderRule> cloudProviderRuleList = getProviderRules();
+//		if (getCountOfProviderRule() != 0) {
+//			saveProviderRuleHistory(cloudProviderRuleList);
+//		}
+//		cloudProviderRuleRepository.deleteAll();
+//		return saveDTCloudProviderRule(cloudProviderRuleModel);
+//	}
+//	
+//=======
+		boolean savedValue = false;
+		try {
+			List<DTProviderRule> cloudProviderRuleList = getProviderRules();
+			if (getCountOfProviderRule() != 0) {
+				saveProviderRuleHistory(cloudProviderRuleList);
+			}
+			cloudProviderRuleRepository.deleteAll();
+			savedValue = saveDTCloudProviderRule(cloudProviderRuleModel);
+		} catch (Exception e) {
+			logger.error("Error in getCountOfProviderRuleHistoryRule(): "+ e.getMessage()+ " ",e );
+			throw new SystemExceptions("Error in getCountOfProviderRuleHistoryRule():" + e.getMessage());
 		}
-		cloudProviderRuleRepository.deleteAll();
-		return saveDTCloudProviderRule(cloudProviderRuleModel);
+		return savedValue;
 	}
-	
+
+
 	/*
 	 * GET ALL PROVIDERS PRESENT IN BATABSE IN PROVIDER RULE TABLE
 	 * 
 	 */
 
-	
 	private List<DTProviderRule> getProviderRules() {
 
 		return cloudProviderRuleRepository.findAll();
 	}
-	
+
 	/*
 	 * GET HOW MANY PROVIDERS ARE PRESENT IN BATABSE IN PROVIDER RULE TABLE
 	 * 
 	 */
 
-	
 	public int getCountOfProviderRule() {
 
 		return cloudProviderRuleRepository.findAll().size();
 	}
-	
+
 	/*
-	 * MOVE ALL THE PROVIDERS PRESENT IN THE PROVIDERS HISTORY TABLE 
-	 * ADD EACH PROVIDERS TO PROVIDERS HISTORY TABLE AND THEN ADD TO THE PROVIDER HISTORY
+	 * MOVE ALL THE PROVIDERS PRESENT IN THE PROVIDERS HISTORY TABLE ADD EACH
+	 * PROVIDERS TO PROVIDERS HISTORY TABLE AND THEN ADD TO THE PROVIDER HISTORY
 	 * 
 	 */
-
 
 	private void saveProviderRuleHistory(List<DTProviderRule> cloudProviderRule) {
 		List<DTProviderRuleHistory> providerRuleHistoryList = new ArrayList<DTProviderRuleHistory>();
@@ -171,8 +194,6 @@ public class DTProviderRuleDao {
 		}
 		providerRuleHistory.saveAll(providerRuleHistoryList);
 	}
-	
-
 
 	private DTProviderRuleHistory toProviderHistory(DTProviderRule providerRule) {
 		Date date = new Date();
@@ -189,12 +210,10 @@ public class DTProviderRuleDao {
 		return providerRuleHistory;
 	}
 
-
-
 	public boolean saveDTCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) {
 		boolean saveResult = false;
 		try {
-			List<DTProviderRule> cloudProviderRule = new ArrayList<DTProviderRule>();
+			List<DTProviderRule> cloudProviderRule = new ArrayList<>();
 			List<DTProviderRule> cloudProvidersaved = cloudProviderRuleRepository
 					.saveAll(toCloudProviderRuleList(cloudProviderRuleModel, cloudProviderRule));
 			if (cloudProvidersaved != null) {
@@ -215,8 +234,6 @@ public class DTProviderRuleDao {
 
 		return cloudProviderRule;
 	}
-	
-	
 
 	private DTProviderRule toCloudProviderRule(DTProviderRuleModel cloudProviderRuleModel,
 			DTProviderRule cloudProviderRule) {
@@ -240,9 +257,5 @@ public class DTProviderRuleDao {
 		// cloudProviderRule.setModifiedTime(modifiedTime);
 		return cloudProviderRule;
 	}
-	
-	
-
-	
 
 }

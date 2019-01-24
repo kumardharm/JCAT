@@ -12,6 +12,7 @@ import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.OptionTextNotNullException;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IDTProviderRuleService;
 @Component
@@ -33,15 +34,15 @@ public class DTProviderRuleController implements IDTProviderRuleController{
 	}
 
 	@Override
-	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions {
+	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions,OptionTextNotNullException {
 		
 		return dtCloudProviderService.saveCloudProviderRule(cloudProviderRuleModelList);
 	}
 
 	@Override
-	public List<DTProviderRuleModel> getCloudProviderRules() {
+	public List<DTProviderRuleModel> getCloudProviderRules(int providerId) {
 		
-		return dtCloudProviderService.getCloudProviderRules();
+		return dtCloudProviderService.getCloudProviderRules(providerId);
 	}
 
 }

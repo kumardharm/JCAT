@@ -15,6 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -56,7 +58,7 @@ public class TestUserDao {
 	
 	@Test
     @Ignore
-	public void testgetUsers() throws JcatExceptions
+	public void testgetUsers()
 	{
 		UserModel userModel = new UserModel();
 		userModel.setFirstName("ABC");
@@ -83,8 +85,8 @@ public class TestUserDao {
 	}
 	
 	@Test
-//	s@Ignore
-	public void updateUsers() throws JcatExceptions
+//	@Ignore
+	public void updateUsers()  
 	{
 		
 		UserModel userModel = new UserModel();
