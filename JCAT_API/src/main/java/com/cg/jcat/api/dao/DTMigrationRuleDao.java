@@ -3,14 +3,17 @@ package com.cg.jcat.api.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.entity.AssessmentQuestion;
 import com.cg.jcat.api.entity.DTMigration;
 import com.cg.jcat.api.entity.DTMigrationRule;
 import com.cg.jcat.api.entity.DTMigrationRuleHistory;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.repository.IDTMigrationRepository;
 import com.cg.jcat.api.repository.IDTMigrationRuleHistoryRepository;
 import com.cg.jcat.api.repository.IDTMigrationRuleRepository;
@@ -26,14 +29,19 @@ public class DTMigrationRuleDao {
 
 	@Autowired
 	IDTMigrationRuleHistoryRepository dtMigrationRuleHistoryRepository;
+	
+	@Autowired
+	IAssessmentQuestionRepository assessmentQuestionRepository;
 
 	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) {
-		List<DTMigrationRuleModel> dtMigrationRuleModelIST = new ArrayList<DTMigrationRuleModel>();
+				List<DTMigrationRuleModel> dtMigrationRuleModelIST = new ArrayList<DTMigrationRuleModel>();
 		if (migrationId == 0) {
 			List<DTMigrationRule> dtMigrationRuleLIST = toGetMigrationRule();
 			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
 		} else {
-			List<DTMigrationRule> dtMigrationRuleLIST = dtMigrationRuleRepository.findByMigrationId(migrationId);
+			   Optional<DTMigration> dtMigrationOptional=dtMigrationRepository.findById(migrationId);
+			   DTMigration dtMigration=dtMigrationOptional.get();
+			List<DTMigrationRule> dtMigrationRuleLIST=dtMigrationRuleRepository.findAll(); //dtMigrationRuleRepository.findByMigration(
 			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
 		}
 
@@ -57,7 +65,6 @@ public class DTMigrationRuleDao {
 		try {
 
 			int countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
-			System.out.println(countOfHistoryRule);
 			if (countOfHistoryRule != 0 || getCountOfMigrationRule() != 0) {
 				saveMigrationRuleHistory(toGetMigrationRule());
 			}
@@ -81,7 +88,6 @@ public class DTMigrationRuleDao {
 	public boolean saveAllMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModelList) {
 		List<DTMigrationRule> dtMigrationRules = new ArrayList<>();
 		for (DTMigrationRuleModel dtMigrationRuleModel : dtMigrationRuleModelList) {
-			// dtMigrationRuleRepository.save(toGetMigrationRule(dtMigrationRuleModel));
 			dtMigrationRules.add(toGetMigrationRule(dtMigrationRuleModel));
 		}
 		return dtMigrationRuleRepository.saveAll(dtMigrationRules) != null;
@@ -91,7 +97,6 @@ public class DTMigrationRuleDao {
 	public boolean updateMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) {
 		boolean updateResult = false;
 		updateResult = dtMigrationRuleRepository.saveAndFlush(toGetMigrationRule(dtMigrationRuleModel)) != null;
-		System.out.println(updateResult);
 		return updateResult;
 	}
 
@@ -130,9 +135,9 @@ public class DTMigrationRuleDao {
 		dtMigrationRuleHistory.setCreatedBy("Admin");
 		dtMigrationRuleHistory.setCreatedTime(date);
 		dtMigrationRuleHistory.setExecutionOrder(dtMigrationRule.getExecutionOrder());
-		dtMigrationRuleHistory.setMigrationId(dtMigrationRule.getMigrationId());
+		dtMigrationRuleHistory.setDtMigration(dtMigrationRule.getDtMigration());
 		dtMigrationRuleHistory.setMigrationRuleId(dtMigrationRule.getMigrationRuleId());
-		dtMigrationRuleHistory.setQuestionId(dtMigrationRule.getQuestionId());
+		dtMigrationRuleHistory.setAssessmentQuestion(dtMigrationRule.getAssessmentQuestion());
 		dtMigrationRuleHistory.setQuestionTextEN(dtMigrationRule.getQuestiontextEN());
 		dtMigrationRuleHistory.setRuleOptionIds(dtMigrationRule.getRuleOptionIds());
 		dtMigrationRuleHistory.setRuleOptionTextEN(dtMigrationRule.getRuleOptionTextEN());
@@ -146,9 +151,9 @@ public class DTMigrationRuleDao {
 	public DTMigrationRuleModel toGetMigrationRuleModel(DTMigrationRule dtMigrationRule) {
 		DTMigrationRuleModel dtMigrationRuleModel = new DTMigrationRuleModel();
 		dtMigrationRuleModel.setExecutionOrder(dtMigrationRule.getExecutionOrder());
-		dtMigrationRuleModel.setMigrationId(dtMigrationRule.getMigrationId());
+		dtMigrationRuleModel.setMigrationId(dtMigrationRule.getDtMigration().getMigrationId());
 		dtMigrationRuleModel.setMigrationRuleId(dtMigrationRule.getMigrationRuleId());
-		dtMigrationRuleModel.setQuestionId(dtMigrationRule.getQuestionId());
+		dtMigrationRuleModel.setQuestionId(dtMigrationRule.getAssessmentQuestion().getQuestionId());
 		dtMigrationRuleModel.setQuestiontextEN(dtMigrationRule.getRuleOptionTextEN());
 		dtMigrationRuleModel.setRuleOptionIds(dtMigrationRule.getRuleOptionIds());
 		dtMigrationRuleModel.setRuleOptionTextEN(dtMigrationRule.getRuleOptionTextEN());
@@ -161,12 +166,17 @@ public class DTMigrationRuleDao {
 
 	public DTMigrationRule toGetMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) {
 		Date date = new Date();
-		System.out.println(dtMigrationRuleModel);
 		DTMigrationRule dtMigrationRule = new DTMigrationRule();
+		
+		Optional<DTMigration> dtMigrationOptional=dtMigrationRepository.findById(dtMigrationRuleModel.getMigrationId());
+		DTMigration dtMigration=dtMigrationOptional.get();
+		Optional<AssessmentQuestion>assessmentQuestionOptional=assessmentQuestionRepository.findById(dtMigrationRuleModel.getQuestionId());
+		AssessmentQuestion assessmentQuestion=assessmentQuestionOptional.get();
+		
 		dtMigrationRule.setExecutionOrder(dtMigrationRuleModel.getExecutionOrder());
-		dtMigrationRule.setMigrationId(dtMigrationRuleModel.getMigrationId());
+		dtMigrationRule.setDtMigration(dtMigration);
 		dtMigrationRule.setMigrationRuleId(dtMigrationRuleModel.getMigrationRuleId());
-		dtMigrationRule.setQuestionId(dtMigrationRuleModel.getQuestionId());
+		dtMigrationRule.setAssessmentQuestion(assessmentQuestion);
 		dtMigrationRule.setQuestiontextEN(dtMigrationRuleModel.getQuestiontextEN());
 		dtMigrationRule.setRuleOptionIds(dtMigrationRuleModel.getRuleOptionIds());
 		dtMigrationRule.setRuleOptionTextEN(dtMigrationRuleModel.getRuleOptionTextEN());

@@ -2,11 +2,11 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
-<<<<<<< HEAD
+
 import javax.persistence.CascadeType;
-=======
+
 import javax.persistence.Column;
->>>>>>> e3fed965f2d1734cf335c2c84c2ca8e3425814a0
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -115,11 +115,13 @@ public class DTCloudableRule {
 	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
 		this.assessmentQuestion = assessmentQuestion;
 	}
+	@Override
+	public String toString() {
+		return "DTCloudableRule [cloudableRuleId=" + cloudableRuleId + ", executionOrder=" + executionOrder
+				+ ", questionTextEN=" + questionTextEN + ", optionIds=" + optionIds + ", optionTextsEN=" + optionTextsEN
+				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy
+				+ ", modifiedTime=" + modifiedTime + "]";
+	}
 	
 	
-	
-	
-	
-
-
 }
