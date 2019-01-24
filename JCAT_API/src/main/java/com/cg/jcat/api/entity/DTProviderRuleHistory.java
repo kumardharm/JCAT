@@ -50,11 +50,11 @@ public class DTProviderRuleHistory {
 	@Column(name="rule_option_text_EN")
 	private String ruleOptionTextEN;
 	
-//	@NotNull
+	@NotNull
 	@Column(name="created_by")
 	private String createdBy;
 	
-//	@NotNull
+	@NotNull
 	@Column(name="created_time")
 	private Date createdTime;
 

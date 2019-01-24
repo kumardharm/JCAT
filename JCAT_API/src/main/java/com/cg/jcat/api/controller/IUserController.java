@@ -29,7 +29,7 @@ public interface IUserController {
 	public List<UserModel> getUsers() throws SystemExceptions;
 	
 	@PostMapping("/create/{createdBy}")
-	public boolean saveUser(@PathVariable String createdBy,@Valid @RequestBody UserModel user, Errors error ) throws ValidationException,SystemExceptions,UserAlreadyExistsException;
+	public boolean saveUser(@PathVariable String createdBy,@Valid @RequestBody UserModel users,Errors error) throws ValidationException,SystemExceptions,UserAlreadyExistsException;
 	
 	@PutMapping("/update/{modifiedBy}")
 	public boolean updateUserId(@PathVariable String modifiedBy, @RequestBody UserModel user) throws SystemExceptions, UserAlreadyExistsException ;
