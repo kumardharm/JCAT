@@ -2,12 +2,16 @@ package com.cg.jcat.api.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -19,16 +23,10 @@ public class DTProviderRule {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="provider_rule_id")
 	private int providerRuleId;
-	
-	@Column(name="provider_id")
-	private int providerId;
-	
+		
 	@ColumnDefault("0")
 	@Column(name="execution_order")
 	private int executionOrder;
-	
-	@Column(name="question_id")
-	private int questionId;
 	
 	@Lob
 	@Column(name="question_text_EN")
@@ -54,30 +52,28 @@ public class DTProviderRule {
 	@Column(name="modified_time")
 	private Date modifiedTime;
 	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="providerId")
+	private DTProviders dtProviders;
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="questionId")
+	private AssessmentQuestion assessmentQuestion;
+	
 	public int getProviderRuleId() {
 		return providerRuleId;
 	}
 	public void setProviderRuleId(int providerRuleId) {
 		this.providerRuleId = providerRuleId;
 	}
-	public int getProviderId() {
-		return providerId;
-	}
-	public void setProviderId(int providerId) {
-		this.providerId = providerId;
-	}
+	
 	public int getExecutionOrder() {
 		return executionOrder;
 	}
 	public void setExecutionOrder(int executionOrder) {
 		this.executionOrder = executionOrder;
 	}
-	public int getQuestionId() {
-		return questionId;
-	}
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
+	
 	public String getQuestiontextEN() {
 		return questiontextEN;
 	}
@@ -120,13 +116,25 @@ public class DTProviderRule {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
+	public DTProviders getDtProviders() {
+		return dtProviders;
+	}
+	public void setDtProviders(DTProviders dtProviders) {
+		this.dtProviders = dtProviders;
+	}
+	public AssessmentQuestion getAssessmentQuestion() {
+		return assessmentQuestion;
+	}
+	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
+		this.assessmentQuestion = assessmentQuestion;
+	}
 	@Override
 	public String toString() {
-		return "DTProviderRule [providerRuleId=" + providerRuleId + ", providerId=" + providerId + ", executionOrder="
-				+ executionOrder + ", questionId=" + questionId + ", questiontextEN=" + questiontextEN
-				+ ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN=" + ruleOptionTextEN + ", createdBy="
-				+ createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
-				+ modifiedTime + "]";
+		return "DTProviderRule [providerRuleId=" + providerRuleId + ", executionOrder=" + executionOrder
+				+ ", questiontextEN=" + questiontextEN + ", ruleOptionIds=" + ruleOptionIds + ", ruleOptionTextEN="
+				+ ruleOptionTextEN + ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", modifiedBy="
+				+ modifiedBy + ", modifiedTime=" + modifiedTime + ", dtProviders=" + dtProviders
+				+ ", assessmentQuestion=" + assessmentQuestion + "]";
 	}
 	
 	

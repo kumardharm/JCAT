@@ -8,6 +8,5 @@ import com.cg.jcat.api.entity.DTProviderRule;
 
 public interface IDTProviderRuleRepository extends JpaRepository<DTProviderRule, Integer>{
 
-	List<DTProviderRule> findByProviderId(int providerId);
 
 }
