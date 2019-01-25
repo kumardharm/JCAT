@@ -10010,3 +10010,6 @@ java.lang.NullPointerException: null
 [01:25 11:03:50.680] [INFO] [com.cg.jcat.api.JcatApiApplication] - Started JcatApiApplication in 1.437 seconds (JVM running for 56786.972)
 [01:25 11:03:50.682] [INFO] [o.s.b.d.a.ConditionEvaluationDeltaLoggingListener] - Condition evaluation unchanged
 [01:25 11:03:50.682] [INFO] [com.cg.jcat.api.JcatApiApplication] - --info--Application Started--
+[01:25 11:08:44.681] [INFO] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[01:25 11:08:44.682] [INFO] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+[01:25 11:08:44.687] [INFO] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 5 ms
