@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -17,62 +18,37 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.AssessmentQuestion;
 import com.cg.jcat.api.entity.QuestionOption;
+import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.utility.QuestionTypeEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureTestDatabase
-@TestPropertySource(
-		  locations = "classpath:application-integrationtest.properties")
 public class TestAssessmentQuestionDao {
 	
 	@Autowired
 	AssessmentQuestionDao assessmentQuestionDao;
 	
+	@Autowired
+	IAssessmentQuestionRepository assessmentQuestionRepository;
+	
 	@Test
 	//@Ignore
 	public void testSaveQuestions()
 	{
-		boolean result = false;
-		AssessmentQuestionModel assessmentQuestionModel = getAssessmentQuestions();
-		System.out.println(assessmentQuestionModel);
-		result = assessmentQuestionDao.saveQuestions(assessmentQuestionModel);
+		boolean result = true;
+		result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());
 		assertEquals(true, result);
-		
-		//AssessmentQuestionModel found = assessmentQuestionDao.findByQuestionTextEn(assessmentQuestionModel.getQuestionTextEN());
-//		assertNotNull(found);
-//		
-//		assertThat(found.getNumberOfOptions()).isEqualTo(assessmentQuestionModel.getNumberOfOptions());
-//		assertThat(found.getCreatedBy()).isEqualTo(assessmentQuestionModel.getCreatedBy());
 	}
 	
-//	@Test
-//	@Ignore
-//	public void testGetQuestions()
-//	{
-//		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
-//		assessmentQuestionModel.setAssessmentTypeForCloudable(assessmentQuestion.isAssessmentTypeForCloudable());
-//		assessmentQuestionModel.setAssessmentTypeForCloudProvider(assessmentQuestion.isAssessmentTypeForCloudProvider());
-//		assessmentQuestionModel.setAssessmentTypeForMigration(assessmentQuestion.isAssessmentTypeForMigration());
-//		assessmentQuestionModel.setCreatedBy(assessmentQuestion.getCreatedBy());
-//		assessmentQuestionModel.setDeleted(assessmentQuestion.isDeleted());
-//		assessmentQuestionModel.setDisplayOrder(assessmentQuestion.getDisplayOrder());
-//		assessmentQuestionModel.setModifiedBy(assessmentQuestion.getModifiedBy());
-//		assessmentQuestionModel.setQuestionDescriptionEN(assessmentQuestion.getQuestionDescriptionEN());
-//		assessmentQuestionModel.setQuestionDescriptionLang2(assessmentQuestion.getQuestionDescriptionLang2());
-//		assessmentQuestionModel.setQuestionId(assessmentQuestion.getQuestionId());
-//		assessmentQuestionModel.setQuestionTextEN(assessmentQuestion.getQuestionTextEN());
-//		assessmentQuestionModel.setQuestionTextLang2(assessmentQuestion.getQuestionTextLang2());
-//		assessmentQuestionModel.setQuestionType(assessmentQuestion.getQuestionType());
-//		assessmentQuestionModel.setNumberOfOptions(assessmentQuestion.getNumberOfOptions());
-//		List<QuestionOptionModel> questionOptionModelList = new ArrayList<>();
-//		for(QuestionOption questionOption : assessmentQuestion.getQuestionOption())
-//		{
-//			questionOptionModelList.add(toQuestionOptionModel(questionOption, assessmentQuestionModel));
-//		}
-//		assessmentQuestionModel.setQuestionOptionModel(questionOptionModelList);
-//		return assessmentQuestionModel;
-//	}
+	@Test
+	@Ignore
+	public void testGetQuestions()
+	{
+		boolean result = true;
+		result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());
+		assertEquals(true, result);
+		assertNotNull(assessmentQuestionDao.getQuestions());
+	}
 	
 	@Test
 	@Ignore
@@ -81,6 +57,7 @@ public class TestAssessmentQuestionDao {
 		assessmentQuestionDao.deleteAssessmentQuestionById(1);
 		AssessmentQuestion assessmentQuestion = assessmentQuestionDao.findByQuestionId(1);
 		assertEquals(true, assessmentQuestion.isDeleted());
+		
 	}
 	
 	@Test
@@ -100,6 +77,7 @@ public class TestAssessmentQuestionDao {
 	
 	AssessmentQuestionModel getAssessmentQuestions()
 	{
+		Date date = new Date();
 		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
 		assessmentQuestionModel.setAssessmentTypeForCloudable(true);
 		assessmentQuestionModel.setAssessmentTypeForCloudProvider(true);
@@ -113,9 +91,23 @@ public class TestAssessmentQuestionDao {
 		assessmentQuestionModel.setQuestionId(1);
 		assessmentQuestionModel.setQuestionTextEN("Engl");
 		assessmentQuestionModel.setQuestionTextLang2("Germ");
+		assessmentQuestionModel.setCreatedTime(date);
 		assessmentQuestionModel.setQuestionType(QuestionTypeEnum.LONG_ANSWER);
 		assessmentQuestionModel.setNumberOfOptions(2);
+		assessmentQuestionModel.setQuestionOptionModel(getQuestionOptionModel());
 		return assessmentQuestionModel;
 	}
-
+	
+	List<QuestionOptionModel> getQuestionOptionModel()
+	{
+		//assessmentQuestionModel.setQuestionOptionModel(null);
+		List<QuestionOptionModel> list = new ArrayList<>();
+		QuestionOptionModel questionOptionModel = new QuestionOptionModel();
+		//questionOptionModel.setOptionId(11);
+	//	questionOptionModel.setAssessmentQuestionModel(assessmentQuestionModel);
+		questionOptionModel.setOptionTextEN("ENGLISH");
+		questionOptionModel.setOptionTextLang2("ä ö ü ß Ä Ö Ü");
+		list.add(questionOptionModel);
+		return list;
+	}
 }

@@ -16,11 +16,9 @@ public class DTProviders {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NotNull
 	@Column(name="provider_id")
 	private int providerId;
 	
-	@NotNull
 	@Column(name="evaluation_order")
 	private int evaluationOrder;
 	

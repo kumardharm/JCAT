@@ -134,19 +134,8 @@ public class DTProviderRuleDao {
 	 */
 
 	public boolean saveProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) throws SystemExceptions {
-//<<<<<<< HEAD
-//		
-//		List<DTProviderRule> cloudProviderRuleList = getProviderRules();
-//		if (getCountOfProviderRule() != 0) {
-//			saveProviderRuleHistory(cloudProviderRuleList);
-//		}
-//		cloudProviderRuleRepository.deleteAll();
-//		return saveDTCloudProviderRule(cloudProviderRuleModel);
-//	}
-//	
-//=======
 		boolean savedValue = false;
-		try {
+		/*try {
 			List<DTProviderRule> cloudProviderRuleList = getProviderRules();
 			if (getCountOfProviderRule() != 0) {
 				saveProviderRuleHistory(cloudProviderRuleList);
@@ -154,10 +143,13 @@ public class DTProviderRuleDao {
 			cloudProviderRuleRepository.deleteAll();
 			savedValue = saveDTCloudProviderRule(cloudProviderRuleModel);
 		} catch (Exception e) {
-			logger.error("Error in getCountOfProviderRuleHistoryRule(): "+ e.getMessage()+ " ",e );
-			throw new SystemExceptions("Error in getCountOfProviderRuleHistoryRule():" + e.getMessage());
+			logger.error("Error in saveProviderRule(): "+ e.getMessage()+ " ",e );
+			throw new SystemExceptions("Error in saveProviderRule():" + e.getMessage());
 		}
-		return savedValue;
+		System.out.println(cloudProviderRuleModel);
+		savedValue = saveDTCloudProviderRule(cloudProviderRuleModel);
+		System.out.println("************%%%%%%%******************"+savedValue);*/
+		return saveDTCloudProviderRule(cloudProviderRuleModel);
 	}
 
 
@@ -212,16 +204,15 @@ public class DTProviderRuleDao {
 
 	public boolean saveDTCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) {
 		boolean saveResult = false;
-		try {
 			List<DTProviderRule> cloudProviderRule = new ArrayList<>();
-			List<DTProviderRule> cloudProvidersaved = cloudProviderRuleRepository
-					.saveAll(toCloudProviderRuleList(cloudProviderRuleModel, cloudProviderRule));
-			if (cloudProvidersaved != null) {
-				saveResult = true;
-			}
-		} catch (Exception e) {
-
-		}
+			List<DTProviderRule> cloudProvidersaved = new ArrayList<>();
+			cloudProvidersaved = toCloudProviderRuleList(cloudProviderRuleModel, cloudProviderRule);
+			System.out.println(cloudProvidersaved);
+			saveResult = cloudProviderRuleRepository.saveAll(cloudProvidersaved) != null;
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println(cloudProvidersaved);
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			
 		return saveResult;
 	}
 

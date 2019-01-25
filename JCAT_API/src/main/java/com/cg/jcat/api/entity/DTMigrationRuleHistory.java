@@ -47,11 +47,11 @@ public class DTMigrationRuleHistory {
 	@Column(name="created_time")
 	private Date createdTime;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="migrationId")
 	private DTMigration dtMigration;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="questionId")
 	private AssessmentQuestion assessmentQuestion;
 	

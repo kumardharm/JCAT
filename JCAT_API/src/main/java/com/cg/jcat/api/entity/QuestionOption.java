@@ -31,7 +31,7 @@ public class QuestionOption {
 	private String optionTextLang2;
 	
 	@ManyToOne
-    @JoinColumn(name = "question_id")
+  //  @JoinColumn(name = "question_id")
 	private AssessmentQuestion assessmentQuestion;
 	
 	public int getOptionId() {
@@ -58,10 +58,10 @@ public class QuestionOption {
 		this.optionTextLang2 = optionTextLang2;
 	}
 
-//	@JsonIgnore
-//	public AssessmentQuestion getAssessmentQuestion() {
-//		return assessmentQuestion;
-//	}
+	@JsonIgnore
+	public AssessmentQuestion getAssessmentQuestion() {
+		return assessmentQuestion;
+	}
 
 	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
 		this.assessmentQuestion = assessmentQuestion;

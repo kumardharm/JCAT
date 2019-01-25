@@ -42,12 +42,12 @@ public class DTMigrationRule {
 	@Column(name="rule_option_text_EN")
 	private String ruleOptionTextEN;
 	
-	@Column(name="created_by")
 	@NotNull
+	@Column(name="created_by")
 	private String createdBy;
 	
-	@Column(name="created_time")
 	@NotNull
+	@Column(name="created_time")
 	private Date createdTime;
 	
 	@Column(name="modified_by")
@@ -56,12 +56,12 @@ public class DTMigrationRule {
 	@Column(name="modified_time")
 	private Date modifiedTime;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="migrationId")
+	@OneToOne(fetch = FetchType.EAGER)
+	//@JoinColumn(name="migrationId")
 	private DTMigration dtMigration;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="questionId")
+	@OneToOne(fetch = FetchType.EAGER)
+	//@JoinColumn(name="questionId")
 	private AssessmentQuestion assessmentQuestion;
 
 

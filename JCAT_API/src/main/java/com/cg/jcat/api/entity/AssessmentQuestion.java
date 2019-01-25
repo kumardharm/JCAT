@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -52,7 +51,7 @@ public class AssessmentQuestion {
 	@Enumerated(EnumType.STRING)
 	private QuestionTypeEnum questionType;
 	
-	//@NotNull
+	@NotNull
 	@Lob
 	@Column(name="question_text_en")
 	private String questionTextEN;
@@ -65,24 +64,21 @@ public class AssessmentQuestion {
 	private String questionDescriptionEN;
 	
 	@Lob
-	@NotNull
 	private String questionDescriptionLang2;
 	
 	private int numberOfOptions;
 	
-	@NotNull
 	private int displayOrder;
 	
-	@NotNull
 	@ColumnDefault("b'1'")
 	private boolean isDeleted;
 	
-	@CreatedBy
 	@NotNull
+	@CreatedBy
 	private String createdBy;
 	
-	@CreatedDate
 	@NotNull
+	@CreatedDate
 	private Date createdTime;
 	
 	@LastModifiedBy
@@ -92,11 +88,8 @@ public class AssessmentQuestion {
 	private Date modifiedTime;
 	
 	
-	@OneToMany(mappedBy = "assessmentQuestion", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "assessmentQuestion")
     private List<QuestionOption> questionOption;
-	
-	@OneToOne(mappedBy = "assessmentQuestion")
-	private DTCloudableRule dtCloudableRule;
 	
 	public List<QuestionOption> getQuestionOption() {
 		return questionOption;
@@ -200,25 +193,7 @@ public class AssessmentQuestion {
 	public void setModifiedTime(Date modifiedTime) {
 		this.modifiedTime = modifiedTime;
 	}
-	
-		
-	public DTCloudableRule getDtCloudableRule() {
-		return dtCloudableRule;
-	}
-	public void setDtCloudableRule(DTCloudableRule dtCloudableRule) {
-		this.dtCloudableRule = dtCloudableRule;
-	}
-	//	@Override
-//	public String toString() {
-//		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="
-//				+ assessmentTypeForCloudable + ", assessmentTypeForCloudProvider=" + assessmentTypeForCloudProvider
-//				+ ", assessmentTypeForMigration=" + assessmentTypeForMigration + ", questionType=" + questionType
-//				+ ", questionTextEN=" + questionTextEN + ", questionTextLang2=" + questionTextLang2
-//				+ ", questionDescriptionEN=" + questionDescriptionEN + ", questionDescriptionLang2="
-//				+ questionDescriptionLang2 + ", numberOfOptions=" + numberOfOptions + ", displayOrder=" + displayOrder
-//				+ ", isDeleted=" + isDeleted + ", createdBy=" + createdBy + ", createdTime=" + createdTime
-//				+ ", modifiedBy=" + modifiedBy + ", modifiedTime=" + modifiedTime + "]";
-//	}
+
 	@Override
 	public String toString() {
 		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="

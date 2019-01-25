@@ -35,6 +35,9 @@ public class DTMigrationRuleDao {
 	
 	@Autowired
 	AssessmentQuestionDao assessmentQuestionDao;
+	
+	boolean afterSaved = false;
+	int countOfHistoryRule = 0;
 
 	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) {
 				List<DTMigrationRuleModel> dtMigrationRuleModelIST = new ArrayList<DTMigrationRuleModel>();
@@ -44,7 +47,9 @@ public class DTMigrationRuleDao {
 		} else {
 			   Optional<DTMigration> dtMigrationOptional=dtMigrationRepository.findById(migrationId);
 			   DTMigration dtMigration=dtMigrationOptional.get();
-			List<DTMigrationRule> dtMigrationRuleLIST=dtMigrationRuleRepository.findAll(); //dtMigrationRuleRepository.findByMigration(
+			   List<DTMigrationRule> dtMigrationRuleLIST=dtMigrationRuleRepository.findAll(); //dtMigrationRuleRepository.findByMigration(
+//			List<DTMigrationRule> dtMigrationRuleLIST=dtMigrationRuleRepository.findByDT
+//			cloudProviderRuleList = cloudProviderRuleRepository.findByDtProviders(cloudProviderRepository.findById(providerId));
 			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
 		}
 
@@ -64,18 +69,17 @@ public class DTMigrationRuleDao {
 	}
 
 	public boolean saveDTMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModelList) throws SystemExceptions {
-		boolean afterSaved = false;
-		try {
-
-			int countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
-			if (countOfHistoryRule != 0 || getCountOfMigrationRule() != 0) {
-				saveMigrationRuleHistory(toGetMigrationRule());
+		countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
+		if (getCountOfMigrationRule() != 0) {
+			try {
+			saveMigrationRuleHistory(toGetMigrationRule());
+			}catch(Exception e)
+			{
+				throw new SystemExceptions("saveDTMigrationRule()");
 			}
-			dtMigrationRuleRepository.deleteAll();
-			afterSaved = saveAllMigrationRule(dtMigrationRuleModelList);
-		} catch (Exception e) {
-			throw new SystemExceptions("saveDTMigrationRule()");
 		}
+		dtMigrationRuleRepository.deleteAll();
+		afterSaved = saveAllMigrationRule(dtMigrationRuleModelList);
 		return afterSaved;
 	}
 
@@ -127,6 +131,7 @@ public class DTMigrationRuleDao {
 	 */
 
 	public void saveMigrationRuleHistory(List<DTMigrationRule> dtMigrationRuleList) {
+		System.out.println(dtMigrationRuleList);
 		for (DTMigrationRule dtMigrationRule : dtMigrationRuleList) {
 			dtMigrationRuleHistoryRepository.save(toGetMigrationRuleHistory(dtMigrationRule));
 		}
