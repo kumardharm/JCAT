@@ -86,8 +86,12 @@ public class DTProviderRuleDao {
 			cloudProviderRuleList = cloudProviderRuleRepository.findAll();
 		} else {
 
+			//cloudProviderRuleList = cloudProviderRuleRepository.findByProviderId(providerId);
+
+
 			cloudProviderRuleList = cloudProviderRuleRepository
 					.findByDtProviders(cloudProviderRepository.findById(providerId));
+
 
 
 		}

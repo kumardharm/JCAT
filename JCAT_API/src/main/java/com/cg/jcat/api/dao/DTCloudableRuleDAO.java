@@ -20,49 +20,49 @@ public class DTCloudableRuleDAO {
 	@Autowired
 	IDTCloudableRuleRepository dtCloudableRuleRepository;
 	@Autowired
-	IDTCloudableRuleHistoryRepository  cloudableRuleHistoryRepository;
+	IDTCloudableRuleHistoryRepository  dtcloudableRuleHistoryRepository;
 	@Autowired
 	IAssessmentQuestionRepository assessmentQuestionRepository;
 	
 	public List<DTCloudableRuleModel> getCloudableRule() {
-		List<DTCloudableRule> dTCloudableRuleList=new ArrayList<DTCloudableRule>();
-		 dTCloudableRuleList=dtCloudableRuleRepository.findAll();
+		List<DTCloudableRule> dtCloudableRuleList=new ArrayList<DTCloudableRule>();
+		dtCloudableRuleList=dtCloudableRuleRepository.findAll();
 		 List<DTCloudableRuleModel> DTCloudableRuleModelList=new ArrayList<DTCloudableRuleModel>();
-		 		return getCloudableModelRule(dTCloudableRuleList,DTCloudableRuleModelList);
+		 		return getCloudableModelRule(dtCloudableRuleList,DTCloudableRuleModelList);
 	}
 
-	private List<DTCloudableRuleModel> getCloudableModelRule(List<DTCloudableRule> dTCloudableRuleList,
-			List<DTCloudableRuleModel> dTCloudableRuleModelList) {
-		     for(DTCloudableRule dTCloudableRule:dTCloudableRuleList ) {
-		    	 dTCloudableRuleModelList.add(toDTCloudableRuleModel(dTCloudableRule));
+	private List<DTCloudableRuleModel> getCloudableModelRule(List<DTCloudableRule> dtCloudableRuleList,
+			List<DTCloudableRuleModel> dtCloudableRuleModelList) {
+		     for(DTCloudableRule dTCloudableRule:dtCloudableRuleList ) {
+		    	 dtCloudableRuleModelList.add(toDTCloudableRuleModel(dTCloudableRule));
 		     }
-		return dTCloudableRuleModelList;
+		return dtCloudableRuleModelList;
 	}
 
-	private DTCloudableRuleModel toDTCloudableRuleModel(DTCloudableRule dTCloudableRule) {
-		DTCloudableRuleModel dTCloudableRuleModel=new DTCloudableRuleModel();
-		dTCloudableRuleModel.setCloudableRuleId(dTCloudableRule.getCloudableRuleId());
-		dTCloudableRuleModel.setOptionIds(dTCloudableRule.getOptionIds());
-		dTCloudableRuleModel.setExecutionOrder(dTCloudableRule.getExecutionOrder());
-		dTCloudableRuleModel.setOptionTextsEN(dTCloudableRule.getOptionTextsEN());
-		dTCloudableRuleModel.setQuestionTextEN(dTCloudableRule.getQuestionTextEN());
-		dTCloudableRuleModel.setQuestionId(dTCloudableRule.getAssessmentQuestion().getQuestionId());
-		return dTCloudableRuleModel;
+	private DTCloudableRuleModel toDTCloudableRuleModel(DTCloudableRule dtCloudableRule) {
+		DTCloudableRuleModel dtCloudableRuleModel=new DTCloudableRuleModel();
+		dtCloudableRuleModel.setCloudableRuleId(dtCloudableRule.getCloudableRuleId());
+		dtCloudableRuleModel.setOptionIds(dtCloudableRule.getOptionIds());
+		dtCloudableRuleModel.setExecutionOrder(dtCloudableRule.getExecutionOrder());
+		dtCloudableRuleModel.setOptionTextsEN(dtCloudableRule.getOptionTextsEN());
+		dtCloudableRuleModel.setQuestionTextEN(dtCloudableRule.getQuestionTextEN());
+		dtCloudableRuleModel.setQuestionId(dtCloudableRule.getAssessmentQuestion().getQuestionId());
+		return dtCloudableRuleModel;
 	}
 
-		private DTCloudableRule toCloudablerule(DTCloudableRuleModel dTCloudableRuleModel) {
-			Optional<AssessmentQuestion> assessmentQuestionOptional=assessmentQuestionRepository.findById(dTCloudableRuleModel.getQuestionId());
+		private DTCloudableRule toCloudablerule(DTCloudableRuleModel dtCloudableRuleModel) {
+			Optional<AssessmentQuestion> assessmentQuestionOptional=assessmentQuestionRepository.findById(dtCloudableRuleModel.getQuestionId());
 			AssessmentQuestion assessmentQuestion=assessmentQuestionOptional.get();
-		DTCloudableRule dTCloudableRule=new DTCloudableRule();
-		dTCloudableRule.setCloudableRuleId(dTCloudableRuleModel.getCloudableRuleId());
-		dTCloudableRule.setOptionIds(dTCloudableRuleModel.getOptionIds());
-		dTCloudableRule.setOptionTextsEN(dTCloudableRuleModel.getOptionTextsEN());
-    	dTCloudableRule.setAssessmentQuestion(assessmentQuestion);
-		dTCloudableRule.setQuestionTextEN(dTCloudableRuleModel.getQuestionTextEN());
-		dTCloudableRule.setExecutionOrder(dTCloudableRuleModel.getExecutionOrder());
-		dTCloudableRule.setCreatedBy("user1");
-		dTCloudableRule.setCreatedTime(new Date());
-		return dTCloudableRule;
+		DTCloudableRule dtCloudableRule=new DTCloudableRule();
+		dtCloudableRule.setCloudableRuleId(dtCloudableRuleModel.getCloudableRuleId());
+		dtCloudableRule.setOptionIds(dtCloudableRuleModel.getOptionIds());
+		dtCloudableRule.setOptionTextsEN(dtCloudableRuleModel.getOptionTextsEN());
+		dtCloudableRule.setAssessmentQuestion(assessmentQuestion);
+		dtCloudableRule.setQuestionTextEN(dtCloudableRuleModel.getQuestionTextEN());
+		dtCloudableRule.setExecutionOrder(dtCloudableRuleModel.getExecutionOrder());
+		dtCloudableRule.setCreatedBy("user1");
+		dtCloudableRule.setCreatedTime(new Date());
+		return dtCloudableRule;
 	}
 
 	private DTCloudableRule findByCloudableRuleId(int cloudableRuleId) {
@@ -78,30 +78,31 @@ public class DTCloudableRuleDAO {
 		return toDTCloudableRuleModel(findByCloudableRuleId(cloudableRuleId));
 	}
 
-	public boolean saveCloudableRule(List<DTCloudableRuleModel> dTCloudableRuleModelList) {
-			return toSaveCloudablerule(dTCloudableRuleModelList);
+	public boolean saveCloudableRule(List<DTCloudableRuleModel> dtCloudableRuleModelList) {
+			return toSaveCloudablerule(dtCloudableRuleModelList);
 	}
 
-	private boolean toSaveCloudablerule(List<DTCloudableRuleModel> dTCloudableRuleModelList) {
+	private boolean toSaveCloudablerule(List<DTCloudableRuleModel> dtCloudableRuleModelList) {
 		int cloudabeRuleLength=0;
 		cloudabeRuleLength=dtCloudableRuleRepository.findAll().size();
 		if(cloudabeRuleLength!=0)
 		{
 			saveCloudableRuleHistory();
 			dtCloudableRuleRepository.deleteAll();
-			//saveCloudableRuleList(dTCloudableRuleModelList);
+			return saveCloudableRuleList(dtCloudableRuleModelList);
 		}else {
-			saveCloudableRuleList(dTCloudableRuleModelList);
+		 return saveCloudableRuleList(dtCloudableRuleModelList);
 		}
-		return false;
+		
 	}
 
-	private void saveCloudableRuleList(List<DTCloudableRuleModel> dTCloudableRuleModelList) {
+	private boolean saveCloudableRuleList(List<DTCloudableRuleModel> dtCloudableRuleModelList) {
 	 List<DTCloudableRule> dtCloudableRuleList=new ArrayList<DTCloudableRule>();
-	 for(DTCloudableRuleModel cloudableRuleModel:dTCloudableRuleModelList) {
+	 for(DTCloudableRuleModel cloudableRuleModel:dtCloudableRuleModelList) {
 		 dtCloudableRuleList.add(toCloudablerule(cloudableRuleModel));
 	 }
 	 dtCloudableRuleRepository.saveAll(dtCloudableRuleList);
+	 return true;
 	}
 
 	private void saveCloudableRuleHistory() {
@@ -110,10 +111,8 @@ public class DTCloudableRuleDAO {
 		dtCloudableRuleList=dtCloudableRuleRepository.findAll();
 		for(DTCloudableRule cloudableRule:dtCloudableRuleList) {
 			dtCloudableRuleHistoryList.add(toCloudableRuleHistory(cloudableRule));
-			cloudableRuleHistoryRepository.save(toCloudableRuleHistory(cloudableRule));
 		}
-		System.out.println(dtCloudableRuleHistoryList);
-		cloudableRuleHistoryRepository.saveAll(dtCloudableRuleHistoryList);
+		dtcloudableRuleHistoryRepository.saveAll(dtCloudableRuleHistoryList);
 	}
 
 	private DTCloudableRuleHistory toCloudableRuleHistory(DTCloudableRule cloudableRule) {

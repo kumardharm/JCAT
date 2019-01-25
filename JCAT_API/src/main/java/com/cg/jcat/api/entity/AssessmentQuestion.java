@@ -90,7 +90,7 @@ public class AssessmentQuestion {
 	
 	@OneToMany(mappedBy = "assessmentQuestion")
     private List<QuestionOption> questionOption;
-	
+
 	public List<QuestionOption> getQuestionOption() {
 		return questionOption;
 	}
