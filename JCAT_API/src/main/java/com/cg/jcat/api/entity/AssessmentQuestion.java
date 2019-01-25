@@ -94,6 +94,7 @@ public class AssessmentQuestion {
 	
 	@OneToMany(mappedBy = "assessmentQuestion", cascade = CascadeType.ALL)
     private List<QuestionOption> questionOption;
+	
 	@OneToOne(mappedBy = "assessmentQuestion")
 	private DTCloudableRule dtCloudableRule;
 	

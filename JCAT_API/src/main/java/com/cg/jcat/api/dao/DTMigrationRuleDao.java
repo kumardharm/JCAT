@@ -32,6 +32,9 @@ public class DTMigrationRuleDao {
 	
 	@Autowired
 	IAssessmentQuestionRepository assessmentQuestionRepository;
+	
+	@Autowired
+	AssessmentQuestionDao assessmentQuestionDao;
 
 	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) {
 				List<DTMigrationRuleModel> dtMigrationRuleModelIST = new ArrayList<DTMigrationRuleModel>();
