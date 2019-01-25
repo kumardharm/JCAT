@@ -58,10 +58,10 @@ public class QuestionOption {
 		this.optionTextLang2 = optionTextLang2;
 	}
 
-//	@JsonIgnore
-//	public AssessmentQuestion getAssessmentQuestion() {
-//		return assessmentQuestion;
-//	}
+	@JsonIgnore
+	public AssessmentQuestion getAssessmentQuestion() {
+		return assessmentQuestion;
+	}
 
 	public void setAssessmentQuestion(AssessmentQuestion assessmentQuestion) {
 		this.assessmentQuestion = assessmentQuestion;
