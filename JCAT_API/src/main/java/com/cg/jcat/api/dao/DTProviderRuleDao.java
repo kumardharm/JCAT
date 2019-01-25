@@ -3,6 +3,7 @@ package com.cg.jcat.api.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 import org.slf4j.Logger;
@@ -10,10 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.entity.AssessmentQuestion;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
 import com.cg.jcat.api.entity.DTProviders;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.repository.IDTProviderRepository;
 import com.cg.jcat.api.repository.IDTProviderRuleHistory;
 import com.cg.jcat.api.repository.IDTProviderRuleRepository;
@@ -31,6 +34,11 @@ public class DTProviderRuleDao {
 
 	@Autowired
 	private IDTProviderRuleHistory providerRuleHistory;
+
+	
+	@Autowired
+	private IAssessmentQuestionRepository assessmentQuestionRepository;
+
 
 	/*
 	 * GET ALL PROVIDERS PRESENT IN DATABASE
@@ -80,7 +88,7 @@ public class DTProviderRuleDao {
 		if (providerId == 0) {
 			cloudProviderRuleList = cloudProviderRuleRepository.findAll();
 		} else {
-			cloudProviderRuleList = cloudProviderRuleRepository.findByProviderId(providerId);
+			//cloudProviderRuleList = cloudProviderRuleRepository.findByProviderId(providerId);
 		}
 		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<>();
 		return toCloudProviderRuleModelList(cloudProviderRuleList, cloudProviderRuleModelList);
@@ -107,9 +115,9 @@ public class DTProviderRuleDao {
 
 	private DTProviderRuleModel toCloudProviderRuleModel(DTProviderRule cloudProviderRule) {
 		DTProviderRuleModel cloudProviderRuleModel = new DTProviderRuleModel();
-		cloudProviderRuleModel.setProviderId(cloudProviderRule.getProviderId());
+		cloudProviderRuleModel.setProviderId(cloudProviderRule.getDtProviders().getProviderId());
 		cloudProviderRuleModel.setProviderRuleId(cloudProviderRule.getProviderRuleId());
-		cloudProviderRuleModel.setQuestionId(cloudProviderRule.getQuestionId());
+		cloudProviderRuleModel.setQuestionId(cloudProviderRule.getAssessmentQuestion().getQuestionId());
 		cloudProviderRuleModel.setEvaluationOrder(cloudProviderRule.getExecutionOrder());
 		cloudProviderRuleModel.setQuestiontextEN(cloudProviderRule.getQuestiontextEN());
 		cloudProviderRuleModel.setRuleOptionIds(cloudProviderRule.getRuleOptionIds());
@@ -126,6 +134,17 @@ public class DTProviderRuleDao {
 	 */
 
 	public boolean saveProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) throws SystemExceptions {
+//<<<<<<< HEAD
+//		
+//		List<DTProviderRule> cloudProviderRuleList = getProviderRules();
+//		if (getCountOfProviderRule() != 0) {
+//			saveProviderRuleHistory(cloudProviderRuleList);
+//		}
+//		cloudProviderRuleRepository.deleteAll();
+//		return saveDTCloudProviderRule(cloudProviderRuleModel);
+//	}
+//	
+//=======
 		boolean savedValue = false;
 		try {
 			List<DTProviderRule> cloudProviderRuleList = getProviderRules();
@@ -140,6 +159,7 @@ public class DTProviderRuleDao {
 		}
 		return savedValue;
 	}
+
 
 	/*
 	 * GET ALL PROVIDERS PRESENT IN BATABSE IN PROVIDER RULE TABLE
@@ -178,10 +198,10 @@ public class DTProviderRuleDao {
 	private DTProviderRuleHistory toProviderHistory(DTProviderRule providerRule) {
 		Date date = new Date();
 		DTProviderRuleHistory providerRuleHistory = new DTProviderRuleHistory();
-		providerRuleHistory.setProviderId(providerRule.getProviderId());
+		providerRuleHistory.setDtProviders(providerRule.getDtProviders());
 		providerRuleHistory.setProviderRuleId(providerRule.getProviderRuleId());
 		providerRuleHistory.setExecutionOrder(providerRule.getExecutionOrder());
-		providerRuleHistory.setQuestionId(providerRule.getQuestionId());
+		providerRuleHistory.setAssessmentQuestion(providerRule.getAssessmentQuestion());
 		providerRuleHistory.setQuestionTextEN(providerRule.getRuleOptionIds());
 		providerRuleHistory.setRuleOptionIds(providerRule.getRuleOptionTextEN());
 		providerRuleHistory.setRuleOptionTextEN(providerRule.getRuleOptionTextEN());
@@ -219,9 +239,15 @@ public class DTProviderRuleDao {
 			DTProviderRule cloudProviderRule) {
 
 		Date date = new Date();
-		cloudProviderRule.setProviderId(cloudProviderRuleModel.getProviderId());
+		Optional<DTProviders> dtProvidersOptional=cloudProviderRepository.findById(cloudProviderRuleModel.getProviderId());
+		DTProviders dtProviders=dtProvidersOptional.get();
+		
+		Optional<AssessmentQuestion>assessmentQuestionOptional=assessmentQuestionRepository.findById(cloudProviderRuleModel.getQuestionId());
+		AssessmentQuestion assessmentQuestion=assessmentQuestionOptional.get();
+		
+		cloudProviderRule.setDtProviders(dtProviders);
 		cloudProviderRule.setExecutionOrder(cloudProviderRuleModel.getEvaluationOrder());
-		cloudProviderRule.setQuestionId(cloudProviderRuleModel.getQuestionId());
+		cloudProviderRule.setAssessmentQuestion(assessmentQuestion);
 		cloudProviderRule.setQuestiontextEN(cloudProviderRuleModel.getQuestiontextEN());
 		cloudProviderRule.setRuleOptionIds(cloudProviderRuleModel.getRuleOptionIds());
 		cloudProviderRule.setRuleOptionTextEN(cloudProviderRuleModel.getRuleOptionTextEN());
