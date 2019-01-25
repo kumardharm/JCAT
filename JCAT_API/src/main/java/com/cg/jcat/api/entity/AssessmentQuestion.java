@@ -92,10 +92,10 @@ public class AssessmentQuestion {
 	private Date modifiedTime;
 	
 	
-	@OneToMany(mappedBy = "assessmentQuestion", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "assessmentQuestion")
     private List<QuestionOption> questionOption;
-	@OneToOne(mappedBy = "assessmentQuestion")
-	private DTCloudableRule dtCloudableRule;
+//	@OneToOne(mappedBy = "assessmentQuestion")
+//	private DTCloudableRule dtCloudableRule;
 	
 	public List<QuestionOption> getQuestionOption() {
 		return questionOption;
@@ -201,12 +201,12 @@ public class AssessmentQuestion {
 	}
 	
 		
-	public DTCloudableRule getDtCloudableRule() {
-		return dtCloudableRule;
-	}
-	public void setDtCloudableRule(DTCloudableRule dtCloudableRule) {
-		this.dtCloudableRule = dtCloudableRule;
-	}
+//	public DTCloudableRule getDtCloudableRule() {
+//		return dtCloudableRule;
+//	}
+//	public void setDtCloudableRule(DTCloudableRule dtCloudableRule) {
+//		this.dtCloudableRule = dtCloudableRule;
+//	}
 	//	@Override
 //	public String toString() {
 //		return "AssessmentQuestion [questionId=" + questionId + ", assessmentTypeForCloudable="

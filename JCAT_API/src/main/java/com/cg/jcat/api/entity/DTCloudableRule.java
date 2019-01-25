@@ -53,7 +53,7 @@ public class DTCloudableRule {
 	private Date modifiedTime;
 	
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="questionId")
 	private AssessmentQuestion assessmentQuestion;
 

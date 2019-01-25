@@ -1,67 +1,114 @@
-/*package com.cg.jcat.api.dao;
+package com.cg.jcat.api.dao;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
+import com.cg.jcat.api.utility.QuestionTypeEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureTestDatabase
-@TestPropertySource(
-		  locations = "classpath:application-integrationtest.properties")
+//@AutoConfigureTestDatabase
+//@TestPropertySource(
+//		 locations = "classpath:application-integrationtest.properties")
 public class TestDTCloudableRule {
 	@Autowired
 	DTCloudableRuleDAO dTCloudableRuleDAO; 
-
 	
-	public DTCloudableRuleModel getCloudableRuleModel() {
-		DTCloudableRuleModel dTCloudableRuleModel=new DTCloudableRuleModel();
-		dTCloudableRuleModel.setCloudableRuleId(5);
-		dTCloudableRuleModel.setOptionIds("1");
-		dTCloudableRuleModel.setOptionTextsEN("Yes");
-		dTCloudableRuleModel.setQuestionId(1);
-		dTCloudableRuleModel.setQuestionTextEN("Question Text");
-		dTCloudableRuleModel.setExecutionOrder(1);
-		return dTCloudableRuleModel;
+	@Autowired
+    AssessmentQuestionDao assessmentQuestionDao;
+	
+	@Autowired
+	IAssessmentQuestionRepository assessmentQuestionRepository; 
+	
+	public List<DTCloudableRuleModel> getCloudableRuleModel() {
+		List<DTCloudableRuleModel> dtCloudableRuleModelist=new ArrayList<DTCloudableRuleModel>();
+		DTCloudableRuleModel dtCloudableRuleModel=new DTCloudableRuleModel();
+		//dtCloudableRuleModel.setCloudableRuleId();
+		dtCloudableRuleModel.setOptionIds("1");
+		dtCloudableRuleModel.setOptionTextsEN("Yes");
+		dtCloudableRuleModel.setQuestionId(1);
+		dtCloudableRuleModel.setQuestionTextEN("Question Text");
+		dtCloudableRuleModel.setExecutionOrder(1);
+		dtCloudableRuleModelist.add(dtCloudableRuleModel);
+		return dtCloudableRuleModelist;
 	}
 	@Test
-	@Ignore
+	//@Ignore
 	public void testGetCloudableRule() {
 		List<DTCloudableRuleModel> dtCloudableRuleModelList=new ArrayList<DTCloudableRuleModel>();
-		
-		dTCloudableRuleDAO.saveCloudableRule();
+		dtCloudableRuleModelList=getCloudableRuleModel();
+		dTCloudableRuleDAO.saveCloudableRule(dtCloudableRuleModelList);
 		assertEquals(1,dTCloudableRuleDAO.getCloudableRule().size());
 	}
 	
+	
 	@Test
-	@Ignore
+  //  @Ignore
 	public void  testSaveCloudableRule() {
-		DTCloudableRuleModel dTCloudableRuleModel=new DTCloudableRuleModel();
-		dTCloudableRuleModel=getCloudableRuleModel();
-		boolean rule=dTCloudableRuleDAO.saveCloudableRule(dTCloudableRuleModel);
+		boolean result = true ;
+		boolean rule=true;
+	    result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());
+	    assertEquals(true, result);
+	   // Assert.assertTrue(result);
+	   // assertEquals(Assert.assertTrue, result); 
+		List<DTCloudableRuleModel> dTCloudableRuleModelList=new ArrayList<DTCloudableRuleModel>();
+		dTCloudableRuleModelList=getCloudableRuleModel();
+		 rule=dTCloudableRuleDAO.saveCloudableRule(dTCloudableRuleModelList);
 		assertEquals(true, rule);
 	}
 	
-	@Test
-	//@Ignore
-	public void updateCloudableRule()
-	{
-		DTCloudableRuleModel dTCloudableRuleModel=new DTCloudableRuleModel();
-		dTCloudableRuleModel=getCloudableRuleModel();
-		dTCloudableRuleModel.setExecutionOrder(3);
-		assertEquals(true, dTCloudableRuleDAO.updateCloudablerule(dTCloudableRuleModel));
-	}
-	
+	 AssessmentQuestionModel getAssessmentQuestions()
+	    {
+	          Date date = new Date();
+	          AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
+	          assessmentQuestionModel.setAssessmentTypeForCloudable(true);
+	          assessmentQuestionModel.setAssessmentTypeForCloudProvider(true);
+	          assessmentQuestionModel.setAssessmentTypeForMigration(true);
+	          assessmentQuestionModel.setCreatedBy("Admin");
+	          assessmentQuestionModel.setDeleted(false);
+	          assessmentQuestionModel.setDisplayOrder(2);
+	          assessmentQuestionModel.setModifiedBy("Admin");
+	          assessmentQuestionModel.setQuestionDescriptionEN("Engl");
+	          assessmentQuestionModel.setQuestionDescriptionLang2("Germ");
+	          assessmentQuestionModel.setQuestionId(1);
+	          assessmentQuestionModel.setQuestionTextEN("Engl");
+	          assessmentQuestionModel.setQuestionTextLang2("Germ");
+	          assessmentQuestionModel.setCreatedTime(date);
+	           assessmentQuestionModel.setQuestionType(QuestionTypeEnum.LONG_ANSWER);
+	          assessmentQuestionModel.setNumberOfOptions(2);
+	           assessmentQuestionModel.setQuestionOptionModel(getQuestionOptionModel());
+	          return assessmentQuestionModel;
+	    } 
+	 
+		 List<QuestionOptionModel> getQuestionOptionModel()
+		     {
+		           //assessmentQuestionModel.setQuestionOptionModel(null);
+		           List<QuestionOptionModel> list = new ArrayList<>();
+		           QuestionOptionModel questionOptionModel = new QuestionOptionModel();
+		           //questionOptionModel.setOptionId(11);
+		     //       questionOptionModel.setAssessmentQuestionModel(assessmentQuestionModel);
+		           questionOptionModel.setOptionTextEN("ENGLISH");
+		           questionOptionModel.setOptionTextLang2("ä ö ü ß Ä Ö Ü");
+		           list.add(questionOptionModel);
+		           return list;
+		     } 
+		  
+
 
 }
-*/

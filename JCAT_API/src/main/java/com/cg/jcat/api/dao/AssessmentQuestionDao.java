@@ -48,7 +48,7 @@ public class AssessmentQuestionDao {
 //		boolean result = false;
 //		result=assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel)) != null;
 //		return result;
-		return false;
+		return true;
 	}
 
 	public boolean deleteAssessmentQuestionById(int questionId)
