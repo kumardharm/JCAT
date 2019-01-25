@@ -41,7 +41,6 @@ public class AssessmentQuestionDao {
 	{
 		boolean result = false;
 		result = assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel))!=null;
-		System.out.println("^^^^^^^^^^^^^^^^^^^^"+result);
 		return result;
 	}
 
@@ -85,11 +84,15 @@ public class AssessmentQuestionDao {
 		assessmentQuestion.setNumberOfOptions(assessmentQuestionsModel.getNumberOfOptions());
 		assessmentQuestion.setCreatedTime(assessmentQuestionsModel.getCreatedTime());
 		List<QuestionOption> questionOptionList = new ArrayList<>();
+		try {
 		for(QuestionOptionModel questionOptionModel : assessmentQuestionsModel.getQuestionOptionModel())
 		{
 			questionOptionList.add(toQuestionOption(questionOptionModel, assessmentQuestion));
 		}
 		assessmentQuestion.setQuestionOption(questionOptionList);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		return assessmentQuestion;
 	}
 	

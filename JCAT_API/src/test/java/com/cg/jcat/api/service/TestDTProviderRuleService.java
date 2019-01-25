@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.cg.jcat.api.dao.DTProviderRuleDao;
 import com.cg.jcat.api.dao.DTProviderRuleModel;
 import com.cg.jcat.api.dao.DTProvidersModel;
+import com.cg.jcat.api.exception.CountMissMatchException;
 import com.cg.jcat.api.exception.OptionTextNotNullException;
 import com.cg.jcat.api.exception.SystemExceptions;
 
@@ -108,6 +109,9 @@ public class TestDTProviderRuleService {
 			System.out.println("SystemExceptions");
 		} catch (OptionTextNotNullException e) {
 			System.out.println("OptionTextNotNullException");
+		} catch (CountMissMatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
