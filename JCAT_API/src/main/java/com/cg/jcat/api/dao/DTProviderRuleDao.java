@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +34,8 @@ public class DTProviderRuleDao {
 	@Autowired
 	private IDTProviderRuleHistory providerRuleHistory;
 
-	
 	@Autowired
 	private IAssessmentQuestionRepository assessmentQuestionRepository;
-
 
 	/*
 	 * GET ALL PROVIDERS PRESENT IN DATABASE
@@ -88,7 +85,11 @@ public class DTProviderRuleDao {
 		if (providerId == 0) {
 			cloudProviderRuleList = cloudProviderRuleRepository.findAll();
 		} else {
-			//cloudProviderRuleList = cloudProviderRuleRepository.findByProviderId(providerId);
+
+			cloudProviderRuleList = cloudProviderRuleRepository
+					.findByDtProviders(cloudProviderRepository.findById(providerId));
+
+
 		}
 		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<>();
 		return toCloudProviderRuleModelList(cloudProviderRuleList, cloudProviderRuleModelList);
@@ -135,23 +136,21 @@ public class DTProviderRuleDao {
 
 	public boolean saveProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) throws SystemExceptions {
 		boolean savedValue = false;
-		/*try {
+		try {
 			List<DTProviderRule> cloudProviderRuleList = getProviderRules();
 			if (getCountOfProviderRule() != 0) {
 				saveProviderRuleHistory(cloudProviderRuleList);
 			}
 			cloudProviderRuleRepository.deleteAll();
 			savedValue = saveDTCloudProviderRule(cloudProviderRuleModel);
+
 		} catch (Exception e) {
-			logger.error("Error in saveProviderRule(): "+ e.getMessage()+ " ",e );
+			logger.error("Error in saveProviderRule(): " + e.getMessage() + " ", e);
 			throw new SystemExceptions("Error in saveProviderRule():" + e.getMessage());
 		}
-		System.out.println(cloudProviderRuleModel);
-		savedValue = saveDTCloudProviderRule(cloudProviderRuleModel);
-		System.out.println("************%%%%%%%******************"+savedValue);*/
-		return saveDTCloudProviderRule(cloudProviderRuleModel);
-	}
 
+		return savedValue;
+	}
 
 	/*
 	 * GET ALL PROVIDERS PRESENT IN BATABSE IN PROVIDER RULE TABLE
@@ -180,7 +179,7 @@ public class DTProviderRuleDao {
 	 */
 
 	private void saveProviderRuleHistory(List<DTProviderRule> cloudProviderRule) {
-		List<DTProviderRuleHistory> providerRuleHistoryList = new ArrayList<DTProviderRuleHistory>();
+		List<DTProviderRuleHistory> providerRuleHistoryList = new ArrayList<>();
 		for (DTProviderRule providerRule : cloudProviderRule) {
 			providerRuleHistoryList.add(toProviderHistory(providerRule));
 		}
@@ -204,15 +203,12 @@ public class DTProviderRuleDao {
 
 	public boolean saveDTCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModel) {
 		boolean saveResult = false;
-			List<DTProviderRule> cloudProviderRule = new ArrayList<>();
-			List<DTProviderRule> cloudProvidersaved = new ArrayList<>();
-			cloudProvidersaved = toCloudProviderRuleList(cloudProviderRuleModel, cloudProviderRule);
-			System.out.println(cloudProvidersaved);
-			saveResult = cloudProviderRuleRepository.saveAll(cloudProvidersaved) != null;
-			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-			System.out.println(cloudProvidersaved);
-			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-			
+		List<DTProviderRule> cloudProviderRule = new ArrayList<>();
+		List<DTProviderRule> cloudProvidersaved = cloudProviderRuleRepository
+				.saveAll(toCloudProviderRuleList(cloudProviderRuleModel, cloudProviderRule));
+		if (cloudProvidersaved != null) {
+			saveResult = true;
+		}
 		return saveResult;
 	}
 
@@ -230,12 +226,14 @@ public class DTProviderRuleDao {
 			DTProviderRule cloudProviderRule) {
 
 		Date date = new Date();
-		Optional<DTProviders> dtProvidersOptional=cloudProviderRepository.findById(cloudProviderRuleModel.getProviderId());
-		DTProviders dtProviders=dtProvidersOptional.get();
-		
-		Optional<AssessmentQuestion>assessmentQuestionOptional=assessmentQuestionRepository.findById(cloudProviderRuleModel.getQuestionId());
-		AssessmentQuestion assessmentQuestion=assessmentQuestionOptional.get();
-		
+		Optional<DTProviders> dtProvidersOptional = cloudProviderRepository
+				.findById(cloudProviderRuleModel.getProviderId());
+		DTProviders dtProviders = dtProvidersOptional.get();
+
+		Optional<AssessmentQuestion> assessmentQuestionOptional = assessmentQuestionRepository
+				.findById(cloudProviderRuleModel.getQuestionId());
+		AssessmentQuestion assessmentQuestion = assessmentQuestionOptional.get();
+
 		cloudProviderRule.setDtProviders(dtProviders);
 		cloudProviderRule.setExecutionOrder(cloudProviderRuleModel.getEvaluationOrder());
 		cloudProviderRule.setAssessmentQuestion(assessmentQuestion);
@@ -244,8 +242,8 @@ public class DTProviderRuleDao {
 		cloudProviderRule.setRuleOptionTextEN(cloudProviderRuleModel.getRuleOptionTextEN());
 		cloudProviderRule.setCreatedBy("Admin");
 		cloudProviderRule.setCreatedTime(date);
-		// cloudProviderRule.setModifiedBy(modifiedBy);
-		// cloudProviderRule.setModifiedTime(modifiedTime);
+		cloudProviderRule.setModifiedBy("Admin");
+		cloudProviderRule.setModifiedTime(date);
 		return cloudProviderRule;
 	}
 

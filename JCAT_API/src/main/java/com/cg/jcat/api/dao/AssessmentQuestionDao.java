@@ -42,16 +42,7 @@ public class AssessmentQuestionDao {
 	
 	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionsModel)
 	{
-		AssessmentQuestion assessmentQuestion = new AssessmentQuestion();
-		assessmentQuestion = toAssessmentQuestionService(assessmentQuestionsModel);
-		System.out.println(assessmentQuestion);
-		boolean result = assessmentQuestionRepository.save(assessmentQuestion)!=null;
-//		//System.out.println(assessmentQuestionsModel);
-//		boolean result = false;
-//		result=assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel)) != null;
-//		return result;
-		
-		return result;
+		return assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel))!=null;
 	}
 
 	public boolean deleteAssessmentQuestionById(int questionId)
@@ -95,7 +86,7 @@ public class AssessmentQuestionDao {
 		assessmentQuestion.setNumberOfOptions(assessmentQuestionsModel.getNumberOfOptions());
 		assessmentQuestion.setCreatedTime(assessmentQuestionsModel.getCreatedTime());
 		List<QuestionOption> questionOptionList = new ArrayList<>();
-		System.out.println(assessmentQuestionsModel.getQuestionOptionModel());
+
 		try {
 		for(QuestionOptionModel questionOptionModel : assessmentQuestionsModel.getQuestionOptionModel())
 		{

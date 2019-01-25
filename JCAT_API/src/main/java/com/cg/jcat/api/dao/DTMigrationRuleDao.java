@@ -29,27 +29,24 @@ public class DTMigrationRuleDao {
 
 	@Autowired
 	IDTMigrationRuleHistoryRepository dtMigrationRuleHistoryRepository;
-	
+
 	@Autowired
 	IAssessmentQuestionRepository assessmentQuestionRepository;
-	
+
 	@Autowired
 	AssessmentQuestionDao assessmentQuestionDao;
-	
+
 	boolean afterSaved = false;
 	int countOfHistoryRule = 0;
 
 	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) {
-				List<DTMigrationRuleModel> dtMigrationRuleModelIST = new ArrayList<DTMigrationRuleModel>();
+		List<DTMigrationRuleModel> dtMigrationRuleModelIST = new ArrayList<DTMigrationRuleModel>();
+		List<DTMigrationRule> dtMigrationRuleLIST;
 		if (migrationId == 0) {
-			List<DTMigrationRule> dtMigrationRuleLIST = toGetMigrationRule();
+			dtMigrationRuleLIST = dtMigrationRuleRepository.findAll(); // find all if id is 0
 			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
 		} else {
-			   Optional<DTMigration> dtMigrationOptional=dtMigrationRepository.findById(migrationId);
-			   DTMigration dtMigration=dtMigrationOptional.get();
-			   List<DTMigrationRule> dtMigrationRuleLIST=dtMigrationRuleRepository.findAll(); //dtMigrationRuleRepository.findByMigration(
-//			List<DTMigrationRule> dtMigrationRuleLIST=dtMigrationRuleRepository.findByDT
-//			cloudProviderRuleList = cloudProviderRuleRepository.findByDtProviders(cloudProviderRepository.findById(providerId));
+			dtMigrationRuleLIST = dtMigrationRuleRepository.findAll(); // write for 1 and 2
 			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
 		}
 
@@ -72,9 +69,8 @@ public class DTMigrationRuleDao {
 		countOfHistoryRule = getCountOfMigrationRuleHistoryRule();
 		if (getCountOfMigrationRule() != 0) {
 			try {
-			saveMigrationRuleHistory(toGetMigrationRule());
-			}catch(Exception e)
-			{
+				saveMigrationRuleHistory(toGetMigrationRule());
+			} catch (Exception e) {
 				throw new SystemExceptions("saveDTMigrationRule()");
 			}
 		}
@@ -112,14 +108,12 @@ public class DTMigrationRuleDao {
 	 */
 
 	public List<DTMigrationModel> getMigrationPattern() {
-		List<DTMigrationModel> dtMigrationModelIST = new ArrayList<DTMigrationModel>();
 		List<DTMigration> dtMigrationLIST = dtMigrationRepository.findAll();
-		return toGetMigration(dtMigrationLIST, dtMigrationModelIST);
+		return toGetMigration(dtMigrationLIST);
 	}
 
-	public List<DTMigrationModel> toGetMigration(List<DTMigration> dtMigrationLIST,
-			List<DTMigrationModel> dtMigrationModelIST) {
-
+	public List<DTMigrationModel> toGetMigration(List<DTMigration> dtMigrationLIST) {
+		List<DTMigrationModel> dtMigrationModelIST = new ArrayList<>();
 		for (DTMigration assessmentQuestion : dtMigrationLIST) {
 			dtMigrationModelIST.add(toGetDTMigration(assessmentQuestion));
 		}
@@ -175,12 +169,14 @@ public class DTMigrationRuleDao {
 	public DTMigrationRule toGetMigrationRule(DTMigrationRuleModel dtMigrationRuleModel) {
 		Date date = new Date();
 		DTMigrationRule dtMigrationRule = new DTMigrationRule();
-		
-		Optional<DTMigration> dtMigrationOptional=dtMigrationRepository.findById(dtMigrationRuleModel.getMigrationId());
-		DTMigration dtMigration=dtMigrationOptional.get();
-		Optional<AssessmentQuestion>assessmentQuestionOptional=assessmentQuestionRepository.findById(dtMigrationRuleModel.getQuestionId());
-		AssessmentQuestion assessmentQuestion=assessmentQuestionOptional.get();
-		
+
+		Optional<DTMigration> dtMigrationOptional = dtMigrationRepository
+				.findById(dtMigrationRuleModel.getMigrationId());
+		DTMigration dtMigration = dtMigrationOptional.get();
+		Optional<AssessmentQuestion> assessmentQuestionOptional = assessmentQuestionRepository
+				.findById(dtMigrationRuleModel.getQuestionId());
+		AssessmentQuestion assessmentQuestion = assessmentQuestionOptional.get();
+
 		dtMigrationRule.setExecutionOrder(dtMigrationRuleModel.getExecutionOrder());
 		dtMigrationRule.setDtMigration(dtMigration);
 		dtMigrationRule.setMigrationRuleId(dtMigrationRuleModel.getMigrationRuleId());

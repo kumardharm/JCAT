@@ -6,7 +6,6 @@ import com.cg.jcat.api.exception.entity.ErrorDTO;
 public class JcatExceptions extends Exception {
 
 	private ErrorDTO errorDTO;
-//	private String error_value;
 
 	public JcatExceptions() {
 		super();
@@ -17,7 +16,7 @@ public class JcatExceptions extends Exception {
 		super(error_value);
 	}
 	
-	//imp
+	
 	public JcatExceptions(ErrorDTO errorDTO){
 		super(errorDTO.toString());
 		this.errorDTO = errorDTO;

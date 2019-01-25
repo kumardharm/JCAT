@@ -36,95 +36,77 @@ public class TestProviderRuleDao {
 	@Autowired
 	IAssessmentQuestionRepository assessmentQuestionRepository;
 
-	Date date = new Date();
-
 	@Test
 	@Ignore
-	public void testAsaveCloudProvider() {
+	public void testsaveCloudProvider() {
 		providerRepository.save(getProvider());
 		assertNotNull(ProviderRuleDao.getCloudProvider());
 	}
 
 	private DTProviders getProvider() {
 		Date date = new Date();
-		DTProviders providerRule = new DTProviders();
-		providerRule.setEvaluationOrder(1);
-		providerRule.setCreatedBy("Admin");
-		providerRule.setCreatedTime(date);
-		providerRule.setProviderName("GITC");
-		return providerRule;
+		DTProviders providers = new DTProviders();
+		providers.setCreatedBy("Admin");
+		providers.setCreatedTime(date);
+		providers.setEvaluationOrder(1);
+		providers.setEvaluationOrder(1);
+		providers.setLogicalOperator("OR");
+		providers.setProviderName("gitc");
+		return providers;
 	}
 
 	@Test
 	@Ignore
-	public void testBGetCloudProvider() {
+	public void testGetCloudProvider() {
+		providerRepository.save(getProvider());
 		assertNotNull(ProviderRuleDao.getCloudProvider());
-		// assertEquals(1, ProviderRuleDao.getCloudProvider().size());
+		assertEquals(5, ProviderRuleDao.getCloudProvider().size());
 	}
 
 	@Test
 	@Ignore
-	public void testDGetCloudProviderRules() throws SystemExceptions {
+	public void testGetCloudProviderRules() throws SystemExceptions {
 		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<DTProviderRuleModel>();
-		// cloudProviderRuleModelList.add(getcloudProviderRuleModel());
-		// cloudProviderRuleModelList.add(getcloudProviderRuleModel2());
-		// assertEquals(true,
-		// ProviderRuleDao.saveProviderRule(cloudProviderRuleModelList));
+
 		assertNotNull(ProviderRuleDao.getCloudProviderRules(0));
-		// assertEquals(1, ProviderRuleDao.getCloudProviderRules());
-		// assertEquals(1, ProviderRuleDao.getCloudProviderRules(1).size());
-		// assertEquals(2, ProviderRuleDao.getCloudProviderRules(0).size());
+		assertEquals(1, ProviderRuleDao.getCloudProviderRules(0).size());
 	}
 
 	@Test
 	// @Ignore
-	public void testCSaveCloudProviderRule() throws SystemExceptions {
-	/*	Date date1 = new Date();
+	public void testSaveCloudProviderRule() throws SystemExceptions {
+
 		boolean result = true;
 		result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());
 		assertEquals(true, result);
 
-		DTProviders dtMigration = new DTProviders();
-		dtMigration.setCreatedBy("Admin");
-		dtMigration.setCreatedTime(date1);
-		dtMigration.setEvaluationOrder(1);
-		dtMigration.setEvaluationOrder(1);
-		dtMigration.setLogicalOperator("OR");
-		dtMigration.setProviderName("gitc");
-		result = providerRepository.save(dtMigration) != null;
-		assertEquals(true, result);*/
+		result = providerRepository.save(getProvider()) != null;
+		assertEquals(true, result);
 
-		List<DTProviderRuleModel> migrationRuleList = new ArrayList<>();
-		DTProviderRuleModel DTProviderRuleModel = new DTProviderRuleModel();
-		DTProviderRuleModel = getcloudProviderRuleModel();
-		migrationRuleList.add(DTProviderRuleModel);
-		System.out.println("***************************************");
-		System.out.println("************************************");
-		
-		assertEquals(true, ProviderRuleDao.saveProviderRule(migrationRuleList)); // saving 2 migration rule
+		List<DTProviderRuleModel> providerRuleList = new ArrayList<>();
+		providerRuleList.add(getcloudProviderRuleModel());
+		assertEquals(true, ProviderRuleDao.saveProviderRule(providerRuleList)); // saving 2 migration rule
+
+		assertEquals(1, ProviderRuleDao.getCountOfProviderRule());
 
 	}
 
 	private DTProviderRuleModel getcloudProviderRuleModel() {
 
 		DTProviderRuleModel DTProviderRuleModel = new DTProviderRuleModel();
-		DTProviderRuleModel.setProviderRuleId(1);
 		DTProviderRuleModel.setEvaluationOrder(1);
 		DTProviderRuleModel.setProviderId(1);
 		DTProviderRuleModel.setQuestionId(1);
 		DTProviderRuleModel.setQuestiontextEN("1");
 		DTProviderRuleModel.setRuleOptionIds("1");
 		DTProviderRuleModel.setRuleOptionTextEN("1");
+
 		return DTProviderRuleModel;
-		
 	}
 
 	List<QuestionOptionModel> getQuestionOptionModel() {
-		// assessmentQuestionModel.setQuestionOptionModel(null);
 		List<QuestionOptionModel> list = new ArrayList<>();
 		QuestionOptionModel questionOptionModel = new QuestionOptionModel();
-		// questionOptionModel.setOptionId(11);
-		// questionOptionModel.setAssessmentQuestionModel(assessmentQuestionModel);
 		questionOptionModel.setOptionTextEN("ENGLISH");
 		questionOptionModel.setOptionTextLang2("ä ö ü ß Ä Ö Ü");
 		list.add(questionOptionModel);
@@ -132,7 +114,7 @@ public class TestProviderRuleDao {
 	}
 
 	AssessmentQuestionModel getAssessmentQuestions() {
-
+		Date date = new Date();
 		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
 		assessmentQuestionModel.setAssessmentTypeForCloudable(true);
 		assessmentQuestionModel.setAssessmentTypeForCloudProvider(true);

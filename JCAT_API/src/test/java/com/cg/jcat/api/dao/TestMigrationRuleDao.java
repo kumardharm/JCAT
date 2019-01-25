@@ -82,6 +82,12 @@ public class TestMigrationRuleDao {
 		assertEquals(1, dtMigrationRuleDao.toGetMigrationRule().size());
 	}
 	
+	@Test
+	public void testGetMigrationPattern()
+	{
+		assertNotNull(dtMigrationRuleDao.getMigrationPattern());
+	}
+	
 	private DTMigrationRuleModel toGetMigrationRule() {
 
 		DTMigrationRuleModel dtMigrationRuleModel = new DTMigrationRuleModel();
