@@ -11,6 +11,7 @@ import com.cg.jcat.api.dao.DTProviderRuleModel;
 import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
+import com.cg.jcat.api.exception.CountMissMatchException;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.OptionTextNotNullException;
 import com.cg.jcat.api.exception.SystemExceptions;
@@ -34,7 +35,7 @@ public class DTProviderRuleController implements IDTProviderRuleController{
 	}
 
 	@Override
-	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions,OptionTextNotNullException {
+	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions,OptionTextNotNullException,CountMissMatchException {
 		
 		return dtCloudProviderService.saveCloudProviderRule(cloudProviderRuleModelList);
 	}

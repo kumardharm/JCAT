@@ -54,11 +54,11 @@ public class DTProviderRuleHistory {
 	private Date createdTime;
 	
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="providerId")
 	private DTProviders dtProviders;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="questionId")
 	private AssessmentQuestion assessmentQuestion;
 

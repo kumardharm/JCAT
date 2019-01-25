@@ -21,11 +21,8 @@ public class AssessmentQuestionDao {
 	@Autowired
 	IQuestionOptionService questionOptionService;
 	
-	private static boolean isDeleteValue=false;
-	
 	public List<AssessmentQuestionModel> getQuestions(){
-		System.out.println();
-		List<AssessmentQuestionModel> assessmentQuestionDAOList=new ArrayList<AssessmentQuestionModel>();
+		List<AssessmentQuestionModel> assessmentQuestionDAOList=new ArrayList<>();
 		List<AssessmentQuestion> assessmentQuestionList=assessmentQuestionRepository.findAll();
 		return toGetQuestions(assessmentQuestionList,assessmentQuestionDAOList);
 	}
@@ -42,18 +39,23 @@ public class AssessmentQuestionDao {
 	
 	public boolean saveQuestions(AssessmentQuestionModel assessmentQuestionsModel)
 	{
+
 		System.out.println(assessmentQuestionsModel);
 		assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel));
 //		//System.out.println(assessmentQuestionsModel);
 //		boolean result = false;
 //		result=assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel)) != null;
 //		return result;
-		return true;
+		
+		boolean result = false;
+		result = assessmentQuestionRepository.save(toAssessmentQuestionService(assessmentQuestionsModel))!=null;
+		return result;
+
 	}
 
 	public boolean deleteAssessmentQuestionById(int questionId)
 	{
-		AssessmentQuestion assessmentQuestion = new AssessmentQuestion();
+		AssessmentQuestion assessmentQuestion;
 		assessmentQuestion=findByQuestionId(questionId);
 		assessmentQuestion.setDeleted(true);
 		if(assessmentQuestion.isDeleted())
@@ -68,7 +70,6 @@ public class AssessmentQuestionDao {
 	}
 	
 	public boolean updateQuestions(AssessmentQuestionModel assessmentQuestionModel) {
-		System.out.println(assessmentQuestionModel);
 		boolean result = false;
 		result = assessmentQuestionRepository.saveAndFlush(toAssessmentQuestionService(assessmentQuestionModel))!=null;
 		return result;
@@ -92,12 +93,15 @@ public class AssessmentQuestionDao {
 		assessmentQuestion.setNumberOfOptions(assessmentQuestionsModel.getNumberOfOptions());
 		assessmentQuestion.setCreatedTime(assessmentQuestionsModel.getCreatedTime());
 		List<QuestionOption> questionOptionList = new ArrayList<>();
+		try {
 		for(QuestionOptionModel questionOptionModel : assessmentQuestionsModel.getQuestionOptionModel())
 		{
 			questionOptionList.add(toQuestionOption(questionOptionModel, assessmentQuestion));
 		}
 		assessmentQuestion.setQuestionOption(questionOptionList);
-		System.out.println(assessmentQuestion);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		return assessmentQuestion;
 	}
 	
@@ -172,7 +176,6 @@ public class AssessmentQuestionDao {
 	
 	public AssessmentQuestion findByQuestionId(int questionId)
 	{
-		//return assessmentQuestionRepository.findById(questionId);
 		return new AssessmentQuestion();
 	}
 	

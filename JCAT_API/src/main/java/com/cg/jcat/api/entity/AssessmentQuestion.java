@@ -94,8 +94,14 @@ public class AssessmentQuestion {
 	
 	@OneToMany(mappedBy = "assessmentQuestion")
     private List<QuestionOption> questionOption;
+
 //	@OneToOne(mappedBy = "assessmentQuestion")
 //	private DTCloudableRule dtCloudableRule;
+
+	
+	@OneToOne(mappedBy = "assessmentQuestion")
+	private DTCloudableRule dtCloudableRule;
+
 	
 	public List<QuestionOption> getQuestionOption() {
 		return questionOption;

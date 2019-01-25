@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +27,11 @@ import com.cg.jcat.api.exception.JcatExceptions;
 		  locations = "classpath:application-integrationtest.properties")
 public class TestMigrationRuleService {
 	
+	/**
+	 * MockBean create dummy object
+	 * Case 2: Check save method is working fine or not
+	 */	
+	
 	@Autowired
 	private DTMigrationRuleService dtMigrationRuleService;
 	
@@ -44,20 +48,39 @@ public class TestMigrationRuleService {
 		assertNotNull(migrationRuleList);
 	}
 	
+	/**
+	 * Case 1: Check count of option id and option text. Check count is equal or not
+	 * Case 2: Check save method is working fine or not
+	 */	
 	@Test
-	public void testSaveMigrationRule() throws JcatExceptions
+	public void testSaveMigrationRule()
 	{
+		try {
+		DTMigrationRuleModel dtMigrationModel = toGetMigrationRule();
+		String optionIdArray[]= dtMigrationModel.getRuleOptionIds().split(",");
+		String ruleOptionTextArray[] = dtMigrationModel.getRuleOptionTextEN().split(",");
+		assertEquals(optionIdArray.length, ruleOptionTextArray.length); //CHECK COUNT OF OPTION IDs AND OPTIONS TEXT IS EQUAL OR NOT
+		
 		List<DTMigrationRuleModel> migrationRuleList = new ArrayList<>();
 		migrationRuleList.add(toGetMigrationRule());
 		migrationRuleList.add(toGetMigrationRule());
-		Mockito.when(dtMigrationRuleDao.saveDTMigrationRule(migrationRuleList)).thenReturn(true);
-		assertEquals(true, dtMigrationRuleDao.saveDTMigrationRule(migrationRuleList));
+		
+		Mockito.when(dtMigrationRuleDao.saveDTMigrationRule(migrationRuleList)).thenReturn(true); 
+		assertEquals(true, dtMigrationRuleDao.saveDTMigrationRule(migrationRuleList)); //CHECK GIVEN MIGRATION IS SUCCESSFULLY SAVING OR NOT
+		} catch (Exception e) {
+			
+		}
 		
 	}
 	
+	
+	/**
+	 * Case 1: Get migration rule by id 1, It should be not null
+	 * Case 2: Checking previous object which we are saving have same value which previously have
+	 */	
 	@Test
 //	@Ignore
-	public void testMigrationRules() throws JcatExceptions
+	public void testGetMigrationRules() throws JcatExceptions
 	{
 		DTMigrationRuleModel migrationRuleModel = toGetMigrationRule();
 		List<DTMigrationRuleModel> migrationRuleModels = new ArrayList<DTMigrationRuleModel>();
@@ -75,7 +98,7 @@ public class TestMigrationRuleService {
 		dtMigrationRuleModel.setMigrationId(1);
 		dtMigrationRuleModel.setQuestionId(1);
 		dtMigrationRuleModel.setQuestiontextEN("Eng");
-		dtMigrationRuleModel.setRuleOptionIds("1,2,3,4");
+		dtMigrationRuleModel.setRuleOptionIds("1,2,3");
 		dtMigrationRuleModel.setRuleOptionTextEN("option1, option2, option3");
 		return dtMigrationRuleModel;
 	}

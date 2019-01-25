@@ -12,6 +12,7 @@ import com.cg.jcat.api.dao.DTProviderRuleDao;
 import com.cg.jcat.api.dao.DTProviderRuleModel;
 import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.dao.UserDao;
+import com.cg.jcat.api.exception.CountMissMatchException;
 import com.cg.jcat.api.exception.OptionTextNotNullException;
 import com.cg.jcat.api.exception.SystemExceptions;
 
@@ -31,13 +32,14 @@ public class DTProviderRuleService implements IDTProviderRuleService {
 	}
 
 	@Override
-	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions, OptionTextNotNullException {
+	public boolean saveCloudProviderRule(List<DTProviderRuleModel> cloudProviderRuleModelList) throws SystemExceptions, OptionTextNotNullException, CountMissMatchException {
 		boolean afterSavedValue = false;
 
 		StringBuffer strBuff = new StringBuffer();
 		for (DTProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList) {
 			if (StringUtils.isEmpty(cloudProviderRuleModel.getRuleOptionTextEN())) {
 				strBuff.append("Option text for question " + cloudProviderRuleModel.getQuestionId() + " is empty!\n");
+				throw new OptionTextNotNullException(strBuff.toString());
 			} else {
 				String optionText[] = cloudProviderRuleModel.getRuleOptionTextEN().split(",");
 				String optionIds[] = cloudProviderRuleModel.getRuleOptionIds().split(",");
@@ -52,7 +54,7 @@ public class DTProviderRuleService implements IDTProviderRuleService {
 			afterSavedValue = dtCloudProviderDao.saveProviderRule(cloudProviderRuleModelList);
 		} else {
 			logger.error("Error option text can't be null,and number of option text and option ids should be same :: " +strBuff.toString());
-			throw new OptionTextNotNullException(strBuff.toString());
+			throw new CountMissMatchException(strBuff.toString());
 		}
 
 		return afterSavedValue;
