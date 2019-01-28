@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.dao.DTProviderRuleModel;
 import com.cg.jcat.api.dao.DTProvidersModel;
 import com.cg.jcat.api.entity.DTProviderRule;
@@ -19,7 +20,7 @@ import com.cg.jcat.api.service.IDTProviderRuleService;
 @Component
 public class DTProviderRuleController implements IDTProviderRuleController{
 	
-	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(JcatApiApplication.class);
 	
 	@Autowired
 	private IDTProviderRuleService dtCloudProviderService;
@@ -29,7 +30,7 @@ public class DTProviderRuleController implements IDTProviderRuleController{
 		try {
 		return dtCloudProviderService.getCloudProvider();
 		}catch (Exception e) {
-			LOGGER.error("Error in getting all cloud providers : getCloudProvider()", e);
+			logger.error("Error in getting all cloud providers : getCloudProvider()", e);
 			throw new SystemExceptions("getCloudProvider()");
 		}
 	}

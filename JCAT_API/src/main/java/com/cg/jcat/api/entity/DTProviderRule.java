@@ -53,11 +53,11 @@ public class DTProviderRule {
 	private Date modifiedTime;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="providerId")
+//	@JoinColumn(name="providerId")
 	private DTProviders dtProviders;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="questionId")
+//	@JoinColumn(name="questionId")
 	private AssessmentQuestion assessmentQuestion;
 
 	public int getProviderRuleId() {

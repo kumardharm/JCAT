@@ -70,8 +70,8 @@ public class AssessmentQuestion {
 	
 	private int displayOrder;
 	
-	@ColumnDefault("b'1'")
-	private boolean isDeleted;
+//	@ColumnDefault("b'1'")
+	private boolean isDeleted = true;
 	
 	@NotNull
 	@CreatedBy
