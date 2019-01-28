@@ -5,24 +5,29 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.entity.AssessmentQuestion;
 import com.cg.jcat.api.entity.DTCloudableRule;
 import com.cg.jcat.api.entity.DTCloudableRuleHistory;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.repository.IDTCloudableRuleHistoryRepository;
 import com.cg.jcat.api.repository.IDTCloudableRuleRepository;
 @Component
 public class DTCloudableRuleDAO {
-
+	private static final Logger logger = LoggerFactory.getLogger(DTCloudableRuleDAO.class);
 	@Autowired
 	IDTCloudableRuleRepository dtCloudableRuleRepository;
 	@Autowired
 	IDTCloudableRuleHistoryRepository  dtcloudableRuleHistoryRepository;
 	@Autowired
 	IAssessmentQuestionRepository assessmentQuestionRepository;
+	
 	
 	public List<DTCloudableRuleModel> getCloudableRule() {
 		List<DTCloudableRule> dtCloudableRuleList=new ArrayList<DTCloudableRule>();
@@ -78,8 +83,15 @@ public class DTCloudableRuleDAO {
 		return toDTCloudableRuleModel(findByCloudableRuleId(cloudableRuleId));
 	}
 
-	public boolean saveCloudableRule(List<DTCloudableRuleModel> dtCloudableRuleModelList) {
-			return toSaveCloudablerule(dtCloudableRuleModelList);
+	public boolean saveCloudableRule(List<DTCloudableRuleModel> dtCloudableRuleModelList) throws SystemExceptions {
+		boolean saveRule=false;
+		try {
+			saveRule=toSaveCloudablerule(dtCloudableRuleModelList);
+		}catch(Exception e) {
+			logger.error("Error in saveCloudableRule(): " + e.getMessage() + " ", e);
+			throw new SystemExceptions("Error in saveCloudableRule():" + e.getMessage());
+		}
+			return saveRule;
 	}
 
 	private boolean toSaveCloudablerule(List<DTCloudableRuleModel> dtCloudableRuleModelList) {

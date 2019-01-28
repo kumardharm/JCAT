@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.dao.ApplicationDao;
 import com.cg.jcat.api.dao.ApplicationModel;
+import com.cg.jcat.api.exception.SystemExceptions;
 
 @Component
 public class ApplicationService implements IApplicationService {
@@ -15,7 +16,7 @@ public class ApplicationService implements IApplicationService {
 	ApplicationDao applicationDao;
 	
 	@Override
-	public List<ApplicationModel> getApplications() {
+	public List<ApplicationModel> getApplications() throws SystemExceptions {
 		
 		return applicationDao.getApplications();
 	}
