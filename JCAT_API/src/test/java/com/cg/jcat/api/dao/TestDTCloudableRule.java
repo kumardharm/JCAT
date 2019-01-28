@@ -18,6 +18,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.utility.QuestionTypeEnum;
 
@@ -50,7 +51,7 @@ public class TestDTCloudableRule {
 	}
 	@Test
 	//@Ignore
-	public void testGetCloudableRule() {
+	public void testGetCloudableRule() throws SystemExceptions {
 		List<DTCloudableRuleModel> dtCloudableRuleModelList=new ArrayList<DTCloudableRuleModel>();
 		dtCloudableRuleModelList=getCloudableRuleModel();
 		dTCloudableRuleDAO.saveCloudableRule(dtCloudableRuleModelList);
@@ -60,7 +61,7 @@ public class TestDTCloudableRule {
 	
 	@Test
   //  @Ignore
-	public void  testSaveCloudableRule() {
+	public void  testSaveCloudableRule() throws SystemExceptions {
 		boolean result = true ;
 		boolean rule=true;
 	    result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());

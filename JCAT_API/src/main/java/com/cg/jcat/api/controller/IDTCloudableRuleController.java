@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jcat.api.dao.DTCloudableRuleModel;
+import com.cg.jcat.api.exception.SystemExceptions;
 
 
 @RestController
@@ -19,12 +20,12 @@ import com.cg.jcat.api.dao.DTCloudableRuleModel;
 public interface IDTCloudableRuleController {
 	
 	@GetMapping("/getAll")
-	public List<DTCloudableRuleModel> getCloudableRule();
+	public List<DTCloudableRuleModel> getCloudableRule() throws SystemExceptions;
 	
 	@GetMapping("/get/{cloudableRuleId}")
 	public DTCloudableRuleModel getCloudableRuleById(@PathVariable int cloudableRuleId);
 	
 	@PostMapping("/create")
-	public boolean saveCloudableRule(@RequestBody List<DTCloudableRuleModel> dTCloudableRuleModelList);
+	public boolean saveCloudableRule(@RequestBody List<DTCloudableRuleModel> dTCloudableRuleModelList) throws SystemExceptions;
 	
 }

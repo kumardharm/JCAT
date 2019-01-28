@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jcat.api.dao.ApplicationModel;
+import com.cg.jcat.api.exception.SystemExceptions;
 
 @RestController
 @RequestMapping("/application")
 public interface IApplicationController {
 	
 	@GetMapping("/getAll")
-	public List<ApplicationModel> getApplications();
+	public List<ApplicationModel> getApplications() throws SystemExceptions;
 	
 	@PostMapping("/create/{createdBy}")
 	public void save(@PathVariable String createdBy, @RequestBody ApplicationModel application);

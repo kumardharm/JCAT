@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.dao.ApplicationModel;
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IApplicationService;
 
 @Component
@@ -14,7 +15,7 @@ public class ApplicationController implements IApplicationController {
 	private IApplicationService applicationService;
 
 	@Override
-	public List<ApplicationModel> getApplications() {
+	public List<ApplicationModel> getApplications() throws SystemExceptions {
 			return applicationService.getApplications();
 	}
 	
