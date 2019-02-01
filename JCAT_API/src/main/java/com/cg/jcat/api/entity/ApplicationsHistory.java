@@ -16,7 +16,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 
 @Entity
-@Table(name="applications_history" , uniqueConstraints = {@UniqueConstraint(columnNames = "application_id")})
+@Table(name="applications_history")
 public class ApplicationsHistory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,18 +59,18 @@ public class ApplicationsHistory {
 	@Column(name = "assessment_stage")
 	private int assessmentStage;
 	
-	@ColumnDefault("b'0'")
+	@ColumnDefault("0")
 	@Column(name = "is_assessment_completed")
 	private boolean isAssessmentCompleted;
 	
 	@Column(name = "assessment_done_time")
 	private Date assessmentDoneTime;
 	
-	@ColumnDefault("b'0'")
+	@ColumnDefault("0")
 	@Column(name = "is_dt_cloudable")
 	private boolean isDtCloudable;
 	
-	@ColumnDefault("b'0'")
+	@ColumnDefault("0")
 	@Column(name = "is_re_cloudable")
 	private boolean isReCloudable;
 	

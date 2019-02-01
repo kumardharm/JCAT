@@ -2,27 +2,87 @@ package com.cg.jcat.api.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cg.jcat.api.csvimport.CsvDataLoader;
 import com.cg.jcat.api.dao.ApplicationModel;
+import com.cg.jcat.api.entity.ApplicationStaging;
+import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IApplicationService;
 
 @Component
 public class ApplicationController implements IApplicationController {
+
+	private static final Logger logger = LoggerFactory.getLogger(ApplicationController.class);
+	
+	@Autowired
+	CsvDataLoader csvDataLoader;
+	
+	  public final static String USERS_FILE = "setUpdata/Application (1).csv";
+
 	@Autowired
 	private IApplicationService applicationService;
 
 	@Override
 	public List<ApplicationModel> getApplications() throws SystemExceptions {
+		try {
 			return applicationService.getApplications();
+		} catch (Exception e) {
+			System.out.println(e);
+			logger.error("Applications Not available ", e.getMessage());
+			throw new SystemExceptions("getApplications()");
+		}
 	}
-	
-	@Override
-	public void save(String createdBy,ApplicationModel application) {
-		applicationService.save(createdBy,application);
-	}
-	
 
+	@Override
+	public boolean save(ApplicationModel application) throws SystemExceptions {
+		return applicationService.save(application);
+	}
+
+	@Override
+	public ApplicationModel getApplicationByApplicationId(String aid) throws ApplicationIdNotFoundException {
+
+		return applicationService.getApplicationByApplicationId(aid);
+	}
+
+	@Override
+	public boolean deleteApplicationById(int aid) throws ApplicationIdNotFoundException, SystemExceptions {
+
+		return applicationService.deleteApplicationById(aid);
+	}
+
+	@Override
+	public boolean deactivateApplicationById(int aid) throws ApplicationIdNotFoundException, SystemExceptions {
+
+		return applicationService.deactivateApplicationById(aid);
+	}
+
+	@Override
+	public boolean updateApplication(ApplicationModel application) throws ApplicationIdNotFoundException, SystemExceptions {
+	
+		return applicationService.updateApplication(application);
+	}
+
+	@Override
+	public void importfile(MultipartFile file) {
+		
+		 List<ApplicationStaging> applicationStaging = csvDataLoader.loadObjectList(ApplicationStaging.class, file.getOriginalFilename(),file);
+//	     applicationService.importfile(applicationStaging);
+    	 System.out.println(applicationStaging);
+    	 System.out.println(file);
+		
+	}
+
+//	@Override
+//	public void importfile() {
+//		 List<ApplicationStaging> users = csvDataLoader.loadObjectList(ApplicationStaging.class, USERS_FILE);
+////		 applicationService.save(users.get(0));
+////		 applicationService.create(users);
+//		 System.out.println(users);
+//	}
 }

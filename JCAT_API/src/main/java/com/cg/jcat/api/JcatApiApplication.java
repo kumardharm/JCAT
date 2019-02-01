@@ -10,15 +10,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 public class JcatApiApplication {
 	private static final Logger logger = LoggerFactory.getLogger(JcatApiApplication.class);
+
 	public static void main(String[] args) {
 		SpringApplication.run(JcatApiApplication.class, args);
-//		logger.debug("--debug--Application Started--");
-//		logger.trace("--trace--Application Started--");
-//		logger.error("--error--Application Started--");
-	logger.info("--info--Application Started--");
-//		logger.warn("--warn--Application Started--");
-		
+		logger.info("--info--Application Started--");
+
 	}
 
 }
-

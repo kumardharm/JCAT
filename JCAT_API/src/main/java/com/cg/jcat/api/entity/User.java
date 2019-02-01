@@ -32,8 +32,10 @@ public class User {
 	private String password;
 	private String company;
 	private String userEmail;
+	@ColumnDefault("0")
 	@NotNull
 	private boolean isAdmin;
+	@ColumnDefault("0")
 	@NotNull
 	private boolean isDeleted;
 	private Date lastLoginTime;

@@ -1,6 +1,5 @@
 package com.cg.jcat.api.dao;
 
-import java.util.Date;
 
 public class ApplicationModel {
 	
@@ -11,16 +10,13 @@ public class ApplicationModel {
 	private String applicationDepartment;
 	private int priority;
 	private int applicationUser;
-	private boolean isActivate;
 	private int assessmentStage;
-	private boolean isAssessmentCompleted;
 	private boolean isDTCloudable;
 	private boolean isRECloudable;
 	private String dtMigrationPattern;
 	private String reMigrationPattern;
 	private String dtCloudProvider;
 	private String reCloudProvider;
-	private String createdBy;
 	public int getAid() {
 		return aid;
 	}
@@ -63,24 +59,13 @@ public class ApplicationModel {
 	public void setApplicationUser(int applicationUser) {
 		this.applicationUser = applicationUser;
 	}
-	public boolean isActivate() {
-		return isActivate;
-	}
-	public void setActivate(boolean isActivate) {
-		this.isActivate = isActivate;
-	}
 	public int getAssessmentStage() {
 		return assessmentStage;
 	}
 	public void setAssessmentStage(int assessmentStage) {
 		this.assessmentStage = assessmentStage;
 	}
-	public boolean isAssessmentCompleted() {
-		return isAssessmentCompleted;
-	}
-	public void setAssessmentCompleted(boolean isAssessmentCompleted) {
-		this.isAssessmentCompleted = isAssessmentCompleted;
-	}
+	
 	public boolean isDTCloudable() {
 		return isDTCloudable;
 	}
@@ -117,23 +102,19 @@ public class ApplicationModel {
 	public void setReCloudProvider(String reCloudProvider) {
 		this.reCloudProvider = reCloudProvider;
 	}
-	public String getCreatedBy() {
-		return createdBy;
-	}
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
 	@Override
 	public String toString() {
 		return "ApplicationModel [aid=" + aid + ", applicationId=" + applicationId + ", applicationName="
 				+ applicationName + ", applicationDescription=" + applicationDescription + ", applicationDepartment="
 				+ applicationDepartment + ", priority=" + priority + ", applicationUser=" + applicationUser
-				+ ", isActivate=" + isActivate + ", assessmentStage=" + assessmentStage + ", isAssessmentCompleted="
-				+ isAssessmentCompleted + ", isDTCloudable=" + isDTCloudable + ", isRECloudable=" + isRECloudable
-				+ ", dtMigrationPattern=" + dtMigrationPattern + ", reMigrationPattern=" + reMigrationPattern
-				+ ", dtCloudProvider=" + dtCloudProvider + ", reCloudProvider=" + reCloudProvider + ", createdBy="
-				+ createdBy + "]";
+				+ ", assessmentStage=" + assessmentStage + ", isDTCloudable=" + isDTCloudable + ", isRECloudable="
+				+ isRECloudable + ", dtMigrationPattern=" + dtMigrationPattern + ", reMigrationPattern="
+				+ reMigrationPattern + ", dtCloudProvider=" + dtCloudProvider + ", reCloudProvider=" + reCloudProvider
+				+ "]";
 	}
+	
+	
+	
 	
 	
 	

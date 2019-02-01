@@ -1,0 +1,3 @@
+applicationId,applicationName,applicationDescription,applicationDepartment,priority,userName,isDTCloudable,dtMigrationPattern,dtCloudProvider,status
+a,a,a,a,5,hi,FALSE,publicPass,Gitc,0
+b,b,b,b,5,hello,TRUE,Rehost,Aws,0

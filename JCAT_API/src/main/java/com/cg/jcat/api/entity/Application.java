@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -47,7 +48,7 @@ public class Application {
 	
 	@ColumnDefault("1")
 	@Column(name = "is_activate")
-	private boolean isActivate;
+	private boolean isActivate = true;
 	
 	@ColumnDefault("0")
 	@Column(name = "assessment_stage")
@@ -60,11 +61,11 @@ public class Application {
 	@Column(name = "assessment_completion_time")
 	private Date assessmentCompletionTime;
 	
-	@ColumnDefault("b'0'")
+	@ColumnDefault("0")
 	@Column(name = "is_dt_cloudable")
 	private boolean isDTCloudable;
 	
-	@ColumnDefault("b'0'")
+	@ColumnDefault("0")
 	@Column(name = "is_re_cloudable")
 	private boolean isReCloudable;
 	
