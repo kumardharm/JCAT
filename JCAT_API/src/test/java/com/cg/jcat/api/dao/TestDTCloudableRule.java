@@ -24,23 +24,22 @@ import com.cg.jcat.api.utility.QuestionTypeEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//@AutoConfigureTestDatabase
-//@TestPropertySource(
-//		 locations = "classpath:application-integrationtest.properties")
+@AutoConfigureTestDatabase
+@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class TestDTCloudableRule {
 	@Autowired
-	DTCloudableRuleDao dTCloudableRuleDAO; 
-	
+	DTCloudableRuleDao dTCloudableRuleDAO;
+
 	@Autowired
-    AssessmentQuestionDao assessmentQuestionDao;
-	
+	AssessmentQuestionDao assessmentQuestionDao;
+
 	@Autowired
-	IAssessmentQuestionRepository assessmentQuestionRepository; 
-	
+	IAssessmentQuestionRepository assessmentQuestionRepository;
+
 	public List<DTCloudableRuleModel> getCloudableRuleModel() {
-		List<DTCloudableRuleModel> dtCloudableRuleModelist=new ArrayList<DTCloudableRuleModel>();
-		DTCloudableRuleModel dtCloudableRuleModel=new DTCloudableRuleModel();
-		//dtCloudableRuleModel.setCloudableRuleId();
+		List<DTCloudableRuleModel> dtCloudableRuleModelist = new ArrayList<DTCloudableRuleModel>();
+		DTCloudableRuleModel dtCloudableRuleModel = new DTCloudableRuleModel();
+		// dtCloudableRuleModel.setCloudableRuleId();
 		dtCloudableRuleModel.setOptionIds("1");
 		dtCloudableRuleModel.setOptionTextsEN("Yes");
 		dtCloudableRuleModel.setQuestionId(1);
@@ -49,67 +48,63 @@ public class TestDTCloudableRule {
 		dtCloudableRuleModelist.add(dtCloudableRuleModel);
 		return dtCloudableRuleModelist;
 	}
+
 	@Test
-	//@Ignore
+	// @Ignore
 	public void testGetCloudableRule() throws SystemExceptions {
-		List<DTCloudableRuleModel> dtCloudableRuleModelList=new ArrayList<DTCloudableRuleModel>();
-		dtCloudableRuleModelList=getCloudableRuleModel();
+		List<DTCloudableRuleModel> dtCloudableRuleModelList = new ArrayList<DTCloudableRuleModel>();
+		dtCloudableRuleModelList = getCloudableRuleModel();
 		dTCloudableRuleDAO.saveCloudableRule(dtCloudableRuleModelList);
-		assertEquals(1,dTCloudableRuleDAO.getCloudableRule().size());
+		assertEquals(1, dTCloudableRuleDAO.getCloudableRule().size());
 	}
-	
-	
+
 	@Test
-  //  @Ignore
-	public void  testSaveCloudableRule() throws SystemExceptions {
-		boolean result = true ;
-		boolean rule=true;
-	    result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());
-	    assertEquals(true, result);
-	   // Assert.assertTrue(result);
-	   // assertEquals(Assert.assertTrue, result); 
-		List<DTCloudableRuleModel> dTCloudableRuleModelList=new ArrayList<DTCloudableRuleModel>();
-		dTCloudableRuleModelList=getCloudableRuleModel();
-		 rule=dTCloudableRuleDAO.saveCloudableRule(dTCloudableRuleModelList);
+	// @Ignore
+	public void testSaveCloudableRule() throws SystemExceptions {
+		boolean result = true;
+		boolean rule = true;
+		result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());
+		assertEquals(true, result);
+		// Assert.assertTrue(result);
+		// assertEquals(Assert.assertTrue, result);
+		List<DTCloudableRuleModel> dTCloudableRuleModelList = new ArrayList<DTCloudableRuleModel>();
+		dTCloudableRuleModelList = getCloudableRuleModel();
+		rule = dTCloudableRuleDAO.saveCloudableRule(dTCloudableRuleModelList);
 		assertEquals(true, rule);
 	}
-	
-	 AssessmentQuestionModel getAssessmentQuestions()
-	    {
-	          Date date = new Date();
-	          AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
-	          assessmentQuestionModel.setAssessmentTypeForCloudable(true);
-	          assessmentQuestionModel.setAssessmentTypeForCloudProvider(true);
-	          assessmentQuestionModel.setAssessmentTypeForMigration(true);
-	          assessmentQuestionModel.setCreatedBy("Admin");
-	          assessmentQuestionModel.setDeleted(false);
-	          assessmentQuestionModel.setDisplayOrder(2);
-	          assessmentQuestionModel.setModifiedBy("Admin");
-	          assessmentQuestionModel.setQuestionDescriptionEN("Engl");
-	          assessmentQuestionModel.setQuestionDescriptionLang2("Germ");
-	          assessmentQuestionModel.setQuestionId(1);
-	          assessmentQuestionModel.setQuestionTextEN("Engl");
-	          assessmentQuestionModel.setQuestionTextLang2("Germ");
-	          assessmentQuestionModel.setCreatedTime(date);
-	           assessmentQuestionModel.setQuestionType(QuestionTypeEnum.LONG_ANSWER);
-	          assessmentQuestionModel.setNumberOfOptions(2);
-	           assessmentQuestionModel.setQuestionOptionModel(getQuestionOptionModel());
-	          return assessmentQuestionModel;
-	    } 
-	 
-		 List<QuestionOptionModel> getQuestionOptionModel()
-		     {
-		           //assessmentQuestionModel.setQuestionOptionModel(null);
-		           List<QuestionOptionModel> list = new ArrayList<>();
-		           QuestionOptionModel questionOptionModel = new QuestionOptionModel();
-		           //questionOptionModel.setOptionId(11);
-		     //       questionOptionModel.setAssessmentQuestionModel(assessmentQuestionModel);
-		           questionOptionModel.setOptionTextEN("ENGLISH");
-		           questionOptionModel.setOptionTextLang2("ä ö ü ß Ä Ö Ü");
-		           list.add(questionOptionModel);
-		           return list;
-		     } 
-		  
 
+	AssessmentQuestionModel getAssessmentQuestions() {
+		Date date = new Date();
+		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
+		assessmentQuestionModel.setAssessmentTypeForCloudable(true);
+		assessmentQuestionModel.setAssessmentTypeForCloudProvider(true);
+		assessmentQuestionModel.setAssessmentTypeForMigration(true);
+		assessmentQuestionModel.setCreatedBy("Admin");
+		assessmentQuestionModel.setDeleted(false);
+		assessmentQuestionModel.setDisplayOrder(2);
+		assessmentQuestionModel.setModifiedBy("Admin");
+		assessmentQuestionModel.setQuestionDescriptionEN("Engl");
+		assessmentQuestionModel.setQuestionDescriptionLang2("Germ");
+		assessmentQuestionModel.setQuestionId(1);
+		assessmentQuestionModel.setQuestionTextEN("Engl");
+		assessmentQuestionModel.setQuestionTextLang2("Germ");
+		assessmentQuestionModel.setCreatedTime(date);
+		assessmentQuestionModel.setQuestionType(QuestionTypeEnum.LONG_ANSWER);
+		assessmentQuestionModel.setNumberOfOptions(2);
+		assessmentQuestionModel.setQuestionOptionModel(getQuestionOptionModel());
+		return assessmentQuestionModel;
+	}
+
+	List<QuestionOptionModel> getQuestionOptionModel() {
+		// assessmentQuestionModel.setQuestionOptionModel(null);
+		List<QuestionOptionModel> list = new ArrayList<>();
+		QuestionOptionModel questionOptionModel = new QuestionOptionModel();
+		// questionOptionModel.setOptionId(11);
+		// questionOptionModel.setAssessmentQuestionModel(assessmentQuestionModel);
+		questionOptionModel.setOptionTextEN("ENGLISH");
+		questionOptionModel.setOptionTextLang2("ä ö ü ß Ä Ö Ü");
+		list.add(questionOptionModel);
+		return list;
+	}
 
 }

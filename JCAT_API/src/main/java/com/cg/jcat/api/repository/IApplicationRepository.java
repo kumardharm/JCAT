@@ -13,4 +13,6 @@ public interface IApplicationRepository extends JpaRepository<Application, Integ
 	Application findByApplicationId(String applicationId);
 
 	List<Application> findAllByIsActivateOrderByApplicationName(boolean isActivate);
+
+	Application findByAid(int applicationId);
 }

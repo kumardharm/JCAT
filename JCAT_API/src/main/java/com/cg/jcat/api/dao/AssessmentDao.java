@@ -62,6 +62,7 @@ public class AssessmentDao {
 
 		answerIdSetCopy.addAll(answerIdSet);
 
+		
 		answerIdSet.removeAll(answerModelIdSet);
 		answerIdSet.retainAll(answerIdSetCopy);
 		try {

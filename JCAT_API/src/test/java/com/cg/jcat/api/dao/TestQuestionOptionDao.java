@@ -17,10 +17,9 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureTestDatabase
-@TestPropertySource(
-		  locations = "classpath:application-integrationtest.properties")
+@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class TestQuestionOptionDao {
-	
+
 	@Autowired
 	QuestionOptionDao questionOptionDao;
 
@@ -30,35 +29,34 @@ public class TestQuestionOptionDao {
 		QuestionOptionModel questionOption = toGetQuestionOption();
 		assertEquals(true, questionOptionDao.saveQuestionOption(questionOption));
 	}
-	
+
 	@Test
 	public void getQuestionOption() {
-		
+
 		QuestionOptionModel questionOption = toGetQuestionOption();
 		questionOptionDao.saveQuestionOption(questionOption);
 		QuestionOption found = questionOptionDao.findByOptionTextEN(questionOption.getOptionTextEN());
 		assertEquals(found.getOptionTextEN(), questionOption.getOptionTextEN());
 	}
-	
+
 	@Test
-	public void getUpdateQuestionOption()
-	{
+	public void getUpdateQuestionOption() {
 		QuestionOptionModel questionOption = toGetQuestionOption();
 		questionOption.setOptionTextEN("updated text");
 		questionOptionDao.updateQuestionOption(questionOption);
 		QuestionOption found = questionOptionDao.findByOptionTextEN(questionOption.getOptionTextEN());
 		found.setOptionTextEN("updated text");
-		
-		assertEquals("updated text",found.getOptionTextEN());
+
+		assertEquals("updated text", found.getOptionTextEN());
 	}
-	
+
 	private QuestionOptionModel toGetQuestionOption() {
 
 		QuestionOptionModel questionOption = new QuestionOptionModel();
 		questionOption.setOptionId(3);
 		questionOption.setOptionTextEN("text1");
 		questionOption.setOptionTextLang2("lang1");
-		//questionOption.setQuestionId(questionOptionModel.getQuestionId());
+		// questionOption.setQuestionId(questionOptionModel.getQuestionId());
 		return questionOption;
 	}
 

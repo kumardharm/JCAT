@@ -42,15 +42,15 @@ public class AnswerHistory {
 	@Column(name = "option_texts_EN")
 	private String optionTextsEN;
 	
-	@ColumnDefault("0")
+	//@ColumnDefault("0")
 	@Column(name = "dt_cloudable_rule_result")
 	private boolean dtCloudableRuleResult;
 	
-	@ColumnDefault("0")
+	//@ColumnDefault("0")
 	@Column(name = "dt_migration_rule_result")
 	private boolean dtMigrationRuleResult;
 	
-	@ColumnDefault("0")
+	//@ColumnDefault("0")
 	@Column(name = "dt_provider_rule_result")
 	private boolean dtProviderRuleResult;
 	

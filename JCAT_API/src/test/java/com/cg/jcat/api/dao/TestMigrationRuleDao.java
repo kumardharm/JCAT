@@ -10,7 +10,9 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.AssessmentQuestion;
@@ -22,23 +24,24 @@ import com.cg.jcat.api.utility.QuestionTypeEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@AutoConfigureTestDatabase
+@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class TestMigrationRuleDao {
-	
+
 	@Autowired
 	DTMigrationRuleDao dtMigrationRuleDao;
-	
+
 	@Autowired
 	AssessmentQuestionDao assessmentQuestionDao;
-	
+
 	@Autowired
 	IDTMigrationRepository dtMigrationRepository;
 
 	@Autowired
 	IAssessmentQuestionRepository assessmentQuestionRepository;
-	
+
 	Date date = new Date();
-	
-	
+
 	@Test
 	public void testASaveMigrationRule() throws SystemExceptions {
 		boolean result = true;
@@ -46,7 +49,7 @@ public class TestMigrationRuleDao {
 		assessmentQuestion.setQuestionTextEN("text");
 		result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());
 		assertEquals(true, result);
-		
+
 		DTMigration dtMigration = new DTMigration();
 		dtMigration.setCreatedBy("Admin");
 		dtMigration.setCreatedTtime(date);
@@ -54,40 +57,34 @@ public class TestMigrationRuleDao {
 		dtMigration.setEvaluationOrder(1);
 		dtMigration.setLogicalOperator("OR");
 		dtMigration.setMigration_pattern("Rehost");
-		result = dtMigrationRepository.save(dtMigration)!=null;
+		result = dtMigrationRepository.save(dtMigration) != null;
 		assertEquals(true, result);
-		
-		
+
 		List<DTMigrationRuleModel> migrationRuleList = new ArrayList<>();
 		migrationRuleList.add(toGetMigrationRule());
 		int previousCountOfHistory = 0, previousSaveMigrationRuleCount;
 		previousCountOfHistory = dtMigrationRuleDao.getCountOfMigrationRuleHistoryRule();
 		previousSaveMigrationRuleCount = dtMigrationRuleDao.getCountOfMigrationRule();
-		
+
 		assertEquals(true, dtMigrationRuleDao.saveDTMigrationRule(migrationRuleList)); // saving 1 migration rule
-		assertEquals(1, dtMigrationRuleDao.getCountOfMigrationRule()); //after save method its size should be 1 because previous data deleted
-		assertEquals(dtMigrationRuleDao.getCountOfMigrationRuleHistoryRule(), previousCountOfHistory+previousSaveMigrationRuleCount); //neWhistoryTableSize= migrationRuleCount+ previousSizeOfHistory
-//		assertEquals(2, dtMigrationRuleDao.toGetMigrationRule().size()); // count of row in migration rule should be 2 because 2 records are inserted
-//		assertEquals(0, dtMigrationRuleDao.getCountOfMigrationRuleHistoryRule()); // Initially no value in history table
-//		migrationRuleList.add(toGetMigrationRule());
-//		assertEquals(true, dtMigrationRuleDao.saveDTMigrationRule(migrationRuleList));
-//		assertEquals(3, dtMigrationRuleDao.toGetMigrationRule().size());
-//		assertEquals(2, dtMigrationRuleDao.getCountOfMigrationRuleHistoryRule());
+		assertEquals(1, dtMigrationRuleDao.getCountOfMigrationRule()); // after save method its size should be 1 because
+																		// previous data deleted
+		assertEquals(dtMigrationRuleDao.getCountOfMigrationRuleHistoryRule(),
+				previousCountOfHistory + previousSaveMigrationRuleCount); // neWhistoryTableSize= migrationRuleCount+
+																			// previousSizeOfHistory
 	}
-	
+
 	@Test
-	public void testGetMigrationRule() throws SystemExceptions
-	{
+	public void testGetMigrationRule() throws SystemExceptions {
 		assertNotNull(dtMigrationRuleDao.toGetMigrationRule());
 		assertEquals(1, dtMigrationRuleDao.toGetMigrationRule().size());
 	}
-	
+
 	@Test
-	public void testGetMigrationPattern()
-	{
+	public void testGetMigrationPattern() {
 		assertNotNull(dtMigrationRuleDao.getMigrationPattern());
 	}
-	
+
 	private DTMigrationRuleModel toGetMigrationRule() {
 
 		DTMigrationRuleModel dtMigrationRuleModel = new DTMigrationRuleModel();
@@ -100,10 +97,8 @@ public class TestMigrationRuleDao {
 		dtMigrationRuleModel.setRuleOptionTextEN("11");
 		return dtMigrationRuleModel;
 	}
-	
-	
-	List<QuestionOptionModel> getQuestionOptionModel()
-	{
+
+	List<QuestionOptionModel> getQuestionOptionModel() {
 		List<QuestionOptionModel> list = new ArrayList<>();
 		QuestionOptionModel questionOptionModel = new QuestionOptionModel();
 		questionOptionModel.setOptionTextEN("ENGLISH");
@@ -112,10 +107,8 @@ public class TestMigrationRuleDao {
 		return list;
 	}
 
-	
-	AssessmentQuestionModel getAssessmentQuestions()
-	{
-		
+	AssessmentQuestionModel getAssessmentQuestions() {
+		Date date = new Date();
 		AssessmentQuestionModel assessmentQuestionModel = new AssessmentQuestionModel();
 		assessmentQuestionModel.setAssessmentTypeForCloudable(true);
 		assessmentQuestionModel.setAssessmentTypeForCloudProvider(true);
@@ -135,4 +128,5 @@ public class TestMigrationRuleDao {
 		assessmentQuestionModel.setQuestionOptionModel(getQuestionOptionModel());
 		return assessmentQuestionModel;
 	}
+
 }

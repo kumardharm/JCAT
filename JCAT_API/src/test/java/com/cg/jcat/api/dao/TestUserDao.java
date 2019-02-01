@@ -4,7 +4,6 @@ package com.cg.jcat.api.dao;
 import static org.junit.Assert.assertEquals;
 
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.JcatExceptions;
-import com.cg.jcat.api.exception.SystemExceptions;
-import com.cg.jcat.api.exception.UserAlreadyExistsException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,7 +29,7 @@ public class TestUserDao {
 	
 	@Test
 //	@Ignore
-	public void testsaveUser() throws JcatExceptions
+	public void testAsaveUser() throws JcatExceptions
 	{
 		UserModel userModel = new UserModel();
 		userModel.setFirstName("Hari");
@@ -57,26 +54,15 @@ public class TestUserDao {
 	}
 	
 	@Test
-    @Ignore
-	public void testgetUsers()
+//    @Ignore
+	public void testBgetUsers()
 	{
-		UserModel userModel = new UserModel();
-		userModel.setFirstName("ABC");
-		userModel.setUserEmail("abc");
-		userModel.setCreatedBy("raghu");
-		userModel.setCompany("goldman");
-		userModel.setAdmin(true);
-		userModel.setPassword("asd@123");
-		userModel.setModifiedBy("raj");
-		
-		userDao.createUser(userModel,"ABC");
-		
 		assertEquals(1, userDao.getUsers().size());
 	}
 	
 	@Test
 //	@Ignore
-	public void testdeleteById() throws JcatExceptions
+	public void testDdeleteById() throws JcatExceptions
 	{
 		userDao.deleteById(1);
 		User user = userDao.findByUserId(1);
@@ -86,7 +72,7 @@ public class TestUserDao {
 	
 	@Test
 //	@Ignore
-	public void updateUsers()  
+	public void testCupdateUsers()  
 	{
 		
 		UserModel userModel = new UserModel();
