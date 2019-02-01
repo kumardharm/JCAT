@@ -6,16 +6,27 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.utility.QuestionTypeEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+//@AutoConfigureTestDatabase
+//@TestPropertySource(
+//		 locations = "classpath:application-integrationtest.properties")
 public class TestDTCloudableRule {
 	@Autowired
 	DTCloudableRuleDao dTCloudableRuleDAO; 
@@ -29,6 +40,7 @@ public class TestDTCloudableRule {
 	public List<DTCloudableRuleModel> getCloudableRuleModel() {
 		List<DTCloudableRuleModel> dtCloudableRuleModelist=new ArrayList<DTCloudableRuleModel>();
 		DTCloudableRuleModel dtCloudableRuleModel=new DTCloudableRuleModel();
+		//dtCloudableRuleModel.setCloudableRuleId();
 		dtCloudableRuleModel.setOptionIds("1");
 		dtCloudableRuleModel.setOptionTextsEN("Yes");
 		dtCloudableRuleModel.setQuestionId(1);
@@ -37,10 +49,9 @@ public class TestDTCloudableRule {
 		dtCloudableRuleModelist.add(dtCloudableRuleModel);
 		return dtCloudableRuleModelist;
 	}
-	
-	
 	@Test
-	public void testGetCloudableRule() {
+	//@Ignore
+	public void testGetCloudableRule() throws SystemExceptions {
 		List<DTCloudableRuleModel> dtCloudableRuleModelList=new ArrayList<DTCloudableRuleModel>();
 		dtCloudableRuleModelList=getCloudableRuleModel();
 		dTCloudableRuleDAO.saveCloudableRule(dtCloudableRuleModelList);
@@ -49,11 +60,14 @@ public class TestDTCloudableRule {
 	
 	
 	@Test
-	public void  testSaveCloudableRule() {
+  //  @Ignore
+	public void  testSaveCloudableRule() throws SystemExceptions {
 		boolean result = true ;
 		boolean rule=true;
 	    result = assessmentQuestionDao.saveQuestions(getAssessmentQuestions());
 	    assertEquals(true, result);
+	   // Assert.assertTrue(result);
+	   // assertEquals(Assert.assertTrue, result); 
 		List<DTCloudableRuleModel> dTCloudableRuleModelList=new ArrayList<DTCloudableRuleModel>();
 		dTCloudableRuleModelList=getCloudableRuleModel();
 		 rule=dTCloudableRuleDAO.saveCloudableRule(dTCloudableRuleModelList);
@@ -85,8 +99,11 @@ public class TestDTCloudableRule {
 	 
 		 List<QuestionOptionModel> getQuestionOptionModel()
 		     {
+		           //assessmentQuestionModel.setQuestionOptionModel(null);
 		           List<QuestionOptionModel> list = new ArrayList<>();
 		           QuestionOptionModel questionOptionModel = new QuestionOptionModel();
+		           //questionOptionModel.setOptionId(11);
+		     //       questionOptionModel.setAssessmentQuestionModel(assessmentQuestionModel);
 		           questionOptionModel.setOptionTextEN("ENGLISH");
 		           questionOptionModel.setOptionTextLang2("ä ö ü ß Ä Ö Ü");
 		           list.add(questionOptionModel);

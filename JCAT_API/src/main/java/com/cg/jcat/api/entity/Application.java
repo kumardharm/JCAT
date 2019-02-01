@@ -41,15 +41,15 @@ public class Application {
 	@Column(name = "application_user")
 	private int applicationUser;
 	
-	//@ColumnDefault("0")
+	@ColumnDefault("0")
 	@Column(name = "is_deleted")
 	private boolean isDeleted;
 	
-	//@ColumnDefault("1")
+	@ColumnDefault("1")
 	@Column(name = "is_activate")
-	private boolean isActivate;
+	private boolean isActivate = true;
 	
-	//@ColumnDefault("0")
+	@ColumnDefault("0")
 	@Column(name = "assessment_stage")
 	@NotNull
 	private int assessmentStage;
@@ -60,11 +60,11 @@ public class Application {
 	@Column(name = "assessment_completion_time")
 	private Date assessmentCompletionTime;
 	
-	//@ColumnDefault("b'0'")
+	@ColumnDefault("0")
 	@Column(name = "is_dt_cloudable")
 	private boolean isDTCloudable;
 	
-	//@ColumnDefault("b'0'")
+	@ColumnDefault("0")
 	@Column(name = "is_re_cloudable")
 	private boolean isReCloudable;
 	
@@ -283,5 +283,7 @@ public class Application {
 				+ createdBy + ", createdTime=" + createdTime + ", modifiedBy=" + modifiedBy + ", modifiedTime="
 				+ modifiedTime + "]";
 	}
+
+	
 	
 }

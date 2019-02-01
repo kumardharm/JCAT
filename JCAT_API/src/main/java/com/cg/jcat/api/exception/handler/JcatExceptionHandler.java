@@ -14,6 +14,7 @@ import com.cg.jcat.api.controller.UserController;
 import com.cg.jcat.api.entity.ValidationException;
 import com.cg.jcat.api.exception.CountMissMatchException;
 import com.cg.jcat.api.exception.DeleteUserException;
+import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.OptionTextNotNullException;
 import com.cg.jcat.api.exception.SaveUserException;
 import com.cg.jcat.api.exception.SystemExceptions;
@@ -84,6 +85,14 @@ public class JcatExceptionHandler {
 	
 	@ExceptionHandler(value = CountMissMatchException.class)
 	public ResponseEntity<Object> optionText(CountMissMatchException exception,WebRequest request) {
+
+		ErrorDTO errorDetails = new ErrorDTO(exception.getErrorDTO().getErrorCode(),
+				exception.getErrorDTO().getErrorMessage(), exception.getErrorDTO().getErrorValue(),exception.getErrorDTO().getErrorTimestamp(),request.getDescription(false));
+		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_ACCEPTABLE); 
+	}
+	
+	@ExceptionHandler(value = ApplicationIdNotFoundException.class)
+	public ResponseEntity<Object> inputMissMatch(ApplicationIdNotFoundException exception,WebRequest request) {
 
 		ErrorDTO errorDetails = new ErrorDTO(exception.getErrorDTO().getErrorCode(),
 				exception.getErrorDTO().getErrorMessage(), exception.getErrorDTO().getErrorValue(),exception.getErrorDTO().getErrorTimestamp(),request.getDescription(false));

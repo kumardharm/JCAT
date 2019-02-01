@@ -30,6 +30,8 @@ public class UserDao {
 
 	@Autowired
 	private IUserRepository userRepository;
+	
+	Date date = new Date();
 
 	public List<UserModel> getUsers() {
 		List<User> userList = userRepository.findAll();
@@ -116,7 +118,6 @@ public class UserDao {
 		User users = null;
 		if (userModel != null) {
 			users = new User();
-			Date date = new Date();
 			users.setUsername(userModel.getUsername());
 			users.setUserId(userModel.getUserId());
 			users.setCompany(userModel.getCompany());
@@ -129,6 +130,17 @@ public class UserDao {
 			users.setCteatedTime(date);
 		}
 		return users;
+	}
+
+	public User create(String userName) {
+		
+		User users = new User();
+		users.setUsername(userName);
+		users.setAdmin(false);
+		users.setDeleted(false);
+		users.setCreatedBy("Admin");
+		users.setCteatedTime(date);
+		 return userRepository.save(users);
 	}
 
 }

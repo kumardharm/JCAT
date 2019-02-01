@@ -94,9 +94,9 @@ public class TestAssessmentService {
 		 */
 		ApplicationModel applicationModel = new ApplicationModel();
 		applicationModel.setAid(1);
-		applicationModel.setApplication_id("app");
-		applicationModel.setAssessment_stage(1);
-		applicationService.save("Admin", applicationModel);
+		applicationModel.setApplicationId("app");
+		applicationModel.setAssessmentStage(1);
+		applicationService.save(applicationModel);
 
 		/*
 		 * Saving Answer
@@ -405,15 +405,15 @@ public class TestAssessmentService {
 		dtMigrationRepository.save(dtMigration);
 	}
 	
-	private void saveApplication() {
+	private void saveApplication() throws SystemExceptions {
 		/*
 		 * Saving Application
 		 */
 		ApplicationModel applicationModel = new ApplicationModel();
 		applicationModel.setAid(1);
-		applicationModel.setApplication_id("app");
-		applicationModel.setAssessment_stage(1);
-		applicationService.save("Admin", applicationModel);
+		applicationModel.setApplicationId("App");
+		applicationModel.setAssessmentStage(1);
+		applicationService.save(applicationModel);
 	}
 	
 	private DTProviders saveProvider(int providerId, String providerName, String createdBy, Date createdTime, int evaluationOrder,String logicalOperator,

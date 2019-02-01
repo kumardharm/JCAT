@@ -39,6 +39,7 @@ public class DTProviderRuleService implements IDTProviderRuleService {
 		for (DTProviderRuleModel cloudProviderRuleModel : cloudProviderRuleModelList) {
 			if (StringUtils.isEmpty(cloudProviderRuleModel.getRuleOptionTextEN())) {
 				strBuff.append("Option text for question " + cloudProviderRuleModel.getQuestionId() + " is empty!\n");
+				logger.error("Option text can't be null :",strBuff.toString());
 				throw new OptionTextNotNullException(strBuff.toString());
 			} else {
 				String optionText[] = cloudProviderRuleModel.getRuleOptionTextEN().split(",");
@@ -53,7 +54,7 @@ public class DTProviderRuleService implements IDTProviderRuleService {
 			
 			afterSavedValue = dtCloudProviderDao.saveProviderRule(cloudProviderRuleModelList);
 		} else {
-			logger.error("Error option text can't be null,and number of option text and option ids should be same :: " +strBuff.toString());
+			logger.error("Error option text number of option text and option ids should be same :: " +strBuff.toString());
 			throw new CountMissMatchException(strBuff.toString());
 		}
 

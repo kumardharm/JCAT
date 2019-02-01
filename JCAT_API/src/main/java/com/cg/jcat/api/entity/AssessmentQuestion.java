@@ -71,7 +71,7 @@ public class AssessmentQuestion {
 	private int displayOrder;
 	
 	private boolean isDeleted;
-	
+
 	@NotNull
 	@CreatedBy
 	private String createdBy;
