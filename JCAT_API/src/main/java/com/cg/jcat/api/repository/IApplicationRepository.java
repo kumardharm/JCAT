@@ -8,4 +8,10 @@ import com.cg.jcat.api.entity.Application;
 @Repository
 public interface IApplicationRepository extends JpaRepository<Application, Integer> {
 
+	Application findByApplicationId(int applicationId);
+
+	Application findByAid(int applicationId);
+
+	//Application findByAId(int applicationId);
+
 }

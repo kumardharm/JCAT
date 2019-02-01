@@ -1,0 +1,18 @@
+package com.cg.jcat.api.service;
+
+import java.util.List;
+import org.springframework.stereotype.Service;
+import com.cg.jcat.api.dao.AnswerModel;
+import com.cg.jcat.api.exception.OptionTextNotNullException;
+import com.cg.jcat.api.exception.SystemExceptions;
+
+@Service
+public interface IAssessmentService {
+	
+	public List<AnswerModel> getAnswers(int applicationId);
+	
+	public boolean saveAnswers(List<AnswerModel> answerModels, int answerId) throws SystemExceptions, OptionTextNotNullException;
+	
+	public void finalized(List<AnswerModel> answerModels, int applicationId, int stage) throws SystemExceptions, OptionTextNotNullException;
+
+}

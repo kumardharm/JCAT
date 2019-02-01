@@ -1,6 +1,7 @@
 package com.cg.jcat.api.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,7 @@ public class ApplicationDao {
 	}
 	
     private Application toApplication(ApplicationModel applicationModel) {
+    	Date date = new Date();
     	Application application=new Application();
     	application.setAid(applicationModel.getAid());
     	application.setApplicationId(applicationModel.getApplication_id());
@@ -67,6 +69,7 @@ public class ApplicationDao {
     	application.setApplicationUser(applicationModel.getApplication_user());
     	application.setAssessmentStage(applicationModel.getAssessment_stage());
     	application.setCreatedBy(applicationModel.getCreated_by());
+    	application.setCreatedTime(date);
     	application.setDtCloudProvider(applicationModel.getDt_cloud_provider());
     	application.setDtMigrationPattern(applicationModel.getDt_migration_pattern());
     	//application.setIsSssessmentCompleted(applicationModel.isIs_assessment_completed());

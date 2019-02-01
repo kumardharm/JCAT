@@ -70,7 +70,6 @@ public class AssessmentQuestion {
 	
 	private int displayOrder;
 	
-	@ColumnDefault("b'1'")
 	private boolean isDeleted;
 	
 	@NotNull

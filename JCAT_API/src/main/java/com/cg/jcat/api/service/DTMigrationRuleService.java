@@ -55,7 +55,7 @@ public class DTMigrationRuleService implements IDTMigrationRuleService{
 			logger.error("Error option text can't be null,and number of option text and option ids should be same :: " +strBuff.toString());
 			throw new OptionTextNotNullException(strBuff.toString());
 		}
-		
+		System.out.println(afterSavedValue);
 		return afterSavedValue;
 		
 	}

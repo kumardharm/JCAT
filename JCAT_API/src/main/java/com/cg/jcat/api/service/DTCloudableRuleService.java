@@ -5,14 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.jcat.api.dao.DTCloudableRuleDAO;
+import com.cg.jcat.api.dao.DTCloudableRuleDao;
 import com.cg.jcat.api.dao.DTCloudableRuleModel;
-import com.cg.jcat.api.entity.DTCloudableRule;
 
 @Component
 public class DTCloudableRuleService implements IDTCloudableRuleService {
 
-	@Autowired DTCloudableRuleDAO dTCloudableRuleDAO;
+	@Autowired DTCloudableRuleDao dTCloudableRuleDAO;
 	@Override
 	public List<DTCloudableRuleModel> getCloudableRule() {
 		
@@ -20,11 +19,10 @@ public class DTCloudableRuleService implements IDTCloudableRuleService {
 	}
 	@Override
 	public DTCloudableRuleModel getCloudableRuleById(int cloudableRuleId) {
-			return dTCloudableRuleDAO.getCloudableRuleById(cloudableRuleId);
+		return dTCloudableRuleDAO.getCloudableRuleById(cloudableRuleId);
 	}
 	@Override
 	public boolean saveCloudableRule(List<DTCloudableRuleModel> dTCloudableRuleModelList) {
-		// TODO Auto-generated method stub
 		return dTCloudableRuleDAO.saveCloudableRule(dTCloudableRuleModelList);
 	}
 	

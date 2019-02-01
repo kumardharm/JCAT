@@ -1,12 +1,20 @@
 package com.cg.jcat.api.dao;
 
-
+import javax.persistence.Column;
 
 public class DTProvidersModel {
 	
 	private int providerId;
 	private int evaluationOrder;
 	private String providerName;
+	private String logicalOperator;
+	
+	public String getLogicalOperator() {
+		return logicalOperator;
+	}
+	public void setLogicalOperator(String logicalOperator) {
+		this.logicalOperator = logicalOperator;
+	}
 	public int getProviderId() {
 		return providerId;
 	}

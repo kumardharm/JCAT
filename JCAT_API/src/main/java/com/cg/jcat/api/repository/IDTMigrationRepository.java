@@ -6,4 +6,6 @@ import com.cg.jcat.api.entity.DTMigration;
 
 public interface IDTMigrationRepository  extends JpaRepository<DTMigration, Integer>{
 
+	DTMigration findByMigrationId(int migrationId);
+
 }

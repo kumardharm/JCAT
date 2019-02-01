@@ -37,15 +37,15 @@ public class Answer {
 	@Column(name = "option_texts_EN")
 	private String optionTextsEN;
 	
-	@ColumnDefault("b'0'")
+	//@ColumnDefault("b'0'")
 	@Column(name = "dt_cloudable_rule_result")
 	private boolean dtCloudableRuleResult;
 	
-	@ColumnDefault("b'0'")
+	//@ColumnDefault("b'0'")
 	@Column(name = "dt_migration_rule_result")
 	private boolean dtMigrationRuleResult;
 	
-	@ColumnDefault("b'0'")
+	//@ColumnDefault("b'0'")
 	@Column(name = "dt_provider_rule_result")
 	private boolean dtProviderRuleResult;
 	

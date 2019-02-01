@@ -15,7 +15,7 @@ import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.repository.IDTCloudableRuleHistoryRepository;
 import com.cg.jcat.api.repository.IDTCloudableRuleRepository;
 @Component
-public class DTCloudableRuleDAO {
+public class DTCloudableRuleDao {
 
 	@Autowired
 	IDTCloudableRuleRepository dtCloudableRuleRepository;

@@ -1,6 +1,5 @@
 package com.cg.jcat.api.dao;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -17,12 +16,17 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.AssessmentQuestion;
-import com.cg.jcat.api.entity.QuestionOption;
 import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.utility.QuestionTypeEnum;
 
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@AutoConfigureTestDatabase
+@TestPropertySource(
+		  locations = "classpath:application-integrationtest.properties")
 public class TestAssessmentQuestionDao {
 	
 	@Autowired

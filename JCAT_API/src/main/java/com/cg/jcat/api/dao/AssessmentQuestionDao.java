@@ -21,8 +21,6 @@ public class AssessmentQuestionDao {
 	@Autowired
 	IQuestionOptionService questionOptionService;
 	
-	private static boolean isDeleteValue=false;
-	
 	public List<AssessmentQuestionModel> getQuestions(){
 		System.out.println();
 		List<AssessmentQuestionModel> assessmentQuestionDAOList=new ArrayList<AssessmentQuestionModel>();
