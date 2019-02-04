@@ -1,17 +1,28 @@
 package com.cg.jcat.api.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class ApplicationStaging {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id ;
 	private String applicationId;
 	private String applicationName;
 	private String applicationDescription;
 	private String applicationDepartment;
 	private int priority;
 	private String userName;
-	private boolean isDTCloudable;
-	private String dtMigrationPattern;
-	private String dtCloudProvider;
-	
+	private String stage;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getApplicationId() {
 		return applicationId;
 	}
@@ -48,31 +59,26 @@ public class ApplicationStaging {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public boolean isDTCloudable() {
-		return isDTCloudable;
+	
+	
+	public String getStage() {
+		return stage;
 	}
-	public void setDTCloudable(boolean isDTCloudable) {
-		this.isDTCloudable = isDTCloudable;
-	}
-	public String getDtMigrationPattern() {
-		return dtMigrationPattern;
-	}
-	public void setDtMigrationPattern(String dtMigrationPattern) {
-		this.dtMigrationPattern = dtMigrationPattern;
-	}
-	public String getDtCloudProvider() {
-		return dtCloudProvider;
-	}
-	public void setDtCloudProvider(String dtCloudProvider) {
-		this.dtCloudProvider = dtCloudProvider;
+	public void setStage(String stage) {
+		this.stage = stage;
 	}
 	@Override
 	public String toString() {
-		return "ApplicationStaging [applicationId=" + applicationId + ", applicationName=" + applicationName
-				+ ", applicationDescription=" + applicationDescription + ", applicationDepartment="
-				+ applicationDepartment + ", priority=" + priority + ", userName=" + userName + ", isDTCloudable="
-				+ isDTCloudable + ", dtMigrationPattern=" + dtMigrationPattern + ", dtCloudProvider=" + dtCloudProvider
+		return "ApplicationStaging [id=" + id + ", applicationId=" + applicationId + ", applicationName="
+				+ applicationName + ", applicationDescription=" + applicationDescription + ", applicationDepartment="
+				+ applicationDepartment + ", priority=" + priority + ", userName=" + userName + ", stage=" + stage
 				+ "]";
 	}
+	
+	
+	
+	
+	
+	
 	
 }

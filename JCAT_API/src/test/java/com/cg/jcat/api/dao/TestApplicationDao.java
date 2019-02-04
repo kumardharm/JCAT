@@ -12,11 +12,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Ignore;
 
 import com.cg.jcat.api.entity.Application;
+import com.cg.jcat.api.entity.ApplicationStaging;
+import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
+import com.cg.jcat.api.repository.IApplicationStaging;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,20 +33,23 @@ import com.cg.jcat.api.exception.SystemExceptions;
 public class TestApplicationDao {
 	@Autowired
 	private ApplicationDao applicationdao;
+	
+	@Autowired
+	IApplicationStaging iApplicationStaging;
 
 	@Test
-	@Ignore
-	public void tesGetApplication() throws SystemExceptions {
+//	@Ignore
+	public void tesBGetApplication() throws SystemExceptions {
 		
-		ApplicationModel applicationModel = getApplicationModel();
-		assertEquals(true,applicationdao.save(applicationModel));
-		assertEquals(1, applicationdao.getApplications().size());
+//		ApplicationModel applicationModel = getApplicationModel();
+//		assertEquals(true,applicationdao.save(applicationModel));
+		assertEquals(3, applicationdao.getApplications().size());
 		
 	}
 	
 	@Test
-	@Ignore
-	public void testSave() throws SystemExceptions
+//	@Ignore
+	public void testASave() throws SystemExceptions
 	{
 		ApplicationModel applicationModel = getApplicationModel();
 		assertEquals(true,applicationdao.save(applicationModel));
@@ -62,11 +72,11 @@ public class TestApplicationDao {
 	}
 	
 	@Test
-	@Ignore
-	public void testGetApplicationById() throws SystemExceptions, ApplicationIdNotFoundException
+//	@Ignore
+	public void testCGetApplicationById() throws SystemExceptions, ApplicationIdNotFoundException
 	{
 		ApplicationModel applicationModel = getApplicationModel();
-		assertEquals(true,applicationdao.save(applicationModel));
+//		assertEquals(true,applicationdao.save(applicationModel));
 		ApplicationModel applicationModel2 = applicationdao.getApplicationByApplicationId("App1");
 		assertEquals(applicationModel.getApplicationName(),applicationModel2.getApplicationName());
 		assertEquals(applicationModel.getApplicationDepartment(),applicationModel2.getApplicationDepartment());
@@ -74,11 +84,11 @@ public class TestApplicationDao {
 	}
 	
 	@Test
-	@Ignore
-	public void testDeleteApplicationById() throws SystemExceptions, ApplicationIdNotFoundException
+//	@Ignore
+	public void testDDeleteApplicationById() throws SystemExceptions, ApplicationIdNotFoundException
 	{
 		ApplicationModel applicationModel = getApplicationModel();
-		assertEquals(true,applicationdao.save(applicationModel));
+//		assertEquals(true,applicationdao.save(applicationModel));
 		assertEquals(true,applicationdao.deleteApplicationById(1));
 		Application application = applicationdao.findApplicationById(1);
 		assertEquals(true,application.isDeleted());
@@ -86,11 +96,11 @@ public class TestApplicationDao {
 	}
 	
 	@Test
-	@Ignore
-	public void testdeactivateApplicationById() throws SystemExceptions, ApplicationIdNotFoundException
+//	@Ignore
+	public void testEDeactivateApplicationById() throws SystemExceptions, ApplicationIdNotFoundException
 	{
 		ApplicationModel applicationModel = getApplicationModel();
-		assertEquals(true,applicationdao.save(applicationModel));
+//		assertEquals(true,applicationdao.save(applicationModel));
 		assertEquals(true,applicationdao.deactivateApplicationById(1));
 		Application application = applicationdao.findApplicationById(1);
 		assertEquals(false, application.isActivate());
@@ -98,7 +108,7 @@ public class TestApplicationDao {
 	}
 	
 	@Test
-	public void testupdateApplication() throws SystemExceptions, ApplicationIdNotFoundException
+	public void testUpdateApplication() throws SystemExceptions, ApplicationIdNotFoundException
 	{
 		ApplicationModel applicationModel = getApplicationModel();
 		assertEquals(true,applicationdao.save(applicationModel));
@@ -114,6 +124,38 @@ public class TestApplicationDao {
 		assertEquals("App2",applicationModel2.getApplicationName());
 		assertEquals("Application2 Description",applicationModel2.getApplicationDepartment());
 		
+	}
+	
+	@Test
+	public void testZimportApplication() throws SystemExceptions, ApplicationExistException
+	{
+		List<ApplicationStaging> applicationStaging = getApplicationStaging();
+		System.out.println(applicationStaging);
+		applicationdao.importApplication(applicationStaging);
+		assertEquals(2,iApplicationStaging.findAll().size());
+	}
+
+	private List<ApplicationStaging> getApplicationStaging() {
+		
+		List<ApplicationStaging> applicationStagingList = new ArrayList<>();
+		ApplicationStaging applicationStaging = new ApplicationStaging();
+		ApplicationStaging applicationStaging1 = new ApplicationStaging();
+		applicationStaging.setApplicationId("App11");
+		applicationStaging.setApplicationName("App11");
+		applicationStaging.setApplicationDepartment("Dept");
+		applicationStaging.setApplicationDescription("Des");
+		applicationStaging.setPriority(4);
+		applicationStaging.setUserName("user1");
+		
+		applicationStaging1.setApplicationId("App21");
+		applicationStaging1.setApplicationName("App21");
+		applicationStaging1.setApplicationDepartment("Dept");
+		applicationStaging1.setApplicationDescription("Des");
+		applicationStaging1.setPriority(1);
+		applicationStaging1.setUserName("user2");
+		applicationStagingList.add(applicationStaging);
+		applicationStagingList.add(applicationStaging1);
+		return applicationStagingList;
 	}
 
 }

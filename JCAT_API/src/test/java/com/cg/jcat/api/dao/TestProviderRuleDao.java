@@ -42,7 +42,7 @@ public class TestProviderRuleDao {
 	IAssessmentQuestionRepository assessmentQuestionRepository;
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void testsaveCloudProvider() {
 		providerRepository.save(getProvider());
 		assertNotNull(ProviderRuleDao.getCloudProvider());
@@ -61,15 +61,15 @@ public class TestProviderRuleDao {
 	}
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void testGetCloudProvider() {
 		providerRepository.save(getProvider());
 		assertNotNull(ProviderRuleDao.getCloudProvider());
-		assertEquals(5, ProviderRuleDao.getCloudProvider().size());
+		assertEquals(1, ProviderRuleDao.getCloudProvider().size());
 	}
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void testGetCloudProviderRules() throws SystemExceptions {
 		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<DTProviderRuleModel>();
 

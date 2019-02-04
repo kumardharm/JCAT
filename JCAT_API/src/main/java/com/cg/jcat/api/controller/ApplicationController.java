@@ -11,8 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cg.jcat.api.csvimport.CsvDataLoader;
 import com.cg.jcat.api.dao.ApplicationModel;
 import com.cg.jcat.api.entity.ApplicationStaging;
+import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.service.IApplicationService;
 
 @Component
@@ -45,9 +47,9 @@ public class ApplicationController implements IApplicationController {
 	}
 
 	@Override
-	public ApplicationModel getApplicationByApplicationId(String aid) throws ApplicationIdNotFoundException {
+	public ApplicationModel getApplicationByApplicationId(String applicationId) throws ApplicationIdNotFoundException {
 
-		return applicationService.getApplicationByApplicationId(aid);
+		return applicationService.getApplicationByApplicationId(applicationId);
 	}
 
 	@Override
@@ -69,20 +71,10 @@ public class ApplicationController implements IApplicationController {
 	}
 
 	@Override
-	public void importfile(MultipartFile file) {
+	public void importApplication(MultipartFile file) throws SystemExceptions, ApplicationExistException {
 		
 		 List<ApplicationStaging> applicationStaging = csvDataLoader.loadObjectList(ApplicationStaging.class, file.getOriginalFilename(),file);
-//	     applicationService.importfile(applicationStaging);
-    	 System.out.println(applicationStaging);
-    	 System.out.println(file);
+	     applicationService.importApplication(applicationStaging);
 		
 	}
-
-//	@Override
-//	public void importfile() {
-//		 List<ApplicationStaging> users = csvDataLoader.loadObjectList(ApplicationStaging.class, USERS_FILE);
-////		 applicationService.save(users.get(0));
-////		 applicationService.create(users);
-//		 System.out.println(users);
-//	}
 }

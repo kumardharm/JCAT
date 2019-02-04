@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 import com.cg.jcat.api.dao.ApplicationDao;
 import com.cg.jcat.api.dao.ApplicationModel;
 import com.cg.jcat.api.entity.ApplicationStaging;
+import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 
 @Component
 public class ApplicationService implements IApplicationService {
@@ -52,15 +54,10 @@ public class ApplicationService implements IApplicationService {
 		return applicationDao.updateApplication(application);
 	}
 
-//	@Override
-//	public void create(List<ApplicationModel> users) {
-//		
-//		applicationDao.create(users);
-//	}
 
 	@Override
-	public void importfile(List<ApplicationStaging> applicationStaging) {
-		applicationDao.importfile(applicationStaging);
+	public void importApplication(List<ApplicationStaging> applicationStaging) throws SystemExceptions, ApplicationExistException {
+		applicationDao.importApplication(applicationStaging);
 	}
 
 	

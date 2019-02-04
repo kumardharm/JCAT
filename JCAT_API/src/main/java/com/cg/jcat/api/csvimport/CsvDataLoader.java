@@ -19,9 +19,6 @@ public class CsvDataLoader {
 	    try {
 	        CsvSchema bootstrapSchema = CsvSchema.emptySchema().withHeader();
 	        CsvMapper mapper = new CsvMapper();
-//	        File file = new ClassPathResource(fileName).getFile();
-	        System.out.println(fileName);
-	        System.out.println(file1.isEmpty());
 	        byte[] file = file1.getBytes() ;
 	        MappingIterator<T> readValues = 
 	          mapper.reader(type).with(bootstrapSchema).readValues(file);
@@ -30,18 +27,4 @@ public class CsvDataLoader {
 	        return Collections.emptyList();
 	    }
 	}
-	
-//	public <T> List<T> loadObjectList(Class<T> type, String fileName) {
-//	    try {
-//	    	CsvSchema bootstrapSchema = CsvSchema.emptySchema().withHeader();
-//	        CsvMapper mapper = new CsvMapper();
-//	        File file = new ClassPathResource(fileName).getFile();
-//	        MappingIterator<T> readValues = 
-//	          mapper.reader(type).with(bootstrapSchema).readValues(file);
-//	        return readValues.readAll();
-//	    } catch (Exception e) {
-//	        return Collections.emptyList();
-//	    }
-//	}
-
 }

@@ -32,7 +32,7 @@ public class TestUserDao {
 	
 	@Test
 //	@Ignore
-	public void testsaveUser() throws JcatExceptions
+	public void testAsaveUser() throws JcatExceptions
 	{
 		UserModel userModel = new UserModel();
 		userModel.setFirstName("Hari");
@@ -57,26 +57,15 @@ public class TestUserDao {
 	}
 	
 	@Test
-    @Ignore
-	public void testgetUsers()
+//    @Ignore
+	public void testBgetUsers()
 	{
-		UserModel userModel = new UserModel();
-		userModel.setFirstName("ABC");
-		userModel.setUserEmail("abc");
-		userModel.setCreatedBy("raghu");
-		userModel.setCompany("goldman");
-		userModel.setAdmin(true);
-		userModel.setPassword("asd@123");
-		userModel.setModifiedBy("raj");
-		
-		userDao.createUser(userModel,"ABC");
-		
 		assertEquals(1, userDao.getUsers().size());
 	}
 	
 	@Test
 //	@Ignore
-	public void testdeleteById() throws JcatExceptions
+	public void testDdeleteById() throws JcatExceptions
 	{
 		userDao.deleteById(1);
 		User user = userDao.findByUserId(1);
@@ -86,7 +75,7 @@ public class TestUserDao {
 	
 	@Test
 //	@Ignore
-	public void updateUsers()  
+	public void testCupdateUsers()  
 	{
 		
 		UserModel userModel = new UserModel();
