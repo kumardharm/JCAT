@@ -29,15 +29,15 @@ public class User {
 	
 	@ColumnDefault("'Cg@123'")
 	@NotNull
-	private String password;
+	private String password = "Cg@123";
 	private String company;
 	private String userEmail;
 	@ColumnDefault("0")
 	@NotNull
-	private boolean isAdmin;
+	private boolean isAdmin = false;
 	@ColumnDefault("0")
 	@NotNull
-	private boolean isDeleted;
+	private boolean isDeleted = false;
 	private Date lastLoginTime;
 	@NotNull
 	private String createdBy;

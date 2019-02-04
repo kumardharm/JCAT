@@ -4,6 +4,7 @@ package com.cg.jcat.api.dao;
 import static org.junit.Assert.assertEquals;
 
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.JcatExceptions;
+import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

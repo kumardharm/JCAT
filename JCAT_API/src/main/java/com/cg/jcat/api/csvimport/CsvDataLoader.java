@@ -19,9 +19,6 @@ public class CsvDataLoader {
 	    try {
 	        CsvSchema bootstrapSchema = CsvSchema.emptySchema().withHeader();
 	        CsvMapper mapper = new CsvMapper();
-//	        File file = new ClassPathResource(fileName).getFile();
-	        System.out.println(fileName);
-	        System.out.println(file1.isEmpty());
 	        byte[] file = file1.getBytes() ;
 	        MappingIterator<T> readValues = 
 	          mapper.reader(type).with(bootstrapSchema).readValues(file);

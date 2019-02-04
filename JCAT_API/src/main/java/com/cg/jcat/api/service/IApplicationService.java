@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.cg.jcat.api.dao.ApplicationModel;
 import com.cg.jcat.api.entity.ApplicationStaging;
+import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 
 @Service
 public interface IApplicationService {
@@ -24,9 +26,7 @@ public interface IApplicationService {
 
 	public boolean updateApplication(ApplicationModel application) throws ApplicationIdNotFoundException, SystemExceptions;
 
-//	public void create(List<ApplicationModel> users);
-
-	public void importfile(List<ApplicationStaging> applicationStaging);
+	public void importApplication(List<ApplicationStaging> applicationStaging) throws SystemExceptions, ApplicationExistException;
 
 
 }

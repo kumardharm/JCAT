@@ -14,6 +14,9 @@ public class ErrorDTO {
 	
 	
 	
+	public ErrorDTO() {
+		
+	}
 	public ErrorDTO(String errorCode, String errorMessage, String errorValue, Date errorTimestamp,
 			String errorDetails) {
 		super();

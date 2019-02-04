@@ -8,15 +8,18 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.entity.Application;
 import com.cg.jcat.api.entity.ApplicationStaging;
 import com.cg.jcat.api.entity.ApplicationsHistory;
 import com.cg.jcat.api.entity.User;
+import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IApplicationRepository;
+import com.cg.jcat.api.repository.IApplicationStaging;
 import com.cg.jcat.api.repository.IApplicationsHistoryRepository;
 import com.cg.jcat.api.repository.IUserRepository;
 
@@ -34,6 +37,9 @@ public class ApplicationDao {
 	IUserRepository iUserRepository;
 	
 	@Autowired
+	IApplicationStaging iApplicationStaging;
+	
+	@Autowired
 	UserDao userDao;
 	
 	Date date = new Date();
@@ -42,7 +48,7 @@ public class ApplicationDao {
 	
 	public List<ApplicationModel> getApplications() {
 		
-		List<Application> applicationList=applicationRepository.findAllByIsActivateOrderByApplicationName(isActivate);
+		List<Application> applicationList=applicationRepository.findAllByIsActivateAndIsDeletedOrderByApplicationName(isActivate,isDeleted);
 		List<ApplicationModel> applicationDaoList=new ArrayList<ApplicationModel>();
 		return getApplication(applicationList,applicationDaoList);
 	}
@@ -107,9 +113,9 @@ public class ApplicationDao {
     	application.setCreatedTime(date);
     	return application;
     }
-	public ApplicationModel getApplicationByApplicationId(String aid) throws ApplicationIdNotFoundException{
+	public ApplicationModel getApplicationByApplicationId(String applicationId) throws ApplicationIdNotFoundException{
 		try {
-		Application application = applicationRepository.findByApplicationId(aid);
+		Application application = applicationRepository.findByApplicationId(applicationId);
 		ApplicationModel applicationModel = toGetApplication(application);
 		return applicationModel;
 		}catch (Exception e) {
@@ -224,39 +230,49 @@ public class ApplicationDao {
 		
 		return applicationsHistory;
 	}
-//	public void create(List<ApplicationModel> applicationModel) {
-//		for(ApplicationModel app: applicationModel)
-//		{
-//			try {
-//				save(app);
-//			} catch (SystemExceptions e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		System.out.println("************");
-//	}
 	
-	public void importfile(List<ApplicationStaging> applicationStaging) {
+	public void importApplication(List<ApplicationStaging> applicationStaging) throws SystemExceptions, ApplicationExistException {
  
 		User user = new User();
 		Application application = new Application();
+		try {
 		for(ApplicationStaging applications:applicationStaging)
 		{
-			user = iUserRepository.findByUsername(applications.getUserName());
+			user = userDao.findByUsername(applications.getUserName());
 			if(user!=null)
 			{
 				application=applicationRepository.save(toapplication(applications,user));
+				if(application!=null)
+				{
+					applications.setStage("success");
+					iApplicationStaging.save(applications);
+				}
+				else {
+					applications.setStage("error");
+					iApplicationStaging.save(applications);
+				}
 			}
 			else
 			{
 				user = userDao.create(applications.getUserName());
 				application=applicationRepository.save(toapplication(applications,user));
+				if(application!=null)
+					{
+						applications.setStage("success");
+						iApplicationStaging.save(applications);
+					}
+					else {
+						applications.setStage("error");
+						iApplicationStaging.save(applications);
+					}
 			}
-			if(application!=null)
-			{
-				System.out.println("&&&&&&&&&&&&&&&&&&&&");
-				System.out.println(applicationStaging);
-			}
+		}
+		}catch (DataIntegrityViolationException e) {
+			logger.error("Error in import application ,importfile()",e.getMessage(),e);
+			throw new ApplicationExistException("Application already exists");
+		}catch (Exception e) {
+			logger.error("Error in import application ,importfile()",e.getMessage(),e);
+			throw new SystemExceptions("Error in importfile()");
 		}
 		
 	}
@@ -268,9 +284,6 @@ private Application toapplication(ApplicationStaging applications, User user) {
 	application.setApplicationDepartment(applications.getApplicationDepartment());
 	application.setPriority(applications.getPriority());
 	application.setApplicationUser(user.getUserId());
-	application.setDTCloudable(applications.isDTCloudable());
-	application.setDtCloudProvider(applications.getDtCloudProvider());
-	application.setDtMigrationPattern(applications.getDtMigrationPattern());
 	application.setCreatedBy("Admin");
 	application.setCreatedTime(date);
 	return application;

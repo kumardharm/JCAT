@@ -12,7 +12,10 @@ import com.cg.jcat.api.entity.Application;
 public interface IApplicationRepository extends JpaRepository<Application, Integer> {
 	Application findByApplicationId(String applicationId);
 
+	List<Application> findAllByIsActivateAndIsDeletedOrderByApplicationName(boolean isActivate, boolean isDeleted);
+
 	List<Application> findAllByIsActivateOrderByApplicationName(boolean isActivate);
 
 	Application findByAid(int applicationId);
+
 }

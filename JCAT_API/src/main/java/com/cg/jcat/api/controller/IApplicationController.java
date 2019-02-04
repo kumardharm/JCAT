@@ -15,8 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.MediaType;
 
 import com.cg.jcat.api.dao.ApplicationModel;
+import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
+import com.cg.jcat.api.exception.UserAlreadyExistsException;
 
 @RestController
 @RequestMapping("/application")
@@ -25,8 +27,8 @@ public interface IApplicationController {
 	@GetMapping("/getAll")
 	public List<ApplicationModel> getApplications() throws SystemExceptions;
 	
-	@GetMapping("/getApplication/{aid}")
-	public ApplicationModel getApplicationByApplicationId(@PathVariable String aid) throws ApplicationIdNotFoundException;
+	@GetMapping("/getApplication/{applicationId}")
+	public ApplicationModel getApplicationByApplicationId(@PathVariable String applicationId) throws ApplicationIdNotFoundException;
 	
 	@PostMapping("/create")
 	public boolean save(@RequestBody ApplicationModel application) throws SystemExceptions;
@@ -42,9 +44,6 @@ public interface IApplicationController {
 
 	
 	@PostMapping(value="/import",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//	@RequestMapping("/import",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public void importfile(@RequestParam("file") MultipartFile file);
+	public void importApplication(@RequestParam("file") MultipartFile file) throws SystemExceptions, ApplicationExistException;
 	
-//	@PostMapping(value="/import")
-//	public void importfile();
 }
