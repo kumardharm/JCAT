@@ -61,18 +61,20 @@ public class AssessmentDao {
 		}
 
 		answerIdSetCopy.addAll(answerIdSet);
-
-		
 		answerIdSet.removeAll(answerModelIdSet);
 		answerIdSet.retainAll(answerIdSetCopy);
-		try {
-			if (!answerIdSet.isEmpty()) {
-				for (Integer value : answerIdSet) {
-					answerHistoryRepository.save(toGetAnswerHistory(answerRepository.findByAnswerId(value)));
-					answerRepository.deleteByAnswerId(value);
-				}
+		
+		if(!answerIdSet.isEmpty())
+		{
+			for(int answerId: answerIdSet)
+			{
+				answerHistoryRepository.save(toGetAnswerHistory(answerRepository.findByAnswerId(answerId)));
+				answerRepository.deleteById(answerId);
 			}
-
+			
+		}
+		
+		try {
 			for (AnswerModel answerModel : answerModels) {
 				Answer answerPrevious = answerRepository.findByAnswerId(answerModel.getAnswerId());
 
@@ -87,6 +89,7 @@ public class AssessmentDao {
 
 					if (!answersByApplicationId.isEmpty() && !Arrays.equals(optionIdArrayNew, optionIdArrayPrevious)
 							|| !Arrays.equals(optionTextArrayNew, optionTextArrayPrevious)) {
+						
 						answerHistoryRepository
 								.save(toGetAnswerHistory(answerRepository.findByAnswerId(answerModel.getAnswerId())));
 					}

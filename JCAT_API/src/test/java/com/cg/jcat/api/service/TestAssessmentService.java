@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -69,7 +68,6 @@ public class TestAssessmentService {
 	
 	Date date = new Date();
 
-	@Ignore
 	@Test
 	public void testAStage1Finalized() throws SystemExceptions, OptionTextNotNullException {
 
@@ -108,12 +106,14 @@ public class TestAssessmentService {
 		assertTrue(result); // check answers are saving in database or not
 		assertEquals(1, assessmentService.getAnswers(1).size()); // check size of answers in database
 		answerModels = assessmentService.getAnswers(1); // get answers in list
-		assertEquals(true, answerModels.get(0).isDtCloudableRuleResult()); // check dt cloudable result
 
 		/*
 		 * Call finalize
 		 */
 		assessmentService.finalized(answerModels, 1, 1);
+		assertEquals(1, assessmentService.getAnswers(1).size());
+		assertEquals(true, assessmentService.getAnswers(1).get(0).isDtCloudableRuleResult());
+		
 		Application application = assessmentDao.getApplicationByApplicationId(1);
 		assertEquals(1, application.getAssessmentStage()); // check application stage
 		assertEquals(true, application.isDTCloudable()); // check dt cloudable result
@@ -121,7 +121,7 @@ public class TestAssessmentService {
 	}
 	
 	/*
-	 * Public Pass
+	 * GITC
 	 * */
  	@Test
 	public void testEprovidersGITC() throws SystemExceptions, OptionTextNotNullException {
@@ -197,7 +197,6 @@ public class TestAssessmentService {
 	/*
 	 * Public Pass
 	 * */
- 	@Ignore
  	@Test
 	public void testBStage2MigrationRulePublicPass() throws SystemExceptions, OptionTextNotNullException {
 		boolean result = false;
@@ -228,7 +227,7 @@ public class TestAssessmentService {
 		 * Saving Application
 		 */
 
-		saveApplication();
+		//saveApplication();
 
 		/*
 		 * Saving Answer answerId, applicationId, dtCloudableRuleResult,
@@ -266,6 +265,7 @@ public class TestAssessmentService {
  	 * Rehost
  	 * */
  	
+ 	//@Ignore
 	@Test
 	public void testBStage2MigrationRuleRehost() throws JcatExceptions {
 		Date date = new Date();
@@ -328,6 +328,7 @@ public class TestAssessmentService {
 	 * Re-Plateform
 	 * */
 	
+ 	//@Ignore
 	@Test
 	public void testBStage2MigrationRuleRePlateform() throws JcatExceptions {
 		boolean result = false;
