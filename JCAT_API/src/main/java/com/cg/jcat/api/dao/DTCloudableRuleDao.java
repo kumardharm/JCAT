@@ -19,8 +19,8 @@ import com.cg.jcat.api.repository.IAssessmentQuestionRepository;
 import com.cg.jcat.api.repository.IDTCloudableRuleHistoryRepository;
 import com.cg.jcat.api.repository.IDTCloudableRuleRepository;
 @Component
-public class DTCloudableRuleDAO {
-	private static final Logger logger = LoggerFactory.getLogger(DTCloudableRuleDAO.class);
+public class DTCloudableRuleDao {
+	private static final Logger logger = LoggerFactory.getLogger(DTCloudableRuleDao.class);
 	@Autowired
 	IDTCloudableRuleRepository dtCloudableRuleRepository;
 	@Autowired

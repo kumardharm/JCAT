@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cg.jcat.api.entity.Application;
 import com.cg.jcat.api.entity.AssessmentQuestion;
 import com.cg.jcat.api.entity.DTProviderRule;
 import com.cg.jcat.api.entity.DTProviderRuleHistory;
@@ -71,6 +72,7 @@ public class DTProviderRuleDao {
 		cloudProvidersModel.setProviderId(cloudProviders.getProviderId());
 		cloudProvidersModel.setEvaluationOrder(cloudProviders.getEvaluationOrder());
 		cloudProvidersModel.setProviderName(cloudProviders.getProviderName());
+		cloudProvidersModel.setLogicalOperator(cloudProviders.getLogicalOperator());
 		return cloudProvidersModel;
 	}
 
@@ -86,13 +88,8 @@ public class DTProviderRuleDao {
 			cloudProviderRuleList = cloudProviderRuleRepository.findAll();
 		} else {
 
-			//cloudProviderRuleList = cloudProviderRuleRepository.findByProviderId(providerId);
-
-
 			cloudProviderRuleList = cloudProviderRuleRepository
 					.findByDtProviders(cloudProviderRepository.findById(providerId));
-
-
 
 		}
 		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<>();
@@ -250,5 +247,12 @@ public class DTProviderRuleDao {
 		cloudProviderRule.setModifiedTime(date);
 		return cloudProviderRule;
 	}
+	//
+	// public void setCloudprovider(Application application, String providerName) {
+	// // TODO Auto-generated method stub
+	//
+	//
+	// }
+	//
 
 }

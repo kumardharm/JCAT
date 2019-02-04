@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.cg.jcat.api.dao.DTMigrationModel;
 import com.cg.jcat.api.dao.DTMigrationRuleDao;
 import com.cg.jcat.api.dao.DTMigrationRuleModel;
+import com.cg.jcat.api.entity.DTMigration;
 import com.cg.jcat.api.exception.JcatExceptions;
 
 @RunWith(SpringRunner.class)
@@ -102,5 +103,19 @@ public class TestMigrationRuleService {
 		dtMigrationRuleModel.setRuleOptionTextEN("option1, option2, option3");
 		return dtMigrationRuleModel;
 	}
+//	
+//	private DTMigration getMigrationPattern()
+//	{
+//		DTMigration dtMigration = new DTMigration();
+//		dtMigration.setCreatedBy("Admin");
+//		dtMigration.setCreatedTtime(date);
+//		dtMigration.setEvaluationOrder(1);
+//		dtMigration.setLogicalOperator("AND");
+//		dtMigration.setMigration_pattern("Public-Pass");
+//		dtMigration.setMigrationId(1);
+//		dtMigration.setModifiedBy("Admin");
+//		dtMigrationRepository.save(dtMigration);
+//		return dtMigration;
+//	}
 
 }

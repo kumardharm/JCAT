@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.jcat.api.dao.DTCloudableRuleDAO;
 import com.cg.jcat.api.dao.DTCloudableRuleModel;
-import com.cg.jcat.api.entity.DTCloudableRule;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IDTCloudableRuleService;
 

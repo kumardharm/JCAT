@@ -46,7 +46,8 @@ public class DTMigrationRuleDao {
 			dtMigrationRuleLIST = dtMigrationRuleRepository.findAll(); // find all if id is 0
 			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
 		} else {
-			dtMigrationRuleLIST = dtMigrationRuleRepository.findAll(); // write for 1 and 2
+			dtMigrationRuleLIST = dtMigrationRuleRepository
+					.findByDtMigration(dtMigrationRepository.findById(migrationId));
 			return toGetMigrationRule(dtMigrationRuleLIST, dtMigrationRuleModelIST);
 		}
 

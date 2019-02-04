@@ -25,8 +25,6 @@ public class ApplicationController implements IApplicationController {
 	@Autowired
 	CsvDataLoader csvDataLoader;
 	
-	  public final static String USERS_FILE = "setUpdata/Application (1).csv";
-
 	@Autowired
 	private IApplicationService applicationService;
 
