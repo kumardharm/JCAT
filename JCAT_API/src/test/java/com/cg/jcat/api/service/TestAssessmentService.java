@@ -26,6 +26,8 @@ import com.cg.jcat.api.dao.DTProviderRuleModel;
 import com.cg.jcat.api.entity.Application;
 import com.cg.jcat.api.entity.DTMigration;
 import com.cg.jcat.api.entity.DTProviders;
+import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
+import com.cg.jcat.api.exception.CountMissMatchException;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.OptionTextNotNullException;
 import com.cg.jcat.api.exception.SystemExceptions;
@@ -69,7 +71,7 @@ public class TestAssessmentService {
 	Date date = new Date();
 
 	@Test
-	public void testAStage1Finalized() throws SystemExceptions, OptionTextNotNullException {
+	public void testAStage1Finalized() throws SystemExceptions, OptionTextNotNullException, ApplicationIdNotFoundException, CountMissMatchException {
 
 		/*
 		 * Saving Assessment Questions
@@ -124,7 +126,7 @@ public class TestAssessmentService {
 	 * GITC
 	 * */
  	@Test
-	public void testEprovidersGITC() throws SystemExceptions, OptionTextNotNullException {
+	public void testEprovidersGITC() throws SystemExceptions, OptionTextNotNullException, CountMissMatchException {
 		boolean result = false;
 		saveQuestions();
 		
@@ -145,8 +147,8 @@ public class TestAssessmentService {
 		try {
 
 			List<DTProviderRuleModel> dtProviderRuleModelList = new ArrayList<>();
-			dtProviderRuleModelList.add(getCloudProviderRule(1, 1, 1, 1, "q1", "1", "a"));
-			dtProviderRuleModelList.add(getCloudProviderRule(2, 2, 2, 2, "q2", "2", "b"));
+			dtProviderRuleModelList.add(getCloudProviderRule(1, 1, 1, 1, "question1", "2,3", "TB,PB"));
+			dtProviderRuleModelList.add(getCloudProviderRule(2, 1, 2, 2, "question2", "1,2", "2ms,5ms"));
 
 			Mockito.when(dtProviderRuleService.saveCloudProviderRule(dtProviderRuleModelList)).thenReturn(true);
 			assertEquals(true, dtProviderRuleService.saveCloudProviderRule(dtProviderRuleModelList)); // CHECK GIVEN MIGRATION IS
@@ -168,13 +170,13 @@ public class TestAssessmentService {
 		 */
 
 		List<AnswerModel> answerModels = new ArrayList<>();
-		answerModels.add(getAnswerModel(1, 1, false, false, false, "Admin", "1", "a", 1, "q1"));
-		answerModels.add(getAnswerModel(2, 1, false, false, false, "Admin", "2", "b", 2, "q2"));
-		result = assessmentService.saveAnswers(answerModels, 1);
+		answerModels.add(getAnswerModel(1, 1, false, false, false, "Admin", "2,3", "TB,PB", 1, "question1"));
+		answerModels.add(getAnswerModel(2, 1, false, false, false, "Admin", "1,2", "2ms,5ms", 2, "question2"));
+		result = assessmentService.saveAnswers(answerModels, 1); //answerList, applicationId in parameter
 		assertTrue(result); // check answers are saving in database or not
 		assertEquals(2, assessmentService.getAnswers(1).size()); // check size of answers in database
-		answerModels = assessmentService.getAnswers(1); // get answers in list
-		assertEquals(1, answerModels.get(0).getAnswerId()); // check dt cloudable result
+//		answerModels = assessmentService.getAnswers(1); // get answers in list
+//		assertEquals(1, answerModels.get(0).getAnswerId()); // check dt cloudable result
 
 		/*
 		 * Call finalize for migration rule id 1 public pass
@@ -198,7 +200,7 @@ public class TestAssessmentService {
 	 * Public Pass
 	 * */
  	@Test
-	public void testBStage2MigrationRulePublicPass() throws SystemExceptions, OptionTextNotNullException {
+	public void testBStage2MigrationRulePublicPass() throws SystemExceptions, OptionTextNotNullException, CountMissMatchException {
 		boolean result = false;
 		saveQuestions();
 		saveMigrationPattern();
@@ -210,9 +212,10 @@ public class TestAssessmentService {
 		try {
 
 			List<DTMigrationRuleModel> migrationRuleList = new ArrayList<>();
-			migrationRuleList.add(toGetMigrationRule(1, 1, 1, "q1", "1,2", "java,c"));
-			migrationRuleList.add(toGetMigrationRule(2, 2, 2, "q2", "2", "b"));
-			migrationRuleList.add(toGetMigrationRule(3, 3, 3, "q3", "3", "c"));
+			migrationRuleList.add(toGetMigrationRule(1, 1, 1, "Data Classification: Data classification", "1", "1. Unclassified"));
+			migrationRuleList.add(toGetMigrationRule(2, 1, 2, "Performance: What is the desired response time for each component", "1", "1. Less than 1 sec"));
+			migrationRuleList.add(toGetMigrationRule(3, 2, 3, "Operating System: Provide version, edition for operating system on web", "2", "2. Below Windows Server 2008 R2"));
+			
 
 			Mockito.when(dtMigrationRuleService.saveMigrationRule(migrationRuleList)).thenReturn(true);
 			assertEquals(true, dtMigrationRuleService.saveMigrationRule(migrationRuleList)); // CHECK GIVEN MIGRATION IS
@@ -236,9 +239,9 @@ public class TestAssessmentService {
 		 */
 
 		List<AnswerModel> answerModels = new ArrayList<>();
-		answerModels.add(getAnswerModel(1, 1, false, false, false, "Admin", "1,2", "java,c", 1, "q1"));
-		answerModels.add(getAnswerModel(2, 1, false, false, false, "Admin", "2", "b", 2, "q2"));
-		answerModels.add(getAnswerModel(3, 1, false, false, false, "Admin", "3", "c", 3, "q3"));
+		answerModels.add(getAnswerModel(1, 1, false, false, false, "Admin", "1", "1. Unclassified", 1, "Data Classification: Data classification"));
+		answerModels.add(getAnswerModel(2, 1, false, false, false, "Admin", "1", "1. Less than 1 sec", 2, "Performance: What is the desired response time for each component"));
+		answerModels.add(getAnswerModel(3, 1, false, false, false, "Admin", "2", "2. Below Windows Server 2008 R2", 3, "Operating System: Provide version, edition for operating system on web"));
 		result = assessmentService.saveAnswers(answerModels, 1);
 		assertTrue(result); // check answers are saving in database or not
 		assertEquals(3, assessmentService.getAnswers(1).size()); // check size of answers in database
@@ -257,18 +260,18 @@ public class TestAssessmentService {
 		application = assessmentDao.getApplicationByApplicationId(1);
 		assertEquals(2, application.getAssessmentStage()); // check application stage
 		assertEquals("Public- Pass", assessmentDao.getApplicationByApplicationId(1).getDtMigrationPattern());
+		assertEquals(true, assessmentService.getAnswers(1).get(0).isDtMigrationRuleResult());
 		//System.out.println(assessmentService);
 		//assertEquals(true, answerModels.get(0).isDtMigrationRuleResult());
 	}
 	
 	/*
- 	 * Rehost
+ 	 * Re-Plateform
  	 * */
  	
  	//@Ignore
 	@Test
 	public void testBStage2MigrationRuleRehost() throws JcatExceptions {
-		Date date = new Date();
 		boolean result = true;
 		saveQuestions();
 		saveMigrationPattern();
@@ -280,9 +283,9 @@ public class TestAssessmentService {
 		try {
 
 			List<DTMigrationRuleModel> migrationRuleList = new ArrayList<>();
-			migrationRuleList.add(toGetMigrationRule(1, 1, 1, "q1", "1,2,3", "a,b,c"));
-			migrationRuleList.add(toGetMigrationRule(2, 2, 2, "q2", "2", "b"));
-			migrationRuleList.add(toGetMigrationRule(3, 2, 3, "q3", "3", "c"));
+			migrationRuleList.add(toGetMigrationRule(1, 1, 1, "Application Type: Captures the type of application whether it is:", "1,2,3", "a,b,c")); //public-pass
+			migrationRuleList.add(toGetMigrationRule(2, 2, 2, "Database Server: Which database server is being used", "2", "2. Below MS SQL 2008"));  //Re-Plateform
+			migrationRuleList.add(toGetMigrationRule(3, 2, 3, "Web / Application Server: In case of Web application, on which Application Server this application is running", "2", "2. Below Tomcat 7.0.0")); //Re-Plateform
 			Mockito.when(dtMigrationRuleService.saveMigrationRule(migrationRuleList)).thenReturn(true);
 			assertEquals(true, dtMigrationRuleService.saveMigrationRule(migrationRuleList)); // CHECK GIVEN MIGRATION IS
 				System.out.println(dtMigrationRuleService.getMigrationRule(0));																				// SUCCESSFULLY SAVING
@@ -301,8 +304,9 @@ public class TestAssessmentService {
 
 		List<AnswerModel> answerModels = new ArrayList<>();
 		answerModels.add(getAnswerModel(1, 1, false, false, false, "Admin", "1", "a", 1, "q1"));
-		answerModels.add(getAnswerModel(2, 1, false, false, false, "Admin", "2", "b", 2, "q2"));
-		answerModels.add(getAnswerModel(3, 1, false, false, false, "Admin", "3", "c", 3, "q3"));
+		answerModels.add(getAnswerModel(2, 1, false, false, false, "Admin", "2", "2. Below MS SQL 2008", 2, "Database Server: Which database server is being used")); //Re-Plateform
+		answerModels.add(getAnswerModel(3, 1, false, false, false, "Admin", "2", "2. Below Tomcat 7.0.0", 3, "Web / Application Server: In case of Web application, on which Application Server this application is running")); //Re-Plateform
+		
 		result = assessmentService.saveAnswers(answerModels, 1);
 		assertTrue(result); // check answers are saving in database or not
 		assertEquals(3, assessmentService.getAnswers(1).size()); // check size of answers in database
@@ -313,26 +317,25 @@ public class TestAssessmentService {
 		 */
 		Application application = assessmentDao.getApplicationByApplicationId(1);
 		try {
-			assessmentService.finalized(answerModels, 1, 2);
+			assessmentService.finalized(answerModels, 1, 2);//1. answerList 2.ApplicationId 3. Stage
 		} catch (Exception e) {
 		}
 
-		application = assessmentDao.getApplicationByApplicationId(1);
+		application = assessmentDao.getApplicationByApplicationId(1); 
 		assertEquals(2, application.getAssessmentStage()); // check application stage
-		assertEquals("Rehost", assessmentDao.getApplicationByApplicationId(1).getDtMigrationPattern());
+		assertEquals("Re-Plateform", assessmentDao.getApplicationByApplicationId(1).getDtMigrationPattern());
 	}
 	
 
 
 	/*
-	 * Re-Plateform
+	 * Rehost
 	 * */
 	
  	//@Ignore
 	@Test
 	public void testBStage2MigrationRuleRePlateform() throws JcatExceptions {
 		boolean result = false;
-		Date date = new Date();
 		saveQuestions();
 		saveMigrationPattern();
 		/*
@@ -342,9 +345,9 @@ public class TestAssessmentService {
 		try {
 
 			List<DTMigrationRuleModel> migrationRuleList = new ArrayList<>();
-			migrationRuleList.add(toGetMigrationRule(1, 1, 1, "q1", "1,2,3", "a,b,c"));
-			migrationRuleList.add(toGetMigrationRule(2, 1, 2, "q2", "2", "b"));
-			migrationRuleList.add(toGetMigrationRule(3, 2, 3, "q3", "3", "c"));
+			migrationRuleList.add(toGetMigrationRule(1, 1, 1, "Application Type: Captures the type of application whether it is:", "1,2,3", "a,b,c")); //public-pass
+			migrationRuleList.add(toGetMigrationRule(2, 2, 2, "Database Server: Which database server is being used", "2", "2. Below MS SQL 2008"));  //Re-Plateform
+			migrationRuleList.add(toGetMigrationRule(3, 2, 3, "Web / Application Server: In case of Web application, on which Application Server this application is running", "2", "2. Below Tomcat 7.0.0")); //Re-Plateform
 			Mockito.when(dtMigrationRuleService.saveMigrationRule(migrationRuleList)).thenReturn(true);
 			assertEquals(true, dtMigrationRuleService.saveMigrationRule(migrationRuleList)); // CHECK GIVEN MIGRATION IS
 				System.out.println(dtMigrationRuleService.getMigrationRule(0));																				// SUCCESSFULLY SAVING
@@ -368,9 +371,9 @@ public class TestAssessmentService {
 		 */
 
 		List<AnswerModel> answerModels = new ArrayList<>();
-		answerModels.add(getAnswerModel(1, 1, false, false, false, "Admin", "1", "a", 1, "q1"));
-		answerModels.add(getAnswerModel(2, 1, false, false, false, "Admin", "2", "b", 2, "q2"));
-		answerModels.add(getAnswerModel(3, 1, false, false, false, "Admin", "3,4,5", "c,d,e", 3, "q3"));
+		answerModels.add(getAnswerModel(1, 1, false, false, false, "Admin", "1,2", "a,b", 1, "q1"));
+		answerModels.add(getAnswerModel(2, 1, false, false, false, "Admin", "3", "3. Above MS SQL 2008", 2, "Database Server: Which database server is being used")); //Re-Plateform
+		answerModels.add(getAnswerModel(3, 1, false, false, false, "Admin", "3", "3. Above Tomcat 7.0.0", 3, "Web / Application Server: In case of Web application, on which Application Server this application is running")); //Re-Plateform
 		result = assessmentService.saveAnswers(answerModels, 1);
 		assertTrue(result); // check answers are saving in database or not
 		assertEquals(3, assessmentService.getAnswers(1).size()); // check size of answers in database
@@ -389,7 +392,7 @@ public class TestAssessmentService {
 
 		application = assessmentDao.getApplicationByApplicationId(1);
 		assertEquals(2, application.getAssessmentStage()); // check application stage
-		assertEquals("Re-Plateform", assessmentDao.getApplicationByApplicationId(1).getDtMigrationPattern());
+		assertEquals("Rehost", assessmentDao.getApplicationByApplicationId(1).getDtMigrationPattern());
 	}
 	
 	
@@ -401,9 +404,9 @@ public class TestAssessmentService {
 		 */
 		DTMigration dtMigration = getMigrationPattern("Admin", date, 1, "AND", "Public- Pass", 1, "Admin");
 		dtMigrationRepository.save(dtMigration);
-		dtMigration = getMigrationPattern("Admin", date, 1, "OR", "Rehost", 2, "Admin");
+		dtMigration = getMigrationPattern("Admin", date, 1, "OR", "Re-Plateform", 2, "Admin");
 		dtMigrationRepository.save(dtMigration);
-		dtMigration = getMigrationPattern("Admin", date, 1, "Others", "Re-Plateform", 3, "Admin");
+		dtMigration = getMigrationPattern("Admin", date, 1, "Others", "Rehost", 3, "Admin");
 		dtMigrationRepository.save(dtMigration);
 	}
 	
@@ -531,7 +534,6 @@ public class TestAssessmentService {
 
 	private DTMigration getMigrationPattern(String createdBy, Date createdTime, int evaluationOrder,
 			String logicalOperator, String migrationPattern, int migrationId, String modifiedBy) {
-		Date date = new Date();
 		DTMigration dtMigration = new DTMigration();
 		dtMigration.setCreatedBy(createdBy);
 		dtMigration.setCreatedTtime(createdTime);

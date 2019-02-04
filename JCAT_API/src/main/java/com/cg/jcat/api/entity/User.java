@@ -114,7 +114,7 @@ public class User {
 	public Date getCreatedTime() {
 		return createdTime;
 	}
-	public void setCteatedTime(Date createdTime) {
+	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
 	public String getModifiedBy() {

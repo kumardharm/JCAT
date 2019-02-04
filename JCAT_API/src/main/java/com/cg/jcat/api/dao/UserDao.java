@@ -1,6 +1,5 @@
 package com.cg.jcat.api.dao;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,18 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.TransactionSystemException;
-
-import com.cg.jcat.api.JcatApiApplication;
-
-import com.cg.jcat.api.controller.UserController;
-
 import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.DeleteUserException;
 import com.cg.jcat.api.exception.JcatExceptions;
-import com.cg.jcat.api.exception.SaveUserException;
-import com.cg.jcat.api.exception.SystemExceptions;
-import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.repository.IUserRepository;
 
 @Component
@@ -64,7 +54,6 @@ public class UserDao {
 	}
 
 	public boolean createUser(UserModel userModel, String createdBy) {
-		userModel.setCreatedBy(createdBy);
 		userModel.setPassword("Cg@123");
 		return saveUser(userModel);
 	}
@@ -86,7 +75,6 @@ public class UserDao {
 
 	public boolean setUpdatedUser(UserModel user, String modifiedBy) {
 
-		user.setModifiedBy(modifiedBy);
 		return saveUser(user);
 	}
 
@@ -121,13 +109,12 @@ public class UserDao {
 			users.setUsername(userModel.getUsername());
 			users.setUserId(userModel.getUserId());
 			users.setCompany(userModel.getCompany());
-			users.setCreatedBy(userModel.getCreatedBy());
+			users.setCreatedBy("Admin");
+			users.setCreatedTime(date);
 			users.setFirstName(userModel.getFirstName());
 			users.setLastName(userModel.getLastName());
-			users.setModifiedBy(userModel.getModifiedBy());
 			users.setPassword(userModel.getPassword());
 			users.setUserEmail(userModel.getUserEmail());
-			users.setCteatedTime(date);
 		}
 		return users;
 	}
@@ -139,8 +126,15 @@ public class UserDao {
 		users.setAdmin(false);
 		users.setDeleted(false);
 		users.setCreatedBy("Admin");
-		users.setCteatedTime(date);
+		users.setCreatedTime(date);
 		 return userRepository.save(users);
+	}
+	
+	public UserModel login(String username, String password)
+	{
+		User user;
+		user = userRepository.findByUsernameAndPassword(username,password);
+		return toUserDao(user);
 	}
 
 }

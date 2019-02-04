@@ -36,11 +36,9 @@ public class TestUserDao {
 		userModel.setLastName("ram");
 		userModel.setUsername("samfasdjdgfas");
 		userModel.setUserEmail("abc@gmail.com");
-		userModel.setCreatedBy("raghu");
 		userModel.setCompany("goldman");
 		userModel.setAdmin(true);
 		userModel.setPassword("asd@123");
-		userModel.setModifiedBy("raj");
 		
 		boolean value = userDao.createUser(userModel,"ramesh");
 		
@@ -81,7 +79,6 @@ public class TestUserDao {
 		userModel.setLastName("ram");
 		userModel.setUsername("sam4");
 		userModel.setUserEmail("abcdef@gmail.com");
-		userModel.setCreatedBy("raghu");
 		userModel.setCompany("byarclay");
 		userModel.setAdmin(true);
 		userModel.setPassword("mnbv@123");

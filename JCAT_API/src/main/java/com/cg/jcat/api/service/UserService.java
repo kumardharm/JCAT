@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.jcat.api.JcatApiApplication;
 import com.cg.jcat.api.dao.UserDao;
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.entity.User;
@@ -77,6 +76,20 @@ public class UserService implements IUserService {
 		boolean isDeleted = userDao.deleteById(userId);
 		logger.info("User " + userId + " successfully deleted from DB!" + isDeleted);
 		return isDeleted;
+	}
+
+	@Override
+	public UserModel login(String username, String password){
+		UserModel user = userDao.login(username, password);
+		if(user!=null)
+		{
+			return user;
+		}
+		else
+		{
+			return null;
+		}
+		
 	}
 
 }

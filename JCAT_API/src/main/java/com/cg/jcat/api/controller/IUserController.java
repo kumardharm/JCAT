@@ -36,6 +36,9 @@ public interface IUserController {
 	
 	@DeleteMapping("/delete/{userId}")
 	public void deleteById(@PathVariable int userId) throws JcatExceptions;
+	
+	@GetMapping("login/{username}/{password}")
+	public UserModel login(@PathVariable String username, @PathVariable String password);
 
 	
 }

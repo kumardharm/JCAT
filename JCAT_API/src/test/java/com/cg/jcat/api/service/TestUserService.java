@@ -9,7 +9,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -88,11 +87,9 @@ public class TestUserService {
 		UserModel userModel = new UserModel();
 		userModel.setUserId(1);
 		userModel.setFirstName("Hari");
-		userModel.setModifiedBy("admin");
 		userModel.setLastName("ram");
 		userModel.setUsername("sam");
 		userModel.setUserEmail("abcdef@gmail.com");
-		userModel.setCreatedBy("raghu");
 		userModel.setCompany("byarclay");
 		userModel.setAdmin(true);
 		userModel.setPassword("mnbv@123");
