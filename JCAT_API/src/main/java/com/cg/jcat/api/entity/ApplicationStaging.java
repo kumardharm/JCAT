@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 public class ApplicationStaging {
 	@Id
@@ -16,7 +18,9 @@ public class ApplicationStaging {
 	private String applicationDepartment;
 	private int priority;
 	private String userName;
+	@ColumnDefault("Initial")
 	private String stage;
+	private String errorDescription;
 	public int getId() {
 		return id;
 	}
@@ -67,13 +71,24 @@ public class ApplicationStaging {
 	public void setStage(String stage) {
 		this.stage = stage;
 	}
+	
+	
+	public String getErrorDescription() {
+		return errorDescription;
+	}
+	public void setErrorDescription(String errorDescription) {
+		this.errorDescription = errorDescription;
+	}
 	@Override
 	public String toString() {
 		return "ApplicationStaging [id=" + id + ", applicationId=" + applicationId + ", applicationName="
 				+ applicationName + ", applicationDescription=" + applicationDescription + ", applicationDepartment="
 				+ applicationDepartment + ", priority=" + priority + ", userName=" + userName + ", stage=" + stage
-				+ "]";
+				+ ", errorDescription=" + errorDescription + "]";
 	}
+	
+	
+	
 	
 	
 	
