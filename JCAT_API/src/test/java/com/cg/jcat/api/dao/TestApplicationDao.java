@@ -15,14 +15,11 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
-
 import com.cg.jcat.api.entity.Application;
 import com.cg.jcat.api.entity.ApplicationStaging;
 import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
-import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.repository.IApplicationStaging;
 
 @RunWith(SpringRunner.class)
