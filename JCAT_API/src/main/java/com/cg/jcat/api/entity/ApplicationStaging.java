@@ -18,6 +18,7 @@ public class ApplicationStaging {
 	private String applicationDepartment;
 	private int priority;
 	private String userName;
+	@ColumnDefault("'Initial'")
 	private String stage;
 	private String errorDescription;
 	public int getId() {
