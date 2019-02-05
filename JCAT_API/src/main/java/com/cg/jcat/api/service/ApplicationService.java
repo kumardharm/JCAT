@@ -61,7 +61,7 @@ public class ApplicationService implements IApplicationService {
 
 	@Override
 	public void importApplication(List<ApplicationStaging> applicationStaging)
-			throws SystemExceptions, ApplicationExistException {
+			throws SystemExceptions{
 		if (!applicationStaging.isEmpty()) {
 			applicationDao.importApplication(applicationStaging);
 		} else {

@@ -69,7 +69,7 @@ public class ApplicationController implements IApplicationController {
 	}
 
 	@Override
-	public void importApplication(MultipartFile file) throws SystemExceptions, ApplicationExistException {
+	public void importApplication(MultipartFile file) throws SystemExceptions {
 		
 		 List<ApplicationStaging> applicationStaging = csvDataLoader.loadObjectList(ApplicationStaging.class, file.getOriginalFilename(),file);
 	     applicationService.importApplication(applicationStaging);

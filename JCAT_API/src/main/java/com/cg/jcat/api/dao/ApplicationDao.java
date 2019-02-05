@@ -234,7 +234,7 @@ public class ApplicationDao {
 	}
 
 	public void importApplication(List<ApplicationStaging> applicationStaging)
-			throws SystemExceptions, ApplicationExistException {
+			throws SystemExceptions {
 
 		User user = new User();
 		Application applicationExist = new Application();
@@ -279,10 +279,7 @@ public class ApplicationDao {
 					logger.error("Erron in import application, application is empty");
 				}
 			}
-		} catch (DataIntegrityViolationException e) {
-			logger.error("Error in import application ,importfile()", e.getMessage(), e);
-			throw new ApplicationExistException("Application already exists");
-		} catch (Exception e) {
+		}catch (Exception e) {
 			logger.error("Error in import application ,importfile()", e.getMessage(), e);
 			throw new SystemExceptions("Error in importfile()");
 		}

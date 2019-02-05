@@ -26,7 +26,7 @@ public interface IApplicationService {
 
 	public boolean updateApplication(ApplicationModel application) throws ApplicationIdNotFoundException, SystemExceptions;
 
-	public void importApplication(List<ApplicationStaging> applicationStaging) throws SystemExceptions, ApplicationExistException;
+	public void importApplication(List<ApplicationStaging> applicationStaging) throws SystemExceptions;
 
 
 }

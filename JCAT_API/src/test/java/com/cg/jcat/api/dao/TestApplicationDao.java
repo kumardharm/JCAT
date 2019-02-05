@@ -127,7 +127,7 @@ public class TestApplicationDao {
 	}
 	
 	@Test
-	public void testZimportApplication() throws SystemExceptions, ApplicationExistException
+	public void testZimportApplication() throws SystemExceptions
 	{
 		List<ApplicationStaging> applicationStaging = getApplicationStaging();
 		System.out.println(applicationStaging);

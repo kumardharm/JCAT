@@ -44,6 +44,6 @@ public interface IApplicationController {
 
 	
 	@PostMapping(value="/import",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public void importApplication(@RequestParam("file") MultipartFile file) throws SystemExceptions, ApplicationExistException;
+	public void importApplication(@RequestParam("file") MultipartFile file) throws SystemExceptions;
 	
 }
