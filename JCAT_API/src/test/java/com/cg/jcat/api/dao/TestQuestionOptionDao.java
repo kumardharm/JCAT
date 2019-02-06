@@ -24,14 +24,13 @@ public class TestQuestionOptionDao {
 	QuestionOptionDao questionOptionDao;
 
 	@Test
-	@Ignore
-	public void testSaveQuestionOption() {
+	public void testASaveQuestionOption() {
 		QuestionOptionModel questionOption = toGetQuestionOption();
 		assertEquals(true, questionOptionDao.saveQuestionOption(questionOption));
 	}
 
 	@Test
-	public void getQuestionOption() {
+	public void getBQuestionOption() {
 
 		QuestionOptionModel questionOption = toGetQuestionOption();
 		questionOptionDao.saveQuestionOption(questionOption);
@@ -40,7 +39,7 @@ public class TestQuestionOptionDao {
 	}
 
 	@Test
-	public void getUpdateQuestionOption() {
+	public void getCUpdateQuestionOption() {
 		QuestionOptionModel questionOption = toGetQuestionOption();
 		questionOption.setOptionTextEN("updated text");
 		questionOptionDao.updateQuestionOption(questionOption);
@@ -56,7 +55,6 @@ public class TestQuestionOptionDao {
 		questionOption.setOptionId(3);
 		questionOption.setOptionTextEN("text1");
 		questionOption.setOptionTextLang2("lang1");
-		// questionOption.setQuestionId(questionOptionModel.getQuestionId());
 		return questionOption;
 	}
 

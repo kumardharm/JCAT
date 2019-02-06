@@ -23,27 +23,29 @@ import com.cg.jcat.api.exception.UserAlreadyExistsException;
 @RestController
 @RequestMapping("/application")
 public interface IApplicationController {
-	
+
 	@GetMapping("/getAll")
 	public List<ApplicationModel> getApplications() throws SystemExceptions;
-	
+
 	@GetMapping("/getApplication/{applicationId}")
-	public ApplicationModel getApplicationByApplicationId(@PathVariable String applicationId) throws ApplicationIdNotFoundException;
-	
+	public ApplicationModel getApplicationByApplicationId(@PathVariable String applicationId)
+			throws ApplicationIdNotFoundException;
+
 	@PostMapping("/create")
 	public boolean save(@RequestBody ApplicationModel application) throws SystemExceptions;
 
 	@DeleteMapping("/delete/{aid}")
-	public boolean deleteApplicationById(@PathVariable int aid)  throws ApplicationIdNotFoundException, SystemExceptions;
-	
+	public boolean deleteApplicationById(@PathVariable int aid) throws ApplicationIdNotFoundException, SystemExceptions;
+
 	@PutMapping("/deactivate/{aid}")
-	public boolean deactivateApplicationById(@PathVariable int aid) throws ApplicationIdNotFoundException, SystemExceptions;
+	public boolean deactivateApplicationById(@PathVariable int aid)
+			throws ApplicationIdNotFoundException, SystemExceptions;
 
 	@PutMapping("/update")
-	public boolean updateApplication(@RequestBody ApplicationModel application) throws ApplicationIdNotFoundException, SystemExceptions;
+	public boolean updateApplication(@RequestBody ApplicationModel application)
+			throws ApplicationIdNotFoundException, SystemExceptions;
 
-	
-	@PostMapping(value="/import",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public void importApplication(@RequestParam("file") MultipartFile file) throws SystemExceptions, ApplicationExistException;
-	
+	@PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public void importApplication(@RequestParam("file") MultipartFile file) throws SystemExceptions;
+
 }

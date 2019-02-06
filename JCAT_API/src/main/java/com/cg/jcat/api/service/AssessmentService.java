@@ -26,12 +26,11 @@ import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.CountMissMatchException;
 import com.cg.jcat.api.exception.OptionTextNotNullException;
 import com.cg.jcat.api.exception.SystemExceptions;
-import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.dao.AnswerModel;
 
 @Component
 public class AssessmentService implements IAssessmentService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AssessmentDao.class);
 
 	@Autowired
@@ -72,25 +71,24 @@ public class AssessmentService implements IAssessmentService {
 			}
 		}
 		if (strBuff.length() == 0) {
-			
+
 			afterSavedValue = assessmentDao.saveAnswers(answerModels, applicationId);
 		} else {
-			logger.error("Error option text number of option text and option ids should be same :: " +strBuff.toString());
+			logger.error(
+					"Error option text number of option text and option ids should be same :: " + strBuff.toString());
 			throw new CountMissMatchException(strBuff.toString());
 		}
 		return afterSavedValue;
 	}
 
 	@Override
-	public void finalized(List<AnswerModel> answerModels, int applicationId, int stage)
-			throws SystemExceptions, OptionTextNotNullException, ApplicationIdNotFoundException, CountMissMatchException {
-		
+	public void finalized(List<AnswerModel> answerModels, int applicationId, int stage) throws SystemExceptions,
+			OptionTextNotNullException, ApplicationIdNotFoundException, CountMissMatchException {
 
 		Application application = assessmentDao.getApplicationByApplicationId(applicationId);
-		if(application!=null)
-		{
+		if (application != null) {
 			saveAnswers(answerModels, applicationId);
-			
+
 			switch (stage) {
 			case 1:
 				stage1(application);
@@ -103,13 +101,11 @@ public class AssessmentService implements IAssessmentService {
 			default:
 				logger.error("Error stage does not exist in finalized()! with given stage " + stage);
 			}
-		}
-		else
-		{
+		} else {
 			logger.error("Error Application does not exist ! with given id " + applicationId);
-			throw new  ApplicationIdNotFoundException(Integer.toString(applicationId));
+			throw new ApplicationIdNotFoundException(Integer.toString(applicationId));
 		}
-		
+
 	}
 
 	private void stage1(Application application) {

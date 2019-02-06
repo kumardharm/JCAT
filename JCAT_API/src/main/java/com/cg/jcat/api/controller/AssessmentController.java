@@ -12,8 +12,8 @@ import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IAssessmentService;
 
 @Component
-public class AssessmentController implements IAssessmentController{
-	
+public class AssessmentController implements IAssessmentController {
+
 	@Autowired
 	IAssessmentService answerService;
 
@@ -23,15 +23,16 @@ public class AssessmentController implements IAssessmentController{
 	}
 
 	@Override
-	public boolean saveAnswers(List<AnswerModel> answerModels, int applicationId) throws SystemExceptions, OptionTextNotNullException, CountMissMatchException {
-		return answerService.saveAnswers(answerModels,applicationId);
+	public boolean saveAnswers(List<AnswerModel> answerModels, int applicationId)
+			throws SystemExceptions, OptionTextNotNullException, CountMissMatchException {
+		return answerService.saveAnswers(answerModels, applicationId);
 	}
 
 	@Override
-	public void finalized(List<AnswerModel> answerModels, int applicationId, int assessmentStage) throws SystemExceptions, OptionTextNotNullException, ApplicationIdNotFoundException, CountMissMatchException {
+	public void finalized(List<AnswerModel> answerModels, int applicationId, int assessmentStage)
+			throws SystemExceptions, OptionTextNotNullException, ApplicationIdNotFoundException,
+			CountMissMatchException {
 		answerService.finalized(answerModels, applicationId, assessmentStage);
 	}
-	
-	
 
 }

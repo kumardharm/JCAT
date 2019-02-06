@@ -2,15 +2,17 @@ package com.cg.jcat.api.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.cg.jcat.api.dao.QuestionOptionModel;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.service.IQuestionOptionService;
 
 @Component
 public class QuestionOptionController implements IQuestionOptionController{
+	private static final Logger logger = LoggerFactory.getLogger(QuestionOptionController.class);
 	
 	@Autowired
 	private IQuestionOptionService questionOptionService;
@@ -20,7 +22,7 @@ public class QuestionOptionController implements IQuestionOptionController{
 		try {
 			return questionOptionService.getQuestionOptions();
 		} catch (JcatExceptions e) {
-			System.out.println("Error in getting users" + e);
+			logger.error("Error in getting options in getQuestionOptions()" + e);
 			return null;
 		}
 	}
@@ -30,7 +32,7 @@ public class QuestionOptionController implements IQuestionOptionController{
 		try {
 				questionOptionService.saveQuestionOption(questionOptionModel);
 		} catch (Exception e) {
-			System.out.print("Error while saving question option" + e);
+			logger.error("Error while saving question option in saveQuestionOption()" + e);
 		}
 	}
 
@@ -39,7 +41,7 @@ public class QuestionOptionController implements IQuestionOptionController{
 		try {
 			questionOptionService.updateQuestionOption(questionOptionModel);
 		} catch (Exception e) {
-			System.out.print("Error while updating question options" + e);
+			logger.error("Error while updating question options in updateQuestionOption()" + e);
 		}
 	}
 

@@ -11,20 +11,18 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cg.jcat.api.csvimport.CsvDataLoader;
 import com.cg.jcat.api.dao.ApplicationModel;
 import com.cg.jcat.api.entity.ApplicationStaging;
-import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
-import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.service.IApplicationService;
 
 @Component
 public class ApplicationController implements IApplicationController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ApplicationController.class);
-	
+
 	@Autowired
 	CsvDataLoader csvDataLoader;
-	
+
 	@Autowired
 	private IApplicationService applicationService;
 
@@ -63,16 +61,17 @@ public class ApplicationController implements IApplicationController {
 	}
 
 	@Override
-	public boolean updateApplication(ApplicationModel application) throws ApplicationIdNotFoundException, SystemExceptions {
-	
+	public boolean updateApplication(ApplicationModel application)
+			throws ApplicationIdNotFoundException, SystemExceptions {
+
 		return applicationService.updateApplication(application);
 	}
 
 	@Override
-	public void importApplication(MultipartFile file) throws SystemExceptions, ApplicationExistException {
-		
-		 List<ApplicationStaging> applicationStaging = csvDataLoader.loadObjectList(ApplicationStaging.class, file.getOriginalFilename(),file);
-	     applicationService.importApplication(applicationStaging);
-		
+	public void importApplication(MultipartFile file) throws SystemExceptions {
+
+		List<ApplicationStaging> applicationStaging = csvDataLoader.loadObjectList(ApplicationStaging.class, file);
+		applicationService.importApplication(applicationStaging);
+
 	}
 }

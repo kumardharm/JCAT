@@ -8,14 +8,12 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import com.cg.jcat.api.entity.Application;
 import com.cg.jcat.api.entity.ApplicationStaging;
 import com.cg.jcat.api.entity.ApplicationsHistory;
 import com.cg.jcat.api.entity.User;
-import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IApplicationRepository;
@@ -233,8 +231,7 @@ public class ApplicationDao {
 		return applicationsHistory;
 	}
 
-	public void importApplication(List<ApplicationStaging> applicationStaging)
-			throws SystemExceptions {
+	public void importApplication(List<ApplicationStaging> applicationStaging) throws SystemExceptions {
 
 		User user = new User();
 		Application applicationExist = new Application();
@@ -260,8 +257,7 @@ public class ApplicationDao {
 						applications.setErrorDescription("Application Allready Exists");
 						iApplicationStaging.save(applications);
 						logger.error("Application Allready Exists");
-					}
-					else if (user != null) {
+					} else if (user != null) {
 						application = applicationRepository.save(toapplication(applications, user));
 						if (application != null) {
 							applications.setStage("success");

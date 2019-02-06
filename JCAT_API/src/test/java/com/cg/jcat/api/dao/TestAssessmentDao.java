@@ -49,7 +49,6 @@ public class TestAssessmentDao {
 		answerModels.add(getAnswerModel(1,1,true,true,true,"Admin","1,2,3","a,b,c",1,"q1"));
 		answerModels.add(getAnswerModel(2,1,true,true,true,"Admin","1,2","a,b",1,"q1"));
 		answerModels.add(getAnswerModel(3,1,true,true,true,"Admin","1","a",1,"q1"));
-		System.out.println("-----------------"+answerModels.size());
 		result = assessmentDao.saveAnswers(answerModels, 1);
 		assertTrue(result);
 		assertEquals(3, assessmentDao.getAnswers(1).size());

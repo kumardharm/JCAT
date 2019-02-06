@@ -25,8 +25,7 @@ import com.cg.jcat.api.utility.QuestionTypeEnum;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureTestDatabase
-@TestPropertySource(
-		 locations = "classpath:application-integrationtest.properties")
+@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class TestProviderRuleDao {
 
 	@Autowired
@@ -42,7 +41,7 @@ public class TestProviderRuleDao {
 	IAssessmentQuestionRepository assessmentQuestionRepository;
 
 	@Test
-//	@Ignore
+	// @Ignore
 	public void testsaveCloudProvider() {
 		providerRepository.save(getProvider());
 		assertNotNull(ProviderRuleDao.getCloudProvider());
@@ -61,7 +60,7 @@ public class TestProviderRuleDao {
 	}
 
 	@Test
-//	@Ignore
+	// @Ignore
 	public void testGetCloudProvider() {
 		providerRepository.save(getProvider());
 		assertNotNull(ProviderRuleDao.getCloudProvider());
@@ -69,7 +68,7 @@ public class TestProviderRuleDao {
 	}
 
 	@Test
-//	@Ignore
+	// @Ignore
 	public void testGetCloudProviderRules() throws SystemExceptions {
 		List<DTProviderRuleModel> cloudProviderRuleModelList = new ArrayList<DTProviderRuleModel>();
 

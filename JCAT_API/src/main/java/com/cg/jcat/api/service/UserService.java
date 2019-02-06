@@ -32,41 +32,39 @@ public class UserService implements IUserService {
 	public boolean saveUser(UserModel user, String createdBy) throws UserAlreadyExistsException, SystemExceptions {
 		boolean isSaved = false;
 		User existingUser = userDao.findByUsername(user.getUsername());
-		if (existingUser != null ) {
+		if (existingUser != null) {
 			logger.error("Error user already present in DB! with name " + user.getUsername());
-			throw new  UserAlreadyExistsException(user.getUsername());
+			throw new UserAlreadyExistsException(user.getUsername());
 		}
 		try {
-		
-	    isSaved = userDao.createUser(user, createdBy);
+
+			isSaved = userDao.createUser(user, createdBy);
 		} catch (Exception e) {
 			logger.error("Error while saving user " + user.getUsername() + " ErrorMessage: " + e.getMessage(), e);
-			throw new SystemExceptions("Error in service saveUser():"+e.getMessage());
+			throw new SystemExceptions("Error in service saveUser():" + e.getMessage());
 		}
-		
-		
+
 		logger.info("User " + user.getUsername() + " successfully saved in DB!" + isSaved);
 		return isSaved;
 	}
 
 	@Override
-	public boolean updateUsers(UserModel user, String modifiedBy)  throws SystemExceptions, UserAlreadyExistsException  {
+	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException {
 		User existingUser = userDao.findByUsername(user.getUsername());
 		boolean isUpdated = false;
 		if (existingUser != null) {
 			logger.error("Error user already present in DB! with name " + user.getUsername() + " ErrorMessage: ");
-			throw new  UserAlreadyExistsException(user.getUsername());
-			
+			throw new UserAlreadyExistsException(user.getUsername());
+
 		}
 		try {
-			
-			 isUpdated = userDao.updateUsers(user, modifiedBy);
-		}
-		catch (Exception e) {
+
+			isUpdated = userDao.updateUsers(user, modifiedBy);
+		} catch (Exception e) {
 			logger.error("Error while updating user " + user.getUsername() + " ErrorMessage: " + e.getMessage(), e);
 			throw new SystemExceptions("updateUsers()");
 		}
-		
+
 		logger.info("User " + user.getUsername() + " successfully updated in DB!" + isUpdated);
 		return isUpdated;
 	}
@@ -79,17 +77,14 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public UserModel login(String username, String password){
+	public UserModel login(String username, String password) {
 		UserModel user = userDao.login(username, password);
-		if(user!=null)
-		{
+		if (user != null) {
 			return user;
-		}
-		else
-		{
+		} else {
 			return null;
 		}
-		
+
 	}
 
 }

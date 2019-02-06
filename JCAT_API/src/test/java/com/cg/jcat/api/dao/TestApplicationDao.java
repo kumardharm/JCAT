@@ -14,10 +14,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.cg.jcat.api.entity.Application;
 import com.cg.jcat.api.entity.ApplicationStaging;
-import com.cg.jcat.api.exception.ApplicationExistException;
 import com.cg.jcat.api.exception.ApplicationIdNotFoundException;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.repository.IApplicationStaging;
@@ -73,7 +73,6 @@ public class TestApplicationDao {
 	public void testCGetApplicationById() throws SystemExceptions, ApplicationIdNotFoundException
 	{
 		ApplicationModel applicationModel = getApplicationModel();
-//		assertEquals(true,applicationdao.save(applicationModel));
 		ApplicationModel applicationModel2 = applicationdao.getApplicationByApplicationId("App1");
 		assertEquals(applicationModel.getApplicationName(),applicationModel2.getApplicationName());
 		assertEquals(applicationModel.getApplicationDepartment(),applicationModel2.getApplicationDepartment());
@@ -124,12 +123,15 @@ public class TestApplicationDao {
 	}
 	
 	@Test
-	public void testZimportApplication() throws SystemExceptions, ApplicationExistException
+	public void testZimportApplication() throws SystemExceptions
 	{
-		List<ApplicationStaging> applicationStaging = getApplicationStaging();
-		System.out.println(applicationStaging);
-		applicationdao.importApplication(applicationStaging);
-		assertEquals(2,iApplicationStaging.findAll().size());
+		List<ApplicationStaging> applicationStagingList = getApplicationStaging();
+		System.out.println(applicationStagingList);
+		applicationdao.importApplication(applicationStagingList);
+		assertEquals(3,iApplicationStaging.findAll().size());
+		Optional<ApplicationStaging> applicationStagingOpt = iApplicationStaging.findById(3);
+		ApplicationStaging applicationStaging = applicationStagingOpt.get();
+		assertEquals("error",applicationStaging.getStage());
 	}
 
 	private List<ApplicationStaging> getApplicationStaging() {
@@ -137,6 +139,8 @@ public class TestApplicationDao {
 		List<ApplicationStaging> applicationStagingList = new ArrayList<>();
 		ApplicationStaging applicationStaging = new ApplicationStaging();
 		ApplicationStaging applicationStaging1 = new ApplicationStaging();
+		ApplicationStaging applicationStaging2 = new ApplicationStaging();
+		
 		applicationStaging.setApplicationId("App11");
 		applicationStaging.setApplicationName("App11");
 		applicationStaging.setApplicationDepartment("Dept");
@@ -150,8 +154,18 @@ public class TestApplicationDao {
 		applicationStaging1.setApplicationDescription("Des");
 		applicationStaging1.setPriority(1);
 		applicationStaging1.setUserName("user2");
+		
+		
+		applicationStaging2.setApplicationId("App21");
+		applicationStaging2.setApplicationName("App21");
+		applicationStaging2.setApplicationDepartment("Dept");
+		applicationStaging2.setApplicationDescription("Des");
+		applicationStaging2.setPriority(1);
+		applicationStaging2.setUserName("user3");
 		applicationStagingList.add(applicationStaging);
 		applicationStagingList.add(applicationStaging1);
+		applicationStagingList.add(applicationStaging2);
+		
 		return applicationStagingList;
 	}
 

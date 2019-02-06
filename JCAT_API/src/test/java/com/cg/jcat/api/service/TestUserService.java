@@ -24,66 +24,51 @@ import com.cg.jcat.api.exception.JcatExceptions;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@TestPropertySource(
-		  locations = "classpath:application-integrationtest.properties")
+@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class TestUserService {
-	
+
 	@Autowired
 	private UserService userService;
-	
-	
+
 	@MockBean
 	private UserDao userDao;
-	
+
 	@Test
-//	@Ignore
-	public void testGetUsers() throws JcatExceptions
-	{
+	public void testGetUsers() throws JcatExceptions {
 		UserModel userModel = getModel();
 		List<UserModel> userModelList = new ArrayList<UserModel>();
 		userModelList.add(userModel);
-		
 		Mockito.when(userDao.getUsers()).thenReturn(userModelList);
-		
 		assertNotNull(userService.getUsers());
 		assertThat(userService.getUsers()).isEqualTo(userModelList);
 	}
-	
-//	@Ignore
+
 	@Test
-	public void testSaveUser() throws JcatExceptions
-	{
+	public void testSaveUser() throws JcatExceptions {
 		UserModel userModel = getModel();
-		Mockito.when(userDao.createUser(userModel,"admin")).thenReturn(true);
-		assertEquals(true, userService.saveUser(userModel,"admin"));
-		
+		Mockito.when(userDao.createUser(userModel, "admin")).thenReturn(true);
+		assertEquals(true, userService.saveUser(userModel, "admin"));
+
 	}
-	
-	
+
 	@Test
-//	@Ignore
-	public void testUpdateUsers() throws JcatExceptions
-	{
+	public void testUpdateUsers() throws JcatExceptions {
 		UserModel userModel = getModel();
-		
+
 		userModel.setCompany("cg");
-		Mockito.when(userDao.updateUsers(userModel,"admin")).thenReturn(true);
+		Mockito.when(userDao.updateUsers(userModel, "admin")).thenReturn(true);
 		assertEquals(true, userService.updateUsers(userModel, "admin"));
 	}
-	
-//	@Ignore
+
 	@Test
-	public void testDeleteUser() throws JcatExceptions
-	{
+	public void testDeleteUser() throws JcatExceptions {
 		UserModel userModel = getModel();
-		
-				
 		Mockito.when(userDao.deleteById(1)).thenReturn(true);
-		 assertTrue(userService.deleteById(userModel.getUserId()));
+		assertTrue(userService.deleteById(userModel.getUserId()));
 	}
-	
+
 	private UserModel getModel() {
-		
+
 		UserModel userModel = new UserModel();
 		userModel.setUserId(1);
 		userModel.setFirstName("Hari");
@@ -95,7 +80,5 @@ public class TestUserService {
 		userModel.setPassword("mnbv@123");
 		return userModel;
 	}
-	
-	
 
 }

@@ -28,7 +28,6 @@ import com.cg.jcat.api.exception.entity.ErrorDTO;
 @ControllerAdvice
 
 public class JcatExceptionHandler extends ResponseEntityExceptionHandler {
-	// UserAlreadyExistsExceptionHandler
 
 	Date date = new Date();
 
@@ -115,7 +114,7 @@ public class JcatExceptionHandler extends ResponseEntityExceptionHandler {
 				exception.getErrorDTO().getErrorTimestamp(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_ACCEPTABLE);
 	}
-	
+
 	@ExceptionHandler(value = ApplicationExistException.class)
 	public ResponseEntity<Object> inputMissMatch(ApplicationExistException exception, WebRequest request) {
 

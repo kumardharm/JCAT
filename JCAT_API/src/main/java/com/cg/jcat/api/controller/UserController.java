@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.cg.jcat.api.dao.UserModel;
 import com.cg.jcat.api.entity.ValidationException;
@@ -17,7 +18,6 @@ import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import com.cg.jcat.api.service.IUserService;
-
 @Component
 @Scope("session")
 public class UserController implements IUserController {

@@ -20,7 +20,7 @@ public class UserDao {
 
 	@Autowired
 	private IUserRepository userRepository;
-	
+
 	Date date = new Date();
 
 	public List<UserModel> getUsers() {
@@ -110,7 +110,7 @@ public class UserDao {
 			users.setUserId(userModel.getUserId());
 			users.setCompany(userModel.getCompany());
 			users.setCreatedBy("Admin");
-			users.setCreatedTime(date);
+			users.setModifiedBy("Admin");
 			users.setFirstName(userModel.getFirstName());
 			users.setLastName(userModel.getLastName());
 			users.setPassword(userModel.getPassword());
@@ -120,20 +120,18 @@ public class UserDao {
 	}
 
 	public User create(String userName) {
-		
+
 		User users = new User();
 		users.setUsername(userName);
 		users.setAdmin(false);
 		users.setDeleted(false);
 		users.setCreatedBy("Admin");
-		users.setCreatedTime(date);
-		 return userRepository.save(users);
+		return userRepository.save(users);
 	}
-	
-	public UserModel login(String username, String password)
-	{
+
+	public UserModel login(String username, String password) {
 		User user;
-		user = userRepository.findByUsernameAndPassword(username,password);
+		user = userRepository.findByUsernameAndPassword(username, password);
 		return toUserDao(user);
 	}
 

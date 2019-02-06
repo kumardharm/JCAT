@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.cg.jcat.api.dao.DTCloudableRuleModel;
 import com.cg.jcat.api.exception.SystemExceptions;
 
-
 @Service
 public interface IDTCloudableRuleService {
 

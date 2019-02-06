@@ -1,21 +1,16 @@
 package com.cg.jcat.api.dao;
 
-import javax.validation.constraints.NotNull;
-
 public class UserModel {
-	
-	private  int userId;
+
+	private int userId;
 	private String firstName;
 	private String lastName;
-	@NotNull
 	private String username;
-	@NotNull
 	private String password;
 	private String company;
 	private String userEmail;
-	@NotNull
 	private boolean isAdmin;
-	
+
 	public int getUserId() {
 		return userId;
 	}

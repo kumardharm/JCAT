@@ -2,6 +2,8 @@ package com.cg.jcat.api.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,37 +14,36 @@ import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.service.IDTMigrationRuleService;
 
 @Component
-public class DTMigrationRuleController implements IDTMigrationRuleController{
-	
+public class DTMigrationRuleController implements IDTMigrationRuleController {
+
+	private static final Logger logger = LoggerFactory.getLogger(DTMigrationRuleController.class);
+
 	@Autowired
 	IDTMigrationRuleService dtMigrationRuleService;
-	
+
 	@Override
 	public List<DTMigrationRuleModel> getMigrationRule(int migrationId) {
 		try {
 			return dtMigrationRuleService.getMigrationRule(migrationId);
 		} catch (JcatExceptions e) {
-			System.out.println("Error in getting rules" + e);
+			logger.error("Error in getting rules in getMigrationRule()" + e);
 			return null;
 		}
 	}
-	
+
 	@Override
-	public void saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModel) throws SystemExceptions{
+	public void saveMigrationRule(List<DTMigrationRuleModel> dtMigrationRuleModel) throws SystemExceptions {
 		try {
 			dtMigrationRuleService.saveMigrationRule(dtMigrationRuleModel);
 		} catch (JcatExceptions e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error in saveMigration()");
 		}
-		
+
 	}
-	
+
 	@Override
 	public List<DTMigrationModel> getMigration() {
 		return dtMigrationRuleService.getMigrationPattern();
 	}
-
-	
 
 }

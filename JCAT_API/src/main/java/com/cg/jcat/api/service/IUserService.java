@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cg.jcat.api.dao.UserModel;
-import com.cg.jcat.api.entity.User;
 import com.cg.jcat.api.exception.JcatExceptions;
 import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
@@ -16,7 +15,7 @@ public interface IUserService {
 
 	public boolean saveUser(UserModel user, String createdBy) throws UserAlreadyExistsException, SystemExceptions;
 
-	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException ;
+	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException;
 
 	public boolean deleteById(int userId) throws JcatExceptions;
 

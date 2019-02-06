@@ -17,15 +17,17 @@ import com.cg.jcat.api.exception.SystemExceptions;
 @RestController
 @RequestMapping("/assessment")
 public interface IAssessmentController {
-	
+
 	@GetMapping("answer/get/{applicationId}")
 	public List<AnswerModel> getAnswers(@PathVariable int applicationId);
-	
+
 	@PostMapping("answer/create/{applicationId}")
-	public boolean saveAnswers(@RequestBody List<AnswerModel> answerModels, @PathVariable int applicationId) throws SystemExceptions, OptionTextNotNullException, CountMissMatchException; 
-	
+	public boolean saveAnswers(@RequestBody List<AnswerModel> answerModels, @PathVariable int applicationId)
+			throws SystemExceptions, OptionTextNotNullException, CountMissMatchException;
+
 	@PostMapping("finalize/{applicationId}/{assessmentStage}")
-	public void finalized(@RequestBody List<AnswerModel> answerModels, @PathVariable int applicationId, @PathVariable int assessmentStage) throws SystemExceptions, OptionTextNotNullException, ApplicationIdNotFoundException, CountMissMatchException;
-	
-	
+	public void finalized(@RequestBody List<AnswerModel> answerModels, @PathVariable int applicationId,
+			@PathVariable int assessmentStage) throws SystemExceptions, OptionTextNotNullException,
+			ApplicationIdNotFoundException, CountMissMatchException;
+
 }

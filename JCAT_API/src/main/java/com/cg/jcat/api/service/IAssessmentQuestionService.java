@@ -8,7 +8,6 @@ import com.cg.jcat.api.dao.AssessmentQuestionModel;
 
 @Service
 public interface IAssessmentQuestionService {
-	
 
 	public List<AssessmentQuestionModel> getQuestions();
 
