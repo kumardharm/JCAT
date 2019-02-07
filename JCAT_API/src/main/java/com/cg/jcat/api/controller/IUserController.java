@@ -20,7 +20,7 @@ import com.cg.jcat.api.exception.SystemExceptions;
 import com.cg.jcat.api.exception.UserAlreadyExistsException;
 import org.springframework.validation.Errors;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/")
 public interface IUserController {

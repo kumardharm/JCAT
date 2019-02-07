@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cg.jcat.api.entity.User;
@@ -15,8 +13,6 @@ import com.cg.jcat.api.repository.IUserRepository;
 
 @Component
 public class UserDao {
-
-	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
 	@Autowired
 	private IUserRepository userRepository;
@@ -70,7 +66,8 @@ public class UserDao {
 	}
 
 	public boolean updateUsers(UserModel user, String modifiedBy) {
-		return setUpdatedUser(user, modifiedBy);
+
+		return userRepository.saveAndFlush(getUsers(user, modifiedBy)) != null;
 	}
 
 	public boolean setUpdatedUser(UserModel user, String modifiedBy) {
@@ -133,6 +130,18 @@ public class UserDao {
 		User user;
 		user = userRepository.findByUsernameAndPassword(username, password);
 		return toUserDao(user);
+	}
+
+	private User getUsers(UserModel user, String modifiedBy) {
+		User userFromDB = findByUsername(user.getUsername());
+		userFromDB.setCompany(user.getCompany());
+		userFromDB.setFirstName(user.getFirstName());
+		userFromDB.setLastName(user.getLastName());
+		userFromDB.setModifiedBy(modifiedBy);
+		userFromDB.setModifiedTime(date);
+		userFromDB.setPassword(user.getPassword());
+		userFromDB.setUserEmail(user.getUserEmail());
+		return userFromDB;
 	}
 
 }

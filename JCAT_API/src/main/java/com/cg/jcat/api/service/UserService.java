@@ -49,23 +49,15 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean updateUsers(UserModel user, String modifiedBy) throws SystemExceptions, UserAlreadyExistsException {
+	public boolean updateUsers(UserModel user, String modifiedBy) {
 		User existingUser = userDao.findByUsername(user.getUsername());
 		boolean isUpdated = false;
 		if (existingUser != null) {
-			logger.error("Error user already present in DB! with name " + user.getUsername() + " ErrorMessage: ");
-			throw new UserAlreadyExistsException(user.getUsername());
-
-		}
-		try {
-
 			isUpdated = userDao.updateUsers(user, modifiedBy);
-		} catch (Exception e) {
-			logger.error("Error while updating user " + user.getUsername() + " ErrorMessage: " + e.getMessage(), e);
-			throw new SystemExceptions("updateUsers()");
+		} else {
+			logger.info("Error in updating user with username '" + user.getUsername() + "' result is " + isUpdated);
 		}
 
-		logger.info("User " + user.getUsername() + " successfully updated in DB!" + isUpdated);
 		return isUpdated;
 	}
 

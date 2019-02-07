@@ -67,15 +67,10 @@ public class UserController implements IUserController {
 	}
 
 	@Override
-	public boolean updateUserId(String modifiedBy, UserModel user) throws SystemExceptions, UserAlreadyExistsException {
+	public boolean updateUserId(String modifiedBy, UserModel user){
 		boolean value = false;
-		try {
-			value = userService.updateUsers(user, modifiedBy);
-			return value;
-		} catch (JcatExceptions e) {
-			logger.error("Error while updating user " + user.getUsername(), e);
-			throw e;
-		}
+		value = userService.updateUsers(user, modifiedBy);
+		return value;
 	}
 
 	@Override
