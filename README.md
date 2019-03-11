@@ -1,2 +1,2 @@
 # JCAT
-Springboot Maven Project
+Springboot Maven Projects
